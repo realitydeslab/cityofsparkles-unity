@@ -67,6 +67,8 @@ public class TwitterManager : MonoBehaviour
 
     private void updateForSentiment()
     {
+        AkSoundEngine.SetState("sentiment", PreferredSentiment.ToString().ToLower());
+
         // Find new set of tweets
         List<int> NewIndices = new List<int>(MaxTweets);
         switch (PreferredSentiment)
@@ -105,11 +107,6 @@ public class TwitterManager : MonoBehaviour
                 break;
             default:
                 break;
-        }
-
-        if (NewIndices == null)
-        {
-            return;
         }
 
         // Diff
