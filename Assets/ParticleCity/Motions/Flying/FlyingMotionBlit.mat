@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FlyingMotionBlit
+  m_Shader: {fileID: 4800000, guid: 8a146c0dc1babea4ab928b42e10a8115, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BasePositionTex:
+        m_Texture: {fileID: 2800000, guid: 42991cc2ff086264f97566bfb1fbe3b2, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OffsetTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _VelocityTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _ClosingDamp: 5
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _Glossiness: 0.5
+    - _HandPush: 100
+    - _MaxDistance: 100
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SpringDamp: 5
+    - _SpringDrag: 5
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _VanR_0: 7.5
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LeftHandPos: {r: -154.42972, g: -89.76655, b: -281.7404, a: 1}
+    - _LeftHandPos0: {r: 54.884266, g: 53.263958, b: -149.18097, a: 1}
+    - _LeftHandPos1: {r: 54.94719, g: 53.279163, b: -149.22598, a: 1}
+    - _LeftHandPos2: {r: 55.023823, g: 47.001583, b: -149.08482, a: 1}
+    - _LeftHandPos3: {r: 55.246178, g: 47.097782, b: -149.05087, a: 1}
+    - _LeftHandPos4: {r: 55.17659, g: 47.09531, b: -149.04288, a: 1}
+    - _LeftHandPos5: {r: 55.283836, g: 47.033028, b: -149.07303, a: 1}
+    - _LeftHandPos6: {r: 55.31575, g: 47.111237, b: -149.07089, a: 1}
+    - _LeftHandPos7: {r: 55.344868, g: 47.11879, b: -149.06761, a: 1}
+    - _LeftHandTrail0: {r: 0, g: 0, b: 0, a: 1}
+    - _LeftHandTrail1: {r: 0, g: 0, b: 0, a: 1}
+    - _LeftHandTrail2: {r: 0, g: 0, b: 0, a: 1}
+    - _LeftHandTrail3: {r: 0, g: 0, b: 0, a: 1}
+    - _LeftHandTrail4: {r: 0, g: 0, b: 0, a: 1}
+    - _LeftHandTrail5: {r: 0, g: 0, b: 0, a: 1}
+    - _LeftHandTrail6: {r: 0, g: 0, b: 0, a: 1}
+    - _LeftHandTrail7: {r: 0, g: 0, b: 0, a: 1}
+    - _LeftHandVel0: {r: -1.394457, g: -0.3369691, b: 0.9975503, a: 1}
+    - _LeftHandVel1: {r: -1.8560035, g: 152.0382, b: -3.4187644, a: 1}
+    - _LeftHandVel2: {r: -5.2482758, g: -2.2706003, b: -0.80134594, a: 1}
+    - _LeftHandVel3: {r: 1.5905926, g: 0.056501698, b: -0.18275858, a: 1}
+    - _LeftHandVel4: {r: -4.465217, g: 2.5931423, b: 1.255356, a: 1}
+    - _LeftHandVel5: {r: -0.7856381, g: -1.9253111, b: -0.05258873, a: 1}
+    - _LeftHandVel6: {r: -0.7676046, g: -0.1991166, b: -0.08648499, a: 1}
+    - _LeftHandVel7: {r: -1.1716115, g: 0.529338, b: 0.45848972, a: 1}
+    - _RightHandPos: {r: -483.90805, g: 159.26688, b: -46.272, a: 1}
+    - _RightHandPos0: {r: 52.328167, g: 54.174988, b: -151.15659, a: 1}
+    - _RightHandPos1: {r: 52.327538, g: 54.17306, b: -151.15715, a: 1}
+    - _RightHandPos2: {r: 52.432533, g: 47.886528, b: -151.03578, a: 1}
+    - _RightHandPos3: {r: 52.440163, g: 47.88524, b: -151.02968, a: 1}
+    - _RightHandPos4: {r: 52.439266, g: 47.88598, b: -151.02544, a: 1}
+    - _RightHandPos5: {r: 52.42761, g: 47.891953, b: -151.02916, a: 1}
+    - _RightHandPos6: {r: 52.413036, g: 47.89431, b: -151.03589, a: 1}
+    - _RightHandPos7: {r: 52.40725, g: 47.90486, b: -151.02983, a: 1}
+    - _RightHandTrail0: {r: 0, g: 0, b: 0, a: 1}
+    - _RightHandTrail1: {r: 0, g: 0, b: 0, a: 1}
+    - _RightHandTrail2: {r: 0, g: 0, b: 0, a: 1}
+    - _RightHandTrail3: {r: 0, g: 0, b: 0, a: 1}
+    - _RightHandTrail4: {r: 0, g: 0, b: 0, a: 1}
+    - _RightHandTrail5: {r: 0, g: 0, b: 0, a: 1}
+    - _RightHandTrail6: {r: 0, g: 0, b: 0, a: 1}
+    - _RightHandTrail7: {r: 0, g: 0, b: 0, a: 1}
+    - _RightHandVel0: {r: 0.013948796, g: 0.04269177, b: 0.012511647, a: 1}
+    - _RightHandVel1: {r: -2.542916, g: 152.25502, b: -2.9394498, a: 1}
+    - _RightHandVel2: {r: -0.18007775, g: 0.030433139, b: -0.14406219, a: 1}
+    - _RightHandVel3: {r: 0.020490585, g: -0.016915632, b: -0.0969597, a: 1}
+    - _RightHandVel4: {r: 0.48537043, g: -0.24872057, b: 0.15501359, a: 1}
+    - _RightHandVel5: {r: 0.3587303, g: -0.058035422, b: 0.16565451, a: 1}
+    - _RightHandVel6: {r: 0.1525555, g: -0.27815986, b: -0.15969554, a: 1}
+    - _RightHandVel7: {r: -0.42323425, g: -0.036183238, b: -0.29182753, a: 1}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="125">
+	<RootPaths>
+		<ProjectRoot>E:\ParticleCity\ParticleCityWwise\</ProjectRoot>
+		<SourceFilesRoot>E:\ParticleCity\ParticleCityWwise\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>E:\ParticleCity\ParticleCityUnity\Assets\StreamingAssets\Audio\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>E:\ParticleCity\ParticleCityWwise\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="1831431028" Language="SFX">
+			<ObjectPath>\SoundBanks\Test Work  Unit\TestSoundBank</ObjectPath>
+			<ShortName>TestSoundBank</ShortName>
+			<Path>TestSoundBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="4261885686" Name="Play_GuideLight" ObjectPath="\Events\Test Work Unit\Play_GuideLight"/>
+				<Event Id="3656440737" Name="Play_HearTheWindWhisper" ObjectPath="\Events\Test Work Unit\Play_HearTheWindWhisper"/>
+				<Event Id="2470127684" Name="Play_ParticleCity_Improv_BGM" ObjectPath="\Events\Test Work Unit\Play_ParticleCity_Improv_BGM"/>
+				<Event Id="1993745496" Name="Play_Twist_BGM" ObjectPath="\Events\Test Work Unit\Play_Twist_BGM"/>
+				<Event Id="3980605832" Name="Play_TwistNoisyPart" ObjectPath="\Events\Test Work Unit\Play_TwistNoisyPart"/>
+			</IncludedEvents>
+			<IncludedMemoryFiles>
+				<File Id="218627847" Language="SFX">
+					<ShortName>Grand Piano.wav</ShortName>
+					<Path>SFX\Grand Piano_1C9C67B2.wem</Path>
+				</File>
+				<File Id="297268359" Language="SFX">
+					<ShortName>ParticleCity Improv.wav</ShortName>
+					<Path>SFX\ParticleCity Improv_21CA2154.wem</Path>
+				</File>
+				<File Id="378625576" Language="SFX">
+					<ShortName>TwistNoisyPart.wav</ShortName>
+					<Path>SFX\TwistNoisyPart_21CA2154.wem</Path>
+				</File>
+				<File Id="407719945" Language="SFX">
+					<ShortName>HearTheWindWhisper.wav</ShortName>
+					<Path>SFX\HearTheWindWhisper_21CA2154.wem</Path>
+				</File>
+				<File Id="810328542" Language="SFX">
+					<ShortName>Twist.wav</ShortName>
+					<Path>SFX\Twist_CDB5649E.wem</Path>
+				</File>
+				<File Id="1043598777" Language="SFX">
+					<ShortName>ParticleCityCommands.mid</ShortName>
+					<Path>SFX\ParticleCityCommands_00000000.wem</Path>
+				</File>
+			</IncludedMemoryFiles>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

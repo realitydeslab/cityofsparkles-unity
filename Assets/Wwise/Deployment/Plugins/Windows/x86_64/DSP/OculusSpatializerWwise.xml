@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2014 Oculus VR, LLC. -->
+<PluginModule>
+  <MixerPlugin Name="Oculus Spatializer" CompanyID="266" PluginID="146">
+    <PluginInfo MenuPath="50-Wwise">
+      <PlatformSupport>
+        <Platform Name="Windows"/>
+        <Platform Name="Android"/>
+        <Platform Name="Mac"/>
+        <Platform Name="Linux"/>
+      </PlatformSupport>
+    </PluginInfo>
+    <Properties>
+      <Property Name="Version" Type="Real32" SupportRTPCType="Exclusive">
+        <UserInterface DisplayName="Version" Step="1.0" Fine="0.1" Decimals="1"/>
+        <DefaultValue>11.0</DefaultValue>
+        <AudioEnginePropertyID>0</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>0</Min>
+              <Max>512</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="Bypass" Type="bool" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant">
+        <UserInterface DisplayName="Bypass" />
+        <DefaultValue>false</DefaultValue>
+        <AudioEnginePropertyID>1</AudioEnginePropertyID>
+      </Property>
+      <Property Name="Enable Reflections" Type="bool" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant">
+        <UserInterface DisplayName="Enable Reflections" />
+        <DefaultValue>false</DefaultValue>
+        <AudioEnginePropertyID>2</AudioEnginePropertyID>
+      </Property>
+      <Property Name="Room Size X" Type="Real32" SupportRTPCType="Exclusive">
+        <UserInterface DisplayName="Room Size X" Step="1.0" Fine="0.1" Decimals="1" />
+        <DefaultValue>8</DefaultValue>
+        <AudioEnginePropertyID>3</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>1</Min>
+              <Max>200</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="Room Size Y" Type="Real32" SupportRTPCType="Exclusive">
+        <UserInterface DisplayName="Room Size Y" Step="1.0" Fine="0.1" Decimals="1" />
+        <DefaultValue>3</DefaultValue>
+        <AudioEnginePropertyID>4</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>1</Min>
+              <Max>200</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="Room Size Z" Type="Real32" SupportRTPCType="Exclusive">
+        <UserInterface DisplayName="Room Size Z" Step="1.0" Fine="0.1" Decimals="1" />
+        <DefaultValue>5</DefaultValue>
+        <AudioEnginePropertyID>5</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>1</Min>
+              <Max>200</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="Reflect Left" Type="Real32" SupportRTPCType="Exclusive">
+        <UserInterface DisplayName="Reflect Left" Step="0.1" Fine="0.01" Decimals="2" />
+        <DefaultValue>0.5</DefaultValue>
+        <AudioEnginePropertyID>6</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>0.0</Min>
+              <Max>0.97</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="Reflect Right" Type="Real32" SupportRTPCType="Exclusive">
+        <UserInterface DisplayName="Reflect Right" Step="0.1" Fine="0.01" Decimals="2" />
+        <DefaultValue>0.5</DefaultValue>
+        <AudioEnginePropertyID>7</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>0.0</Min>
+              <Max>0.97</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="Reflect Front" Type="Real32" SupportRTPCType="Exclusive">
+        <UserInterface DisplayName="Reflect Front" Step="0.1" Fine="0.01" Decimals="2" />
+        <DefaultValue>0.5</DefaultValue>
+        <AudioEnginePropertyID>8</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>0.0</Min>
+              <Max>0.97</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="Reflect Behind" Type="Real32" SupportRTPCType="Exclusive">
+        <UserInterface DisplayName="Reflect Behind" Step="0.1" Fine="0.01" Decimals="2" />
+        <DefaultValue>0.5</DefaultValue>
+        <AudioEnginePropertyID>9</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>0.0</Min>
+              <Max>0.97</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="Reflect Up" Type="Real32" SupportRTPCType="Exclusive">
+        <UserInterface DisplayName="Reflect Up" Step="0.1" Fine="0.01" Decimals="2" />
+        <DefaultValue>0.2</DefaultValue>
+        <AudioEnginePropertyID>10</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>0.0</Min>
+              <Max>0.97</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="Reflect Down" Type="Real32" SupportRTPCType="Exclusive">
+        <UserInterface DisplayName="Reflect Down" Step="0.1" Fine="0.01" Decimals="2" />
+        <DefaultValue>0.4</DefaultValue>
+        <AudioEnginePropertyID>11</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>0.0</Min>
+              <Max>0.97</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="Global Scale" Type="Real32" SupportRTPCType="Exclusive">
+        <UserInterface DisplayName="Global Scale" Step="0.1" Fine="0.001" Decimals="4" />
+        <DefaultValue>1.0</DefaultValue>
+        <AudioEnginePropertyID>12</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>0.00001</Min>
+              <Max>10000.0</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="Gain" Type="Real32" SupportRTPCType="Exclusive">
+        <UserInterface DisplayName="Gain" Step="0.1" Fine="0.01" Decimals="4" />
+        <DefaultValue>0.0</DefaultValue>
+        <AudioEnginePropertyID>13</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>-24.0</Min>
+              <Max>24.0</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="DEBUG Clamp Pos" Type="bool" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant">
+        <UserInterface DisplayName="DEBUG Clamp Pos" />
+        <DefaultValue>true</DefaultValue>
+        <AudioEnginePropertyID>14</AudioEnginePropertyID>
+      </Property>
+      <Property Name="DEBUG Misc" Type="bool" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant">
+        <UserInterface DisplayName="DEBUG Misc" />
+        <DefaultValue>false</DefaultValue>
+        <AudioEnginePropertyID>15</AudioEnginePropertyID>
+      </Property>
+      <Property Name="Reverb On" Type="bool" SupportRTPCType="Exclusive" ForceRTPCCurveSegmentShape="Constant">
+        <UserInterface DisplayName="Reverb On" />
+        <DefaultValue>false</DefaultValue>
+        <AudioEnginePropertyID>16</AudioEnginePropertyID>
+      </Property>
+      <Property Name="Reflections Range Min" Type="Real32" SupportRTPCType="Exclusive">
+        <UserInterface DisplayName="Reflections Range Min" Step="0.1" Fine="0.01" Decimals="4" />
+        <DefaultValue>1.0</DefaultValue>
+        <AudioEnginePropertyID>17</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>1.0</Min>
+              <Max>10000.0</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="Reflections Range Max" Type="Real32" SupportRTPCType="Exclusive">
+        <UserInterface DisplayName="Reflections Range Max" Step="0.1" Fine="0.01" Decimals="4" />
+        <DefaultValue>100.0</DefaultValue>
+        <AudioEnginePropertyID>18</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>1.0</Min>
+              <Max>10000.0</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+    </Properties>
+    <Attachables>
+      <Attachable Name="AttachableMixerInput" CompanyID="266" PluginID="501">
+        <Properties>
+          <Property Name="Bypass" Type="bool">
+            <UserInterface DisplayName="Bypass Spatializer" />
+            <DefaultValue>false</DefaultValue>
+            <AudioEnginePropertyID>0</AudioEnginePropertyID>
+          </Property>
+          <Property Name="EnableReflections" Type="bool">
+            <UserInterface DisplayName="Reflections Enabled" />
+            <DefaultValue>true</DefaultValue>
+            <AudioEnginePropertyID>1</AudioEnginePropertyID>
+          </Property>
+          <Property Name="UseInvSqAttenuation" Type="bool">
+            <UserInterface DisplayName="Oculus Attenuation Enabled" />
+            <DefaultValue>false</DefaultValue>
+            <AudioEnginePropertyID>2</AudioEnginePropertyID>
+          </Property>
+		  <Property Name="AttenuationRangeMin" Type="Real32">
+			<UserInterface DisplayName="Attenuation Range Min"/>
+			<DefaultValue>0.0</DefaultValue>
+			<AudioEnginePropertyID>3</AudioEnginePropertyID>
+			<Restrictions>
+				<ValueRestriction>
+					<Range Type="Real32">
+						<Min>0.0</Min>
+						<Max>10000.0</Max>
+					</Range>
+				</ValueRestriction>
+			</Restrictions>
+		  </Property>
+		  <Property Name="AttenuationRangeMax" Type="Real32">
+			<UserInterface DisplayName="Attenuation Range Max"/>
+			<DefaultValue>100.0</DefaultValue>
+			<AudioEnginePropertyID>4</AudioEnginePropertyID>
+			<Restrictions>
+				<ValueRestriction>
+					<Range Type="Real32">
+						<Min>1.0</Min>
+						<Max>10000.0</Max>
+					</Range>
+				</ValueRestriction>
+			</Restrictions>
+		  </Property>
+          <Property Name="VolumetricRadius" Type="Real32">
+            <UserInterface DisplayName="Volumetric Radius"/>
+            <DefaultValue>0.0</DefaultValue>
+            <AudioEnginePropertyID>5</AudioEnginePropertyID>
+            <Restrictions>
+              <ValueRestriction>
+                <Range Type="Real32">
+                  <Min>0.0</Min>
+                  <Max>1000.0</Max>
+                </Range>
+              </ValueRestriction>
+            </Restrictions>
+          </Property>
+          <Property Name="Ambisonic" Type="bool">
+            <UserInterface DisplayName="Treat Sound As Ambisonic" />
+            <DefaultValue>false</DefaultValue>
+            <AudioEnginePropertyID>6</AudioEnginePropertyID>
+          </Property>
+          <Property Name="AmbisonicVSpeakerMode" Type="bool">
+            <UserInterface DisplayName="Ambisonic Virtual Speaker Mode" />
+            <DefaultValue>false</DefaultValue>
+            <AudioEnginePropertyID>7</AudioEnginePropertyID>
+          </Property>
+        </Properties>
+      </Attachable>
+    </Attachables>
+  </MixerPlugin>
+</PluginModule>

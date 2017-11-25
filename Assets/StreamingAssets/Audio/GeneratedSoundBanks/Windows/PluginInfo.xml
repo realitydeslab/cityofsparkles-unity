@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PluginInfo Project="ParticleCityWwise" Platform="Windows" BasePlatform="Windows">
+	<Plugins>
+		<Plugin Name="Wwise Meter" ID="8454147" DLL="AkSoundEngineDLL"/>
+		<Plugin Name="Oculus Spatializer" ID="9572518" DLL="OculusSpatializerWwise"/>
+		<Plugin Name="Wwise Synth One" ID="9699330" DLL="SynthOne"/>
+	</Plugins>
+</PluginInfo>
