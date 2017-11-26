@@ -47,10 +47,12 @@ public class GuidingLight : MonoBehaviour
 
                 lightUpCouroutine = StartCoroutine(lightUp());
 
+                /*
                 if (akAmbient != null)
                 {
                     AkSoundEngine.PostEvent((uint)akAmbient.eventID, akAmbient.gameObject);
                 }
+                */
             }
         }
 

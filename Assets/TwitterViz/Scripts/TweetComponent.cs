@@ -41,6 +41,12 @@ public class TweetComponent : MonoBehaviour
     public double Sentiment;
 
     private bool isPlaying;
+    private AkAmbient akAmbient;
+
+    void Awake()
+    {
+        akAmbient = GetComponent<AkAmbient>();
+    }
 
 	void Start () {
 	}
@@ -60,10 +66,12 @@ public class TweetComponent : MonoBehaviour
 	            switch (Animation)
 	            {
 	                case SpawnAnimation.Rising:
+	                    playMusic();
                         StartCoroutine(wordAnimation());
 	                    break;
 
                     case SpawnAnimation.Circular:
+	                    playMusic();
                         StartCoroutine(wordAnimationCircular());
                         break;
 
@@ -231,5 +239,26 @@ public class TweetComponent : MonoBehaviour
             yield return null;
         }
         Destroy(word.gameObject);
+    }
+
+    private void playMusic()
+    {
+        int length = Tweet.Words.Length;
+        if (length < 6)
+        {
+            AkSoundEngine.PostEvent("Play_Tweet_Short", gameObject);
+        }
+        else if (length < 10)
+        {
+            AkSoundEngine.PostEvent("Play_Tweet_Med", gameObject);
+        }
+        else if (length < 20)
+        {
+            AkSoundEngine.PostEvent("Play_Tweet_Med_Long", gameObject);
+        }
+        else
+        {
+            AkSoundEngine.PostEvent("Play_Long", gameObject);
+        }
     }
 }

@@ -16,6 +16,10 @@ namespace AK
         static const AkUniqueID PLAY_GUIDELIGHT = 4261885686U;
         static const AkUniqueID PLAY_HEARTHEWINDWHISPER = 3656440737U;
         static const AkUniqueID PLAY_PARTICLECITY_IMPROV_BGM = 2470127684U;
+        static const AkUniqueID PLAY_TWEET_LONG = 2998930726U;
+        static const AkUniqueID PLAY_TWEET_MED = 2959931726U;
+        static const AkUniqueID PLAY_TWEET_MED_LONG = 3560716643U;
+        static const AkUniqueID PLAY_TWEET_SHORT = 241412554U;
         static const AkUniqueID PLAY_TWIST_BGM = 1993745496U;
         static const AkUniqueID PLAY_TWISTNOISYPART = 3980605832U;
         static const AkUniqueID PLAY_TWITTERBGM = 914952687U;

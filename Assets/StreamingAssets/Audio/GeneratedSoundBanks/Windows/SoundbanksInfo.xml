@@ -24,11 +24,35 @@
 				<Event Id="4261885686" Name="Play_GuideLight" ObjectPath="\Events\Test Work Unit\Play_GuideLight"/>
 				<Event Id="3656440737" Name="Play_HearTheWindWhisper" ObjectPath="\Events\Test Work Unit\Play_HearTheWindWhisper"/>
 				<Event Id="2470127684" Name="Play_ParticleCity_Improv_BGM" ObjectPath="\Events\Test Work Unit\Play_ParticleCity_Improv_BGM"/>
+				<Event Id="2998930726" Name="Play_Tweet_Long" ObjectPath="\Events\Default Work Unit\Play_Tweet_Long"/>
+				<Event Id="2959931726" Name="Play_Tweet_Med" ObjectPath="\Events\Default Work Unit\Play_Tweet_Med"/>
+				<Event Id="3560716643" Name="Play_Tweet_Med_Long" ObjectPath="\Events\Default Work Unit\Play_Tweet_Med_Long"/>
+				<Event Id="241412554" Name="Play_Tweet_Short" ObjectPath="\Events\Default Work Unit\Play_Tweet_Short"/>
 				<Event Id="1993745496" Name="Play_Twist_BGM" ObjectPath="\Events\Test Work Unit\Play_Twist_BGM"/>
 				<Event Id="3980605832" Name="Play_TwistNoisyPart" ObjectPath="\Events\Test Work Unit\Play_TwistNoisyPart"/>
 				<Event Id="914952687" Name="Play_TwitterBgm" ObjectPath="\Events\Default Work Unit\Play_TwitterBgm"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
+				<File Id="30958087" Language="SFX">
+					<ShortName>PCBGM-atmosphere.wav</ShortName>
+					<Path>SFX\PCBGM-atmosphere_F17FB28C.wem</Path>
+				</File>
+				<File Id="42020522" Language="SFX">
+					<ShortName>Tweet-Long_03.wav</ShortName>
+					<Path>SFX\Tweet-Long_03_F17FB28C.wem</Path>
+				</File>
+				<File Id="91450912" Language="SFX">
+					<ShortName>Tweet-Short_01.wav</ShortName>
+					<Path>SFX\Tweet-Short_01_F17FB28C.wem</Path>
+				</File>
+				<File Id="122761794" Language="SFX">
+					<ShortName>Tweet-Short_02.wav</ShortName>
+					<Path>SFX\Tweet-Short_02_F17FB28C.wem</Path>
+				</File>
+				<File Id="138061797" Language="SFX">
+					<ShortName>Tweet-Med_01.wav</ShortName>
+					<Path>SFX\Tweet-Med_01_F17FB28C.wem</Path>
+				</File>
 				<File Id="218627847" Language="SFX">
 					<ShortName>Grand Piano.wav</ShortName>
 					<Path>SFX\Grand Piano_1C9C67B2.wem</Path>
@@ -36,6 +60,10 @@
 				<File Id="297268359" Language="SFX">
 					<ShortName>ParticleCity Improv.wav</ShortName>
 					<Path>SFX\ParticleCity Improv_21CA2154.wem</Path>
+				</File>
+				<File Id="376149469" Language="SFX">
+					<ShortName>Tweet-Med-Long_01.wav</ShortName>
+					<Path>SFX\Tweet-Med-Long_01_F17FB28C.wem</Path>
 				</File>
 				<File Id="378625576" Language="SFX">
 					<ShortName>TwistNoisyPart.wav</ShortName>
@@ -45,13 +73,45 @@
 					<ShortName>HearTheWindWhisper.wav</ShortName>
 					<Path>SFX\HearTheWindWhisper_21CA2154.wem</Path>
 				</File>
+				<File Id="408862344" Language="SFX">
+					<ShortName>Tweet-Short_03.wav</ShortName>
+					<Path>SFX\Tweet-Short_03_F17FB28C.wem</Path>
+				</File>
+				<File Id="420134523" Language="SFX">
+					<ShortName>Tweet-Med-Long_02.wav</ShortName>
+					<Path>SFX\Tweet-Med-Long_02_F17FB28C.wem</Path>
+				</File>
+				<File Id="483971353" Language="SFX">
+					<ShortName>Tweet-Med-Long_03.wav</ShortName>
+					<Path>SFX\Tweet-Med-Long_03_F17FB28C.wem</Path>
+				</File>
+				<File Id="600856261" Language="SFX">
+					<ShortName>Tweet-Long_02.wav</ShortName>
+					<Path>SFX\Tweet-Long_02_F17FB28C.wem</Path>
+				</File>
+				<File Id="694171849" Language="SFX">
+					<ShortName>Tweet-Long_01.wav</ShortName>
+					<Path>SFX\Tweet-Long_01_F17FB28C.wem</Path>
+				</File>
 				<File Id="810328542" Language="SFX">
 					<ShortName>Twist.wav</ShortName>
 					<Path>SFX\Twist_CDB5649E.wem</Path>
 				</File>
+				<File Id="922462996" Language="SFX">
+					<ShortName>Tweet-Med_02.wav</ShortName>
+					<Path>SFX\Tweet-Med_02_F17FB28C.wem</Path>
+				</File>
+				<File Id="995012014" Language="SFX">
+					<ShortName>Tweet-Med_03.wav</ShortName>
+					<Path>SFX\Tweet-Med_03_F17FB28C.wem</Path>
+				</File>
 				<File Id="1043598777" Language="SFX">
 					<ShortName>ParticleCityCommands.mid</ShortName>
 					<Path>SFX\ParticleCityCommands_00000000.wem</Path>
+				</File>
+				<File Id="1049042582" Language="SFX">
+					<ShortName>Tweet-Med_04.wav</ShortName>
+					<Path>SFX\Tweet-Med_04_F17FB28C.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
