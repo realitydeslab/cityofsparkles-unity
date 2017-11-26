@@ -18,7 +18,23 @@ namespace AK
         static const AkUniqueID PLAY_PARTICLECITY_IMPROV_BGM = 2470127684U;
         static const AkUniqueID PLAY_TWIST_BGM = 1993745496U;
         static const AkUniqueID PLAY_TWISTNOISYPART = 3980605832U;
+        static const AkUniqueID PLAY_TWITTERBGM = 914952687U;
     } // namespace EVENTS
+
+    namespace STATES
+    {
+        namespace SENTIMENT
+        {
+            static const AkUniqueID GROUP = 610169148U;
+
+            namespace STATE
+            {
+                static const AkUniqueID NEGATIVE = 4219547688U;
+                static const AkUniqueID POSITIVE = 1192865152U;
+            } // namespace STATE
+        } // namespace SENTIMENT
+
+    } // namespace STATES
 
     namespace GAME_PARAMETERS
     {

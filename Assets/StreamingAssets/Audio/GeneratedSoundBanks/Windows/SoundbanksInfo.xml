@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="125">
 	<RootPaths>
-		<ProjectRoot>E:\ParticleCity\ParticleCityWwise\</ProjectRoot>
-		<SourceFilesRoot>E:\ParticleCity\ParticleCityWwise\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>E:\ParticleCity\ParticleCityUnity\Assets\StreamingAssets\Audio\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>E:\ParticleCityGF\ParticleCityWwise\</ProjectRoot>
+		<SourceFilesRoot>E:\ParticleCityGF\ParticleCityWwise\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>E:\ParticleCityGF\ParticleCityUnity\Assets\StreamingAssets\Audio\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>E:\ParticleCity\ParticleCityWwise\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>E:\ParticleCityGF\ParticleCityWwise\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -26,6 +26,7 @@
 				<Event Id="2470127684" Name="Play_ParticleCity_Improv_BGM" ObjectPath="\Events\Test Work Unit\Play_ParticleCity_Improv_BGM"/>
 				<Event Id="1993745496" Name="Play_Twist_BGM" ObjectPath="\Events\Test Work Unit\Play_Twist_BGM"/>
 				<Event Id="3980605832" Name="Play_TwistNoisyPart" ObjectPath="\Events\Test Work Unit\Play_TwistNoisyPart"/>
+				<Event Id="914952687" Name="Play_TwitterBgm" ObjectPath="\Events\Default Work Unit\Play_TwitterBgm"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="218627847" Language="SFX">
