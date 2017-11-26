@@ -6,11 +6,19 @@ using UnityEngine;
 
 public class TweetComponent : MonoBehaviour
 {
+    public enum SpawnAnimation
+    {
+        Unspecified = 0,
+        Rising,
+        Circular
+    }
+
     public TMP_Text WordPrefab;
     public bool Trigger;
     public Tweet Tweet;
+    public SpawnAnimation Animation;
 
-    [Header("Animation 1")]
+    [Header("Animation Rising")]
     public float TargetOffset = 20;
     public float FadeInDuration = 0.3f;
     public float RisingDuration = 1.0f;
@@ -35,17 +43,34 @@ public class TweetComponent : MonoBehaviour
     private bool isPlaying;
 
 	void Start () {
-		
 	}
 	
 	void Update () {
 	    if (Trigger)
 	    {
 	        Trigger = false;
-	        if (!isPlaying)
+
+            if (Animation == SpawnAnimation.Unspecified)
+            {
+                Animation = UnityEngine.Random.value < 0.2f ? SpawnAnimation.Rising : SpawnAnimation.Circular;
+            }
+
+            if (!isPlaying)
 	        {
-	            StartCoroutine(wordAnimationCircular());
-	        }
+	            switch (Animation)
+	            {
+	                case SpawnAnimation.Rising:
+                        StartCoroutine(wordAnimation());
+	                    break;
+
+                    case SpawnAnimation.Circular:
+                        StartCoroutine(wordAnimationCircular());
+                        break;
+
+                    default:
+	                    break;
+	            }
+            }
 	    }	
 	}
 
@@ -76,6 +101,10 @@ public class TweetComponent : MonoBehaviour
             TMP_Text tmpText = Instantiate(WordPrefab, transform, false);
             tmpText.transform.forward = Camera.main.transform.forward;
             tmpText.text = Tweet.Words[i];
+
+            Vector3 cameraToPoint = (transform.position - Camera.main.transform.position).normalized;
+            cameraToPoint.y = 0;
+            tmpText.transform.localPosition += cameraToPoint * 10;
 
             float time = 0;
             while (time < FadeInDuration || time < RisingDuration)
