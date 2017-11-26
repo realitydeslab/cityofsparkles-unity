@@ -38,7 +38,7 @@ public class TwitterManager : MonoBehaviour
     {
         boundingCollider = GetComponent<Collider>();
 
-        TextAsset tweetsAsset = Resources.Load<TextAsset>("tweets1");
+        TextAsset tweetsAsset = Resources.Load<TextAsset>("tweets2");
         if (tweetsAsset != null)
         {
             tweets = JsonConvert.DeserializeObject<Tweets>(tweetsAsset.text);
