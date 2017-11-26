@@ -102,8 +102,9 @@ public class TweetComponent : MonoBehaviour
             tmpText.transform.forward = Camera.main.transform.forward;
             tmpText.text = Tweet.Words[i];
 
-            Vector3 cameraToPoint = (transform.position - Camera.main.transform.position).normalized;
+            Vector3 cameraToPoint = transform.position - Camera.main.transform.position;
             cameraToPoint.y = 0;
+            cameraToPoint.Normalize();
             tmpText.transform.localPosition += cameraToPoint * 10;
 
             float time = 0;
@@ -156,21 +157,22 @@ public class TweetComponent : MonoBehaviour
         yield return null;
 
         // Circular layout
-        Vector3 cameraToPointDir = (transform.position - Camera.main.transform.position).normalized;
+        Vector3 cameraToPointDir = (transform.position - Camera.main.transform.position);
+        cameraToPointDir.y = 0;
+        cameraToPointDir.Normalize();
         Debug.DrawLine(Camera.main.transform.position, transform.position, Color.yellow, 5);
         Debug.DrawRay(transform.position, cameraToPointDir * CircularRadius, Color.blue, 5);
 
-        cameraToPointDir.y = 0;
         float totalWidth = CircularSpaceWidth * (textObjects.Count - 1);
         for (int i = 0; i < textObjects.Count; i++)
         {
-            totalWidth += textObjects[i].bounds.extents.x * 2;
+            totalWidth += textObjects[i].preferredWidth;
         }
         float totalDegree = totalWidth / (CircularRadius * Mathf.PI * 2) * 360.0f;
         float accumulatedWidth = 0;
         for (int i = 0; i < textObjects.Count; i++)
         {
-            accumulatedWidth += textObjects[i].bounds.extents.x;
+            accumulatedWidth += textObjects[i].preferredWidth / 2;
             float currentDegree = (accumulatedWidth / totalWidth - 0.5f) * totalDegree;
             Vector3 pointToWordDir = Quaternion.Euler(0, currentDegree, 0) * cameraToPointDir;
             Debug.DrawRay(transform.position, pointToWordDir * CircularRadius, Color.red, 5);
@@ -179,7 +181,7 @@ public class TweetComponent : MonoBehaviour
             textObjects[i].transform.localPosition = localPosition;
             textObjects[i].transform.forward = pointToWordDir;
 
-            accumulatedWidth += textObjects[i].bounds.extents.x + CircularSpaceWidth;
+            accumulatedWidth += textObjects[i].preferredWidth / 2 + CircularSpaceWidth;
         }
 
         // Animation
@@ -201,11 +203,11 @@ public class TweetComponent : MonoBehaviour
                 Vector3 offset = text.transform.localPosition;
                 if (time < CircularRisingDuration)
                 {
-                    offset.y = Mathf.SmoothStep(0, TargetOffset, time / CircularRisingDuration);
+                    offset.y = Mathf.SmoothStep(0, CircularOffset, time / CircularRisingDuration);
                 }
                 else
                 {
-                    offset.y = TargetOffset;
+                    offset.y = CircularOffset;
                 }
                 text.transform.localPosition = offset;
 
