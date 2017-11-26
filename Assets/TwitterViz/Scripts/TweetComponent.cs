@@ -258,7 +258,7 @@ public class TweetComponent : MonoBehaviour
         }
         else
         {
-            AkSoundEngine.PostEvent("Play_Long", gameObject);
+            AkSoundEngine.PostEvent("Play_Tweet_Long", gameObject);
         }
     }
 }
