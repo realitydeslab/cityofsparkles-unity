@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TMPro;
 using TwitterViz.DataModels;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class TweetComponent : MonoBehaviour
 {
@@ -42,19 +44,31 @@ public class TweetComponent : MonoBehaviour
 
     private bool isPlaying;
     private AkAmbient akAmbient;
+    private AkGameObj akGameObj;
+    private bool everTriggered;
+    private TwitterManager manager;
 
     void Awake()
     {
         akAmbient = GetComponent<AkAmbient>();
+        akGameObj = GetComponent<AkGameObj>();
     }
 
-	void Start () {
+	void Start ()
+	{
+	    manager = GetComponentInParent<TwitterManager>();
 	}
 	
 	void Update () {
 	    if (Trigger)
 	    {
 	        Trigger = false;
+
+	        if (!everTriggered)
+	        {
+	            manager.RecordFirstTrigger(this);    
+	        }
+	        everTriggered = true;
 
             if (Animation == SpawnAnimation.Unspecified)
             {
@@ -218,6 +232,11 @@ public class TweetComponent : MonoBehaviour
                     offset.y = CircularOffset;
                 }
                 text.transform.localPosition = offset;
+
+                akGameObj.m_positionOffsetData = new AkGameObjPositionOffsetData()
+                {
+                    positionOffset = text.transform.localPosition
+                };
 
                 time += Time.deltaTime;
 

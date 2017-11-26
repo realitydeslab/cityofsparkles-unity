@@ -21,7 +21,11 @@ public class TwitterManager : MonoBehaviour
     public int MaxTweets = 100;
     public TweetComponent TweetObjectPrefab;
     public Sentiment PreferredSentiment;
-    public float SpawnInterval = 1; 
+    public float SpawnInterval = 1;
+    public AkAmbient BgmAkAmbient;
+
+    [Header("Debugging")]
+    private float PositiveRatio;
 
     private Tweets tweets;
 
@@ -33,6 +37,8 @@ public class TwitterManager : MonoBehaviour
 
     private Collider boundingCollider;
     private Sentiment previousSentiment;
+
+    private int triggerCount;
 
     void Awake()
     {
@@ -62,6 +68,18 @@ public class TwitterManager : MonoBehaviour
         {
             spawnIfNeeded();
             lastSpawnTime = Time.time;
+        }
+    }
+
+    public void RecordFirstTrigger(TweetComponent tweet)
+    {
+        triggerCount++;
+        if (triggerCount % 5 == 0)
+        {
+            PreferredSentiment = (PreferredSentiment == Sentiment.Positive)
+                ? Sentiment.Negative
+                : Sentiment.Positive;
+
         }
     }
 
@@ -158,6 +176,32 @@ public class TwitterManager : MonoBehaviour
                 tweetsSpawned.Add(index, tweetObj);
             }
         }
+
+        // Update ratio
+        // TODO: optimize
+        int positive = 0;
+        int negative = 0;
+        for (int i = 0; i < tweetsSpawned.Count; i++)
+        {
+            if (tweetsSpawned[i].Sentiment > 0)
+            {
+                positive++;
+            }
+            else if (tweetsSpawned[i].Sentiment < 0)
+            {
+                negative++;
+            }
+        }
+        if (positive == 0 && negative == 0)
+        {
+            PositiveRatio = 1;
+        }
+        else
+        {
+            PositiveRatio = (float)positive / ((float)positive + (float)negative);
+        }
+
+        AkSoundEngine.SetRTPCValue("SentimentRatio", PositiveRatio, BgmAkAmbient.gameObject);
     }
 
     private static Vector3 sample(Collider collider) {

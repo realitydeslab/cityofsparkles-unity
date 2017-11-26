@@ -892,6 +892,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edfca9b1c0b4f044097c572cbcda3b68, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &739850752 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114728556673729172, guid: edfca9b1c0b4f044097c572cbcda3b68,
+    type: 2}
+  m_PrefabInternal: {fileID: 739850751}
+  m_Script: {fileID: 11500000, guid: fbce8d6dbae52254c95893edb1e6384c, type: 3}
 --- !u!114 &902125991 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11400020, guid: ce816f2e6abb0504092c23ed9b970dfd,
@@ -1053,6 +1059,7 @@ MonoBehaviour:
     type: 2}
   PreferredSentiment: 1
   SpawnInterval: 1
+  BgmAkAmbient: {fileID: 739850752}
 --- !u!1 &2045563682
 GameObject:
   m_ObjectHideFlags: 0
