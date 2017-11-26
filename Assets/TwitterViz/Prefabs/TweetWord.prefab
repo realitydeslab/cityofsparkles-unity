@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23304218410131762}
   - component: {fileID: 222462919166668468}
   - component: {fileID: 114259831664582430}
+  - component: {fileID: 114446864238420334}
   m_Layer: 0
   m_Name: TweetWord
   m_TagString: Untagged
@@ -183,6 +184,19 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &114446864238420334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1528547085582016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
 --- !u!222 &222462919166668468
 CanvasRenderer:
   m_ObjectHideFlags: 1

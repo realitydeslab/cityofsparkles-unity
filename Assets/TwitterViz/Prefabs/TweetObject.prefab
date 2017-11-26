@@ -165,7 +165,14 @@ MonoBehaviour:
   FadeInDuration: 0.5
   RisingDuration: 0.7
   FadeOutDuration: 0.5
+  CircularOffset: 20
+  CircularRadius: 50
+  CircularFadeInDuration: 0.5
+  CircularRisingDuration: 0.5
+  CircularFadeOutDuration: 2
+  CircularSpaceWidth: 3
   Text: 
+  Sentiment: 0
 --- !u!114 &114708920379751864
 MonoBehaviour:
   m_ObjectHideFlags: 1
