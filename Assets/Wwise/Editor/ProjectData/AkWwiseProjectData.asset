@@ -16,9 +16,19 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{FFFCA8D8-975B-4702-9422-7C96AED5C353}'
-    m_lastTimePsrt1: -1982420695
-    m_lastTimePart2: -1999293728
-    List: []
+    m_lastTimePsrt1: -209034086
+    m_lastTimePart2: -1999293340
+    List:
+    - Name: Play_TwitterBgm
+      Path: Default Work Unit\Play_TwitterBgm
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_TwitterBgm
+        ObjectType: 3
+      ID: 914952687
+      Guid: 60efd113c264d54c9bb3bf9710984147
+      maxAttenuation: 0
   - PhysicalPath: Events\Test Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{4D783F1E-0522-43AE-BC17-5DDAE5328E64}'
@@ -86,9 +96,34 @@ MonoBehaviour:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{39AEC1A8-1711-456F-A34E-CE5BB56A5C1B}'
-    m_lastTimePsrt1: -2131188134
-    m_lastTimePart2: -1999297395
-    List: []
+    m_lastTimePsrt1: -208648746
+    m_lastTimePart2: -1999293340
+    List:
+    - Name: Sentiment
+      Path: Default Work Unit\Sentiment
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Sentiment
+        ObjectType: 9
+      ID: 610169148
+      Guid: c67a6f8490d7c3498b1b97f47628bac9
+      values:
+      - Negative
+      - None
+      - Positive
+      ValueIcons:
+      - ElementName: Negative
+        ObjectType: 8
+      - ElementName: None
+        ObjectType: 8
+      - ElementName: Positive
+        ObjectType: 8
+      valueIDs: 283081fbdb3ba32c80ad1947
+      ValueGuids:
+      - bytes: c9ddb98453fd9840a1fb578711d5c744
+      - bytes: 2109fffcbc12824c8d6d3d8e332517d5
+      - bytes: f1226aea7228c04ea1c3777032c87cee
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPhysicalPath: 
@@ -106,8 +141,8 @@ MonoBehaviour:
   - PhysicalPath: SoundBanks\Test Work  Unit.wwu
     ParentPhysicalPath: 
     Guid: '{09551D7C-159F-4201-9959-DCF42C4BFF86}'
-    m_lastTimePsrt1: 2138741473
-    m_lastTimePart2: -1999297116
+    m_lastTimePsrt1: -208703771
+    m_lastTimePart2: -1999293340
     List:
     - Name: TestSoundBank
       Path: Test Work  Unit\TestSoundBank
@@ -240,6 +275,8 @@ MonoBehaviour:
   ExpandedItems:
   - /ParticleCityWwise
   - /ParticleCityWwise/Events
+  - /ParticleCityWwise/Events/Default Work Unit
+  - /ParticleCityWwise/Events/Test Work Unit
   m_lastPopulateTimePsrt1: 0
   m_lastPopulateTimePart2: 0
   autoPopulateEnabled: 1
