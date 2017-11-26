@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="11" SoundbankVersion="125">
 	<RootPaths>
-		<ProjectRoot>E:\ParticleCityGF\ParticleCityWwise\</ProjectRoot>
-		<SourceFilesRoot>E:\ParticleCityGF\ParticleCityWwise\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>E:\ParticleCityGF\ParticleCityUnity\Assets\StreamingAssets\Audio\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>E:\ParticleCity\ParticleCityWwise\</ProjectRoot>
+		<SourceFilesRoot>E:\ParticleCity\ParticleCityWwise\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>E:\ParticleCity\ParticleCityUnity\Assets\StreamingAssets\Audio\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>E:\ParticleCityGF\ParticleCityWwise\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>E:\ParticleCity\ParticleCityWwise\GeneratedSoundBanks\Windows\</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -35,7 +35,7 @@
 			<IncludedMemoryFiles>
 				<File Id="30958087" Language="SFX">
 					<ShortName>PCBGM-atmosphere.wav</ShortName>
-					<Path>SFX\PCBGM-atmosphere_F17FB28C.wem</Path>
+					<Path>SFX\PCBGM-atmosphere_21CA2154.wem</Path>
 				</File>
 				<File Id="42020522" Language="SFX">
 					<ShortName>Tweet-Long_03.wav</ShortName>
