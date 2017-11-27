@@ -25,7 +25,7 @@ public class TwitterManager : MonoBehaviour
     public AkAmbient BgmAkAmbient;
 
     [Header("Debugging")]
-    private float PositiveRatio;
+    public float PositiveRatio;
 
     private Tweets tweets;
 
@@ -181,13 +181,13 @@ public class TwitterManager : MonoBehaviour
         // TODO: optimize
         int positive = 0;
         int negative = 0;
-        for (int i = 0; i < tweetsSpawned.Count; i++)
+        foreach (TweetComponent tweet in tweetsSpawned.Values)
         {
-            if (tweetsSpawned[i].Sentiment > 0)
+            if (tweet.Sentiment > 0)
             {
                 positive++;
             }
-            else if (tweetsSpawned[i].Sentiment < 0)
+            else if (tweet.Sentiment < 0)
             {
                 negative++;
             }
