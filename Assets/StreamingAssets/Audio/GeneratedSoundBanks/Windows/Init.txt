@@ -29,5 +29,5 @@ Audio Bus	ID	Name			Wwise Object Path	Notes
 
 Effect plug-ins	ID	Name	Type				Notes
 	33894468	MasterVolumeMeter	Wwise Meter			
-	920368198	Oculus Spatializer (Custom)	Oculus Spatializer			
+	412613523	Oculus Spatializer (Custom)	Oculus Spatializer			
 
