@@ -167,12 +167,20 @@ public class TwitterManager : MonoBehaviour
             if (!tweetsSpawned.ContainsKey(index))
             {
                 Tweet tweet = tweets[index];
-                Vector3 position = sample(boundingCollider);
-                TweetComponent tweetObj = Instantiate(TweetObjectPrefab, position, Quaternion.identity, transform);
+                Vector3 randomPosition = sample(boundingCollider);
+
+                TweetComponent tweetObj = Instantiate(TweetObjectPrefab, transform);
                 tweetObj.name = string.Format("Tweet_{0:F1}", tweet.Sentiment.Polarity);
                 tweetObj.Tweet = tweet;
                 tweetObj.Text = tweet.Text;
                 tweetObj.Sentiment = tweet.Sentiment.Polarity;
+
+                // Spawn to actual geo location
+                if (tweet.Coordinates != null)
+                {
+                    GeoObject geoObject = tweetObj.gameObject.AddComponent<GeoObject>();
+                    geoObject.SetGeoLocation(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], randomPosition.y);
+                }
 
                 tweetsSpawned.Add(index, tweetObj);
             }
