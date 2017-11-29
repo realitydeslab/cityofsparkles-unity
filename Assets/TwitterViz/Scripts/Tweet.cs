@@ -31,6 +31,9 @@ namespace TwitterViz.DataModels
         [JsonProperty("sentiment")]
         public Sentiment Sentiment;
 
+        [JsonProperty("coordinates")]
+        public Coordinates Coordinates;
+
         public override string ToString()
         {
             string sentimentStr = (Sentiment != null) ? Sentiment.Polarity.ToString() : "?";
@@ -66,5 +69,14 @@ namespace TwitterViz.DataModels
 
         [JsonProperty("coordinates")]
         public double[][][] Coordinates;
+    }
+
+    public class Coordinates
+    {
+        [JsonProperty("type")]
+        public string CoordinatesType;
+
+        [JsonProperty("coordinates")]
+        public double[] Data;
     }
 }

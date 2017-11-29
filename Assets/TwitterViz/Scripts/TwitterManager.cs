@@ -18,6 +18,7 @@ public class TwitterManager : MonoBehaviour
         Negative
     }
 
+    public string SourceAsset = "tweets";
     public int MaxTweets = 100;
     public TweetComponent TweetObjectPrefab;
     public Sentiment PreferredSentiment;
@@ -27,7 +28,7 @@ public class TwitterManager : MonoBehaviour
     [Header("Debugging")]
     public float PositiveRatio;
 
-    private Tweets tweets;
+    private Tweet[] tweets;
 
     private Dictionary<int, TweetComponent> tweetsSpawned = new Dictionary<int, TweetComponent>();
     private HashSet<int> tweetsToSpawn = new HashSet<int>();
@@ -44,15 +45,15 @@ public class TwitterManager : MonoBehaviour
     {
         boundingCollider = GetComponent<Collider>();
 
-        TextAsset tweetsAsset = Resources.Load<TextAsset>("tweets2");
+        TextAsset tweetsAsset = Resources.Load<TextAsset>(SourceAsset);
         if (tweetsAsset != null)
         {
-            tweets = JsonConvert.DeserializeObject<Tweets>(tweetsAsset.text);
+            tweets = JsonConvert.DeserializeObject<Tweet[]>(tweetsAsset.text);
 
-            // TODO: Pre-sort
-            Array.Sort(tweets.AllTweets, (x, y) => x.Sentiment.Polarity.CompareTo(y.Sentiment.Polarity));
+            // Already sorted
+            // Array.Sort(tweets, (x, y) => x.Sentiment.Polarity.CompareTo(y.Sentiment.Polarity));
 
-            Debug.Log("Loaded " + tweets.AllTweets.Length + " tweets.");
+            Debug.Log("Loaded " + tweets.Length + " tweets.");
         }
     }
 
@@ -92,9 +93,9 @@ public class TwitterManager : MonoBehaviour
         switch (PreferredSentiment)
         {
             case Sentiment.Positive:
-                for (int i = tweets.AllTweets.Length - 1; i >= 0; i--)
+                for (int i = tweets.Length - 1; i >= 0; i--)
                 {
-                    if (tweets.AllTweets[i].Sentiment.Polarity <= 0)
+                    if (tweets[i].Sentiment.Polarity <= 0)
                     {
                         break;
                     }
@@ -108,9 +109,9 @@ public class TwitterManager : MonoBehaviour
                 }
                 break;
             case Sentiment.Negative:
-                for (int i = 0; i < tweets.AllTweets.Length; i++)
+                for (int i = 0; i < tweets.Length; i++)
                 {
-                    if (tweets.AllTweets[i].Sentiment.Polarity >= 0)
+                    if (tweets[i].Sentiment.Polarity >= 0)
                     {
                         break;
                     }
@@ -165,7 +166,7 @@ public class TwitterManager : MonoBehaviour
 
             if (!tweetsSpawned.ContainsKey(index))
             {
-                Tweet tweet = tweets.AllTweets[index];
+                Tweet tweet = tweets[index];
                 Vector3 position = sample(boundingCollider);
                 TweetComponent tweetObj = Instantiate(TweetObjectPrefab, position, Quaternion.identity, transform);
                 tweetObj.name = string.Format("Tweet_{0:F1}", tweet.Sentiment.Polarity);
