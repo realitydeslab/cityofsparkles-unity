@@ -16,8 +16,8 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{FFFCA8D8-975B-4702-9422-7C96AED5C353}'
-    m_lastTimePsrt1: -1813960664
-    m_lastTimePart2: -1999293258
+    m_lastTimePsrt1: -2025946236
+    m_lastTimePart2: -1999293139
     List:
     - Name: Play_Tweet_Long
       Path: Default Work Unit\Play_Tweet_Long
@@ -72,8 +72,8 @@ MonoBehaviour:
   - PhysicalPath: Events\Test Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{4D783F1E-0522-43AE-BC17-5DDAE5328E64}'
-    m_lastTimePsrt1: -874381027
-    m_lastTimePart2: -1999293300
+    m_lastTimePsrt1: -2025896391
+    m_lastTimePart2: -1999293139
     List:
     - Name: Play_GuideLight
       Path: Test Work Unit\Play_GuideLight
@@ -129,15 +129,15 @@ MonoBehaviour:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{C9596F7C-12C3-41BF-A2ED-F59F837E23EA}'
-    m_lastTimePsrt1: -874351018
-    m_lastTimePart2: -1999293300
+    m_lastTimePsrt1: -2025626137
+    m_lastTimePart2: -1999293139
     List: []
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{39AEC1A8-1711-456F-A34E-CE5BB56A5C1B}'
-    m_lastTimePsrt1: -812670879
-    m_lastTimePart2: -1999293300
+    m_lastTimePsrt1: -1170897495
+    m_lastTimePart2: -1999293139
     List:
     - Name: Sentiment
       Path: Default Work Unit\Sentiment
@@ -168,21 +168,21 @@ MonoBehaviour:
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{B6A29A65-8FB6-4DDE-B4BC-BA3979138E98}'
-    m_lastTimePsrt1: -812670879
-    m_lastTimePart2: -1999293300
+    m_lastTimePsrt1: -1170857827
+    m_lastTimePart2: -1999293139
     List: []
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{07814327-4FFD-4BEB-A7E1-408FAC7E3EFD}'
-    m_lastTimePsrt1: -812700852
-    m_lastTimePart2: -1999293300
+    m_lastTimePsrt1: -1171037517
+    m_lastTimePart2: -1999293139
     List: []
   - PhysicalPath: SoundBanks\Test Work  Unit.wwu
     ParentPhysicalPath: 
     Guid: '{09551D7C-159F-4201-9959-DCF42C4BFF86}'
-    m_lastTimePsrt1: -812691039
-    m_lastTimePart2: -1999293300
+    m_lastTimePsrt1: -1170987538
+    m_lastTimePart2: -1999293139
     List:
     - Name: TestSoundBank
       Path: Test Work  Unit\TestSoundBank
@@ -197,8 +197,8 @@ MonoBehaviour:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{2AAED00D-10BE-4038-B5CE-D538015A257E}'
-    m_lastTimePsrt1: -874371032
-    m_lastTimePart2: -1999293300
+    m_lastTimePsrt1: -2025846400
+    m_lastTimePart2: -1999293139
     List:
     - Name: MasterVolume
       Path: Default Work Unit\MasterVolume
@@ -209,11 +209,20 @@ MonoBehaviour:
         ObjectType: 13
       ID: -1376955947
       Guid: 204c8a3d1fe14b4482df76f828d51a65
+    - Name: SentimentRatio
+      Path: Default Work Unit\SentimentRatio
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SentimentRatio
+        ObjectType: 13
+      ID: 1059072165
+      Guid: 30cc7b9ef0df7345b33b7e236ec439db
   - PhysicalPath: Game Parameters\Factory SoundSeed Air Game Syncs.wwu
     ParentPhysicalPath: 
     Guid: '{3B167755-FB42-458B-98BF-96F557AFB3B9}'
-    m_lastTimePsrt1: -874361013
-    m_lastTimePart2: -1999293300
+    m_lastTimePsrt1: -2025796097
+    m_lastTimePart2: -1999293139
     List:
     - Name: SS_Air_Fear
       Path: Factory SoundSeed Air Game Syncs\SS_Air_Fear
@@ -309,8 +318,8 @@ MonoBehaviour:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{A101AEE8-05FE-47FB-85B4-FD7C0505870C}'
-    m_lastTimePsrt1: -812661042
-    m_lastTimePart2: -1999293300
+    m_lastTimePsrt1: -1170807567
+    m_lastTimePart2: -1999293139
     List: []
   ExpandedItems:
   - /ParticleCityWwise
