@@ -16,6 +16,7 @@ namespace AK
         static const AkUniqueID PLAY_GUIDELIGHT = 4261885686U;
         static const AkUniqueID PLAY_HEARTHEWINDWHISPER = 3656440737U;
         static const AkUniqueID PLAY_PARTICLECITY_IMPROV_BGM = 2470127684U;
+        static const AkUniqueID PLAY_SENTIMENTBGMTEST = 2937301117U;
         static const AkUniqueID PLAY_TWEET_LONG = 2998930726U;
         static const AkUniqueID PLAY_TWEET_MED = 2959931726U;
         static const AkUniqueID PLAY_TWEET_MED_LONG = 3560716643U;
@@ -27,6 +28,19 @@ namespace AK
 
     namespace STATES
     {
+        namespace RICHSENTIMENTTEST
+        {
+            static const AkUniqueID GROUP = 3873692266U;
+
+            namespace STATE
+            {
+                static const AkUniqueID HAPPY = 1427264549U;
+                static const AkUniqueID NEUTRAL = 670611050U;
+                static const AkUniqueID SAD = 443572635U;
+                static const AkUniqueID WISH = 1587393848U;
+            } // namespace STATE
+        } // namespace RICHSENTIMENTTEST
+
         namespace SENTIMENT
         {
             static const AkUniqueID GROUP = 610169148U;

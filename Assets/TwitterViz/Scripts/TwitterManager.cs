@@ -75,6 +75,11 @@ public class TwitterManager : MonoBehaviour
         dbConnection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
     }
 
+    void Start()
+    {
+        AkSoundEngine.SetState("RichSentimentTest", PreferredSentiment.ToString());
+    }
+
     void Update()
     {
         if (PreferredSentiment != previousSentiment)
@@ -99,6 +104,11 @@ public class TwitterManager : MonoBehaviour
     public void RecordFirstTrigger(TweetComponent tweet)
     {
         triggerCount++;
+
+        if (tweet.TargetSentiment == PreferredSentiment)
+        {
+            AkSoundEngine.SetState("RichSentimentTest", PreferredSentiment.ToString());
+        }
 
         switch (PreferredSentiment)
         {
@@ -139,8 +149,6 @@ public class TwitterManager : MonoBehaviour
 
     private void updateForSentiment()
     {
-        AkSoundEngine.SetState("Sentiment", PreferredSentiment.ToString());
-
         // Find new set of tweets
         List<DBTweet> newTweets = queryTweetsForPreferredSentiment();
 
@@ -192,6 +200,7 @@ public class TwitterManager : MonoBehaviour
                 tweetObj.Tweet = tweet;
                 tweetObj.Text = tweet.Text;
                 tweetObj.Sentiment = tweet.Sentiment.Polarity;
+                tweetObj.TargetSentiment = PreferredSentiment;
 
                 // Spawn to actual geo location
                 if (tweet.Coordinates != null)
@@ -257,7 +266,7 @@ public class TwitterManager : MonoBehaviour
                 break;
 
             case Sentiment.Happy:
-                query = "SELECT * FROM tweets WHERE sentiment_positive > 0.5 AND NOT (clean_text LIKE '%wish%' OR clean_text lIKE '%hope%') ORDER BY RANDOM() LIMIT ?";
+                query = "SELECT * FROM tweets WHERE sentiment_positive > 0.6 AND NOT (clean_text LIKE '%wish%' OR clean_text lIKE '%hope%') ORDER BY RANDOM() LIMIT ?";
                 break;
 
             case Sentiment.Sad:

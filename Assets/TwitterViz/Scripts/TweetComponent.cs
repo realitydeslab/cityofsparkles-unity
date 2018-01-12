@@ -42,6 +42,8 @@ public class TweetComponent : MonoBehaviour
     [Range(-1, 1)]
     public double Sentiment;
 
+    public TwitterManager.Sentiment TargetSentiment;
+
     private bool isPlaying;
     private AkAmbient akAmbient;
     private AkGameObj akGameObj;

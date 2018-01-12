@@ -1,10 +1,16 @@
 State Group	ID	Name			Wwise Object Path	Notes
 	610169148	Sentiment			\Default Work Unit\Sentiment	
+	3873692266	RichSentimentTest			\Test Work Unit\RichSentimentTest	
 
 State	ID	Name	State Group			Notes
 	748895195	None	Sentiment			
 	1192865152	Positive	Sentiment			
 	4219547688	Negative	Sentiment			
+	443572635	Sad	RichSentimentTest			
+	670611050	Neutral	RichSentimentTest			
+	748895195	None	RichSentimentTest			
+	1427264549	Happy	RichSentimentTest			
+	1587393848	Wish	RichSentimentTest			
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	504532776	Brick			\Factory Reflect Acoustic Textures\Textures\Brick	

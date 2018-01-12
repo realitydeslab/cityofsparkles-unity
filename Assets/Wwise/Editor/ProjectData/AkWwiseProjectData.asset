@@ -16,8 +16,8 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{FFFCA8D8-975B-4702-9422-7C96AED5C353}'
-    m_lastTimePsrt1: -2025946236
-    m_lastTimePart2: -1999293139
+    m_lastTimePsrt1: 1586233256
+    m_lastTimePart2: -1999283813
     List:
     - Name: Play_Tweet_Long
       Path: Default Work Unit\Play_Tweet_Long
@@ -72,8 +72,8 @@ MonoBehaviour:
   - PhysicalPath: Events\Test Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{4D783F1E-0522-43AE-BC17-5DDAE5328E64}'
-    m_lastTimePsrt1: -2025896391
-    m_lastTimePart2: -1999293139
+    m_lastTimePsrt1: 1586343265
+    m_lastTimePart2: -1999283813
     List:
     - Name: Play_GuideLight
       Path: Test Work Unit\Play_GuideLight
@@ -104,6 +104,16 @@ MonoBehaviour:
         ObjectType: 3
       ID: -1824839612
       Guid: 4d4cabef9bdcdd468f8baeb37461dcdf
+      maxAttenuation: 0
+    - Name: Play_SentimentBGMTest
+      Path: Test Work Unit\Play_SentimentBGMTest
+      PathAndIcons:
+      - ElementName: Test Work Unit
+        ObjectType: 12
+      - ElementName: Play_SentimentBGMTest
+        ObjectType: 3
+      ID: -1357666179
+      Guid: f0d8f24c61e7c949aca8d0d0c58e5a32
       maxAttenuation: 0
     - Name: Play_Twist_BGM
       Path: Test Work Unit\Play_Twist_BGM
@@ -164,6 +174,45 @@ MonoBehaviour:
       - bytes: c9ddb98453fd9840a1fb578711d5c744
       - bytes: 2109fffcbc12824c8d6d3d8e332517d5
       - bytes: f1226aea7228c04ea1c3777032c87cee
+  - PhysicalPath: States\Test Work Unit.wwu
+    ParentPhysicalPath: 
+    Guid: '{9AB6FDDF-DE70-4485-853B-C78B05B013E4}'
+    m_lastTimePsrt1: -2123961744
+    m_lastTimePart2: -1999283816
+    List:
+    - Name: RichSentimentTest
+      Path: Test Work Unit\RichSentimentTest
+      PathAndIcons:
+      - ElementName: Test Work Unit
+        ObjectType: 12
+      - ElementName: RichSentimentTest
+        ObjectType: 9
+      ID: -421275030
+      Guid: 2918675553772c4e9aa1e26ce1d5f934
+      values:
+      - Happy
+      - Neutral
+      - None
+      - Sad
+      - Wish
+      ValueIcons:
+      - ElementName: Happy
+        ObjectType: 8
+      - ElementName: Neutral
+        ObjectType: 8
+      - ElementName: None
+        ObjectType: 8
+      - ElementName: Sad
+        ObjectType: 8
+      - ElementName: Wish
+        ObjectType: 8
+      valueIDs: 255412556ab6f827db3ba32c9b61701a38b59d5e
+      ValueGuids:
+      - bytes: d94c1033db12f649b00fb0aafc6ca9b6
+      - bytes: 127528e6769bee45a59dbe7b23097627
+      - bytes: da553102513fe6469d1335941b13241b
+      - bytes: f8d625d6ef051f4faf702087c9d5a4b4
+      - bytes: 93fb3ba1f132eb4bbe3a26261e989942
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPhysicalPath: 
