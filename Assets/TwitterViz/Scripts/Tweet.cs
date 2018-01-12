@@ -34,6 +34,33 @@ namespace TwitterViz.DataModels
         [JsonProperty("coordinates")]
         public Coordinates Coordinates;
 
+        public Tweet(TwitterManager.DBTweet dbTweet)
+        {
+            Id = dbTweet.id;
+            Text = dbTweet.clean_text;
+            CleanText = dbTweet.clean_text;
+
+            Sentiment = new Sentiment()
+            {
+                Subjectivity = 1 - dbTweet.sentiment_neutral,
+                Polarity =
+                    (dbTweet.sentiment_positive > dbTweet.sentiment_negative)
+                        ? dbTweet.sentiment_positive
+                        : -dbTweet.sentiment_negative
+            };
+
+            Coordinates = new Coordinates()
+            {
+                CoordinatesType = "Point",
+                Data = new double[] {dbTweet.longitude, dbTweet.latitude}
+            };
+
+            Place = null;
+
+            // Words
+            Words = CleanText.Split(' ');
+        }
+
         public override string ToString()
         {
             string sentimentStr = (Sentiment != null) ? Sentiment.Polarity.ToString() : "?";

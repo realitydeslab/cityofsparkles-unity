@@ -31,10 +31,8 @@ public class TwitterManager : MonoBehaviour
     [Header("Debugging")]
     public float PositiveRatio;
 
-    private Tweet[] tweets;
-
     private Dictionary<int, TweetComponent> tweetsSpawned = new Dictionary<int, TweetComponent>();
-    private HashSet<int> tweetsToSpawn = new HashSet<int>();
+    private Dictionary<int, DBTweet> tweetsToSpawn = new Dictionary<int, DBTweet>();
     private HashSet<int> tweetsToDelete = new HashSet<int>();
 
     private float lastSpawnTime;
@@ -43,6 +41,8 @@ public class TwitterManager : MonoBehaviour
     private Sentiment previousSentiment;
 
     private int triggerCount;
+
+    private SQLiteConnection dbConnection;
 
     public class DBTweet
     {
@@ -70,26 +70,7 @@ public class TwitterManager : MonoBehaviour
         boundingCollider = GetComponent<Collider>();
 
         string dbPath = Application.dataPath + "/StreamingAssets/" + Database;
-        var connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
-
-        var res = connection.Query<DBTweet>("SELECT * FROM tweets LIMIT 10");
-        foreach (var r in res)
-        {
-            Debug.Log(r.ToString());
-        }
-
-        /*
-        TextAsset tweetsAsset = Resources.Load<TextAsset>(SourceAsset);
-        if (tweetsAsset != null)
-        {
-            tweets = JsonConvert.DeserializeObject<Tweet[]>(tweetsAsset.text);
-
-            // Already sorted
-            // Array.Sort(tweets, (x, y) => x.Sentiment.Polarity.CompareTo(y.Sentiment.Polarity));
-
-            Debug.Log("Loaded " + tweets.Length + " tweets.");
-        }
-        */
+        dbConnection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
     }
 
     void Update()
@@ -105,6 +86,11 @@ public class TwitterManager : MonoBehaviour
             spawnIfNeeded();
             lastSpawnTime = Time.time;
         }
+    }
+
+    void OnDestroy()
+    {
+        dbConnection.Close();    
     }
 
     public void RecordFirstTrigger(TweetComponent tweet)
@@ -124,56 +110,21 @@ public class TwitterManager : MonoBehaviour
         AkSoundEngine.SetState("Sentiment", PreferredSentiment.ToString());
 
         // Find new set of tweets
-        List<int> NewIndices = new List<int>(MaxTweets);
-        switch (PreferredSentiment)
-        {
-            case Sentiment.Positive:
-                for (int i = tweets.Length - 1; i >= 0; i--)
-                {
-                    if (tweets[i].Sentiment.Polarity <= 0)
-                    {
-                        break;
-                    }
-
-                    if (NewIndices.Count >= MaxTweets)
-                    {
-                        break;
-                    }
-
-                    NewIndices.Add(i);
-                }
-                break;
-            case Sentiment.Negative:
-                for (int i = 0; i < tweets.Length; i++)
-                {
-                    if (tweets[i].Sentiment.Polarity >= 0)
-                    {
-                        break;
-                    }
-
-                    if (NewIndices.Count >= MaxTweets)
-                    {
-                        break;
-                    }
-
-                    NewIndices.Add(i);
-                }
-                break;
-            default:
-                break;
-        }
+        string orderBy = (PreferredSentiment == Sentiment.Positive) ? "sentiment_positive DESC" : "sentiment_negative DESC";
+        string query = string.Format("SELECT * FROM tweets ORDER BY {0} LIMIT ?", orderBy);
+        List<DBTweet> newTweets = dbConnection.Query<DBTweet>(query,  MaxTweets);
 
         // Diff
         tweetsToSpawn.Clear();
         tweetsToDelete.Clear();
         tweetsToDelete.UnionWith(tweetsSpawned.Keys);
 
-        foreach (int i in NewIndices)
+        foreach (DBTweet tweet in newTweets)
         {
-            tweetsToDelete.Remove(i);
-            if (!tweetsSpawned.ContainsKey(i))
+            tweetsToDelete.Remove(tweet.id);
+            if (!tweetsSpawned.ContainsKey(tweet.id))
             {
-                tweetsToSpawn.Add(i);
+                tweetsToSpawn.Add(tweet.id, tweet);
             }
         }
     }
@@ -196,12 +147,14 @@ public class TwitterManager : MonoBehaviour
         // Add one
         if (tweetsToSpawn.Count > 0)
         {
-            int index = tweetsToSpawn.First();
-            tweetsToSpawn.Remove(index);
+            var entry = tweetsToSpawn.First();
+            int id = entry.Key;
+            DBTweet dbTweet = entry.Value;
+            tweetsToSpawn.Remove(entry.Key);
 
-            if (!tweetsSpawned.ContainsKey(index))
+            if (!tweetsSpawned.ContainsKey(id))
             {
-                Tweet tweet = tweets[index];
+                Tweet tweet = new Tweet(dbTweet);
                 Vector3 randomPosition = sample(boundingCollider);
 
                 TweetComponent tweetObj = Instantiate(TweetObjectPrefab, transform);
@@ -217,7 +170,7 @@ public class TwitterManager : MonoBehaviour
                     geoObject.SetGeoLocation(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], randomPosition.y);
                 }
 
-                tweetsSpawned.Add(index, tweetObj);
+                tweetsSpawned.Add(id, tweetObj);
             }
         }
 
