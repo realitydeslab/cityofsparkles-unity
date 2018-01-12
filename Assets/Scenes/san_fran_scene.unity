@@ -1082,12 +1082,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276933d4823b8a544b1e75b9f571bc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Database: twitter_sf.db
   SourceAsset: sf_coord_20171128_sorted
   MaxTweets: 500
   TweetObjectPrefab: {fileID: 114265464811481166, guid: fa727355f4449ca4b9426d1456099293,
     type: 2}
   PreferredSentiment: 1
-  SpawnInterval: 1
+  SpawnInterval: 0.1
   BgmAkAmbient: {fileID: 739850752}
   PositiveRatio: 0
 --- !u!1 &1887378126

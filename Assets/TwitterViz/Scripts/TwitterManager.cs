@@ -15,8 +15,10 @@ public class TwitterManager : MonoBehaviour
     public enum Sentiment
     {
         Unspecified = 0,
-        Positive,
-        Negative
+        Neutral,
+        Happy,
+        Sad,
+        Wish
     }
 
     public string Database = "twitter_sf.db";
@@ -79,6 +81,7 @@ public class TwitterManager : MonoBehaviour
         {
             updateForSentiment();
             previousSentiment = PreferredSentiment;
+            Debug.Log("Sentiment change: " + PreferredSentiment);
         }
 
         if (Time.time - lastSpawnTime > SpawnInterval)
@@ -96,12 +99,41 @@ public class TwitterManager : MonoBehaviour
     public void RecordFirstTrigger(TweetComponent tweet)
     {
         triggerCount++;
-        if (triggerCount % 5 == 0)
-        {
-            PreferredSentiment = (PreferredSentiment == Sentiment.Positive)
-                ? Sentiment.Negative
-                : Sentiment.Positive;
 
+        switch (PreferredSentiment)
+        {
+            case Sentiment.Neutral:
+            default:
+                if (triggerCount > 5)
+                {
+                    triggerCount = 0;
+                    PreferredSentiment = Sentiment.Happy;
+                }
+                break;
+            
+            case Sentiment.Happy:
+                if (triggerCount > 10)
+                {
+                    triggerCount = 0;
+                    PreferredSentiment = Sentiment.Sad;
+                }
+                break;
+            
+            case Sentiment.Sad:
+                if (triggerCount > 5)
+                {
+                    triggerCount = 0;
+                    PreferredSentiment = Sentiment.Wish;
+                }
+                break;
+            
+            case Sentiment.Wish:
+                if (triggerCount > 5)
+                {
+                    triggerCount = 0;
+                    PreferredSentiment = Sentiment.Neutral;
+                }
+                break;
         }
     }
 
@@ -110,9 +142,7 @@ public class TwitterManager : MonoBehaviour
         AkSoundEngine.SetState("Sentiment", PreferredSentiment.ToString());
 
         // Find new set of tweets
-        string orderBy = (PreferredSentiment == Sentiment.Positive) ? "sentiment_positive DESC" : "sentiment_negative DESC";
-        string query = string.Format("SELECT * FROM tweets ORDER BY {0} LIMIT ?", orderBy);
-        List<DBTweet> newTweets = dbConnection.Query<DBTweet>(query,  MaxTweets);
+        List<DBTweet> newTweets = queryTweetsForPreferredSentiment();
 
         // Diff
         tweetsToSpawn.Clear();
@@ -213,5 +243,33 @@ public class TwitterManager : MonoBehaviour
         var p = new Vector3(x, y, z);
 
         return p;
+    }
+
+    private List<DBTweet> queryTweetsForPreferredSentiment()
+    {
+        string query;
+
+        switch (PreferredSentiment)
+        {
+            case Sentiment.Neutral:
+            default:
+                query = "SELECT * FROM tweets WHERE sentiment_neutral > 0.8 ORDER BY RANDOM() LIMIT ?";
+                break;
+
+            case Sentiment.Happy:
+                query = "SELECT * FROM tweets WHERE sentiment_positive > 0.5 AND NOT (clean_text LIKE '%wish%' OR clean_text lIKE '%hope%') ORDER BY RANDOM() LIMIT ?";
+                break;
+
+            case Sentiment.Sad:
+                query = "SELECT * FROM tweets WHERE sentiment_negative > 0.5 ORDER BY RANDOM() LIMIT ?";
+                break;
+
+            case Sentiment.Wish:
+                query = "SELECT * FROM tweets WHERE sentiment_positive > 0.3 AND (clean_text LIKE '%wish%' OR clean_text lIKE '%hope%') ORDER BY RANDOM() LIMIT ?";
+                break;
+
+        }
+
+        return dbConnection.Query<DBTweet>(query,  MaxTweets);
     }
 }
