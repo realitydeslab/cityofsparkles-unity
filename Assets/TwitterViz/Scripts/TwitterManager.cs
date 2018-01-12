@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using Newtonsoft.Json;
+using SQLite4Unity3d;
 using TwitterViz.DataModels;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -17,6 +18,8 @@ public class TwitterManager : MonoBehaviour
         Positive,
         Negative
     }
+
+    public string Database = "twitter_sf.db";
 
     public string SourceAsset = "tweets";
     public int MaxTweets = 100;
@@ -41,10 +44,41 @@ public class TwitterManager : MonoBehaviour
 
     private int triggerCount;
 
+    public class DBTweet
+    {
+        [PrimaryKey, AutoIncrement]
+        public int id { get; set; }
+        
+        public string clean_text { get; set; }
+
+        public double latitude { get; set; }
+        public double longitude { get; set; }
+
+        public double sentiment_positive { get; set; }
+        public double sentiment_neutral { get; set; }
+        public double sentiment_negative { get; set; }
+        public double sentiment_mixed { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("[{0:0.00}, {1:0.00}] {2}", sentiment_positive, sentiment_negative, clean_text);
+        }
+    }
+
     void Awake()
     {
         boundingCollider = GetComponent<Collider>();
 
+        string dbPath = Application.dataPath + "/StreamingAssets/" + Database;
+        var connection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
+
+        var res = connection.Query<DBTweet>("SELECT * FROM tweets LIMIT 10");
+        foreach (var r in res)
+        {
+            Debug.Log(r.ToString());
+        }
+
+        /*
         TextAsset tweetsAsset = Resources.Load<TextAsset>(SourceAsset);
         if (tweetsAsset != null)
         {
@@ -55,6 +89,7 @@ public class TwitterManager : MonoBehaviour
 
             Debug.Log("Loaded " + tweets.Length + " tweets.");
         }
+        */
     }
 
     void Update()
