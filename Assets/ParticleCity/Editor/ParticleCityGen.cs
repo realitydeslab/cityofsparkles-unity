@@ -105,7 +105,7 @@ public class ParticleCityGen : EditorWindow {
             int sampleCount = (int)(volume * samplePerCubeUnit);
 
             totalSampleCount += sampleCount;
-            Debug.Log("Sample count: " + sampleCount + ", Total: " + totalSampleCount);
+            // Debug.Log("Sample count: " + sampleCount + ", Total: " + totalSampleCount);
 
             for (int j = 0; j < sampleCount; j++) {
                 Vector3? p = sample(collider);
@@ -166,10 +166,10 @@ public class ParticleCityGen : EditorWindow {
         AssetDatabase.CreateAsset(positionTexture, "Assets/ParticleCityGen/ParticlePositions.asset");
 
         // Update material
-        var particleCityGenMat = AssetDatabase.LoadAssetAtPath<Material>("Assets/ParticleCity/ParticleCity.mat");
+        var particleCityGenMat = AssetDatabase.LoadAssetAtPath<Material>("Assets/ParticleCityGen/ParticleCity.mat");
         particleCityGenMat.SetTexture("_PositionTex", positionTexture);
 
-        var particleMotionBlitMat = AssetDatabase.LoadAssetAtPath<Material>("Assets/ParticleCity/ParticleMotionBlit.mat");
+        var particleMotionBlitMat = AssetDatabase.LoadAssetAtPath<Material>("Assets/ParticleCityGen/ParticleMotionBlit.mat");
         particleMotionBlitMat.SetTexture("_BasePositionTex", positionTexture);
 
         Debug.Log("Positions texture saved to Assets/ParticleCityGen/ParticlePositions.asset");
@@ -220,29 +220,29 @@ public class ParticleCityGen : EditorWindow {
             };
 
             meshes[i].SetIndices(indexArray.Take(meshes[i].vertexCount).ToArray(), MeshTopology.Points, 0);
-			MeshUtility.Optimize(meshes[i]);
+			// MeshUtility.Optimize(meshes[i]);
 
             // Avoid being culled.
-            meshes[i].bounds = new Bounds(Vector3.zero, Vector3.one * 10000);
+            meshes[i].bounds = new Bounds(Vector3.zero, Vector3.one * 100000);
 
             // TODO: Not tested!!!
-            AssetDatabase.CreateAsset(meshes[i], string.Format("Assets/ParticleCity/Mesh {0}.asset", i));
+            AssetDatabase.CreateAsset(meshes[i], string.Format("Assets/ParticleCityGen/Mesh {0}.asset", i));
         }
 
         // Create Prefab
         particleCity = new GameObject("Particle City", typeof(ParticleMotion));
         var particleMotion = particleCity.GetComponent<ParticleMotion>();
         particleMotion.BasePositionTexture = positionTexture;
-        particleMotion.ParticleMotionBlitMaterialPrefab = AssetDatabase.LoadAssetAtPath<Material>("Assets/ParticleCity/ParticleMotionBlit.mat");
-        particleMotion.LeftHand = GameObject.Find("/[CameraRig]/Controller (left)").transform;
-        particleMotion.RightHand = GameObject.Find("/[CameraRig]/Controller (right)").transform;
+        particleMotion.ParticleMotionBlitMaterialPrefab = AssetDatabase.LoadAssetAtPath<Material>("Assets/ParticleCityGen/ParticleMotionBlit.mat");
+        // particleMotion.LeftHand = GameObject.Find("/[CameraRig]/Controller (left)").transform;
+        // particleMotion.RightHand = GameObject.Find("/[CameraRig]/Controller (right)").transform;
 
         for (int i = 0; i < meshes.Length; i++) {
             GameObject meshObject = new GameObject("Mesh " + i, typeof(MeshFilter), typeof(MeshRenderer));
             meshObject.transform.parent = particleCity.transform;
 
             meshObject.GetComponent<MeshFilter>().mesh = meshes[i];
-            meshObject.GetComponent<MeshRenderer>().material = AssetDatabase.LoadAssetAtPath<Material>("Assets/ParticleCity/ParticleCity.mat");
+            meshObject.GetComponent<MeshRenderer>().material = AssetDatabase.LoadAssetAtPath<Material>("Assets/ParticleCityGen/ParticleCity.mat");
         }
 
         PrefabUtility.CreatePrefab("Assets/ParticleCityGen/ParticleCityPrefab.prefab", particleCity);

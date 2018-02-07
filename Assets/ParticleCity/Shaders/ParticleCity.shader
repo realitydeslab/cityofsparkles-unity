@@ -121,6 +121,9 @@ Shader "Particle City/Particle City"
                     output.color = _SpriteColor * pallete * max(1, _GlobalIntensity);
                     output.color.a = ((1 - lightNoise) * 0.6 + lightNoise * intense) * _SpriteColor.a * min(1, _GlobalIntensity);
 
+                    // Fog
+                    // output.color.a *= 1 - 0.7 * saturate((distance(_WorldSpaceCameraPos, output.pos) - 100) / (1000 - 100));
+
                     return output;
                 }
 
