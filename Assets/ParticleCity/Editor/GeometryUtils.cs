@@ -6,7 +6,52 @@ namespace ParticleCity.Editor
 {
     public class GeometryUtils
     {
-    #region Collider Sampler
+        #region Triangle Sampler
+
+        public static Vector3? SampleTriangle(Vector3 p0, Vector3 v1, Vector3 v2)
+        {
+            for (int retry = 0; retry < 100; retry++)
+            {
+                // Uniform triangle sampling
+                // http://mathworld.wolfram.com/TrianglePointPicking.html  
+                float a = Random.value;
+                float b = Random.value;
+
+                // Check if the sampled point is inside the triangle
+                // http://mathworld.wolfram.com/TriangleInterior.html
+                if (a + b > 1)
+                {
+                    continue;
+                }
+
+                return p0 + a * v1 + b * v2;
+            }
+
+            return null;
+        }
+
+        public static Vector3 SampleTriangleEdge(Vector3 p0, Vector3 v1, Vector3 v2)
+        {
+            float k = Random.value;
+            float edge = Random.value;
+
+            if (edge < 0.33333)
+            {
+                return p0 + k * v1;
+            }
+            else if (edge < 0.66667)
+            {
+                return p0 + k * v2;
+            }
+            else
+            {
+                return p0 + k * v1 + (1 - k) * v2;
+            }
+        }
+
+        #endregion
+
+        #region Collider Sampler
         public static Vector3? SampleCollider(Collider collider) {
             // TODO: Better sampling
 
@@ -25,7 +70,7 @@ namespace ParticleCity.Editor
             return null;
         }
 
-        private static bool IsPointInsideCollider(Vector3 point, Collider collider) {
+        private static bool isPointInsideCollider(Vector3 point, Collider collider) {
             // TODO
             var start = new Vector3(0, 10000, 0); // This is defined to be some arbitrary point far away from the collider.
 

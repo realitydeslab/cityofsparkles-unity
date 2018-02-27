@@ -10,15 +10,19 @@ using Random = UnityEngine.Random;
 public class ParticleCityGen : EditorWindow {
 
     private float samplePerCubeUnit = 0.0005f;
+
+    private float samplePerSquareUnit = 100;
+    private float triangleEdgeSamplePerUnit = 10;
+
     private bool shouldGenDebugParticles = false;
     private bool shouldGenTextures = true;
     private bool shouldGenMesh = true;
 
-    private const int TEX_WIDTH = 1024;
-    private const int TEX_HEIGHT = 1024;
+    private const int TEX_WIDTH = 2048;
+    private const int TEX_HEIGHT = 2048;
     private const int MAX_MESH_VERTEX = 65000;
 
-    private List<Vector3> points = new List<Vector3>(1024 * 1024);
+    private List<Vector3> points = new List<Vector3>(TEX_HEIGHT * TEX_HEIGHT);
     private GameObject debugParticles = null;
     private Texture2D positionTexture = null;
     private GameObject particleCity = null;
@@ -34,6 +38,8 @@ public class ParticleCityGen : EditorWindow {
         EditorGUILayout.Space();
 
         samplePerCubeUnit = EditorGUILayout.FloatField("Sample Per Cube Unit", samplePerCubeUnit);
+        samplePerSquareUnit = EditorGUILayout.FloatField("Sample Per Square Unit", samplePerSquareUnit);
+        triangleEdgeSamplePerUnit = EditorGUILayout.FloatField("Triangle Edge Sample Per Unit", triangleEdgeSamplePerUnit);
 
         shouldGenDebugParticles = EditorGUILayout.Toggle("Debug Particle", shouldGenDebugParticles);
         shouldGenTextures = EditorGUILayout.Toggle("Build Textures", shouldGenTextures);
@@ -55,16 +61,23 @@ public class ParticleCityGen : EditorWindow {
     }
 
     private void generateParticles() {
-        var colliders = Selection.GetFiltered(typeof(Collider), SelectionMode.Deep).Select((obj) => (Collider)obj).ToArray();
+        // var colliders = Selection.GetFiltered(typeof(Collider), SelectionMode.Deep).Select((obj) => (Collider)obj).ToArray();
 
-        if (colliders.Length == 0) {
+        // if (colliders.Length == 0) {
+        //     Debug.LogError("Particle City Gen: No model selected");
+        //     return;
+        // }
+
+        MeshFilter[] meshFilters = Selection.GetFiltered<MeshFilter>(SelectionMode.Deep);
+        if (meshFilters.Length == 0) {
             Debug.LogError("Particle City Gen: No model selected");
             return;
         }
 
         loadGeneratedAssets();
 
-        samplePoints(colliders);
+        // samplePoints(colliders);
+        sampleTriangles(meshFilters);
 
         if (shouldGenDebugParticles) {
             genDebugParticles();
@@ -118,6 +131,80 @@ public class ParticleCityGen : EditorWindow {
             }
 
             cancel = EditorUtility.DisplayCancelableProgressBar("Samping Particles", "Sampled Count " + totalSampleCount, (float)i / colliders.Length);
+        }
+
+        Debug.Log("Total sample count: " + totalSampleCount);
+        Debug.Log(points.Count + " points sampled");
+
+        if (points.Count > TEX_WIDTH * TEX_HEIGHT) {
+            Debug.LogError("Particle City Gen: Too many points for specified texture size");
+        }
+
+        EditorUtility.ClearProgressBar();
+    }
+
+    private void sampleTriangles(MeshFilter[] meshFilters) {
+        Debug.Log("Particle City Gen: Samping particles");
+        Debug.Log("Found " + meshFilters.Length + " mesh filters");
+
+        points.Clear();
+
+        int totalSampleCount = 0;
+
+        bool cancel = false;
+
+        for (int i = 0; i < meshFilters.Length; i++) {
+            Mesh mesh = meshFilters[i].sharedMesh;
+            Transform meshTransform = meshFilters[i].transform;
+
+            if (cancel)
+            {
+                break;
+            }
+
+            for (int j = 0; j < mesh.triangles.Length; j += 3)
+            {
+                Vector3 p0 = mesh.vertices[mesh.triangles[j]];
+                Vector3 p1 = mesh.vertices[mesh.triangles[j + 1]];
+                Vector3 p2 = mesh.vertices[mesh.triangles[j + 2]];
+
+                Vector3 v1 = p1 - p0;
+                Vector3 v2 = p2 - p0;
+
+                // Sample interior
+                float area = Vector3.Cross(v1, v2).magnitude / 2.0f;
+                int sampleCount = (int)(area * samplePerSquareUnit);
+                totalSampleCount += sampleCount;
+
+                for (int k = 0; k < sampleCount; k++)
+                {
+                    Vector3? p = GeometryUtils.SampleTriangle(p0, v1, v2);
+                    if (p.HasValue)
+                    {
+                        Vector3 globalPos = meshTransform.TransformPoint(p.Value);
+                        points.Add(globalPos);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                // Sample edge
+                float circumstance = v1.magnitude + v2.magnitude + (v2 - v1).magnitude;
+                int edgeSampleCount = (int) (circumstance * triangleEdgeSamplePerUnit);
+                totalSampleCount += edgeSampleCount;
+
+                for (int k = 0; k < edgeSampleCount; k++)
+                {
+                    Vector3 p = GeometryUtils.SampleTriangleEdge(p0, v1, v2);
+                    Vector3 globalPos = meshTransform.TransformPoint(p);
+                    points.Add(globalPos);
+                }
+            }
+
+            int estimatedTotal = (i == 0) ? 0 : totalSampleCount / i * meshFilters.Length; 
+            cancel = EditorUtility.DisplayCancelableProgressBar("Samping Particles", "Sampled Count " + totalSampleCount + ", estimated total " + estimatedTotal, (float)i / meshFilters.Length);
         }
 
         Debug.Log("Total sample count: " + totalSampleCount);

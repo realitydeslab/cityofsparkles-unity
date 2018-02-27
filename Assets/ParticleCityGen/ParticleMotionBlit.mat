@@ -88,7 +88,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LeftHandPos: {r: -154.42972, g: -89.76655, b: -281.7404, a: 1}
+    - _LeftHandPos: {r: -3642.0518, g: 162.46133, b: -5113.4697, a: 1}
     - _LeftHandPos0: {r: -551.3314, g: 143.32394, b: -784.9209, a: 1}
     - _LeftHandPos1: {r: -551.3314, g: 143.32394, b: -784.9209, a: 1}
     - _LeftHandPos2: {r: -551.3314, g: 143.32394, b: -784.9209, a: 1}
@@ -113,7 +113,7 @@ Material:
     - _LeftHandVel5: {r: 0, g: 0, b: 0, a: 1}
     - _LeftHandVel6: {r: 0, g: 0, b: 0, a: 1}
     - _LeftHandVel7: {r: 0, g: 0, b: 0, a: 1}
-    - _RightHandPos: {r: -483.90805, g: 159.26688, b: -46.272, a: 1}
+    - _RightHandPos: {r: -3643.9924, g: 160.8691, b: -5116.8755, a: 1}
     - _RightHandPos0: {r: -551.3314, g: 143.32394, b: -784.9209, a: 1}
     - _RightHandPos1: {r: -551.3314, g: 143.32394, b: -784.9209, a: 1}
     - _RightHandPos2: {r: -551.3314, g: 143.32394, b: -784.9209, a: 1}
