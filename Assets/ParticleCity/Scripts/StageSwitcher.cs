@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ParticleCities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StageSwitcher : MonoBehaviour
 {
-    public OVRCameraRig CameraRig;
+    public Transform CameraRig;
     public ParticleCity[] ParticleCityPrefabs;
 
     void Start()
@@ -49,12 +50,6 @@ public class StageSwitcher : MonoBehaviour
         if (motion != null)
         {
             motion.CameraRig = CameraRig;
-        }
-
-        ParticleCityPlayerController controller = instance.GetComponent<ParticleCityPlayerController>();
-        if (controller != null)
-        {
-            controller.CameraRig = CameraRig;
         }
     }
 

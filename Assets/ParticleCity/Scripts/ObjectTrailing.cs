@@ -17,7 +17,7 @@ public class ObjectTrailing : MonoBehaviour
     public TrailFrame[] Frames;
     private float lastCaptureTime;
 
-	void Start ()
+	void Awake ()
 	{
         Frames = new TrailFrame[TrailLength];
 

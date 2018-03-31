@@ -7,7 +7,7 @@ public abstract class ParticleMotionBase : MonoBehaviour {
     public Texture2D BasePositionTexture;
     public Material ParticleMotionBlitMaterialPrefab;
 
-    public OVRCameraRig CameraRig;
+    public Transform CameraRig;
 
     protected Material particleMotionBlitMaterial;
     private RenderTexture particleVelocityBuffer1;

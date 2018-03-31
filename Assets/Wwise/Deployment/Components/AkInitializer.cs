@@ -156,9 +156,10 @@ public class AkInitializer : MonoBehaviour
 #endif
 
         // WANDER START
-        string audioDevice = OVRManager.audioOutId;
-        uint audioOutId = AkSoundEngine.GetDeviceIDFromName(audioDevice);
-        platformSettings.idAudioDevice = audioOutId;
+        // TODO
+        // string audioDevice = OVRManager.audioOutId;
+        // uint audioOutId = AkSoundEngine.GetDeviceIDFromName(audioDevice);
+        // platformSettings.idAudioDevice = audioOutId;
         // WANDER END
 
         AKRESULT result = AkSoundEngine.Init(memSettings, streamingSettings, deviceSettings, initSettings, platformSettings, musicSettings, (uint)preparePoolSize * 1024);

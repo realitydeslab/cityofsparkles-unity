@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ParticleCities;
 using UnityEngine;
 
 public class FlyingMotion : ParticleMotionBase {
@@ -13,8 +14,8 @@ public class FlyingMotion : ParticleMotionBase {
     {
         base.Start();
 
-        leftHand = CameraRig.leftHandAnchor.GetComponent<ObjectTrailing>();
-        rightHand = CameraRig.rightHandAnchor.GetComponent<ObjectTrailing>();
+        leftHand = InputManager.Instance.GetHand(HandType.Left).GetComponent<ObjectTrailing>();
+        rightHand = InputManager.Instance.GetHand(HandType.Right).GetComponent<ObjectTrailing>();
     }
 
     protected override void UpdateInput()
