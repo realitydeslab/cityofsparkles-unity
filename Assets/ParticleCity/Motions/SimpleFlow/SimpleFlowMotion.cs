@@ -20,7 +20,7 @@ public class SimpleFlowMotion : ParticleMotionBase {
 
         for (int i = 0; i < ObjectTrailing.TrailLength; i++)
         {
-            if (leftHand != null)
+            if (leftHand != null && leftHand.Frames != null)
             {
                 shaderVector.x = leftHand.Frames[i].Position.x;
                 shaderVector.y = leftHand.Frames[i].Position.y;
@@ -33,7 +33,7 @@ public class SimpleFlowMotion : ParticleMotionBase {
                 particleMotionBlitMaterial.SetVector("_LeftHandVel" + i, shaderVector);
             }
 
-            if (rightHand != null)
+            if (rightHand != null && rightHand.Frames != null)
             {
                 shaderVector.x = rightHand.Frames[i].Position.x;
                 shaderVector.y = rightHand.Frames[i].Position.y;

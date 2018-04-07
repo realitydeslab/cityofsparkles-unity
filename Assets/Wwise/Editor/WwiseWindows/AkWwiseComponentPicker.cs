@@ -152,7 +152,7 @@ public class AkWwiseComponentPicker : EditorWindow
                     m_close = true;
                 }
 				//We must be in 'used' mode in order for this to work
-				else if(Event.current.type == EventType.used && m_treeView.LastDoubleClickedItem != null && m_type == (m_treeView.LastDoubleClickedItem.DataContext as AkWwiseTreeView.AkTreeInfo).ObjectType)
+				else if(Event.current.type == EventType.Used && m_treeView.LastDoubleClickedItem != null && m_type == (m_treeView.LastDoubleClickedItem.DataContext as AkWwiseTreeView.AkTreeInfo).ObjectType)
 				{
 					SetGuid(m_treeView.LastDoubleClickedItem);
 					m_close = true;

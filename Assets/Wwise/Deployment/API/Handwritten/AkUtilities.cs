@@ -107,7 +107,7 @@ public partial class AkUtilities
     // Unity platform enum to Wwise soundbank reference platform name mapping.
     private static IDictionary<BuildTarget, string[]> platformMapping = new Dictionary<BuildTarget, string[]>()
     {
-        { BuildTarget.StandaloneOSXUniversal, new string[] { "Mac" } },
+        { BuildTarget.StandaloneOSX, new string[] { "Mac" } },
         { BuildTarget.StandaloneOSXIntel, new string[] { "Mac" } },
         { BuildTarget.StandaloneWindows, new string[] { "Windows" } },
         // { BuildTarget.WebPlayer, null },

@@ -228,7 +228,7 @@ public class AkAmbientInspector : AkEventInspector
 
 			// Get the needed data before the handle
 			int controlIDBeforeHandle = GUIUtility.GetControlID(someHashCode, FocusType.Passive);
-			bool isEventUsedBeforeHandle = (Event.current.type == EventType.used);
+			bool isEventUsedBeforeHandle = (Event.current.type == EventType.Used);
 
 			Handles.color = Color.green;
 #if UNITY_5_6_OR_NEWER
@@ -245,7 +245,7 @@ public class AkAmbientInspector : AkEventInspector
 
 			// Get the needed data after the handle
 			int controlIDAfterHandle = GUIUtility.GetControlID(someHashCode, FocusType.Passive);
-			bool isEventUsedByHandle = !isEventUsedBeforeHandle && (Event.current.type == EventType.used);
+			bool isEventUsedByHandle = !isEventUsedBeforeHandle && (Event.current.type == EventType.Used);
 
 			if ((controlIDBeforeHandle < GUIUtility.hotControl && GUIUtility.hotControl < controlIDAfterHandle) ||
 				 isEventUsedByHandle)
@@ -344,7 +344,7 @@ public class AkAmbientInspector : AkEventInspector
 		{
 			Handles.color = new Color(1.0f, 0.0f, 0.0f, 0.1f);
 #if UNITY_5_6_OR_NEWER
-            Handles.SphereHandleCap(0, in_position, Quaternion.identity, in_radius*2.0f, EventType.repaint);
+            Handles.SphereHandleCap(0, in_position, Quaternion.identity, in_radius*2.0f, EventType.Repaint);
 #else
 			Handles.SphereCap(0, in_position, Quaternion.identity, in_radius * 2.0f);
 #endif

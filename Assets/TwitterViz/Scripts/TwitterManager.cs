@@ -23,7 +23,6 @@ public class TwitterManager : MonoBehaviour
 
     public string Database = "twitter_sf.db";
 
-    public string SourceAsset = "tweets";
     public int MaxTweets = 100;
     public TweetComponent TweetObjectPrefab;
     public Sentiment PreferredSentiment;
@@ -39,7 +38,8 @@ public class TwitterManager : MonoBehaviour
 
     private float lastSpawnTime;
 
-    private Collider boundingCollider;
+    private Collider[] boundingColliders;
+    private MapModel mapModel;
     private Sentiment previousSentiment;
 
     private int triggerCount;
@@ -69,7 +69,7 @@ public class TwitterManager : MonoBehaviour
 
     void Awake()
     {
-        boundingCollider = GetComponent<Collider>();
+        boundingColliders = GetComponents<Collider>();
 
         string dbPath = Application.dataPath + "/StreamingAssets/" + Database;
         dbConnection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
@@ -78,6 +78,8 @@ public class TwitterManager : MonoBehaviour
     void Start()
     {
         AkSoundEngine.SetState("RichSentimentTest", PreferredSentiment.ToString());
+
+        mapModel = GetComponentInParent<MapModel>();
     }
 
     void Update()
@@ -193,7 +195,18 @@ public class TwitterManager : MonoBehaviour
             if (!tweetsSpawned.ContainsKey(id))
             {
                 Tweet tweet = new Tweet(dbTweet);
-                Vector3 randomPosition = sample(boundingCollider);
+
+                // Skip tweets outside bounding box
+                if (tweet.Coordinates != null)
+                {
+                    Vector3 position = mapModel.EarthToUnityWorld(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], 0);
+                    if (!insideColliders(position, boundingColliders))
+                    {
+                        spawnIfNeeded();
+                        return;
+                    }
+                }
+                Vector3 randomPosition = sample(boundingColliders);
 
                 TweetComponent tweetObj = Instantiate(TweetObjectPrefab, transform);
                 tweetObj.name = string.Format("Tweet_{0:F1}", tweet.Sentiment.Polarity);
@@ -206,6 +219,8 @@ public class TwitterManager : MonoBehaviour
                 if (tweet.Coordinates != null)
                 {
                     GeoObject geoObject = tweetObj.gameObject.AddComponent<GeoObject>();
+                    
+                    // TODO: Heightmap
                     geoObject.SetGeoLocation(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], randomPosition.y);
                 }
 
@@ -240,9 +255,12 @@ public class TwitterManager : MonoBehaviour
         AkSoundEngine.SetRTPCValue("SentimentRatio", PositiveRatio, BgmAkAmbient.gameObject);
     }
 
-    private static Vector3 sample(Collider collider) {
+    private static Vector3 sample(Collider[] colliders) {
         // TODO: Better sampling
         // TODO: Check if inside collider
+
+        int index = (int)Random.Range(0, colliders.Length);
+        Collider collider = colliders[index];
 
         var bounds = collider.bounds;
 
@@ -252,6 +270,19 @@ public class TwitterManager : MonoBehaviour
         var p = new Vector3(x, y, z);
 
         return p;
+    }
+
+    private static bool insideColliders(Vector3 point, Collider[] colliders)
+    {
+        foreach (Collider c in colliders)
+        {
+            if (c.bounds.Contains(point))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private List<DBTweet> queryTweetsForPreferredSentiment()

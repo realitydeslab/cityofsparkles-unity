@@ -1,8 +1,6 @@
 fileFormatVersion: 2
 guid: fe3bf62e90b84794ab528aa84ad81236
 folderAsset: yes
-timeCreated: 1509914251
-licenseType: Free
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -11,6 +9,18 @@ PluginImporter:
   isPreloaded: 0
   isOverridable: 0
   platformData:
+  - first:
+      '': OSXIntel
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
+  - first:
+      '': OSXIntel64
+    second:
+      enabled: 1
+      settings:
+        CPU: AnyCPU
   - first:
       Any: 
     second:

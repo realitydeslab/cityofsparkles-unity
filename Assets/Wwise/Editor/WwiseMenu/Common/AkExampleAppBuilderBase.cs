@@ -99,7 +99,7 @@ public class AkExampleAppBuilderBase : MonoBehaviour
                     ||
                     unityPlatormString == BuildTarget.StandaloneOSXIntel64.ToString()
                     ||
-                    unityPlatormString == BuildTarget.StandaloneOSXUniversal.ToString()
+                    unityPlatormString == BuildTarget.StandaloneOSX.ToString()
                 )
             return "Mac";
 
@@ -123,7 +123,7 @@ public class AkExampleAppBuilderBase : MonoBehaviour
                     ||
                     unityPlatormString == BuildTarget.StandaloneOSXIntel64.ToString()
                     ||
-                    unityPlatormString == BuildTarget.StandaloneOSXUniversal.ToString()
+                    unityPlatormString == BuildTarget.StandaloneOSX.ToString()
                 )
             return "app";
 
