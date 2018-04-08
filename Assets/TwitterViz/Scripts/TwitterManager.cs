@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using Newtonsoft.Json;
+using ParticleCities;
 using SQLite4Unity3d;
 using TwitterViz.DataModels;
 using UnityEngine;
@@ -28,6 +29,8 @@ public class TwitterManager : MonoBehaviour
     public Sentiment PreferredSentiment;
     public float SpawnInterval = 1;
     public AkAmbient BgmAkAmbient;
+    public float HeightRangeOnGround = 200;
+    public float MinHeightAboveGround = 30;
 
     [Header("Debugging")]
     public float PositiveRatio;
@@ -40,8 +43,9 @@ public class TwitterManager : MonoBehaviour
 
     private Collider[] boundingColliders;
     private MapModel mapModel;
-    private Sentiment previousSentiment;
+    private HeightMap heightMap;
 
+    private Sentiment previousSentiment;
     private int triggerCount;
 
     private SQLiteConnection dbConnection;
@@ -80,6 +84,7 @@ public class TwitterManager : MonoBehaviour
         AkSoundEngine.SetState("RichSentimentTest", PreferredSentiment.ToString());
 
         mapModel = GetComponentInParent<MapModel>();
+        heightMap = GetComponentInParent<ParticleCity>().GetComponentInChildren<HeightMap>();
     }
 
     void Update()
@@ -196,17 +201,24 @@ public class TwitterManager : MonoBehaviour
             {
                 Tweet tweet = new Tweet(dbTweet);
 
+                Vector3 position;
                 // Skip tweets outside bounding box
                 if (tweet.Coordinates != null)
                 {
-                    Vector3 position = mapModel.EarthToUnityWorld(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], 0);
+                    position = mapModel.EarthToUnityWorld(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], 0);
                     if (!insideColliders(position, boundingColliders))
                     {
                         spawnIfNeeded();
                         return;
                     }
+
+                    // Sample height
+                    position.y = sampleHeight(position);
                 }
-                Vector3 randomPosition = sample(boundingColliders);
+                else
+                {
+                    position = sample(boundingColliders);
+                }
 
                 TweetComponent tweetObj = Instantiate(TweetObjectPrefab, transform);
                 tweetObj.name = string.Format("Tweet_{0:F1}", tweet.Sentiment.Polarity);
@@ -219,9 +231,9 @@ public class TwitterManager : MonoBehaviour
                 if (tweet.Coordinates != null)
                 {
                     GeoObject geoObject = tweetObj.gameObject.AddComponent<GeoObject>();
-                    
-                    // TODO: Heightmap
-                    geoObject.SetGeoLocation(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], randomPosition.y);
+                    geoObject.SetWorldPosition(position);
+
+                    // geoObject.SetGeoLocation(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], randomPosition.y);
                 }
 
                 tweetsSpawned.Add(id, tweetObj);
@@ -253,6 +265,32 @@ public class TwitterManager : MonoBehaviour
         }
 
         AkSoundEngine.SetRTPCValue("SentimentRatio", PositiveRatio, BgmAkAmbient.gameObject);
+    }
+
+    private float sampleHeight(Vector3 position)
+    {
+        float bottom, top;
+        if (heightMap.GetHeightRange(position, out bottom, out top))
+        {
+            if (top > bottom + HeightRangeOnGround)
+            {
+                // More likelihood on higher positions
+                // return bottom + MinHeightAboveGround + Mathf.Pow(Random.value, -4) * (top - bottom - MinHeightAboveGround);
+                return bottom + HeightRangeOnGround + Mathf.Pow(Random.value, 0.25f) * (top - bottom - HeightRangeOnGround);
+            }
+            else
+            {
+                top = Mathf.Max(bottom + HeightRangeOnGround, top);
+                return Random.Range(bottom + MinHeightAboveGround, top);
+            }
+        }
+        else
+        {
+            return -10;
+            bottom = heightMap.Bounds.min.y;
+            top = bottom + HeightRangeOnGround;
+            return Random.Range(bottom + MinHeightAboveGround, top);
+        }
     }
 
     private static Vector3 sample(Collider[] colliders) {
@@ -311,5 +349,24 @@ public class TwitterManager : MonoBehaviour
         }
 
         return dbConnection.Query<DBTweet>(query,  MaxTweets);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        HeightMap heightMap = GetComponentInParent<ParticleCity>().GetComponentInChildren<HeightMap>();
+
+        Gizmos.color = Color.red;
+
+        Vector3 center = new Vector3(
+            heightMap.Bounds.center.x,
+            heightMap.Bounds.min.y + (HeightRangeOnGround + MinHeightAboveGround) / 2,
+            heightMap.Bounds.center.z
+        );
+        Vector3 size = new Vector3(
+            heightMap.Bounds.size.x,
+            HeightRangeOnGround - MinHeightAboveGround,
+            heightMap.Bounds.size.z
+        );
+        Gizmos.DrawWireCube(center, size);
     }
 }

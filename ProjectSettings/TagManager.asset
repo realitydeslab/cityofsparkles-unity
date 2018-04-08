@@ -15,6 +15,8 @@ TagManager:
   - 
   - 
   - 
+  - Buildings
+  - Ground
   - 
   - 
   - 
@@ -34,9 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - test
   m_SortingLayers:
   - name: Default
     uniqueID: 0
