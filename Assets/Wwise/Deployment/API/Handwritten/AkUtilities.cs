@@ -691,8 +691,10 @@ public partial class AkUtilities
 		FieldInfo 		scrollPosInfo				= inspectorType.GetField("m_ScrollPosition", BindingFlags.Public | BindingFlags.Instance);
 		PropertyInfo	positionPropInfo 			= inspectorType.GetProperty("position", BindingFlags.Public | BindingFlags.Instance);
 		
-		Rect	InspectorPosition	= (Rect)positionPropInfo.GetValue(currentInspectorFieldInfo.GetValue(null), null);
-		Vector2	scrollPos 			= (Vector2)scrollPosInfo.GetValue(currentInspectorFieldInfo.GetValue(null));
+        Rect InspectorPosition = new Rect(0, 0, 100, 100);
+        Vector2 scrollPos = new Vector2(0, 0);
+		// Rect	InspectorPosition	= (Rect)positionPropInfo.GetValue(currentInspectorFieldInfo.GetValue(null), null);
+		// Vector2	scrollPos 			= (Vector2)scrollPosInfo.GetValue(currentInspectorFieldInfo.GetValue(null));
 		
 		Rect relativePos = GUILayoutUtility.GetLastRect();
 		
