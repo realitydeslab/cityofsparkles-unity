@@ -360,7 +360,11 @@ MonoBehaviour:
   ExpandedItems:
   - /ParticleCityWwise
   - /ParticleCityWwise/Events
+  - /ParticleCityWwise/Events/Default Work Unit
   - /ParticleCityWwise/Events/Test Work Unit
+  - /ParticleCityWwise/SoundBanks
+  - /ParticleCityWwise/SoundBanks/Test Work  Unit
+  - /ParticleCityWwise/Virtual Acoustics
   language: English(US)
   lowerPoolSize: 2048
   m_lastPopulateTimePart2: 0
