@@ -1,7 +1,5 @@
 fileFormatVersion: 2
-guid: 4bc215d9f313978409df82f0dadedd0c
-timeCreated: 1510034257
-licenseType: Free
+guid: 01de2309a881a5f4885385bb49ee9cff
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -54,23 +52,11 @@ PluginImporter:
       settings:
         CPU: None
   - first:
-      Standalone: OSXIntel
-    second:
-      enabled: 0
-      settings:
-        CPU: None
-  - first:
-      Standalone: OSXIntel64
-    second:
-      enabled: 0
-      settings:
-        CPU: None
-  - first:
       Standalone: OSXUniversal
     second:
       enabled: 0
       settings:
-        CPU: None
+        CPU: AnyCPU
   - first:
       Standalone: Win
     second:

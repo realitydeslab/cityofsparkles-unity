@@ -146,7 +146,7 @@ public abstract class AkBaseInspector : Editor
 
 	void DelayCreateCall()
 	{
-		AkWwiseComponentPicker.Create(m_objectType, m_guidProperty, serializedObject, m_pickerPos);
+		AkWwiseComponentPicker.Create(m_objectType, m_guidProperty, null, serializedObject, m_pickerPos);
 	}
 }
 

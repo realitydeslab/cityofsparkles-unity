@@ -83,7 +83,8 @@ public partial class AkBasePathGetter
 #endif
 
 #if UNITY_SWITCH
-		fullBasePath = fullBasePath.Substring(1);
+		if(fullBasePath.StartsWith("/"))
+			fullBasePath = fullBasePath.Substring(1);
 #endif
 		FixSlashes(ref fullBasePath);
 		return fullBasePath;

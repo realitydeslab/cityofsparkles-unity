@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEditor;
 
 namespace AK.Wwise.Editor
@@ -16,12 +16,12 @@ namespace AK.Wwise.Editor
 
 				if (element != null)
 				{
-					ID.intValue = element.ID;
+					m_IDProperty[0].intValue = element.ID;
 					return element.Name;
 				}
 			}
 
-			ID.intValue = 0;
+			m_IDProperty[0].intValue = 0;
 			return string.Empty;
 		}
 
@@ -29,6 +29,9 @@ namespace AK.Wwise.Editor
 		{
 			m_objectType = AkWwiseProjectData.WwiseObjectType.TRIGGER;
 			m_typeName = "Trigger";
+
+			m_IDProperty = new SerializedProperty[1];
+			m_IDProperty[0] = property.FindPropertyRelative("ID");
 
 			m_guidProperty = new SerializedProperty[1];
 			m_guidProperty[0] = property.FindPropertyRelative("valueGuid.Array");

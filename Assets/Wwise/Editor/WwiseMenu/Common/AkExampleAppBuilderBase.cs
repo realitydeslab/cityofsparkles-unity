@@ -95,12 +95,13 @@ public class AkExampleAppBuilderBase : MonoBehaviour
            )
             return "Windows";
 
-        else if (unityPlatormString == BuildTarget.StandaloneOSXIntel.ToString()
-                    ||
-                    unityPlatormString == BuildTarget.StandaloneOSXIntel64.ToString()
-                    ||
-                    unityPlatormString == BuildTarget.StandaloneOSX.ToString()
-                )
+#if UNITY_2017_3_OR_NEWER
+        else if (unityPlatormString == BuildTarget.StandaloneOSX.ToString())
+#else
+        else if (unityPlatormString == BuildTarget.StandaloneOSXIntel.ToString() ||
+                 unityPlatormString == BuildTarget.StandaloneOSXIntel64.ToString() ||
+                 unityPlatormString == BuildTarget.StandaloneOSXUniversal.ToString() )
+#endif
             return "Mac";
 
         else if (unityPlatormString == BuildTarget.iOS.ToString())
@@ -119,12 +120,13 @@ public class AkExampleAppBuilderBase : MonoBehaviour
            )
             return "exe";
 
-        else if (unityPlatormString == BuildTarget.StandaloneOSXIntel.ToString()
-                    ||
-                    unityPlatormString == BuildTarget.StandaloneOSXIntel64.ToString()
-                    ||
-                    unityPlatormString == BuildTarget.StandaloneOSX.ToString()
-                )
+#if UNITY_2017_3_OR_NEWER
+        else if (unityPlatormString == BuildTarget.StandaloneOSX.ToString())
+#else
+        else if (unityPlatormString == BuildTarget.StandaloneOSXIntel.ToString() ||
+                 unityPlatormString == BuildTarget.StandaloneOSXIntel64.ToString() ||
+                 unityPlatormString == BuildTarget.StandaloneOSXUniversal.ToString() )
+#endif
             return "app";
 
         else if (unityPlatormString == BuildTarget.iOS.ToString())

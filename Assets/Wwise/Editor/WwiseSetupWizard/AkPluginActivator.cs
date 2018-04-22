@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
@@ -97,9 +97,13 @@ public class AkPluginActivator
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinux, "CPU", "x86");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinux64, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinuxUniversal, "CPU", "x86");
+#if UNITY_2017_3_OR_NEWER
+				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSX, "CPU", "None");
+#else
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXIntel, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXIntel64, "CPU", "None");
-				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSX, "CPU", "None");
+				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXUniversal, "CPU", "None");
+#endif
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneWindows, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneWindows64, "CPU", "None");
 				return;
@@ -107,20 +111,32 @@ public class AkPluginActivator
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinux, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinux64, "CPU", "x86_64");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinuxUniversal, "CPU", "x86_64");
+#if UNITY_2017_3_OR_NEWER
+				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSX, "CPU", "None");
+#else
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXIntel, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXIntel64, "CPU", "None");
-				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSX, "CPU", "None");
+				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXUniversal, "CPU", "None");
+#endif
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneWindows, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneWindows64, "CPU", "None");
 				return;
+#if UNITY_2017_3_OR_NEWER
+			case BuildTarget.StandaloneOSX:
+#else
 			case BuildTarget.StandaloneOSXIntel:
 			case BuildTarget.StandaloneOSXIntel64:
+#endif
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinux, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinux64, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinuxUniversal, "CPU", "None");
+#if UNITY_2017_3_OR_NEWER
+				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSX, "CPU", "AnyCPU");
+#else
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXIntel, "CPU", "AnyCPU");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXIntel64, "CPU", "AnyCPU");
-				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSX, "CPU", "AnyCPU");
+				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXUniversal, "CPU", "AnyCPU");
+#endif
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneWindows, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneWindows64, "CPU", "None");
 				return;
@@ -128,9 +144,13 @@ public class AkPluginActivator
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinux, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinux64, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinuxUniversal, "CPU", "None");
-				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXIntel, "CPU", "None");
-				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXIntel64, "CPU", "None");
-				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSX, "CPU", "None");
+#if UNITY_2017_3_OR_NEWER
+				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSX, "CPU", "AnyCPU");
+#else
+				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXIntel, "CPU", "AnyCPU");
+				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXIntel64, "CPU", "AnyCPU");
+				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXUniversal, "CPU", "AnyCPU");
+#endif
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneWindows, "CPU", "AnyCPU");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneWindows64, "CPU", "None");
 				return;
@@ -138,9 +158,13 @@ public class AkPluginActivator
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinux, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinux64, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneLinuxUniversal, "CPU", "None");
+#if UNITY_2017_3_OR_NEWER
+				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSX, "CPU", "None");
+#else
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXIntel, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXIntel64, "CPU", "None");
-				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSX, "CPU", "None");
+				pluginImporter.SetPlatformData(BuildTarget.StandaloneOSXUniversal, "CPU", "None");
+#endif
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneWindows, "CPU", "None");
 				pluginImporter.SetPlatformData(BuildTarget.StandaloneWindows64, "CPU", "AnyCPU");
 				return;
@@ -316,11 +340,16 @@ void *_pluginName_##_fp = (void*)&_pluginName_##Registration;" + "\n";
 
 				case "Mac":
 					pluginConfig = splitPath[5];
+#if UNITY_2017_3_OR_NEWER
+					SetStandaloneTarget(pluginImporter, BuildTarget.StandaloneOSX);
+					targetsToSet.Add(BuildTarget.StandaloneOSX);
+#else
 					SetStandaloneTarget(pluginImporter, BuildTarget.StandaloneOSXIntel);
 					SetStandaloneTarget(pluginImporter, BuildTarget.StandaloneOSXIntel64);
 					targetsToSet.Add(BuildTarget.StandaloneOSXIntel);
 					targetsToSet.Add(BuildTarget.StandaloneOSXIntel64);
-					targetsToSet.Add(BuildTarget.StandaloneOSX);
+					targetsToSet.Add(BuildTarget.StandaloneOSXUniversal);
+#endif
 					editorCPU = "AnyCPU";
 					editorOS = "OSX";
 					setEditor = true;

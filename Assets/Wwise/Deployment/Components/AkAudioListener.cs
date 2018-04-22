@@ -21,12 +21,6 @@ public class AkAudioListener : MonoBehaviour
 	public bool isDefaultListener = true;
 	private ulong akGameObjectID = AkSoundEngine.AK_INVALID_GAME_OBJECT;
 
-	private void Awake()
-	{
-		akGameObjectID = AkSoundEngine.GetAkGameObjectID(gameObject);
-		SetIsDefaultListener_NoCheck(isDefaultListener);
-	}
-
 	private void SetIsDefaultListener_NoCheck(bool isDefault)
 	{
 		if (isDefault)
@@ -46,17 +40,13 @@ public class AkAudioListener : MonoBehaviour
 
 	private void OnEnable()
 	{
+		akGameObjectID = AkSoundEngine.GetAkGameObjectID(gameObject);
 		SetIsDefaultListener_NoCheck(isDefaultListener);
 	}
 
 	private void OnDisable()
 	{
 		SetIsDefaultListener_NoCheck(false);
-	}
-
-	private void OnDestroy()
-	{
-		SetIsDefaultListener(false);
 		akGameObjectID = AkSoundEngine.AK_INVALID_GAME_OBJECT;
 	}
 

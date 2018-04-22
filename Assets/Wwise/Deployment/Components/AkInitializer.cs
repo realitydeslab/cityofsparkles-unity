@@ -15,6 +15,8 @@ using UnityEditor;
 #pragma warning disable 0219, 0414
 
 [AddComponentMenu("Wwise/AkInitializer")]
+[RequireComponent(typeof(AkTerminator))]
+[DisallowMultipleComponent]
 /// This script deals with initialization, and frame updates of the Wwise audio engine.  
 /// It is marked as \c DontDestroyOnLoad so it stays active for the life of the game, 
 /// not only one scene. You can, and probably should, modify this script to change the 
@@ -26,7 +28,6 @@ using UnityEditor;
 /// - <a href="https://www.audiokinetic.com/library/edge/?source=SDK&id=namespace_a_k_1_1_sound_engine_a27257629833b9481dcfdf5e793d9d037.html#a27257629833b9481dcfdf5e793d9d037" target="_blank">AK::SoundEngine::Init()</a> (Note: This is described in the Wwise SDK documentation.)
 /// - <a href="https://www.audiokinetic.com/library/edge/?source=SDK&id=namespace_a_k_1_1_sound_engine_a9176602bbe972da4acc1f8ebdb37f2bf.html#a9176602bbe972da4acc1f8ebdb37f2bf" target="_blank">AK::SoundEngine::Term()</a> (Note: This is described in the Wwise SDK documentation.)
 /// - AkCallbackManager
-[RequireComponent(typeof(AkTerminator))]
 public class AkInitializer : MonoBehaviour
 {
 	public readonly static string c_DefaultBasePath = Path.Combine("Audio", "GeneratedSoundBanks");
@@ -102,11 +103,6 @@ public class AkInitializer : MonoBehaviour
 		return ms_Instance.language;
 	}
 
-	void Awake()
-	{
-		Initialize();
-	}
-
 	public void Initialize()
 	{
 		if (ms_Instance != null)
@@ -155,14 +151,7 @@ public class AkInitializer : MonoBehaviour
 		AkSoundEngine.SetGameName(Application.productName);
 #endif
 
-        // WANDER START
-        // TODO
-        // string audioDevice = OVRManager.audioOutId;
-        // uint audioOutId = AkSoundEngine.GetDeviceIDFromName(audioDevice);
-        // platformSettings.idAudioDevice = audioOutId;
-        // WANDER END
-
-        AKRESULT result = AkSoundEngine.Init(memSettings, streamingSettings, deviceSettings, initSettings, platformSettings, musicSettings, (uint)preparePoolSize * 1024);
+		AKRESULT result = AkSoundEngine.Init(memSettings, streamingSettings, deviceSettings, initSettings, platformSettings, musicSettings, (uint)preparePoolSize * 1024);
 		if (result != AKRESULT.AK_Success)
 		{
 			Debug.LogError("WwiseUnity: Failed to initialize the sound engine. Abort.");
@@ -260,6 +249,8 @@ public class AkInitializer : MonoBehaviour
 
 	void OnEnable()
 	{
+		Initialize();
+
 		//The sound engine was not terminated normally.  Make this instance the one that will manage
 		//the updates and termination.
 		//This happen when Unity resets everything when a script changes.

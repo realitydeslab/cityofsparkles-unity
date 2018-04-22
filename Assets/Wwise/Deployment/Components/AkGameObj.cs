@@ -11,6 +11,7 @@ using System.Collections.Generic;
 
 
 [AddComponentMenu("Wwise/AkGameObj")]
+[ExecuteInEditMode] //ExecuteInEditMode necessary to maintain proper state of isStaticObject.
 ///@brief This component represents a sound object in your scene tracking its position and other game syncs such as Switches, RTPC and environment values. You can add this to any object that will emit sound, and it will be added to any object that an AkAudioListener is attached to. Note that if it is not present, Wwise will add it automatically, with the default values, to any Unity Game Object that is passed to Wwise.
 /// \sa
 /// - <a href="https://www.audiokinetic.com/library/edge/?source=SDK&id=soundengine__gameobj.html" target="_blank">Integration Details - Game Objects</a> (Note: This is described in the Wwise SDK documentation.)
@@ -19,7 +20,6 @@ using System.Collections.Generic;
 /// - <a href="https://www.audiokinetic.com/library/edge/?source=SDK&id=soundengine__switch.html" target="_blank">Integration Details - Switches</a> (Note: This is described in the Wwise SDK documentation.)
 /// - <a href="https://www.audiokinetic.com/library/edge/?source=SDK&id=soundengine__states.html" target="_blank">Integration Details - States</a> (Note: This is described in the Wwise SDK documentation.)
 /// - <a href="https://www.audiokinetic.com/library/edge/?source=SDK&id=soundengine__environments.html" target="_blank">Integration Details - Environments and Game-defined Auxiliary Sends</a> (Note: This is described in the Wwise SDK documentation.)
-[ExecuteInEditMode] //ExecuteInEditMode necessary to maintain proper state of isStaticObject.
 public class AkGameObj : MonoBehaviour
 {
 	/// When not set to null, the position will be offset relative to the Game Object position by the Position Offset
@@ -83,15 +83,17 @@ public class AkGameObj : MonoBehaviour
 		AKRESULT res = AkSoundEngine.RegisterGameObj(gameObject, gameObject.name);
 		if (res == AKRESULT.AK_Success)
 		{
-			// Get position with offset
-			Vector3 position = GetPosition();
+			// Get position with offset or custom position and orientation.
+			Vector3 position = GetPosition ();
+			Vector3	forward = GetForward ();
+			Vector3	up = GetUpward ();
 
 			//Set the original position
 			AkSoundEngine.SetObjectPosition(
 				gameObject,
 				position.x, position.y, position.z,
-				transform.forward.x, transform.forward.y, transform.forward.z,
-				transform.up.x, transform.up.y, transform.up.z);
+				forward.x, forward.y, forward.z,
+				up.x, up.y, up.z);
 
 			if (isEnvironmentAware && m_Collider)
 			{
@@ -171,30 +173,33 @@ public class AkGameObj : MonoBehaviour
 		if (isStaticObject)
 			return;
 
-		// Get position with offset
+		// Get custom position and orientation.
 		Vector3 position = GetPosition();
+		Vector3	forward = GetForward();
+		Vector3	up = GetUpward();
+
 
 		//Didn't move.  Do nothing.
-		if (m_posData.position == position && m_posData.forward == transform.forward && m_posData.up == transform.up)
+		if (m_posData.position == position && m_posData.forward == forward && m_posData.up == up)
 			return;
 
 		m_posData.position = position;
-		m_posData.forward = transform.forward;
-		m_posData.up = transform.up;
+		m_posData.forward = forward;
+		m_posData.up = up;
 
 		//Update position
-		AkSoundEngine.SetObjectPosition(
+		AkSoundEngine.SetObjectPosition (
 			gameObject,
 			position.x, position.y, position.z,
-			transform.forward.x, transform.forward.y, transform.forward.z,
-			transform.up.x, transform.up.y, transform.up.z);
+			forward.x, forward.y, forward.z,
+			up.x, up.y, up.z);
 	}
 
-	/// Gets the position including the position offset, if applyPositionOffset is enabled.
+	/// Gets the position including the position offset, if applyPositionOffset is enabled. User can also override this method to calculate an arbitrary position.
 	/// \return  The position.
-	public Vector3 GetPosition()
+	public virtual Vector3 GetPosition ()
 	{
-		if (m_positionOffsetData != null)
+		if (m_positionOffsetData != null) 
 		{
 			// Get offset in world space
 			Vector3 worldOffset = transform.rotation * m_positionOffsetData.positionOffset;
@@ -206,6 +211,19 @@ public class AkGameObj : MonoBehaviour
 		return transform.position;
 	}
 
+	/// Gets the orientation forward vector. User can also override this method to calculate an arbitrary vector.
+	/// \return  The forward vector of orientation.
+	public virtual Vector3 GetForward ()
+	{
+		return transform.forward;
+	}
+
+	/// Gets the orientation upward vector. User can also override this method to calculate an arbitrary vector.
+	/// \return  The upward vector of orientation.
+	public virtual Vector3 GetUpward ()
+	{
+		return transform.up;
+	}
 
 	void OnTriggerEnter(Collider other)
 	{

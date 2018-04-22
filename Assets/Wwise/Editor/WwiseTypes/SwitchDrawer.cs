@@ -1,4 +1,4 @@
-#define DISPLAY_GROUP_NAME_AND_VALUE_NAME
+﻿#define DISPLAY_GROUP_NAME_AND_VALUE_NAME
 
 using System;
 using UnityEditor;
@@ -8,8 +8,6 @@ namespace AK.Wwise.Editor
 	[CustomPropertyDrawer(typeof(Switch))]
 	public class SwitchDrawer : BaseTypeDrawer
 	{
-		SerializedProperty groupID;
-
 		public override string UpdateIds(Guid[] in_guid)
 		{
 			var list = AkWwiseProjectInfo.GetData().SwitchWwu;
@@ -25,8 +23,8 @@ namespace AK.Wwise.Editor
 					if (index < 0)
 						break;
 
-					groupID.intValue = group.ID;
-					ID.intValue = group.valueIDs[index];
+					m_IDProperty[0].intValue = group.valueIDs[index];
+					m_IDProperty[1].intValue = group.ID;
 
 #if DISPLAY_GROUP_NAME_AND_VALUE_NAME
 					return group.Name + "/" + group.values[index];
@@ -36,7 +34,7 @@ namespace AK.Wwise.Editor
 				}
 			}
 
-			groupID.intValue = ID.intValue = 0;
+			m_IDProperty[0].intValue = m_IDProperty[1].intValue = 0;
 			return string.Empty;
 		}
 
@@ -45,7 +43,10 @@ namespace AK.Wwise.Editor
 			m_objectType = AkWwiseProjectData.WwiseObjectType.SWITCH;
 			m_typeName = "Switch";
 
-			groupID = property.FindPropertyRelative("groupID");
+			m_IDProperty = new SerializedProperty[2];
+			m_IDProperty[0] = property.FindPropertyRelative("ID");
+			m_IDProperty[1] = property.FindPropertyRelative("groupID");
+
 			m_guidProperty = new SerializedProperty[2];
 			m_guidProperty[0] = property.FindPropertyRelative("valueGuid.Array");
 			m_guidProperty[1] = property.FindPropertyRelative("groupGuid.Array");

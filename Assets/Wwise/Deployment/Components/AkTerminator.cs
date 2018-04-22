@@ -13,6 +13,7 @@ using System.Threading;
 
 
 [AddComponentMenu("Wwise/AkTerminator")]
+[DisallowMultipleComponent]
 /// This script deals with termination of the Wwise audio engine.  
 /// It must be present on one Game Object that gets destroyed last in the game.
 /// It must be executed AFTER any other monoBehaviors that use AkSoundEngine.
@@ -23,7 +24,7 @@ public class AkTerminator : MonoBehaviour
 {
 	static private AkTerminator ms_Instance = null;
 
-	void Awake()
+	void OnEnable()
 	{
 		if (ms_Instance != null)
 		{			
@@ -39,6 +40,9 @@ public class AkTerminator : MonoBehaviour
 	
 	void OnApplicationQuit() 
 	{
+		if (!enabled)
+			return;
+
 		//This happens before OnDestroy. Stop the sound engine now.
 		Terminate();
 		
