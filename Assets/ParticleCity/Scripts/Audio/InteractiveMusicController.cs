@@ -22,7 +22,7 @@ public class InteractiveMusicController : MonoBehaviour
     public float GetVolumeMeter()
     {
         float meter;
-        int type = (int)RTPCValue_type.RTPCValue_GameObject;
+        int type = 2; //(int)RTPCValue_type.RTPCValue_GameObject;
         AkSoundEngine.GetRTPCValue("MasterVolume", gameObject, akAmbient.playingId, out meter, ref type);
         return meter;
     }
@@ -79,7 +79,7 @@ public class InteractiveMusicController : MonoBehaviour
         float pitch = info.byParam1;
         float force = info.byParam2;
 
-        if (info.byType == 144)
+        if (true /*info.byType == 144*/)
         {
             if (pitch < 50)
             {
@@ -96,7 +96,7 @@ public class InteractiveMusicController : MonoBehaviour
             }
             Animator.GlobalIntensity = majorIntensity + minorIntensity;
         }
-        if (pitch < 50 && info.byType == 144)
+        if (pitch < 50 /*&& info.byType == 144*/)
         {
         }
     }

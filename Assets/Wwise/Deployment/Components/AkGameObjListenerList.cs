@@ -5,40 +5,62 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-using UnityEngine;
-using System;
-using System.Collections.Generic;
-
-[Serializable]
+[System.Serializable]
 public class AkGameObjListenerList : AkAudioListener.BaseListenerList
 {
-	[SerializeField]
-	private List<AkAudioListener> initialListenerList = new List<AkAudioListener>();
+	[System.NonSerialized] private AkGameObj akGameObj;
 
-	public void Initialize()
+	[UnityEngine.SerializeField]
+	public System.Collections.Generic.List<AkAudioListener> initialListenerList =
+		new System.Collections.Generic.List<AkAudioListener>();
+
+	[UnityEngine.SerializeField] public bool useDefaultListeners = true;
+
+	public void SetUseDefaultListeners(bool useDefault)
 	{
-		int Count = initialListenerList.Count;
-		for (int ii = 0; ii < Count; ++ii)
+		if (useDefaultListeners != useDefault)
 		{
-			if (Add(initialListenerList[ii]))
+			useDefaultListeners = useDefault;
+
+			if (useDefault)
 			{
-				changed = true;
+				AkSoundEngine.ResetListenersToDefault(akGameObj.gameObject);
+				for (var i = 0; i < ListenerList.Count; ++i)
+					AkSoundEngine.AddListener(akGameObj.gameObject, ListenerList[i].gameObject);
+			}
+			else
+			{
+				var Ids = GetListenerIds();
+				AkSoundEngine.SetListeners(akGameObj.gameObject, Ids, Ids == null ? 0 : (uint) Ids.Length);
 			}
 		}
 	}
 
-	public void Refresh(GameObject gameObject)
+	public void Init(AkGameObj akGameObj)
 	{
-		if (changed && gameObject != null)
-		{
-			changed = false;
+		this.akGameObj = akGameObj;
 
-			var Ids = GetListenerIds();
-			if (Ids != null && Ids.Length > 0)
-				AkSoundEngine.SetListeners(gameObject, Ids, (uint)Ids.Length);
-			else
-				AkSoundEngine.ResetListenersToDefault(gameObject);
-		}
+		if (!useDefaultListeners)
+			AkSoundEngine.SetListeners(akGameObj.gameObject, null, 0);
+
+		for (var ii = 0; ii < initialListenerList.Count; ++ii)
+			initialListenerList[ii].StartListeningToEmitter(akGameObj);
+	}
+
+	public override bool Add(AkAudioListener listener)
+	{
+		var ret = base.Add(listener);
+		if (ret && AkSoundEngine.IsInitialized())
+			AkSoundEngine.AddListener(akGameObj.gameObject, listener.gameObject);
+		return ret;
+	}
+
+	public override bool Remove(AkAudioListener listener)
+	{
+		var ret = base.Remove(listener);
+		if (ret && AkSoundEngine.IsInitialized())
+			AkSoundEngine.RemoveListener(akGameObj.gameObject, listener.gameObject);
+		return ret;
 	}
 
 #if UNITY_EDITOR
@@ -54,7 +76,6 @@ public class AkGameObjListenerList : AkAudioListener.BaseListenerList
 			initialListenerList.Remove(listener);
 	}
 #endif
-
 }
 
 #endif // #if ! (UNITY_DASHBOARD_WIDGET || UNITY_WEBPLAYER || UNITY_WII || UNITY_WIIU || UNITY_NACL || UNITY_FLASH || UNITY_BLACKBERRY) // Disable under unsupported platforms.

@@ -8,26 +8,701 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 725b80086f88d34428178289c432c6b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 62ecbc158d37a754e8050495c0858c71, type: 3}
   m_Name: AkWwiseProjectData
   m_EditorClassIdentifier: 
-  CurrentPluginConfig: 
-  EventWwu: []
-  AuxBusWwu: []
-  StateWwu: []
-  SwitchWwu: []
-  BankWwu: []
-  RtpcWwu: []
-  TriggerWwu: []
-  ExpandedItems: []
-  m_lastPopulateTimePsrt1: 0
-  m_lastPopulateTimePart2: 0
+  AcousticTextureWwu:
+  - Guid: '{2D8B2DBA-226C-4ABA-8574-18ECFBABF366}'
+    m_lastTimePart2: -1999263725
+    m_lastTimePsrt1: 1012181440
+    ParentPhysicalPath: 
+    PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
+    List: []
+  - Guid: '{463D666B-3CA8-4FA5-8B4A-5FEF12B883F6}'
+    m_lastTimePart2: -1999263725
+    m_lastTimePsrt1: 1012271064
+    ParentPhysicalPath: 
+    PhysicalPath: Virtual Acoustics\Factory Reflect Acoustic Textures.wwu
+    List:
+    - Guid: f2532d2fccda8e408b8898b1b52a26d6
+      ID: -126323319
+      Name: Acoustic_Banner
+      Path: Factory Reflect Acoustic Textures\Textures\Acoustic_Banner
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      - ElementName: Acoustic_Banner
+        ObjectType: 15
+    - Guid: 32c20a8be202de4ebeacfdd1a900e3ed
+      ID: 1873957695
+      Name: Anechoic
+      Path: Factory Reflect Acoustic Textures\Textures\Anechoic
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      - ElementName: Anechoic
+        ObjectType: 15
+    - Guid: a9a586b004f2534ca838bdb18b18f6d6
+      ID: 504532776
+      Name: Brick
+      Path: Factory Reflect Acoustic Textures\Textures\Brick
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      - ElementName: Brick
+        ObjectType: 15
+    - Guid: 8975223456dc604296c4b9f4b669092b
+      ID: -1882360988
+      Name: Carpet
+      Path: Factory Reflect Acoustic Textures\Textures\Carpet
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      - ElementName: Carpet
+        ObjectType: 15
+    - Guid: 001cf85c9628e04aaf7c3080bdaba682
+      ID: 841620460
+      Name: Concrete
+      Path: Factory Reflect Acoustic Textures\Textures\Concrete
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      - ElementName: Concrete
+        ObjectType: 15
+    - Guid: 19c9d2305f92434189063dbb3c4ae5e2
+      ID: -1099468548
+      Name: Cork_Tiles
+      Path: Factory Reflect Acoustic Textures\Textures\Cork_Tiles
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      - ElementName: Cork_Tiles
+        ObjectType: 15
+    - Guid: 339ee6f8975c6849b508a1535f2d66e8
+      ID: -1366806192
+      Name: Curtains
+      Path: Factory Reflect Acoustic Textures\Textures\Curtains
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      - ElementName: Curtains
+        ObjectType: 15
+    - Guid: f4e3a4680b4c8746a8b8a84db93dbc8f
+      ID: -624659732
+      Name: Drywall
+      Path: Factory Reflect Acoustic Textures\Textures\Drywall
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      - ElementName: Drywall
+        ObjectType: 15
+    - Guid: 32d581836edbed4ea7a3bc7b0a0b8ba8
+      ID: 1970351858
+      Name: Fabric
+      Path: Factory Reflect Acoustic Textures\Textures\Fabric
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      - ElementName: Fabric
+        ObjectType: 15
+    - Guid: 313793c51a00b44a98dd9b033a8c8eab
+      ID: 513139656
+      Name: Mountain
+      Path: Factory Reflect Acoustic Textures\Textures\Mountain
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      - ElementName: Mountain
+        ObjectType: 15
+    - Guid: c4da82a82a13b747ba9db9907ba29cc0
+      ID: -1657378743
+      Name: Tile
+      Path: Factory Reflect Acoustic Textures\Textures\Tile
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      - ElementName: Tile
+        ObjectType: 15
+    - Guid: 96bcff1fe76f9e48ba6c7c14a71391ae
+      ID: 2058049674
+      Name: Wood
+      Path: Factory Reflect Acoustic Textures\Textures\Wood
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      - ElementName: Wood
+        ObjectType: 15
+    - Guid: e5d1857ba2c1634e9a13cec54b641adc
+      ID: -32444547
+      Name: Wood_Bright
+      Path: Factory Reflect Acoustic Textures\Textures\Wood_Bright
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      - ElementName: Wood_Bright
+        ObjectType: 15
+    - Guid: 8e474652dac50c4ea0dec98d1479529a
+      ID: 1755085759
+      Name: Wood_Deep
+      Path: Factory Reflect Acoustic Textures\Textures\Wood_Deep
+      PathAndIcons:
+      - ElementName: Factory Reflect Acoustic Textures
+        ObjectType: 12
+      - ElementName: Textures
+        ObjectType: 4
+      - ElementName: Wood_Deep
+        ObjectType: 15
   autoPopulateEnabled: 1
+  AuxBusWwu:
+  - Guid: '{C9596F7C-12C3-41BF-A2ED-F59F837E23EA}'
+    m_lastTimePart2: -1999263725
+    m_lastTimePsrt1: 1011571050
+    ParentPhysicalPath: 
+    PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+    List: []
+  BankWwu:
+  - Guid: '{07814327-4FFD-4BEB-A7E1-408FAC7E3EFD}'
+    m_lastTimePart2: -1999263725
+    m_lastTimePsrt1: 1013751092
+    ParentPhysicalPath: 
+    PhysicalPath: SoundBanks\Default Work Unit.wwu
+    List: []
+  - Guid: '{09551D7C-159F-4201-9959-DCF42C4BFF86}'
+    m_lastTimePart2: -1999263725
+    m_lastTimePsrt1: 1013786410
+    ParentPhysicalPath: 
+    PhysicalPath: SoundBanks\Test Work  Unit.wwu
+    List:
+    - Guid: 6bb60247f924db4387a9d1ab92425248
+      ID: 1831431028
+      Name: TestSoundBank
+      Path: Test Work  Unit\TestSoundBank
+      PathAndIcons:
+      - ElementName: Test Work  Unit
+        ObjectType: 12
+      - ElementName: TestSoundBank
+        ObjectType: 7
   basePath: Audio\GeneratedSoundBanks
-  language: English(US)
-  defaultPoolSize: 4096
-  lowerPoolSize: 2048
-  streamingPoolSize: 1024
-  preparePoolSize: 0
-  memoryCutoffThreshold: 0.95
   callbackManagerBufferSize: 4
+  CurrentPluginConfig: 
+  defaultPoolSize: 4096
+  EventWwu:
+  - Guid: '{FFFCA8D8-975B-4702-9422-7C96AED5C353}'
+    m_lastTimePart2: -1999263725
+    m_lastTimePsrt1: 1013721426
+    ParentPhysicalPath: 
+    PhysicalPath: Events\Default Work Unit.wwu
+    List:
+    - Guid: 3d46d603f0041e46ab9219db7ed955bb
+      ID: -1296036570
+      Name: Play_Tweet_Long
+      Path: Default Work Unit\Play_Tweet_Long
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Tweet_Long
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 35f1346c2076db41aaed8ddc7639c8d6
+      ID: -1335035570
+      Name: Play_Tweet_Med
+      Path: Default Work Unit\Play_Tweet_Med
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Tweet_Med
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 28e401abffd08642843be16183c948e7
+      ID: -734250653
+      Name: Play_Tweet_Med_Long
+      Path: Default Work Unit\Play_Tweet_Med_Long
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Tweet_Med_Long
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: e71ea3e2e350cf40939fecceeb4895ee
+      ID: 241412554
+      Name: Play_Tweet_Short
+      Path: Default Work Unit\Play_Tweet_Short
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_Tweet_Short
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 60efd113c264d54c9bb3bf9710984147
+      ID: 914952687
+      Name: Play_TwitterBgm
+      Path: Default Work Unit\Play_TwitterBgm
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_TwitterBgm
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+  - Guid: '{4D783F1E-0522-43AE-BC17-5DDAE5328E64}'
+    m_lastTimePart2: -1999263725
+    m_lastTimePsrt1: 1014274386
+    ParentPhysicalPath: 
+    PhysicalPath: Events\Test Work Unit.wwu
+    List:
+    - Guid: 3d26d1fbb05a8e4e95ea61e019b36459
+      ID: -33081610
+      Name: Play_GuideLight
+      Path: Test Work Unit\Play_GuideLight
+      PathAndIcons:
+      - ElementName: Test Work Unit
+        ObjectType: 12
+      - ElementName: Play_GuideLight
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: c41682e54014e24a960061c0ee62429e
+      ID: -638526559
+      Name: Play_HearTheWindWhisper
+      Path: Test Work Unit\Play_HearTheWindWhisper
+      PathAndIcons:
+      - ElementName: Test Work Unit
+        ObjectType: 12
+      - ElementName: Play_HearTheWindWhisper
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 4d4cabef9bdcdd468f8baeb37461dcdf
+      ID: -1824839612
+      Name: Play_ParticleCity_Improv_BGM
+      Path: Test Work Unit\Play_ParticleCity_Improv_BGM
+      PathAndIcons:
+      - ElementName: Test Work Unit
+        ObjectType: 12
+      - ElementName: Play_ParticleCity_Improv_BGM
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: f0d8f24c61e7c949aca8d0d0c58e5a32
+      ID: -1357666179
+      Name: Play_SentimentBGMTest
+      Path: Test Work Unit\Play_SentimentBGMTest
+      PathAndIcons:
+      - ElementName: Test Work Unit
+        ObjectType: 12
+      - ElementName: Play_SentimentBGMTest
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 4f585536c74d1e45a8ce87d4f4985e86
+      ID: 1993745496
+      Name: Play_Twist_BGM
+      Path: Test Work Unit\Play_Twist_BGM
+      PathAndIcons:
+      - ElementName: Test Work Unit
+        ObjectType: 12
+      - ElementName: Play_Twist_BGM
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - Guid: 054c36f134d5f741869fb48a82483fca
+      ID: -314361464
+      Name: Play_TwistNoisyPart
+      Path: Test Work Unit\Play_TwistNoisyPart
+      PathAndIcons:
+      - ElementName: Test Work Unit
+        ObjectType: 12
+      - ElementName: Play_TwistNoisyPart
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+  ExpandedItems:
+  - /ParticleCityWwise
+  - /ParticleCityWwise/Events
+  - /ParticleCityWwise/Events/Test Work Unit
+  language: English(US)
+  lowerPoolSize: 2048
+  m_lastPopulateTimePart2: 0
+  m_lastPopulateTimePsrt1: 0
+  memoryCutoffThreshold: 0.95
+  preparePoolSize: 0
+  RtpcWwu:
+  - Guid: '{2AAED00D-10BE-4038-B5CE-D538015A257E}'
+    m_lastTimePart2: -1999263721
+    m_lastTimePsrt1: -1360588634
+    ParentPhysicalPath: 
+    PhysicalPath: Game Parameters\Default Work Unit.wwu
+    List:
+    - Guid: 37029a94c8169b4e9f20f275ee4a3479
+      ID: -866683757
+      Name: LeftHandPosX
+      Path: Default Work Unit\Gestures\LeftHandPosX
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Gestures
+        ObjectType: 4
+      - ElementName: LeftHandPosX
+        ObjectType: 13
+    - Guid: 5292a144dc259c45821e12721624ffdf
+      ID: -866683758
+      Name: LeftHandPosY
+      Path: Default Work Unit\Gestures\LeftHandPosY
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Gestures
+        ObjectType: 4
+      - ElementName: LeftHandPosY
+        ObjectType: 13
+    - Guid: e34d6d27fbcd7f47a1f2b22c512e910a
+      ID: -866683759
+      Name: LeftHandPosZ
+      Path: Default Work Unit\Gestures\LeftHandPosZ
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Gestures
+        ObjectType: 4
+      - ElementName: LeftHandPosZ
+        ObjectType: 13
+    - Guid: de868bc9126eb94087d2751d1becc47d
+      ID: -201898384
+      Name: LeftHandRotX
+      Path: Default Work Unit\Gestures\LeftHandRotX
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Gestures
+        ObjectType: 4
+      - ElementName: LeftHandRotX
+        ObjectType: 13
+    - Guid: 0d4800c0443c5c44a3507aa7198de333
+      ID: -201898383
+      Name: LeftHandRotY
+      Path: Default Work Unit\Gestures\LeftHandRotY
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Gestures
+        ObjectType: 4
+      - ElementName: LeftHandRotY
+        ObjectType: 13
+    - Guid: 1144638247279e49888f88d2c222947f
+      ID: -201898382
+      Name: LeftHandRotZ
+      Path: Default Work Unit\Gestures\LeftHandRotZ
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Gestures
+        ObjectType: 4
+      - ElementName: LeftHandRotZ
+        ObjectType: 13
+    - Guid: 204c8a3d1fe14b4482df76f828d51a65
+      ID: -1376955947
+      Name: MasterVolume
+      Path: Default Work Unit\MasterVolume
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MasterVolume
+        ObjectType: 13
+    - Guid: 922640140ef6cc45ae1d347ba630a1d6
+      ID: 505761472
+      Name: RightHandPosX
+      Path: Default Work Unit\Gestures\RightHandPosX
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Gestures
+        ObjectType: 4
+      - ElementName: RightHandPosX
+        ObjectType: 13
+    - Guid: a2063b03dfcdb144b943ae1b77221347
+      ID: 505761473
+      Name: RightHandPosY
+      Path: Default Work Unit\Gestures\RightHandPosY
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Gestures
+        ObjectType: 4
+      - ElementName: RightHandPosY
+        ObjectType: 13
+    - Guid: 3fb2d75dbfea394aaceba7ce51416def
+      ID: 505761474
+      Name: RightHandPosZ
+      Path: Default Work Unit\Gestures\RightHandPosZ
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Gestures
+        ObjectType: 4
+      - ElementName: RightHandPosZ
+        ObjectType: 13
+    - Guid: bd9049435a81b34a945c6214e849f5f7
+      ID: 1209221539
+      Name: RightHandRotX
+      Path: Default Work Unit\Gestures\RightHandRotX
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Gestures
+        ObjectType: 4
+      - ElementName: RightHandRotX
+        ObjectType: 13
+    - Guid: d5b9297f6b9d724fb2e069cf40f6343b
+      ID: 1209221538
+      Name: RightHandRotY
+      Path: Default Work Unit\Gestures\RightHandRotY
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Gestures
+        ObjectType: 4
+      - ElementName: RightHandRotY
+        ObjectType: 13
+    - Guid: 6dcf1d785498d84c8c496a567d92b1a9
+      ID: 1209221537
+      Name: RightHandRotZ
+      Path: Default Work Unit\Gestures\RightHandRotZ
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Gestures
+        ObjectType: 4
+      - ElementName: RightHandRotZ
+        ObjectType: 13
+    - Guid: 30cc7b9ef0df7345b33b7e236ec439db
+      ID: 1059072165
+      Name: SentimentRatio
+      Path: Default Work Unit\SentimentRatio
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SentimentRatio
+        ObjectType: 13
+  - Guid: '{3B167755-FB42-458B-98BF-96F557AFB3B9}'
+    m_lastTimePart2: -1999263725
+    m_lastTimePsrt1: 1013131090
+    ParentPhysicalPath: 
+    PhysicalPath: Game Parameters\Factory SoundSeed Air Game Syncs.wwu
+    List:
+    - Guid: 59062ef746431c4ea1b1dab46a05101e
+      ID: 1351367891
+      Name: SS_Air_Fear
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Fear
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Fear
+        ObjectType: 13
+    - Guid: 37fe2d2f9e4f944d83d853cca39781ad
+      ID: -1292209176
+      Name: SS_Air_Freefall
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Freefall
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Freefall
+        ObjectType: 13
+    - Guid: dc79aea23acaba4696529986c322a87b
+      ID: 1029930033
+      Name: SS_Air_Fury
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Fury
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Fury
+        ObjectType: 13
+    - Guid: 45b4e209a3c47f44b3ca818a1d925ef7
+      ID: -1646418679
+      Name: SS_Air_Month
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Month
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Month
+        ObjectType: 13
+    - Guid: 1a81b7e32f7b0f49b44f5fe51b468041
+      ID: -447042342
+      Name: SS_Air_Presence
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Presence
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Presence
+        ObjectType: 13
+    - Guid: ab9048a3d5b92645a64d5290c43ef2dc
+      ID: 822163944
+      Name: SS_Air_RPM
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_RPM
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_RPM
+        ObjectType: 13
+    - Guid: efeb291393a12e47a38c64668b494879
+      ID: -1220270574
+      Name: SS_Air_Size
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Size
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Size
+        ObjectType: 13
+    - Guid: db8c3fe9d1063747acaf7cd44bbed783
+      ID: -579304704
+      Name: SS_Air_Storm
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Storm
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Storm
+        ObjectType: 13
+    - Guid: 2ca76f537e8c8b4cae03ef34fdadc314
+      ID: -1091570167
+      Name: SS_Air_TimeOfDay
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_TimeOfDay
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_TimeOfDay
+        ObjectType: 13
+    - Guid: 197ba8edaa73a0409f192073606db710
+      ID: -134719478
+      Name: SS_Air_Turbulence
+      Path: Factory SoundSeed Air Game Syncs\SS_Air_Turbulence
+      PathAndIcons:
+      - ElementName: Factory SoundSeed Air Game Syncs
+        ObjectType: 12
+      - ElementName: SS_Air_Turbulence
+        ObjectType: 13
+  StateWwu:
+  - Guid: '{39AEC1A8-1711-456F-A34E-CE5BB56A5C1B}'
+    m_lastTimePart2: -1999263725
+    m_lastTimePsrt1: 1014299453
+    ParentPhysicalPath: 
+    PhysicalPath: States\Default Work Unit.wwu
+    List:
+    - Guid: c67a6f8490d7c3498b1b97f47628bac9
+      ID: 610169148
+      Name: Sentiment
+      Path: Default Work Unit\Sentiment
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Sentiment
+        ObjectType: 9
+      ValueGuids:
+      - bytes: c9ddb98453fd9840a1fb578711d5c744
+      - bytes: 2109fffcbc12824c8d6d3d8e332517d5
+      - bytes: f1226aea7228c04ea1c3777032c87cee
+      ValueIcons:
+      - ElementName: Negative
+        ObjectType: 8
+      - ElementName: None
+        ObjectType: 8
+      - ElementName: Positive
+        ObjectType: 8
+      valueIDs: 283081fbdb3ba32c80ad1947
+      values:
+      - Negative
+      - None
+      - Positive
+  - Guid: '{9AB6FDDF-DE70-4485-853B-C78B05B013E4}'
+    m_lastTimePart2: -1999263725
+    m_lastTimePsrt1: 1014186248
+    ParentPhysicalPath: 
+    PhysicalPath: States\Test Work Unit.wwu
+    List:
+    - Guid: 2918675553772c4e9aa1e26ce1d5f934
+      ID: -421275030
+      Name: RichSentimentTest
+      Path: Test Work Unit\RichSentimentTest
+      PathAndIcons:
+      - ElementName: Test Work Unit
+        ObjectType: 12
+      - ElementName: RichSentimentTest
+        ObjectType: 9
+      ValueGuids:
+      - bytes: d94c1033db12f649b00fb0aafc6ca9b6
+      - bytes: 127528e6769bee45a59dbe7b23097627
+      - bytes: da553102513fe6469d1335941b13241b
+      - bytes: f8d625d6ef051f4faf702087c9d5a4b4
+      - bytes: 93fb3ba1f132eb4bbe3a26261e989942
+      ValueIcons:
+      - ElementName: Happy
+        ObjectType: 8
+      - ElementName: Neutral
+        ObjectType: 8
+      - ElementName: None
+        ObjectType: 8
+      - ElementName: Sad
+        ObjectType: 8
+      - ElementName: Wish
+        ObjectType: 8
+      valueIDs: 255412556ab6f827db3ba32c9b61701a38b59d5e
+      values:
+      - Happy
+      - Neutral
+      - None
+      - Sad
+      - Wish
+  streamingPoolSize: 1024
+  SwitchWwu:
+  - Guid: '{B6A29A65-8FB6-4DDE-B4BC-BA3979138E98}'
+    m_lastTimePart2: -1999263725
+    m_lastTimePsrt1: 1013221405
+    ParentPhysicalPath: 
+    PhysicalPath: Switches\Default Work Unit.wwu
+    List: []
+  TriggerWwu:
+  - Guid: '{A101AEE8-05FE-47FB-85B4-FD7C0505870C}'
+    m_lastTimePart2: -1999263725
+    m_lastTimePsrt1: 1012671060
+    ParentPhysicalPath: 
+    PhysicalPath: Triggers\Default Work Unit.wwu
+    List: []

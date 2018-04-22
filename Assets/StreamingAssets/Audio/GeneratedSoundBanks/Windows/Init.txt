@@ -3,12 +3,12 @@ State Group	ID	Name			Wwise Object Path	Notes
 	3873692266	RichSentimentTest			\Test Work Unit\RichSentimentTest	
 
 State	ID	Name	State Group			Notes
-	748895195	None	Sentiment			
+	0	None	Sentiment			
 	1192865152	Positive	Sentiment			
 	4219547688	Negative	Sentiment			
+	0	None	RichSentimentTest			
 	443572635	Sad	RichSentimentTest			
 	670611050	Neutral	RichSentimentTest			
-	748895195	None	RichSentimentTest			
 	1427264549	Happy	RichSentimentTest			
 	1587393848	Wish	RichSentimentTest			
 
@@ -35,4 +35,8 @@ Audio Bus	ID	Name			Wwise Object Path	Notes
 
 Effect plug-ins	ID	Name	Type				Notes
 	33894468	MasterVolumeMeter	Wwise Meter			
+
+Audio Devices	ID	Name	Type				Notes
+	2317455096	No_Output	No Output			
+	3859886410	System	System			
 

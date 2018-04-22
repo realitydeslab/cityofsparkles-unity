@@ -13,10 +13,15 @@ Event	ID	Name			Wwise Object Path	Notes
 
 Modulator Envelope	ID	Name			Wwise Object Path	Notes
 	93863261	TestEnvelope			\Default Work Unit\TestEnvelope	
+	628774999	Modulator Envelope (Custom)				
 	966494366	Modulator Envelope (Custom)				
+
+Effect plug-ins	ID	Name	Type				Notes
+	892513968	VCVRack Bridge FX (Custom)	VCVRack Bridge FX			
 
 Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 	288150129	Wwise Synth One	Wwise Synth One		\Actor-Mixer Hierarchy\Test Work Unit\ParticleCityMIDI\Wwise Synth One	
+	648503355	Wwise Synth One	Wwise Synth One		\Actor-Mixer Hierarchy\Test Work Unit\RackTest\Wwise Synth One	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	30958087	PCBGM-atmosphere	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\PCBGM-atmosphere_21CA2154.wem		\Interactive Music Hierarchy\Default Work Unit\BGM\BGM_atmosphere\PCBGM-atmosphere		1061981

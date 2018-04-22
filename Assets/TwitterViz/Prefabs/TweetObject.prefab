@@ -36,10 +36,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4341588032091684}
   - component: {fileID: 114005053921895356}
-  - component: {fileID: 114236017561085742}
-  - component: {fileID: 114708920379751864}
   - component: {fileID: 114265464811481166}
   - component: {fileID: 135063769366119374}
+  - component: {fileID: 114983399612899474}
+  - component: {fileID: 114107650119667882}
   m_Layer: 0
   m_Name: TweetObject
   m_TagString: Untagged
@@ -127,7 +127,7 @@ MonoBehaviour:
   SustainDuration: 1
   EaseOutDuration: 2
   Interval: 3
---- !u!114 &114236017561085742
+--- !u!114 &114107650119667882
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -135,18 +135,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1721390962176636}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ce89f9c205e69e4b937439a8750fbf8, type: 3}
+  m_Script: {fileID: 11500000, guid: ca9b7dce0271fcd4c9a632a128478dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_positionOffsetData:
-    positionOffset: {x: 0, y: 0, z: 0}
-    KeepMe: 0
-  isEnvironmentAware: 0
-  isStaticObject: 0
-  m_listeners:
-    initialListenerList: []
-  m_posOffsetData: {fileID: 0}
-  listenerMask: 1
+  triggerList: f7e1664c
+  useOtherObject: 0
+  actionOnEventType: 0
+  curveInterpolation: 4
+  enableActionOnEvent: 0
+  eventID: -1335035570
+  m_callbackData: {fileID: 0}
+  playingId: 0
+  soundEmitterObject: {fileID: 0}
+  transitionDuration: 0
+  valueGuid: 35f1346c2076db41aaed8ddc7639c8d6
+  multiPositionArray: []
+  MultiPositionType: 1
+  multiPositionTypeLabel: 0
 --- !u!114 &114265464811481166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,7 +179,8 @@ MonoBehaviour:
   CircularSpaceWidth: 3
   Text: 
   Sentiment: 0
---- !u!114 &114708920379751864
+  TargetSentiment: 0
+--- !u!114 &114983399612899474
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -182,22 +188,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1721390962176636}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbce8d6dbae52254c95893edb1e6384c, type: 3}
+  m_Script: {fileID: 11500000, guid: fea5b56bc3884c7448fe04753af7417d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerList: 
-  useOtherObject: 0
-  valueGuid: 3d26d1fbb05a8e4e95ea61e019b36459
-  eventID: -33081610
-  soundEmitterObject: {fileID: 0}
-  enableActionOnEvent: 0
-  actionOnEventType: 0
-  curveInterpolation: 4
-  transitionDuration: 0
-  m_callbackData: {fileID: 0}
-  playingId: 0
-  multiPositionTypeLabel: 0
-  multiPositionArray: []
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!135 &135063769366119374
 SphereCollider:
   m_ObjectHideFlags: 1
