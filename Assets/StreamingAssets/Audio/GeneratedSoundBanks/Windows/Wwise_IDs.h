@@ -16,6 +16,7 @@ namespace AK
         static const AkUniqueID PLAY_GUIDELIGHT = 4261885686U;
         static const AkUniqueID PLAY_HEARTHEWINDWHISPER = 3656440737U;
         static const AkUniqueID PLAY_PARTICLECITY_IMPROV_BGM = 2470127684U;
+        static const AkUniqueID PLAY_RACKTEST = 2324267191U;
         static const AkUniqueID PLAY_SENTIMENTBGMTEST = 2937301117U;
         static const AkUniqueID PLAY_TWEET_LONG = 2998930726U;
         static const AkUniqueID PLAY_TWEET_MED = 2959931726U;

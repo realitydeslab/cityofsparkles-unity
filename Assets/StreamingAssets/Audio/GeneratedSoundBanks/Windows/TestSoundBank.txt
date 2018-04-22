@@ -2,6 +2,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	241412554	Play_Tweet_Short			\Default Work Unit\Play_Tweet_Short	
 	914952687	Play_TwitterBgm			\Default Work Unit\Play_TwitterBgm	
 	1993745496	Play_Twist_BGM			\Test Work Unit\Play_Twist_BGM	
+	2324267191	Play_RackTest			\Test Work Unit\Play_RackTest	
 	2470127684	Play_ParticleCity_Improv_BGM			\Test Work Unit\Play_ParticleCity_Improv_BGM	
 	2937301117	Play_SentimentBGMTest			\Test Work Unit\Play_SentimentBGMTest	
 	2959931726	Play_Tweet_Med			\Default Work Unit\Play_Tweet_Med	
