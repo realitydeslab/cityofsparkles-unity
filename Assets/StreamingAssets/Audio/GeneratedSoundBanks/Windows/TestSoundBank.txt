@@ -12,6 +12,20 @@ Event	ID	Name			Wwise Object Path	Notes
 	3980605832	Play_TwistNoisyPart			\Test Work Unit\Play_TwistNoisyPart	
 	4261885686	Play_GuideLight			\Test Work Unit\Play_GuideLight	
 
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	505761472	RightHandPosX			\Default Work Unit\Gestures\RightHandPosX	
+	505761473	RightHandPosY			\Default Work Unit\Gestures\RightHandPosY	
+	505761474	RightHandPosZ			\Default Work Unit\Gestures\RightHandPosZ	
+	1209221537	RightHandRotZ			\Default Work Unit\Gestures\RightHandRotZ	
+	1209221538	RightHandRotY			\Default Work Unit\Gestures\RightHandRotY	
+	1209221539	RightHandRotX			\Default Work Unit\Gestures\RightHandRotX	
+	3428283537	LeftHandPosZ			\Default Work Unit\Gestures\LeftHandPosZ	
+	3428283538	LeftHandPosY			\Default Work Unit\Gestures\LeftHandPosY	
+	3428283539	LeftHandPosX			\Default Work Unit\Gestures\LeftHandPosX	
+	4093068912	LeftHandRotX			\Default Work Unit\Gestures\LeftHandRotX	
+	4093068913	LeftHandRotY			\Default Work Unit\Gestures\LeftHandRotY	
+	4093068914	LeftHandRotZ			\Default Work Unit\Gestures\LeftHandRotZ	
+
 Modulator Envelope	ID	Name			Wwise Object Path	Notes
 	93863261	TestEnvelope			\Default Work Unit\TestEnvelope	
 	628774999	Modulator Envelope (Custom)				
