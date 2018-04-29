@@ -14,7 +14,7 @@ public class GuidingLight : MonoBehaviour
 
     public float Interval;
 
-    private Light[] lights;
+    private Renderer lightRenderer;
     private Coroutine lightUpCouroutine;
     private AkAmbient akAmbient;
 
@@ -23,8 +23,8 @@ public class GuidingLight : MonoBehaviour
 
 	void Start ()
 	{
-	    lights = GetComponentsInChildren<Light>();
 	    akAmbient = GetComponent<AkAmbient>();
+	    lightRenderer = GetComponentInChildren<Renderer>();
 	}
 	
 	void Update () {
@@ -80,19 +80,13 @@ public class GuidingLight : MonoBehaviour
                 intensity = Mathf.Pow(1 - (t - EaseInDuration - SustainDuration) / EaseOutDuration, 2) * MaxIntensity;
             }
 
-            for (int i = 0; i < lights.Length; i++)
-            {
-                lights[i].intensity = intensity;
-            }
+            setIntensity(intensity);
 
             t += Time.deltaTime;
             yield return null;
         }
 
-        for (int i = 0; i < lights.Length; i++)
-        {
-            lights[i].intensity = 0;
-        }
+        setIntensity(0);
 
         if (destroyRequested)
         {
@@ -107,5 +101,10 @@ public class GuidingLight : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void setIntensity(float intensity)
+    {
+        lightRenderer.material.SetFloat("_Intensity", intensity);
     }
 }
