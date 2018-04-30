@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 222462919166668468}
   - component: {fileID: 114259831664582430}
   - component: {fileID: 114446864238420334}
+  - component: {fileID: 114779253320109082}
   m_Layer: 0
   m_Name: TweetWord
   m_TagString: Untagged
@@ -106,6 +107,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2103686, guid: 9a952e2781ef26940ae089f1053ef4ef, type: 2}
   m_StaticBatchInfo:
@@ -140,6 +142,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 4f9843c79516ed1468b9b5a4f32e67e3, type: 2}
   m_StaticBatchInfo:
@@ -174,6 +177,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2103686, guid: 9a952e2781ef26940ae089f1053ef4ef, type: 2}
   m_StaticBatchInfo:
@@ -383,6 +387,19 @@ MonoBehaviour:
   m_meshFilter: {fileID: 33878478438442914}
   m_boxCollider: {fileID: 0}
   m_TextComponent: {fileID: 114259831664582430}
+--- !u!114 &114779253320109082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1528547085582016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2afbe6e93c0e724478410a78b3a42999, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrailInterval: 0.1
+  Visualize: 0
 --- !u!222 &222462919166668468
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -396,7 +413,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1528547085582016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4001401956254236}

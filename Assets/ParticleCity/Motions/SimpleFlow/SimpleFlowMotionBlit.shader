@@ -70,6 +70,24 @@ Shader "Particle City/SimpleFlowMotionBlit" {
     float _MaxDistance;
     float _VanR_0;
 
+    float4 _ActiveObjectPos0;
+    float4 _ActiveObjectPos1;
+    float4 _ActiveObjectPos2;
+    float4 _ActiveObjectPos3;
+    float4 _ActiveObjectPos4;
+    float4 _ActiveObjectPos5;
+    float4 _ActiveObjectPos6;
+    float4 _ActiveObjectPos7;
+
+    float4 _ActiveObjectVel0;
+    float4 _ActiveObjectVel1;
+    float4 _ActiveObjectVel2;
+    float4 _ActiveObjectVel3;
+    float4 _ActiveObjectVel4;
+    float4 _ActiveObjectVel5;
+    float4 _ActiveObjectVel6;
+    float4 _ActiveObjectVel7;
+
     float4 _LeftHandPos0;
     float4 _LeftHandPos1;
     float4 _LeftHandPos2;
@@ -187,6 +205,15 @@ Shader "Particle City/SimpleFlowMotionBlit" {
         float3 acc = float3(0, 0, 0);
         acc += -_SpringDamp * velocity;
         acc += _SpringDrag * -offset;
+
+        acc += apply_input(base, offset, velocity, _ActiveObjectPos0.xyz, _ActiveObjectVel0.xyz, 1.000);
+        acc += apply_input(base, offset, velocity, _ActiveObjectPos1.xyz, _ActiveObjectVel1.xyz, 1.000);
+        acc += apply_input(base, offset, velocity, _ActiveObjectPos2.xyz, _ActiveObjectVel2.xyz, 1.000);
+        acc += apply_input(base, offset, velocity, _ActiveObjectPos3.xyz, _ActiveObjectVel3.xyz, 1.000);
+        acc += apply_input(base, offset, velocity, _ActiveObjectPos4.xyz, _ActiveObjectVel4.xyz, 1.000);
+        acc += apply_input(base, offset, velocity, _ActiveObjectPos5.xyz, _ActiveObjectVel5.xyz, 1.000);
+        acc += apply_input(base, offset, velocity, _ActiveObjectPos6.xyz, _ActiveObjectVel6.xyz, 1.000);
+        acc += apply_input(base, offset, velocity, _ActiveObjectPos7.xyz, _ActiveObjectVel7.xyz, 1.000);
 
         acc += apply_input(base, offset, velocity, _LeftHandPos0.xyz, _LeftHandVel0.xyz, 1.000);
         acc += apply_input(base, offset, velocity, _LeftHandPos1.xyz, _LeftHandVel1.xyz, 0.875);

@@ -19,8 +19,8 @@ MonoBehaviour:
     PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
     List: []
   - Guid: '{463D666B-3CA8-4FA5-8B4A-5FEF12B883F6}'
-    m_lastTimePart2: -1999263725
-    m_lastTimePsrt1: 1012271064
+    m_lastTimePart2: -1999262127
+    m_lastTimePsrt1: 236977945
     ParentPhysicalPath: 
     PhysicalPath: Virtual Acoustics\Factory Reflect Acoustic Textures.wwu
     List:
@@ -214,8 +214,8 @@ MonoBehaviour:
   defaultPoolSize: 4096
   EventWwu:
   - Guid: '{FFFCA8D8-975B-4702-9422-7C96AED5C353}'
-    m_lastTimePart2: -1999263725
-    m_lastTimePsrt1: 1013721426
+    m_lastTimePart2: -1999263705
+    m_lastTimePsrt1: -1721864710
     ParentPhysicalPath: 
     PhysicalPath: Events\Default Work Unit.wwu
     List:
@@ -280,23 +280,11 @@ MonoBehaviour:
       maxDuration: 0
       minDuration: 0
   - Guid: '{4D783F1E-0522-43AE-BC17-5DDAE5328E64}'
-    m_lastTimePart2: -1999263725
-    m_lastTimePsrt1: 1014274386
+    m_lastTimePart2: -1999262126
+    m_lastTimePsrt1: -135371759
     ParentPhysicalPath: 
     PhysicalPath: Events\Test Work Unit.wwu
     List:
-    - Guid: 3d26d1fbb05a8e4e95ea61e019b36459
-      ID: -33081610
-      Name: Play_GuideLight
-      Path: Test Work Unit\Play_GuideLight
-      PathAndIcons:
-      - ElementName: Test Work Unit
-        ObjectType: 12
-      - ElementName: Play_GuideLight
-        ObjectType: 3
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
     - Guid: c41682e54014e24a960061c0ee62429e
       ID: -638526559
       Name: Play_HearTheWindWhisper
@@ -364,7 +352,6 @@ MonoBehaviour:
   - /ParticleCityWwise/Events/Test Work Unit
   - /ParticleCityWwise/SoundBanks
   - /ParticleCityWwise/SoundBanks/Test Work  Unit
-  - /ParticleCityWwise/Virtual Acoustics
   language: English(US)
   lowerPoolSize: 2048
   m_lastPopulateTimePart2: 0
@@ -373,77 +360,11 @@ MonoBehaviour:
   preparePoolSize: 0
   RtpcWwu:
   - Guid: '{2AAED00D-10BE-4038-B5CE-D538015A257E}'
-    m_lastTimePart2: -1999263721
-    m_lastTimePsrt1: -1360588634
+    m_lastTimePart2: -1999262127
+    m_lastTimePsrt1: 236662946
     ParentPhysicalPath: 
     PhysicalPath: Game Parameters\Default Work Unit.wwu
     List:
-    - Guid: 37029a94c8169b4e9f20f275ee4a3479
-      ID: -866683757
-      Name: LeftHandPosX
-      Path: Default Work Unit\Gestures\LeftHandPosX
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Gestures
-        ObjectType: 4
-      - ElementName: LeftHandPosX
-        ObjectType: 13
-    - Guid: 5292a144dc259c45821e12721624ffdf
-      ID: -866683758
-      Name: LeftHandPosY
-      Path: Default Work Unit\Gestures\LeftHandPosY
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Gestures
-        ObjectType: 4
-      - ElementName: LeftHandPosY
-        ObjectType: 13
-    - Guid: e34d6d27fbcd7f47a1f2b22c512e910a
-      ID: -866683759
-      Name: LeftHandPosZ
-      Path: Default Work Unit\Gestures\LeftHandPosZ
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Gestures
-        ObjectType: 4
-      - ElementName: LeftHandPosZ
-        ObjectType: 13
-    - Guid: de868bc9126eb94087d2751d1becc47d
-      ID: -201898384
-      Name: LeftHandRotX
-      Path: Default Work Unit\Gestures\LeftHandRotX
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Gestures
-        ObjectType: 4
-      - ElementName: LeftHandRotX
-        ObjectType: 13
-    - Guid: 0d4800c0443c5c44a3507aa7198de333
-      ID: -201898383
-      Name: LeftHandRotY
-      Path: Default Work Unit\Gestures\LeftHandRotY
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Gestures
-        ObjectType: 4
-      - ElementName: LeftHandRotY
-        ObjectType: 13
-    - Guid: 1144638247279e49888f88d2c222947f
-      ID: -201898382
-      Name: LeftHandRotZ
-      Path: Default Work Unit\Gestures\LeftHandRotZ
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Gestures
-        ObjectType: 4
-      - ElementName: LeftHandRotZ
-        ObjectType: 13
     - Guid: 204c8a3d1fe14b4482df76f828d51a65
       ID: -1376955947
       Name: MasterVolume
@@ -453,72 +374,6 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: MasterVolume
         ObjectType: 13
-    - Guid: 922640140ef6cc45ae1d347ba630a1d6
-      ID: 505761472
-      Name: RightHandPosX
-      Path: Default Work Unit\Gestures\RightHandPosX
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Gestures
-        ObjectType: 4
-      - ElementName: RightHandPosX
-        ObjectType: 13
-    - Guid: a2063b03dfcdb144b943ae1b77221347
-      ID: 505761473
-      Name: RightHandPosY
-      Path: Default Work Unit\Gestures\RightHandPosY
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Gestures
-        ObjectType: 4
-      - ElementName: RightHandPosY
-        ObjectType: 13
-    - Guid: 3fb2d75dbfea394aaceba7ce51416def
-      ID: 505761474
-      Name: RightHandPosZ
-      Path: Default Work Unit\Gestures\RightHandPosZ
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Gestures
-        ObjectType: 4
-      - ElementName: RightHandPosZ
-        ObjectType: 13
-    - Guid: bd9049435a81b34a945c6214e849f5f7
-      ID: 1209221539
-      Name: RightHandRotX
-      Path: Default Work Unit\Gestures\RightHandRotX
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Gestures
-        ObjectType: 4
-      - ElementName: RightHandRotX
-        ObjectType: 13
-    - Guid: d5b9297f6b9d724fb2e069cf40f6343b
-      ID: 1209221538
-      Name: RightHandRotY
-      Path: Default Work Unit\Gestures\RightHandRotY
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Gestures
-        ObjectType: 4
-      - ElementName: RightHandRotY
-        ObjectType: 13
-    - Guid: 6dcf1d785498d84c8c496a567d92b1a9
-      ID: 1209221537
-      Name: RightHandRotZ
-      Path: Default Work Unit\Gestures\RightHandRotZ
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: Gestures
-        ObjectType: 4
-      - ElementName: RightHandRotZ
-        ObjectType: 13
     - Guid: 30cc7b9ef0df7345b33b7e236ec439db
       ID: 1059072165
       Name: SentimentRatio
@@ -527,102 +382,6 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
       - ElementName: SentimentRatio
-        ObjectType: 13
-  - Guid: '{3B167755-FB42-458B-98BF-96F557AFB3B9}'
-    m_lastTimePart2: -1999263725
-    m_lastTimePsrt1: 1013131090
-    ParentPhysicalPath: 
-    PhysicalPath: Game Parameters\Factory SoundSeed Air Game Syncs.wwu
-    List:
-    - Guid: 59062ef746431c4ea1b1dab46a05101e
-      ID: 1351367891
-      Name: SS_Air_Fear
-      Path: Factory SoundSeed Air Game Syncs\SS_Air_Fear
-      PathAndIcons:
-      - ElementName: Factory SoundSeed Air Game Syncs
-        ObjectType: 12
-      - ElementName: SS_Air_Fear
-        ObjectType: 13
-    - Guid: 37fe2d2f9e4f944d83d853cca39781ad
-      ID: -1292209176
-      Name: SS_Air_Freefall
-      Path: Factory SoundSeed Air Game Syncs\SS_Air_Freefall
-      PathAndIcons:
-      - ElementName: Factory SoundSeed Air Game Syncs
-        ObjectType: 12
-      - ElementName: SS_Air_Freefall
-        ObjectType: 13
-    - Guid: dc79aea23acaba4696529986c322a87b
-      ID: 1029930033
-      Name: SS_Air_Fury
-      Path: Factory SoundSeed Air Game Syncs\SS_Air_Fury
-      PathAndIcons:
-      - ElementName: Factory SoundSeed Air Game Syncs
-        ObjectType: 12
-      - ElementName: SS_Air_Fury
-        ObjectType: 13
-    - Guid: 45b4e209a3c47f44b3ca818a1d925ef7
-      ID: -1646418679
-      Name: SS_Air_Month
-      Path: Factory SoundSeed Air Game Syncs\SS_Air_Month
-      PathAndIcons:
-      - ElementName: Factory SoundSeed Air Game Syncs
-        ObjectType: 12
-      - ElementName: SS_Air_Month
-        ObjectType: 13
-    - Guid: 1a81b7e32f7b0f49b44f5fe51b468041
-      ID: -447042342
-      Name: SS_Air_Presence
-      Path: Factory SoundSeed Air Game Syncs\SS_Air_Presence
-      PathAndIcons:
-      - ElementName: Factory SoundSeed Air Game Syncs
-        ObjectType: 12
-      - ElementName: SS_Air_Presence
-        ObjectType: 13
-    - Guid: ab9048a3d5b92645a64d5290c43ef2dc
-      ID: 822163944
-      Name: SS_Air_RPM
-      Path: Factory SoundSeed Air Game Syncs\SS_Air_RPM
-      PathAndIcons:
-      - ElementName: Factory SoundSeed Air Game Syncs
-        ObjectType: 12
-      - ElementName: SS_Air_RPM
-        ObjectType: 13
-    - Guid: efeb291393a12e47a38c64668b494879
-      ID: -1220270574
-      Name: SS_Air_Size
-      Path: Factory SoundSeed Air Game Syncs\SS_Air_Size
-      PathAndIcons:
-      - ElementName: Factory SoundSeed Air Game Syncs
-        ObjectType: 12
-      - ElementName: SS_Air_Size
-        ObjectType: 13
-    - Guid: db8c3fe9d1063747acaf7cd44bbed783
-      ID: -579304704
-      Name: SS_Air_Storm
-      Path: Factory SoundSeed Air Game Syncs\SS_Air_Storm
-      PathAndIcons:
-      - ElementName: Factory SoundSeed Air Game Syncs
-        ObjectType: 12
-      - ElementName: SS_Air_Storm
-        ObjectType: 13
-    - Guid: 2ca76f537e8c8b4cae03ef34fdadc314
-      ID: -1091570167
-      Name: SS_Air_TimeOfDay
-      Path: Factory SoundSeed Air Game Syncs\SS_Air_TimeOfDay
-      PathAndIcons:
-      - ElementName: Factory SoundSeed Air Game Syncs
-        ObjectType: 12
-      - ElementName: SS_Air_TimeOfDay
-        ObjectType: 13
-    - Guid: 197ba8edaa73a0409f192073606db710
-      ID: -134719478
-      Name: SS_Air_Turbulence
-      Path: Factory SoundSeed Air Game Syncs\SS_Air_Turbulence
-      PathAndIcons:
-      - ElementName: Factory SoundSeed Air Game Syncs
-        ObjectType: 12
-      - ElementName: SS_Air_Turbulence
         ObjectType: 13
   StateWwu:
   - Guid: '{39AEC1A8-1711-456F-A34E-CE5BB56A5C1B}'

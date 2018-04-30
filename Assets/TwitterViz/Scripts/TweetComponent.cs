@@ -303,6 +303,8 @@ public class TweetComponent : MonoBehaviour
         // Lighting up
         Vector3 lightVelocity = Vector3.zero;
         guidingLight.LightUpForSpawning();
+        ParticleCity.Instance.AddActiveGameObject(guidingLight.RenderPart.gameObject);
+
         Vector3 startingPoint = textObjects[0].transform.position;
         while ((startingPoint - guidingLight.RenderPart.position).sqrMagnitude > SpawnStartingDistanceThreshold * SpawnStartingDistanceThreshold)
         {
@@ -317,8 +319,10 @@ public class TweetComponent : MonoBehaviour
             yield return null;
         }
 
+
         // Animation
         guidingLight.TurnOff();
+        ParticleCity.Instance.RemoveActiveGameObject(guidingLight.RenderPart.gameObject, 1);
         setState(TweetState.Spawning);
         playMusic();
         Vector3 lightTargetPos = transform.position;
@@ -327,6 +331,7 @@ public class TweetComponent : MonoBehaviour
             TMP_Text text = textObjects[i];
             float time = 0;
             lightTargetPos = (i == textObjects.Count - 1) ? text.transform.position : textObjects[i + 1].transform.position;
+            ParticleCity.Instance.AddActiveGameObject(text.gameObject);
             while (time < CircularFadeInDuration || time < CircularRisingDuration)
             {
                 if (time < CircularFadeInDuration)
@@ -363,6 +368,7 @@ public class TweetComponent : MonoBehaviour
                 yield return null;
             }
             StartCoroutine(wordFadeOut(text, CircularFadeOutDuration));
+            ParticleCity.Instance.RemoveActiveGameObject(text.gameObject, 1);
         }
 
         setState(TweetState.FadingOut);
@@ -375,7 +381,6 @@ public class TweetComponent : MonoBehaviour
             guidingLight.RenderPart.forward = lightVelocity.normalized;
             yield return null;
         }
-
         guidingLight.MarkForDestroy();
 
         isPlaying = false;

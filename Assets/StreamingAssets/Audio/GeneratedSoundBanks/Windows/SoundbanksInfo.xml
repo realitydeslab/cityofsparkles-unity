@@ -21,10 +21,8 @@
 			<ShortName>TestSoundBank</ShortName>
 			<Path>TestSoundBank.bnk</Path>
 			<IncludedEvents>
-				<Event Id="4261885686" Name="Play_GuideLight" ObjectPath="\Events\Test Work Unit\Play_GuideLight"/>
 				<Event Id="3656440737" Name="Play_HearTheWindWhisper" ObjectPath="\Events\Test Work Unit\Play_HearTheWindWhisper"/>
 				<Event Id="2470127684" Name="Play_ParticleCity_Improv_BGM" ObjectPath="\Events\Test Work Unit\Play_ParticleCity_Improv_BGM"/>
-				<Event Id="2324267191" Name="Play_RackTest" ObjectPath="\Events\Test Work Unit\Play_RackTest"/>
 				<Event Id="2937301117" Name="Play_SentimentBGMTest" ObjectPath="\Events\Test Work Unit\Play_SentimentBGMTest"/>
 				<Event Id="2998930726" Name="Play_Tweet_Long" ObjectPath="\Events\Default Work Unit\Play_Tweet_Long"/>
 				<Event Id="2959931726" Name="Play_Tweet_Med" ObjectPath="\Events\Default Work Unit\Play_Tweet_Med"/>
@@ -62,10 +60,6 @@
 				<File Id="138061797" Language="SFX">
 					<ShortName>Tweet-Med_01.wav</ShortName>
 					<Path>SFX\Tweet-Med_01_F17FB28C.wem</Path>
-				</File>
-				<File Id="218627847" Language="SFX">
-					<ShortName>Grand Piano.wav</ShortName>
-					<Path>SFX\Grand Piano_1C9C67B2.wem</Path>
 				</File>
 				<File Id="297268359" Language="SFX">
 					<ShortName>ParticleCity Improv.wav</ShortName>
