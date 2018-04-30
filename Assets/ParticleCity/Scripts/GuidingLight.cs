@@ -23,6 +23,7 @@ public class GuidingLight : MonoBehaviour
     private float timeSinceLastTrigger;
     private bool destroyRequested;
     private bool lightUpForSpawning;
+    private ParticleSystem particleSystem;
 
     [Header("Debug")]
     [Range(0, 1)]
@@ -32,6 +33,10 @@ public class GuidingLight : MonoBehaviour
 	{
 	    akAmbient = GetComponent<AkAmbient>();
 	    lightRenderer = GetComponentInChildren<Renderer>();
+
+        // TODO: Pooling
+	    particleSystem = GetComponentInChildren<ParticleSystem>(true);
+
 	    RenderPart = lightRenderer.transform;
 	}
 	
@@ -113,14 +118,16 @@ public class GuidingLight : MonoBehaviour
         }
 
         // TODO: State
-        setIntensity(1.2f);
+        setIntensity(1.5f);
         lightUpForSpawning = true;
+        particleSystem.gameObject.SetActive(true);
     }
 
     public void MarkForDestroy()
     {
         destroyRequested = true;
         lightUpForSpawning = false;
+        particleSystem.gameObject.SetActive(false);
     }
 
     private void setIntensity(float intensity)

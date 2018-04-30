@@ -358,6 +358,7 @@ public class TweetComponent : MonoBehaviour
                 // guidingLight.RenderPart.position = Vector3.Lerp(guidingLight.RenderPart.position, lightTargetPos, SpawningLerpRatio * Time.deltaTime);
                 guidingLight.RenderPart.position = Vector3.SmoothDamp(guidingLight.RenderPart.position, lightTargetPos,
                     ref lightVelocity, Mathf.Max(CircularRisingDuration, CircularFadeInDuration));
+                guidingLight.RenderPart.forward = lightVelocity.normalized;
                 yield return null;
             }
             StartCoroutine(wordFadeOut(text, CircularFadeOutDuration));
@@ -370,6 +371,7 @@ public class TweetComponent : MonoBehaviour
         {
             guidingLight.RenderPart.position = Vector3.SmoothDamp(guidingLight.RenderPart.position, lightTargetPos,
                 ref lightVelocity, Mathf.Max(CircularRisingDuration, CircularFadeInDuration));
+            guidingLight.RenderPart.forward = lightVelocity.normalized;
             yield return null;
         }
 
