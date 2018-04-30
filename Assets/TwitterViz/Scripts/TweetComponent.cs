@@ -318,6 +318,7 @@ public class TweetComponent : MonoBehaviour
         }
 
         // Animation
+        guidingLight.TurnOff();
         setState(TweetState.Spawning);
         playMusic();
         Vector3 lightTargetPos = transform.position;

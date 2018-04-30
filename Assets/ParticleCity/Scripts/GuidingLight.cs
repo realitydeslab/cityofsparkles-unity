@@ -22,6 +22,7 @@ public class GuidingLight : MonoBehaviour
 
     private float timeSinceLastTrigger;
     private bool destroyRequested;
+    private bool turnOffRequested;
     private bool lightUpForSpawning;
     private ParticleSystem particleSystem;
 
@@ -51,7 +52,7 @@ public class GuidingLight : MonoBehaviour
 	        timeSinceLastTrigger = 0;
 	        Trigger = false;
 
-	        if (!destroyRequested && !lightUpForSpawning)
+	        if (!destroyRequested && !turnOffRequested && !lightUpForSpawning)
 	        {
 	            if (lightUpCouroutine != null)
 	            {
@@ -69,7 +70,7 @@ public class GuidingLight : MonoBehaviour
             }
         }
 
-	    if (destroyRequested && lightUpCouroutine == null)
+	    if ((destroyRequested || turnOffRequested) && lightUpCouroutine == null)
 	    {
 	        lightUpCouroutine = StartCoroutine(lightUp(true));
 	    }
@@ -107,6 +108,10 @@ public class GuidingLight : MonoBehaviour
             Destroy(gameObject);
             destroyRequested = false;
         }
+        else if (turnOffRequested)
+        {
+            enabled = false;
+        }
     }
 
     public void LightUpForSpawning()
@@ -120,14 +125,19 @@ public class GuidingLight : MonoBehaviour
         // TODO: State
         setIntensity(1.5f);
         lightUpForSpawning = true;
-        particleSystem.gameObject.SetActive(true);
+        // particleSystem.gameObject.SetActive(true);
+    }
+
+    public void TurnOff()
+    {
+        turnOffRequested = true;
     }
 
     public void MarkForDestroy()
     {
         destroyRequested = true;
         lightUpForSpawning = false;
-        particleSystem.gameObject.SetActive(false);
+        // particleSystem.gameObject.SetActive(false);
     }
 
     private void setIntensity(float intensity)
