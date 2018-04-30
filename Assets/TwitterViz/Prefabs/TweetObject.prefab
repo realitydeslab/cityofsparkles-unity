@@ -130,10 +130,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxIntensity: 1
   Trigger: 0
-  EaseInDuration: 0.5
+  EaseInDuration: 1
   SustainDuration: 1
   EaseOutDuration: 2
-  Interval: 3
+  Interval: 4.5
+  RenderPart: {fileID: 0}
 --- !u!114 &114107650119667882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,7 +174,15 @@ MonoBehaviour:
   WordPrefab: {fileID: 114259831664582430, guid: 5f470f46a5db1994ba43c2d55e48c2b6,
     type: 2}
   Trigger: 0
+  Tweet: {fileID: 0}
   Animation: 0
+  TakingOffDuration: 1
+  ApproachingMaxSpeed: 10
+  ApproachingLerpRatio: 1
+  LightUpMaxSpeed: 50
+  LightUpDistanceThreshold: 2
+  SpawnStartingDistanceThreshold: 10
+  SpawningLerpRatio: 1
   TargetOffset: 5
   FadeInDuration: 0.5
   RisingDuration: 0.7
@@ -184,7 +193,9 @@ MonoBehaviour:
   CircularRisingDuration: 0.5
   CircularFadeOutDuration: 2
   CircularSpaceWidth: 3
+  State: 0
   Text: 
+  GrabPlayer: 0
   Sentiment: 0
   TargetSentiment: 0
 --- !u!114 &114983399612899474
@@ -218,5 +229,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}

@@ -17,19 +17,22 @@ public class ObjectTrailing : MonoBehaviour
     public TrailFrame[] Frames;
     private float lastCaptureTime;
 
-	void Awake ()
-	{
-        Frames = new TrailFrame[TrailLength];
+    void OnEnable()
+    {
+        if (Frames == null)
+        {
+            Frames = new TrailFrame[TrailLength];
 
-	    for (int i = 0; i < TrailLength; i++)
-	    {
-	        Frames[i] = new TrailFrame
-	        {
-	            Position = transform.position,
-	            Velocity = Vector3.zero
-	        };
-	    }
-	}
+            for (int i = 0; i < TrailLength; i++)
+            {
+                Frames[i] = new TrailFrame
+                {
+                    Position = transform.position,
+                    Velocity = Vector3.zero
+                };
+            }
+        }
+    }
 	
 	void Update ()
 	{

@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
+using ParticleCities;
 using TMPro;
 using TwitterViz.DataModels;
 using UnityEngine;
@@ -15,10 +15,33 @@ public class TweetComponent : MonoBehaviour
         Circular
     }
 
+    public enum TweetState
+    {
+        Idle = 0,
+        
+        TakingOff,
+        Approaching,
+
+        LightingUp,
+        Spawning,
+        FadingOut,
+
+        Returning,
+    }
+
     public TMP_Text WordPrefab;
     public bool Trigger;
     public Tweet Tweet;
     public SpawnAnimation Animation;
+
+    [Header("Tweet Motion")] 
+    public float TakingOffDuration = 1;
+    public float ApproachingMaxSpeed = 1;
+    public float ApproachingLerpRatio = 0.5f;
+    public float LightUpMaxSpeed = 2;
+    public float LightUpDistanceThreshold = 0.2f;
+    public float SpawnStartingDistanceThreshold = 0.2f;
+    public float SpawningLerpRatio = 10f;
 
     [Header("Animation Rising")]
     public float TargetOffset = 20;
@@ -35,20 +58,27 @@ public class TweetComponent : MonoBehaviour
     public float CircularSpaceWidth = 5;
     // public float CircularMaxDegree = 90;
 
-    [Header("Debugging")]
+    [Header("Debug")]
+    public bool GrabPlayer;
+    public TweetState State;
     [TextArea]
     public string Text;
-
     [Range(-1, 1)]
     public double Sentiment;
 
     public TwitterManager.Sentiment TargetSentiment;
 
+    private Vector3 originalPosition;
     private bool isPlaying;
     private AkAmbient akAmbient;
     private AkGameObj akGameObj;
     private bool everTriggered;
     private TwitterManager manager;
+
+    private Transform approachingTarget;
+    private float stateChangeTime;
+    private float speedLimit;
+    private GuidingLight guidingLight;
 
     void Awake()
     {
@@ -59,48 +89,110 @@ public class TweetComponent : MonoBehaviour
 	void Start ()
 	{
 	    manager = GetComponentInParent<TwitterManager>();
+	    guidingLight = GetComponentInChildren<GuidingLight>();
+
+	    originalPosition = transform.position;
 	}
 	
 	void Update () {
-	    if (Trigger)
+	    switch (State)
 	    {
-	        Trigger = false;
+            case TweetState.Idle:
+                if (Trigger)
+                {
+                    Trigger = false;
+                    if (approachingTarget != null)
+                    {
+                        setState(TweetState.TakingOff);
+                    }
+                    else
+                    {
+                        setState(TweetState.LightingUp);
+                    }
+                }
+                break;
 
-	        if (!everTriggered)
-	        {
-	            manager.RecordFirstTrigger(this);    
-	        }
-	        everTriggered = true;
+            case TweetState.TakingOff:
+                updateTakingOff();
+                break;
 
-            if (Animation == SpawnAnimation.Unspecified)
-            {
-                Animation = UnityEngine.Random.value < 0.2f ? SpawnAnimation.Rising : SpawnAnimation.Circular;
-            }
+            case TweetState.Approaching:
+                updateApproaching();
+                break;
 
-            if (!isPlaying)
-	        {
-	            switch (Animation)
-	            {
-	                case SpawnAnimation.Rising:
-	                    playMusic();
-                        StartCoroutine(wordAnimation());
-	                    break;
+            case TweetState.LightingUp:
+            case TweetState.Spawning:
+            case TweetState.FadingOut:
+                // Coroutine happening
+                break;
 
-                    case SpawnAnimation.Circular:
-	                    playMusic();
-                        StartCoroutine(wordAnimationCircular());
-                        break;
+            case TweetState.Returning:
+                // Coroutine happening
+                break;
+	    }
 
-                    default:
-	                    break;
-	            }
-            }
-	    }	
+        // Debug
+	    if (GrabPlayer)
+	    {
+	        GrabPlayer = false;
+	        Transform player = InputManager.Instance.PlayerTransform;
+	        player.position = transform.position - (player.forward) * 100;
+	        player.forward = (transform.position - player.position);
+	    }
+
+	    // if (Trigger)
+	    // {
+	    //     Trigger = false;
+
+	    //     if (!everTriggered)
+	    //     {
+	    //         manager.RecordFirstTrigger(this);    
+	    //     }
+	    //     everTriggered = true;
+
+        //     if (Animation == SpawnAnimation.Unspecified)
+        //     {
+        //         Animation = UnityEngine.Random.value < 0.2f ? SpawnAnimation.Rising : SpawnAnimation.Circular;
+        //     }
+
+        //     if (!isPlaying)
+	    //     {
+	    //         switch (Animation)
+	    //         {
+	    //             case SpawnAnimation.Rising:
+	    //                 playMusic();
+        //                 StartCoroutine(wordAnimation());
+	    //                 break;
+
+        //             case SpawnAnimation.Circular:
+	    //                 playMusic();
+        //                 StartCoroutine(wordAnimationCircular());
+        //                 break;
+
+        //             default:
+	    //                 break;
+	    //         }
+        //     }
+	    // }	
 	}
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        Trigger = true;
+        if (State == TweetState.Idle)
+        {
+            Trigger = true;
+            approachingTarget = other.transform;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if ( (State == TweetState.TakingOff || State == TweetState.Approaching) &&
+             approachingTarget == other.transform)
+        {
+            approachingTarget = null;
+            setState(TweetState.Returning);
+        }
     }
 
     public void MarkForDestroy()
@@ -208,11 +300,32 @@ public class TweetComponent : MonoBehaviour
             accumulatedWidth += textObjects[i].preferredWidth / 2 + CircularSpaceWidth;
         }
 
+        // Lighting up
+        Vector3 lightVelocity = Vector3.zero;
+        guidingLight.LightUpForSpawning();
+        Vector3 startingPoint = textObjects[0].transform.position;
+        while ((startingPoint - guidingLight.RenderPart.position).sqrMagnitude > SpawnStartingDistanceThreshold * SpawnStartingDistanceThreshold)
+        {
+            Vector3 newPos = Vector3.Lerp(guidingLight.RenderPart.position, startingPoint, SpawningLerpRatio * Time.deltaTime);
+            lightVelocity = (newPos - guidingLight.RenderPart.position) / Time.deltaTime;
+            if (lightVelocity.sqrMagnitude > LightUpMaxSpeed * LightUpMaxSpeed)
+            {
+                lightVelocity = lightVelocity.normalized * LightUpMaxSpeed;
+                newPos = guidingLight.RenderPart.position + lightVelocity * Time.deltaTime;
+            }
+            guidingLight.RenderPart.position = newPos;
+            yield return null;
+        }
+
         // Animation
+        setState(TweetState.Spawning);
+        playMusic();
+        Vector3 lightTargetPos = transform.position;
         for (int i = 0; i < textObjects.Count; i++)
         {
             TMP_Text text = textObjects[i];
             float time = 0;
+            lightTargetPos = (i == textObjects.Count - 1) ? text.transform.position : textObjects[i + 1].transform.position;
             while (time < CircularFadeInDuration || time < CircularRisingDuration)
             {
                 if (time < CircularFadeInDuration)
@@ -242,12 +355,76 @@ public class TweetComponent : MonoBehaviour
 
                 time += Time.deltaTime;
 
+                // guidingLight.RenderPart.position = Vector3.Lerp(guidingLight.RenderPart.position, lightTargetPos, SpawningLerpRatio * Time.deltaTime);
+                guidingLight.RenderPart.position = Vector3.SmoothDamp(guidingLight.RenderPart.position, lightTargetPos,
+                    ref lightVelocity, Mathf.Max(CircularRisingDuration, CircularFadeInDuration));
                 yield return null;
             }
             StartCoroutine(wordFadeOut(text, CircularFadeOutDuration));
         }
 
+        setState(TweetState.FadingOut);
+
+        // Keep flying the light until it dies
+        while ((lightTargetPos - guidingLight.RenderPart.position).sqrMagnitude > 0.01f)
+        {
+            guidingLight.RenderPart.position = Vector3.SmoothDamp(guidingLight.RenderPart.position, lightTargetPos,
+                ref lightVelocity, Mathf.Max(CircularRisingDuration, CircularFadeInDuration));
+            yield return null;
+        }
+
+        guidingLight.MarkForDestroy();
+
         isPlaying = false;
+    }
+
+    private void updateTakingOff()
+    {
+        float progress = (Time.time - stateChangeTime) / TakingOffDuration;
+        if (progress > 1)
+        {
+            speedLimit = ApproachingMaxSpeed;
+            setState(TweetState.Approaching);
+        }
+        else
+        {
+            speedLimit = Mathf.Lerp(0, ApproachingMaxSpeed, progress);
+        }
+
+        updateApproaching();
+    }
+
+    private void updateApproaching()
+    {
+        Vector3 newPos = Vector3.Lerp(guidingLight.RenderPart.position, approachingTarget.position, ApproachingLerpRatio * Time.deltaTime);
+        Vector3 velocity = (newPos - guidingLight.RenderPart.position) / Time.deltaTime;
+        if (velocity.sqrMagnitude > speedLimit * speedLimit)
+        {
+            newPos = guidingLight.RenderPart.position + velocity.normalized * speedLimit * Time.deltaTime;
+        }
+        guidingLight.transform.position = newPos;
+
+        if ((guidingLight.RenderPart.position - approachingTarget.position).sqrMagnitude < LightUpDistanceThreshold * LightUpDistanceThreshold)
+        {
+            if (Tweet.Words.Length > 0)
+            {
+                setState(TweetState.LightingUp);
+            }
+            else
+            {
+                setState(TweetState.Returning);
+            }
+        }
+    }
+
+    private IEnumerator revealTweetAnimations()
+    {
+        yield return StartCoroutine(wordAnimationCircular());
+    }
+
+    private IEnumerator returnAnimation()
+    {
+        yield return null;
     }
 
     private IEnumerator wordFadeOut(TMP_Text word, float duration)
@@ -281,5 +458,26 @@ public class TweetComponent : MonoBehaviour
         {
             AkSoundEngine.PostEvent("Play_Tweet_Long", gameObject);
         }
+    }
+
+    private void setState(TweetState newState)
+    {
+        State = newState;
+        stateChangeTime = Time.time;
+
+        if (newState == TweetState.LightingUp)
+        {
+            StartCoroutine(revealTweetAnimations());
+        }
+        else if (newState == TweetState.Returning)
+        {
+            StartCoroutine(returnAnimation());
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(GetComponentInChildren<Renderer>().transform.position, LightUpDistanceThreshold);
     }
 }

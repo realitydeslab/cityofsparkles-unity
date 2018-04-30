@@ -1,6 +1,7 @@
 ﻿Shader "Particle City/Billboard" {
    Properties {
       _MainTex ("Texture Image", 2D) = "white" {}
+      _TintColor ("Tint Color", Color) = (1, 1, 1, 1)
       _ScaleX ("Scale X", Float) = 1.0
       _ScaleY ("Scale Y", Float) = 1.0
       _Intensity ("Intensity", Float) = 1.0
@@ -30,6 +31,7 @@
          uniform float _ScaleX;
          uniform float _ScaleY;
          uniform float _Intensity;
+         uniform float4 _TintColor;
 
          struct vertexInput {
             float4 vertex : POSITION;
@@ -56,8 +58,8 @@
  
          float4 frag(vertexOutput input) : COLOR
          {
-            float4 c = tex2D(_MainTex, float2(input.tex.xy));   
-            c *= c.a * _Intensity;
+            float4 c = tex2D(_MainTex, float2(input.tex.xy)) * _Intensity * _TintColor;   
+            c *= c.a;
 
             return c;
          }

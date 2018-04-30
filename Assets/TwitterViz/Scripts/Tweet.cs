@@ -11,7 +11,7 @@ namespace TwitterViz.DataModels
         public Tweet[] AllTweets;
     }
 
-    public class Tweet
+    public class Tweet : ScriptableObject
     {
         [JsonProperty("id")] 
         public long Id;
@@ -68,7 +68,7 @@ namespace TwitterViz.DataModels
         }
     }
 
-    public class Sentiment
+    public class Sentiment : ScriptableObject
     {
         [JsonProperty("polarity")]
         public double Polarity;
@@ -77,7 +77,7 @@ namespace TwitterViz.DataModels
         public double Subjectivity;
     }
 
-    public class Place
+    public class Place : ScriptableObject
     {
         [JsonProperty("place_type")]
         public string PlaceType;
@@ -89,7 +89,7 @@ namespace TwitterViz.DataModels
         public BoundingBox BoundingBox;
     }
 
-    public class BoundingBox
+    public class BoundingBox : ScriptableObject
     {
         [JsonProperty("type")]
         public string BoundingBoxType;
@@ -98,7 +98,7 @@ namespace TwitterViz.DataModels
         public double[][][] Coordinates;
     }
 
-    public class Coordinates
+    public class Coordinates : ScriptableObject
     {
         [JsonProperty("type")]
         public string CoordinatesType;

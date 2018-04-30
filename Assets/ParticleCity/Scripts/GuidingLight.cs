@@ -14,17 +14,25 @@ public class GuidingLight : MonoBehaviour
 
     public float Interval;
 
+    public Transform RenderPart;
+
     private Renderer lightRenderer;
     private Coroutine lightUpCouroutine;
     private AkAmbient akAmbient;
 
     private float timeSinceLastTrigger;
     private bool destroyRequested;
+    private bool lightUpForSpawning;
+
+    [Header("Debug")]
+    [Range(0, 1)]
+    public float Intensity;
 
 	void Start ()
 	{
 	    akAmbient = GetComponent<AkAmbient>();
 	    lightRenderer = GetComponentInChildren<Renderer>();
+	    RenderPart = lightRenderer.transform;
 	}
 	
 	void Update () {
@@ -38,14 +46,14 @@ public class GuidingLight : MonoBehaviour
 	        timeSinceLastTrigger = 0;
 	        Trigger = false;
 
-	        if (!destroyRequested)
+	        if (!destroyRequested && !lightUpForSpawning)
 	        {
 	            if (lightUpCouroutine != null)
 	            {
 	                StopCoroutine(lightUpCouroutine);
 	            }
 
-                lightUpCouroutine = StartCoroutine(lightUp());
+                lightUpCouroutine = StartCoroutine(lightUp(false));
 
                 /*
                 if (akAmbient != null)
@@ -56,17 +64,17 @@ public class GuidingLight : MonoBehaviour
             }
         }
 
-	    timeSinceLastTrigger += Time.deltaTime;
-
-	    if (lightUpCouroutine == null && destroyRequested)
+	    if (destroyRequested && lightUpCouroutine == null)
 	    {
-	        Destroy(gameObject);
+	        lightUpCouroutine = StartCoroutine(lightUp(true));
 	    }
+
+	    timeSinceLastTrigger += Time.deltaTime;
 	}
 
-    IEnumerator lightUp()
+    IEnumerator lightUp(bool fadeOut)
     {
-        float t = 0;
+        float t = fadeOut ? EaseInDuration + SustainDuration : 0;
 
         while (t <= EaseInDuration + SustainDuration + EaseOutDuration)
         {
@@ -87,24 +95,37 @@ public class GuidingLight : MonoBehaviour
         }
 
         setIntensity(0);
+        lightUpCouroutine = null;
 
         if (destroyRequested)
         {
             Destroy(gameObject);
+            destroyRequested = false;
         }
+    }
+
+    public void LightUpForSpawning()
+    {
+        if (lightUpCouroutine != null)
+        {
+            StopCoroutine(lightUpCouroutine);
+            lightUpCouroutine = null;
+        }
+
+        // TODO: State
+        setIntensity(1.2f);
+        lightUpForSpawning = true;
     }
 
     public void MarkForDestroy()
     {
         destroyRequested = true;
-        if (lightUpCouroutine == null)
-        {
-            Destroy(gameObject);
-        }
+        lightUpForSpawning = false;
     }
 
     private void setIntensity(float intensity)
     {
+        Intensity = intensity;
         lightRenderer.material.SetFloat("_Intensity", intensity);
     }
 }
