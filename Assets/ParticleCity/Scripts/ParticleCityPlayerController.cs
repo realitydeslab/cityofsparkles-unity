@@ -51,6 +51,14 @@ namespace ParticleCities
             leftParticle.gameObject.SetActive(FlyMode);
             rightParticle.gameObject.SetActive(FlyMode);
 
+            if (!Mathf.Approximately(InputManager.Instance.PlayerTransform.localScale.x, ParticleCity.Current.PlayerScale))
+            {
+                Vector3 prevCenter = InputManager.Instance.CenterCamera.transform.position;
+                InputManager.Instance.PlayerTransform.localScale = ParticleCity.Current.PlayerScale * Vector3.one;
+                Vector3 centerOffset = InputManager.Instance.CenterCamera.transform.position - prevCenter;
+                InputManager.Instance.PlayerTransform.position -= centerOffset;
+            }
+
             if (FlyMode)
             {
                 updateFlyMode();

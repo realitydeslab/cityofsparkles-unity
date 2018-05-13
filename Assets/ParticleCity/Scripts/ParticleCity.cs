@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ParticleCities;
 using UnityEngine;
 
 [RequireComponent(typeof(ParticleCityAnimator))]
@@ -11,6 +12,10 @@ public class ParticleCity : MonoBehaviour
     }
 
     public List<GameObject> ActiveGameObjects = new List<GameObject>();
+    public Color SolidClearColor = Color.black;
+
+    [Range(1, 60)]
+    public float PlayerScale = 20;
 
     [Header("Auto")]
     public ParticleCityAnimator Animator;
@@ -19,6 +24,13 @@ public class ParticleCity : MonoBehaviour
     {
         Animator = GetComponent<ParticleCityAnimator>();
     }
+
+    void Update()
+    {
+        InputManager.Instance.CenterCamera.clearFlags = CameraClearFlags.Color;
+        InputManager.Instance.CenterCamera.backgroundColor = SolidClearColor;
+    }
+
 
     public void AddActiveGameObject(GameObject gameObject)
     {
