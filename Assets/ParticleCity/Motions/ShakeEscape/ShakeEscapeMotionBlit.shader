@@ -46,6 +46,14 @@ Shader "Particle City/ShakeEscapeMotionBlit" {
     float4 _RightHandPos;
     float4 _LeftHandPos;
     float4 _HeadPos;
+    float4 _ActiveObjectPos0;
+    float4 _ActiveObjectPos1;
+    float4 _ActiveObjectPos2;
+    float4 _ActiveObjectPos3;
+    float4 _ActiveObjectPos4;
+    float4 _ActiveObjectPos5;
+    float4 _ActiveObjectPos6;
+    float4 _ActiveObjectPos7;
 
     float _LeftHandGravity;
     float _RightHandGravity;
@@ -64,6 +72,15 @@ Shader "Particle City/ShakeEscapeMotionBlit" {
     float4 frag_init(v2f_img i) : SV_Target{
         // Init speed 
         return float4(0, 0, 0, 1);
+    }
+
+    float applySimplePush(float3 sourcePos, float3 base, float3 offset)
+    {
+        float3 sourceToPoint = base + offset - sourcePos;
+        float sourceToPointLength = length(sourceToPoint);
+        float3 sourcePushAcc = _HandPush * pow(sourceToPointLength, -3) * sourceToPoint;
+        
+        return sourcePushAcc;
     }
 
     float3 applyPush(float3 sourcePos, float3 forward, float3 base, float3 offset, float gravity)
@@ -120,7 +137,15 @@ Shader "Particle City/ShakeEscapeMotionBlit" {
         float3 acc = float3(0, 0, 0);
         acc += applyPush(_RightHandPos, _RightHandForward, base, offset, _RightHandGravity);
         acc += applyPush(_LeftHandPos, _LeftHandForward, base, offset, _LeftHandGravity);
-        acc += applyPush(_HeadPos, 0, base, offset, 0);
+        acc += applySimplePush(_HeadPos, base, offset);
+        acc += applySimplePush(_ActiveObjectPos0, base, offset);
+        acc += applySimplePush(_ActiveObjectPos1, base, offset);
+        acc += applySimplePush(_ActiveObjectPos2, base, offset);
+        acc += applySimplePush(_ActiveObjectPos3, base, offset);
+        acc += applySimplePush(_ActiveObjectPos4, base, offset);
+        acc += applySimplePush(_ActiveObjectPos5, base, offset);
+        acc += applySimplePush(_ActiveObjectPos6, base, offset);
+        acc += applySimplePush(_ActiveObjectPos7, base, offset);
 
         // Damping spring
         float3 springDragAcc = drag * -offset;

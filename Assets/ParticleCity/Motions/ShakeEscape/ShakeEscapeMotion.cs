@@ -73,6 +73,18 @@ public class ShakeEscapeMotion : ParticleMotionBase
         particleMotionBlitMaterial.SetVector("_LeftHandForward", new Vector4(leftForward.x, leftForward.y, leftForward.z, 1));
         particleMotionBlitMaterial.SetVector("_HeadPos", new Vector4(centerEye.position.x, centerEye.position.y, centerEye.position.z, 1));
 
+        int i;
+        for (i = 0; i < Math.Min(8, ParticleCity.Current.ActiveGameObjects.Count); i++)
+        {
+            Vector3 position = ParticleCity.Current.ActiveGameObjects[i].transform.position;
+            particleMotionBlitMaterial.SetVector("_ActiveObjectPos" + i, new Vector4(position.x, position.y, position.z, 1));
+        }
+
+        for (; i < 8; i++)
+        {
+            particleMotionBlitMaterial.SetVector("_ActiveObjectPos" + i, new Vector4(float.MaxValue, float.MaxValue, float.MaxValue, 1));
+        }
+
         if (Impulse)
         {
             Impulse = false;

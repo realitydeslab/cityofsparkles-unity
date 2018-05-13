@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkyboxController : MonoBehaviour
+public class EnvironmentController : MonoBehaviour
 {
     public Color SolidClearColor;
 

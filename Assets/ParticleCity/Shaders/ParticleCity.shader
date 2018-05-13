@@ -11,6 +11,7 @@ Shader "Particle City/Particle City"
         _NoiseTex("Noise Tex", 2D) = "white" {}
         _ColorPalleteTex("Color Pallete", 2D) = "white" {}
         _VolumeDeltaHeight("Volume Delta Height", Float) = 0
+        _AlphaRandomWeight("Alpha Random Weight", Float) = 0.6
     }
 
     SubShader 
@@ -73,6 +74,7 @@ Shader "Particle City/Particle City"
                 float4 _SpriteColor;
                 float _GlobalIntensity;
                 float _VolumeDeltaHeight;
+                float _AlphaRandomWeight;
 
                 SamplerState sampler_SpriteTex;
 
@@ -119,7 +121,7 @@ Shader "Particle City/Particle City"
                     // output.color.rgb = float3(1, 1, (1 - lightNoise * 0.5)) * _SpriteColor.xyz;
                     // output.color.a = ((1 - lightNoise) * 0.6 + lightNoise * intense) * _SpriteColor.a;
                     output.color = _SpriteColor * pallete * max(1, _GlobalIntensity);
-                    output.color.a = ((1 - lightNoise) * 0.6 + lightNoise * intense) * _SpriteColor.a * min(1, _GlobalIntensity);
+                    output.color.a = ((1 - lightNoise) * _AlphaRandomWeight + lightNoise * intense) * _SpriteColor.a * min(1, _GlobalIntensity);
 
                     // Fog
                     // output.color.a *= 1 - 0.7 * saturate((distance(_WorldSpaceCameraPos, output.pos) - 100) / (1000 - 100));
