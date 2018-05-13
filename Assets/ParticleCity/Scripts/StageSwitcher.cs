@@ -7,32 +7,63 @@ using UnityEngine.SceneManagement;
 
 public class StageSwitcher : MonoBehaviour
 {
-    public Transform CameraRig;
+    private static StageSwitcher instance;
+    public static StageSwitcher Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<StageSwitcher>();
+            }
+
+            return instance;
+        }
+    }
+
     public ParticleCity[] ParticleCityPrefabs;
+    public bool KeyboardSwitch;
+
+    [Header("Auto")] 
+    public ParticleCity CurrentParticleCity;
 
     void Start()
     {
-        // Destroy all cities in editor and spawn prefabs
-        cleanup();
-
-        if (ParticleCityPrefabs.Length == 0)
+        // Find the current enabled city
+        ParticleCity[] cities = FindObjectsOfType<ParticleCity>();
+        foreach (ParticleCity city in cities)
         {
-            Debug.LogError("No particle city prefab specified in stage switcher.");
-            return;
+            if (city.enabled)
+            {
+                CurrentParticleCity = city;
+                break;
+            }
         }
 
-        instantiateParticleCity(ParticleCityPrefabs[0]);
+        if (CurrentParticleCity == null)
+        {
+            if (ParticleCityPrefabs.Length == 0)
+            {
+                Debug.LogError("No particle city prefab specified in stage switcher.");
+                return;
+            }
+
+            instantiateParticleCity(ParticleCityPrefabs[0]);
+        }
     }
 
 	void Update ()
 	{
-	    int keyNum = Math.Min(9, ParticleCityPrefabs.Length);
-	    for (int i = 1; i <= keyNum; i++)
+	    if (KeyboardSwitch)
 	    {
-	        KeyCode key = (KeyCode) ((int) KeyCode.Alpha0 + i);
-	        if (Input.GetKeyDown(key))
+	        int keyNum = Math.Min(9, ParticleCityPrefabs.Length);
+	        for (int i = 1; i <= keyNum; i++)
 	        {
-	            switchToStage(i - 1);         
+	            KeyCode key = (KeyCode) ((int) KeyCode.Alpha0 + i);
+	            if (Input.GetKeyDown(key))
+	            {
+	                switchToStage(i - 1);
+	            }
 	        }
 	    }
 	}

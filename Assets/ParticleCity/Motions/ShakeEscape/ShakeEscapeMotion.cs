@@ -13,27 +13,22 @@ public class ShakeEscapeMotion : ParticleMotionBase
 
     public AnimationCurve VolumeToImpulse;
 
-    private InteractiveMusicController interactiveMusic;
     private ParticleCityAnimator animator;
 
     public override void Start()
     {
         base.Start();
 
-        interactiveMusic = GetComponentInChildren<InteractiveMusicController>();
         animator = GetComponent<ParticleCityAnimator>();
 
-        if (interactiveMusic != null)
-        {
-            interactiveMusic.AkMarkerTriggered += InteractiveMusicOnAkMarkerTriggered;
-        }
+        InteractiveMusicController.Instance.AkMarkerTriggered += InteractiveMusicOnAkMarkerTriggered;
     }
 
     public override void OnDestroy()
     {
-        if (interactiveMusic != null)
+        if (InteractiveMusicController.Instance != null)
         {
-            interactiveMusic.AkMarkerTriggered -= InteractiveMusicOnAkMarkerTriggered;
+            InteractiveMusicController.Instance.AkMarkerTriggered -= InteractiveMusicOnAkMarkerTriggered;
         }
 
         base.OnDestroy();
@@ -88,7 +83,7 @@ public class ShakeEscapeMotion : ParticleMotionBase
             particleMotionBlitMaterial.SetFloat("_ImpulseScale", 0);
         }
 
-        float meter = interactiveMusic.GetVolumeMeter();
+        float meter = InteractiveMusicController.Instance.GetVolumeMeter();
         float deltaHeight = VolumeToImpulse.Evaluate(meter);
         // particleMotionBlitMaterial.SetFloat("_VerticalImpulse", verticalImpulse);
         animator.SetMaterialsFloat("_VolumeDeltaHeight", deltaHeight);
@@ -97,19 +92,37 @@ public class ShakeEscapeMotion : ParticleMotionBase
         float limit = 0.8f;
         limit *= (Mathf.Clamp(meter, -6, 0) + 6) / 6 * 0.2f + 0.9f;
 
-        // TODO: Broken for Vive
-        float leftTrigger = InputManager.Instance.GetGrabValue(HandType.Left);
-        if (leftTrigger < 0.01f)
+        if (InputManager.Instance.IsGrabContinuous || !InputManager.Instance.HasTouchpad)
         {
-            leftTrigger = 0;
-        }
+            float leftGrab = InputManager.Instance.GetGrabValue(HandType.Left);
+            if (leftGrab < 0.01f)
+            {
+                leftGrab = 0;
+            }
 
-        float rightTrigger = InputManager.Instance.GetGrabValue(HandType.Right);
-        if (rightTrigger < 0.01f)
-        {
-            rightTrigger = 0;
+            float rightGrab = InputManager.Instance.GetGrabValue(HandType.Right);
+            if (rightGrab < 0.01f)
+            {
+                rightGrab = 0;
+            }
+
+            particleMotionBlitMaterial.SetFloat("_LeftHandGravity", leftGrab * limit);
+            particleMotionBlitMaterial.SetFloat("_RightHandGravity", rightGrab * limit);
         }
-        particleMotionBlitMaterial.SetFloat("_LeftHandGravity", leftTrigger * limit);
-        particleMotionBlitMaterial.SetFloat("_RightHandGravity", rightTrigger * limit);
+        else if (InputManager.Instance.HasTouchpad)
+        {
+            // TODO: Adjsut direction 
+
+            bool leftTouchPressed;
+            Vector2 leftTouch = InputManager.Instance.GetTouchpadValue(HandType.Left, out leftTouchPressed);
+            float leftGravity = leftTouchPressed ? leftTouch.magnitude * 1.667f : 0;
+
+            bool rightTouchPressed;
+            Vector2 rightTouch = InputManager.Instance.GetTouchpadValue(HandType.Right, out rightTouchPressed);
+            float rightGravity = rightTouchPressed ? rightTouch.magnitude * 1.667f : 0;
+
+            particleMotionBlitMaterial.SetFloat("_LeftHandGravity", leftGravity * limit);
+            particleMotionBlitMaterial.SetFloat("_RightHandGravity", rightGravity * limit);
+        }
     }
 }

@@ -19,6 +19,11 @@ namespace ParticleCities
 
         public abstract float GetTriggerValue(HandType handType);
         public abstract float GetGrabValue(HandType handType);
+        public abstract Vector2 GetTouchpadValue(HandType handType, out bool isPressed);
+
+        public abstract bool IsGrabContinuous { get; }
+        public abstract bool HasSticker { get; }
+        public abstract bool HasTouchpad { get; }
 
         private static InputManager instance = null;
 

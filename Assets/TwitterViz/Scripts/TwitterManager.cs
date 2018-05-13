@@ -103,7 +103,10 @@ public class TwitterManager : MonoBehaviour
 
     void OnDestroy()
     {
-        dbConnection.Close();    
+        if (dbConnection != null)
+        {
+            dbConnection.Close();
+        }
     }
 
     public void RecordFirstTrigger(TweetComponent tweet)

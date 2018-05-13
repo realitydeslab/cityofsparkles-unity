@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ParticleCityAnimator))]
 public class ParticleCity : MonoBehaviour
 {
-    private static ParticleCity instance;
-    public static ParticleCity Instance
+    public static ParticleCity Current
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<ParticleCity>();
-            }
-
-            return instance;
-        }
+        get { return StageSwitcher.Instance.CurrentParticleCity; }
     }
 
     public List<GameObject> ActiveGameObjects = new List<GameObject>();
+
+    [Header("Auto")]
+    public ParticleCityAnimator Animator;
+
+    void Awake()
+    {
+        Animator = GetComponent<ParticleCityAnimator>();
+    }
 
     public void AddActiveGameObject(GameObject gameObject)
     {

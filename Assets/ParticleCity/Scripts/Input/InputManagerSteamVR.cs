@@ -60,12 +60,46 @@ namespace ParticleCities
             }
         }
 
+        public override bool IsGrabContinuous
+        {
+            get { return false; }
+        }
+
+        public override bool HasTouchpad
+        {
+            get { return true; }
+        }
+
+        public override bool HasSticker
+        {
+            get { return false; }
+        }
+
         public override float GetGrabValue(HandType handType)
         {
             SteamVR_Controller.Device device = getDevice(handType);
-            float result = device.GetAxis(EVRButtonId.k_EButton_SteamVR_Trigger).x;
+            if (device == null)
+            {
+                return 0;
+            }
 
-            return result;
+            bool press = device.GetPress(EVRButtonId.k_EButton_Grip);
+            return press ? 1 : 0;
+        }
+
+        public override Vector2 GetTouchpadValue(HandType handType, out bool isPressed)
+        {
+            isPressed = false;
+
+            SteamVR_Controller.Device device = getDevice(handType);
+            if (device == null)
+            {
+                return Vector2.zero;
+            }
+
+            isPressed = device.GetPress(EVRButtonId.k_EButton_SteamVR_Touchpad);
+
+            return device.GetAxis(EVRButtonId.k_EButton_SteamVR_Touchpad);
         }
 
         private SteamVR_Controller.Device getDevice(HandType handType)

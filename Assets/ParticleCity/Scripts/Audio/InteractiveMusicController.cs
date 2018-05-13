@@ -9,7 +9,21 @@ using Debug = UnityEngine.Debug;
 [RequireComponent(typeof(AkAmbient))]
 public class InteractiveMusicController : MonoBehaviour
 {
-    public ParticleCityAnimator Animator;
+    private static InteractiveMusicController instance;
+
+    public static InteractiveMusicController Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<InteractiveMusicController>();
+            }
+
+            return instance;
+        }
+    }
+
     public AnimationCurve MIDIForceToIntensity;
     public AnimationCurve MIDIForceToMinorIntensity;
 
@@ -22,7 +36,7 @@ public class InteractiveMusicController : MonoBehaviour
     public float GetVolumeMeter()
     {
         float meter;
-        int type = 2; //(int)RTPCValue_type.RTPCValue_GameObject;
+        int type = (int)AkQueryRTPCValue.RTPCValue_GameObject; 
         AkSoundEngine.GetRTPCValue("MasterVolume", gameObject, akAmbient.playingId, out meter, ref type);
         return meter;
     }
@@ -79,7 +93,7 @@ public class InteractiveMusicController : MonoBehaviour
         float pitch = info.byParam1;
         float force = info.byParam2;
 
-        if (true /*info.byType == 144*/)
+        if (info.byType == AkMIDIEventTypes.NOTE_ON)
         {
             if (pitch < 50)
             {
@@ -94,7 +108,7 @@ public class InteractiveMusicController : MonoBehaviour
                 minorIntensity = Mathf.Lerp(minorIntensity, target, 0.1f);
                 // Debug.Log("Minor: " + target);
             }
-            Animator.GlobalIntensity = majorIntensity + minorIntensity;
+            ParticleCity.Current.Animator.GlobalIntensity = majorIntensity + minorIntensity;
         }
         if (pitch < 50 /*&& info.byType == 144*/)
         {
