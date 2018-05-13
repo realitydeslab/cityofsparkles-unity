@@ -54,6 +54,7 @@ public class TweetComponent : MonoBehaviour
     public float CircularRadius = 50;
     public float CircularFadeInDuration = 0.3f;
     public float CircularRisingDuration = 0.5f;
+    public float CircularWordInterval = 0.2f;
     public float CircularFadeOutDuration = 2.0f;
     public float CircularSpaceWidth = 5;
     // public float CircularMaxDegree = 90;
@@ -187,12 +188,12 @@ public class TweetComponent : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if ( (State == TweetState.TakingOff || State == TweetState.Approaching) &&
-             approachingTarget == other.transform)
-        {
-            approachingTarget = null;
-            setState(TweetState.Returning);
-        }
+        // if ( (State == TweetState.TakingOff || State == TweetState.Approaching) &&
+        //      approachingTarget == other.transform)
+        // {
+        //     approachingTarget = null;
+        //     setState(TweetState.Returning);
+        // }
     }
 
     public void MarkForDestroy()
@@ -302,7 +303,7 @@ public class TweetComponent : MonoBehaviour
 
         // Lighting up
         Vector3 lightVelocity = Vector3.zero;
-        guidingLight.LightUpForSpawning();
+        // guidingLight.LightUpForSpawning();
         ParticleCity.Instance.AddActiveGameObject(guidingLight.RenderPart.gameObject);
 
         Vector3 startingPoint = textObjects[0].transform.position;
@@ -329,46 +330,20 @@ public class TweetComponent : MonoBehaviour
         for (int i = 0; i < textObjects.Count; i++)
         {
             TMP_Text text = textObjects[i];
-            float time = 0;
             lightTargetPos = (i == textObjects.Count - 1) ? text.transform.position : textObjects[i + 1].transform.position;
-            ParticleCity.Instance.AddActiveGameObject(text.gameObject);
-            while (time < CircularFadeInDuration || time < CircularRisingDuration)
+            StartCoroutine(circularWordFadeIn(text));
+
+            float time = 0;
+            while (time < CircularWordInterval)
             {
-                if (time < CircularFadeInDuration)
-                {
-                    text.alpha = time / CircularFadeInDuration;
-                }
-                else
-                {
-                    text.alpha = 1;
-                }
-
-                Vector3 offset = text.transform.localPosition;
-                if (time < CircularRisingDuration)
-                {
-                    offset.y = Mathf.SmoothStep(0, CircularOffset, time / CircularRisingDuration);
-                }
-                else
-                {
-                    offset.y = CircularOffset;
-                }
-                text.transform.localPosition = offset;
-
-                akGameObj.m_positionOffsetData = new AkGameObjPositionOffsetData()
-                {
-                    positionOffset = text.transform.localPosition
-                };
-
-                time += Time.deltaTime;
-
                 // guidingLight.RenderPart.position = Vector3.Lerp(guidingLight.RenderPart.position, lightTargetPos, SpawningLerpRatio * Time.deltaTime);
                 guidingLight.RenderPart.position = Vector3.SmoothDamp(guidingLight.RenderPart.position, lightTargetPos,
                     ref lightVelocity, Mathf.Max(CircularRisingDuration, CircularFadeInDuration));
                 guidingLight.RenderPart.forward = lightVelocity.normalized;
+                time += Time.deltaTime;
+
                 yield return null;
             }
-            StartCoroutine(wordFadeOut(text, CircularFadeOutDuration));
-            ParticleCity.Instance.RemoveActiveGameObject(text.gameObject, 1);
         }
 
         setState(TweetState.FadingOut);
@@ -384,6 +359,51 @@ public class TweetComponent : MonoBehaviour
         guidingLight.MarkForDestroy();
 
         isPlaying = false;
+    }
+
+    private IEnumerator circularWordFadeIn(TMP_Text text)
+    {
+        ParticleCity.Instance.AddActiveGameObject(text.gameObject);
+
+        float time = 0;
+        while (time < CircularFadeInDuration || time < CircularRisingDuration)
+        {
+            if (time < CircularFadeInDuration)
+            {
+                text.alpha = time / CircularFadeInDuration;
+            }
+            else
+            {
+                text.alpha = 1;
+            }
+
+            Vector3 offset = text.transform.localPosition;
+            if (time < CircularRisingDuration)
+            {
+                offset.y = Mathf.SmoothStep(0, CircularOffset, time / CircularRisingDuration);
+            }
+            else
+            {
+                offset.y = CircularOffset;
+            }
+            text.transform.localPosition = offset;
+
+            akGameObj.m_positionOffsetData = new AkGameObjPositionOffsetData()
+            {
+                positionOffset = text.transform.localPosition
+            };
+
+            time += Time.deltaTime;
+
+            yield return null;
+        }
+
+        Vector3 finalOffset = text.transform.localPosition;
+        finalOffset.y = CircularOffset;
+        text.transform.localPosition = finalOffset;
+
+        StartCoroutine(wordFadeOut(text, CircularFadeOutDuration));
+        ParticleCity.Instance.RemoveActiveGameObject(text.gameObject, 1);
     }
 
     private void updateTakingOff()
@@ -414,14 +434,15 @@ public class TweetComponent : MonoBehaviour
 
         if ((guidingLight.RenderPart.position - approachingTarget.position).sqrMagnitude < LightUpDistanceThreshold * LightUpDistanceThreshold)
         {
-            if (Tweet.Words.Length > 0)
-            {
-                setState(TweetState.LightingUp);
-            }
-            else
-            {
-                setState(TweetState.Returning);
-            }
+            setState(TweetState.LightingUp);
+            // if (Tweet.Words.Length > 0)
+            // {
+            //     setState(TweetState.LightingUp);
+            // }
+            // else
+            // {
+            //     setState(TweetState.Returning);
+            // }
         }
     }
 
@@ -473,7 +494,11 @@ public class TweetComponent : MonoBehaviour
         State = newState;
         stateChangeTime = Time.time;
 
-        if (newState == TweetState.LightingUp)
+        if (newState == TweetState.TakingOff)
+        {
+            guidingLight.LightUpForSpawning();
+        }
+        else if (newState == TweetState.LightingUp)
         {
             StartCoroutine(revealTweetAnimations());
         }

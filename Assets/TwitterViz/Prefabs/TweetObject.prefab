@@ -181,19 +181,20 @@ MonoBehaviour:
   TakingOffDuration: 1
   ApproachingMaxSpeed: 10
   ApproachingLerpRatio: 1
-  LightUpMaxSpeed: 50
+  LightUpMaxSpeed: 100
   LightUpDistanceThreshold: 2
-  SpawnStartingDistanceThreshold: 10
+  SpawnStartingDistanceThreshold: 20
   SpawningLerpRatio: 1
   TargetOffset: 5
   FadeInDuration: 0.5
   RisingDuration: 0.7
   FadeOutDuration: 0.5
-  CircularOffset: 30
-  CircularRadius: 50
+  CircularOffset: 60
+  CircularRadius: 100
   CircularFadeInDuration: 0.5
   CircularRisingDuration: 0.5
-  CircularFadeOutDuration: 2
+  CircularWordInterval: 0.2
+  CircularFadeOutDuration: 5
   CircularSpaceWidth: 3
   GrabPlayer: 0
   State: 0
