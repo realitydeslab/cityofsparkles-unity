@@ -19,12 +19,13 @@ public class CityStructure : MonoBehaviour
 
     [Header("Debug")]
     public HeightMap HeightMap;
-
     public MapModel MapModel;
+    public DensityMap DensityMap;
 
     void Awake()
     {
         HeightMap = GetComponentInChildren<HeightMap>();
+        DensityMap = GetComponentInChildren<DensityMap>();
         MapModel = GetComponent<MapModel>();
     }
 }

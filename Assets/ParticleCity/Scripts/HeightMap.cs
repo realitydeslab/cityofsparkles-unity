@@ -16,11 +16,16 @@ namespace ParticleCities
         public HeightMapData Data;
         public bool DebugGizmo;
 
-        public Bounds Bounds { get; private set; }
+        [Header("Internal")] 
+        public Bounds Bounds;
+
+        void Awake()
+        {
+            Bounds = GetComponent<BoxCollider>().bounds;
+        }
 
         void Start()
         {
-            Bounds = GetComponent<BoxCollider>().bounds;
         }
 
         void Update()

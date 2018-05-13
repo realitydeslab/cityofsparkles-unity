@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using ParticleCities;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -30,8 +31,11 @@ public class InteractiveMusicController : MonoBehaviour
     public event Action<string> AkMarkerTriggered; 
 
     private AkAmbient akAmbient;
-    private float majorIntensity;
-    private float minorIntensity;
+
+    [Header("Debug")]
+    public float MajorIntensity;
+    public float MinorIntensity;
+    public float Density;
 
     public float GetVolumeMeter()
     {
@@ -62,6 +66,11 @@ public class InteractiveMusicController : MonoBehaviour
 	void Start()
 	{
         Debug.Log("Controller start, tid = " + Thread.CurrentThread.ManagedThreadId);
+    }
+
+    void Update()
+    {
+        Density = CityStructure.Instance.DensityMap.GetDensity(InputManager.Instance.PlayerTransform.position);
     }
 
     void OnDestroy()
@@ -98,17 +107,17 @@ public class InteractiveMusicController : MonoBehaviour
             if (pitch < 50)
             {
                 float target = MIDIForceToIntensity.Evaluate(force / 128.0f);
-                majorIntensity = Mathf.Lerp(majorIntensity, target, 0.8f);
-                minorIntensity = 0;
+                MajorIntensity = Mathf.Lerp(MajorIntensity, target, 0.8f);
+                MinorIntensity = 0;
                 // Debug.Log("Major: " + target);
             }
             else
             {
                 float target = MIDIForceToMinorIntensity.Evaluate(pitch / 128.0f);
-                minorIntensity = Mathf.Lerp(minorIntensity, target, 0.1f);
+                MinorIntensity = Mathf.Lerp(MinorIntensity, target, 0.1f);
                 // Debug.Log("Minor: " + target);
             }
-            ParticleCity.Current.Animator.GlobalIntensity = majorIntensity + minorIntensity;
+            ParticleCity.Current.Animator.GlobalIntensity = MajorIntensity + MinorIntensity;
         }
         if (pitch < 50 /*&& info.byType == 144*/)
         {
