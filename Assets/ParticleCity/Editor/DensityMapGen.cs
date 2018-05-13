@@ -62,8 +62,8 @@ namespace ParticleCity.Editor
                 wrapMode = TextureWrapMode.Clamp
             };
 
-            Color32[] positionPixels = positionMap.GetPixels(0);
-            Color32[] densityPixels = new Color[textureWidth * textureHeight * textureDepth];
+            Color[] positionPixels = positionMap.GetPixels(0);
+            Color32[] densityPixels = new Color32[textureWidth * textureHeight * textureDepth];
 
             // for (int z = 0; z < textureDepth; z++)
             // {
@@ -95,7 +95,7 @@ namespace ParticleCity.Editor
                             (int)(densityPos.y + 0.5f) * textureWidth +
                             (int)(densityPos.x + 0.5f);
 
-                densityPixels[index].a += 1.0f;
+                densityPixels[index].a += 32;
 
                 if (i % 100 == 0)
                 {
@@ -128,11 +128,11 @@ namespace ParticleCity.Editor
                         {
                             int dxClamp = (dx < 0) ? 0 : ((dx >= textureWidth) ? (textureWidth - 1) : dx);
                             int dxIndex = z * (textureWidth * textureHeight) + y * textureWidth + dxClamp;
-                            c += densityPixels[dxIndex].a * kernel[dx - x + gaussianBlurRadius];
+                            c += densityPixels[dxIndex].a / 256.0f * kernel[dx - x + gaussianBlurRadius];
                         }
 
                         int index = z * (textureWidth * textureHeight) + y * textureWidth + x;
-                        densityPixels[index].r = c;
+                        densityPixels[index].r = (byte)(c * 256.0f + 0.5f);
                     }
                 }
 
@@ -156,11 +156,11 @@ namespace ParticleCity.Editor
                         {
                             int dyClamp = (dy < 0) ? 0 : ((dy >= textureHeight) ? (textureHeight - 1) : dy);
                             int dyIndex = z * (textureWidth * textureHeight) + dyClamp * textureWidth + x;
-                            c += densityPixels[dyIndex].r * kernel[dy - y + gaussianBlurRadius];
+                            c += densityPixels[dyIndex].r / 256.0f * kernel[dy - y + gaussianBlurRadius];
                         }
 
                         int index = z * (textureWidth * textureHeight) + y * textureWidth + x;
-                        densityPixels[index].a = c;
+                        densityPixels[index].a = (byte)(c * 256.0f + 0.5f);
                     }
                 }
 
@@ -184,11 +184,11 @@ namespace ParticleCity.Editor
                         {
                             int dzClamp = (dz < 0) ? 0 : ((dz >= textureDepth) ? (textureDepth - 1) : dz);
                             int dzIndex = dzClamp * (textureWidth * textureHeight) + y * textureWidth + x;
-                            c += densityPixels[dzIndex].a * kernel[dz - z + gaussianBlurRadius];
+                            c += densityPixels[dzIndex].a / 256.0f * kernel[dz - z + gaussianBlurRadius];
                         }
 
                         int index = z * (textureWidth * textureHeight) + y * textureWidth + x;
-                        densityPixels[index].r = c;
+                        densityPixels[index].r = (byte)(c * 256.0f + 0.5f);
                     }
                 }
 
@@ -200,7 +200,7 @@ namespace ParticleCity.Editor
                 }
             }
 
-            tex.SetPixels(densityPixels);
+            tex.SetPixels32(densityPixels);
             tex.Apply();
 
             DensityMapData data = ScriptableObject.CreateInstance<DensityMapData>();
