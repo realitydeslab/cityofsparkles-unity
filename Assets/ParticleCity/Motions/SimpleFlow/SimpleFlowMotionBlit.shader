@@ -16,42 +16,6 @@ Shader "Particle City/SimpleFlowMotionBlit" {
         _MaxDistance("Max Distance", Float) = 100
 
         _VanR_0("Van R_0", Float) = 100
-
-        _LeftHandPos0("Left Hand Pos 0", Vector) = (0, 0, 0, 1)
-        _LeftHandPos1("Left Hand Pos 1", Vector) = (0, 0, 0, 1)
-        _LeftHandPos2("Left Hand Pos 2", Vector) = (0, 0, 0, 1)
-        _LeftHandPos3("Left Hand Pos 3", Vector) = (0, 0, 0, 1)
-        _LeftHandPos4("Left Hand Pos 4", Vector) = (0, 0, 0, 1)
-        _LeftHandPos5("Left Hand Pos 5", Vector) = (0, 0, 0, 1)
-        _LeftHandPos6("Left Hand Pos 6", Vector) = (0, 0, 0, 1)
-        _LeftHandPos7("Left Hand Pos 7", Vector) = (0, 0, 0, 1)
-
-        _LeftHandVel0("Left Hand Vel 0", Vector) = (0, 0, 0, 1)
-        _LeftHandVel1("Left Hand Vel 1", Vector) = (0, 0, 0, 1)
-        _LeftHandVel2("Left Hand Vel 2", Vector) = (0, 0, 0, 1)
-        _LeftHandVel3("Left Hand Vel 3", Vector) = (0, 0, 0, 1)
-        _LeftHandVel4("Left Hand Vel 4", Vector) = (0, 0, 0, 1)
-        _LeftHandVel5("Left Hand Vel 5", Vector) = (0, 0, 0, 1)
-        _LeftHandVel6("Left Hand Vel 6", Vector) = (0, 0, 0, 1)
-        _LeftHandVel7("Left Hand Vel 7", Vector) = (0, 0, 0, 1)
-
-        _RightHandPos0("Right Hand Pos 0", Vector) = (0, 0, 0, 1)
-        _RightHandPos1("Right Hand Pos 1", Vector) = (0, 0, 0, 1)
-        _RightHandPos2("Right Hand Pos 2", Vector) = (0, 0, 0, 1)
-        _RightHandPos3("Right Hand Pos 3", Vector) = (0, 0, 0, 1)
-        _RightHandPos4("Right Hand Pos 4", Vector) = (0, 0, 0, 1)
-        _RightHandPos5("Right Hand Pos 5", Vector) = (0, 0, 0, 1)
-        _RightHandPos6("Right Hand Pos 6", Vector) = (0, 0, 0, 1)
-        _RightHandPos7("Right Hand Pos 7", Vector) = (0, 0, 0, 1)
-
-        _RightHandVel0("Right Hand Vel 0", Vector) = (0, 0, 0, 1)
-        _RightHandVel1("Right Hand Vel 1", Vector) = (0, 0, 0, 1)
-        _RightHandVel2("Right Hand Vel 2", Vector) = (0, 0, 0, 1)
-        _RightHandVel3("Right Hand Vel 3", Vector) = (0, 0, 0, 1)
-        _RightHandVel4("Right Hand Vel 4", Vector) = (0, 0, 0, 1)
-        _RightHandVel5("Right Hand Vel 5", Vector) = (0, 0, 0, 1)
-        _RightHandVel6("Right Hand Vel 6", Vector) = (0, 0, 0, 1)
-        _RightHandVel7("Right Hand Vel 7", Vector) = (0, 0, 0, 1)
     }
 
     CGINCLUDE

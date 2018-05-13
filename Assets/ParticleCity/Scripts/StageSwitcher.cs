@@ -45,12 +45,7 @@ public class StageSwitcher : MonoBehaviour
 
     private void instantiateParticleCity(ParticleCity prefab)
     {
-        ParticleCity instance = Instantiate(prefab);
-        ParticleMotionBase motion = instance.GetComponent<ParticleMotionBase>();
-        if (motion != null)
-        {
-            motion.CameraRig = CameraRig;
-        }
+        Instantiate(prefab);
     }
 
     private void cleanup()

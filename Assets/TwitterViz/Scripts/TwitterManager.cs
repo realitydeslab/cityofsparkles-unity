@@ -43,7 +43,6 @@ public class TwitterManager : MonoBehaviour
 
     private Collider[] boundingColliders;
     private MapModel mapModel;
-    private HeightMap heightMap;
 
     private Sentiment previousSentiment;
     private int triggerCount;
@@ -84,7 +83,6 @@ public class TwitterManager : MonoBehaviour
         AkSoundEngine.SetState("RichSentimentTest", PreferredSentiment.ToString());
 
         mapModel = GetComponentInParent<MapModel>();
-        heightMap = GetComponentInParent<ParticleCity>().GetComponentInChildren<HeightMap>();
     }
 
     void Update()
@@ -270,7 +268,7 @@ public class TwitterManager : MonoBehaviour
     private float sampleHeight(Vector3 position)
     {
         float bottom, top;
-        if (heightMap.GetHeightRange(position, out bottom, out top))
+        if (CityStructure.Instance.HeightMap.GetHeightRange(position, out bottom, out top))
         {
             if (top > bottom + HeightRangeOnGround)
             {
@@ -286,8 +284,7 @@ public class TwitterManager : MonoBehaviour
         }
         else
         {
-            return -10;
-            bottom = heightMap.Bounds.min.y;
+            bottom = CityStructure.Instance.HeightMap.Bounds.min.y;
             top = bottom + HeightRangeOnGround;
             return Random.Range(bottom + MinHeightAboveGround, top);
         }
@@ -353,7 +350,7 @@ public class TwitterManager : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        HeightMap heightMap = GetComponentInParent<ParticleCity>().GetComponentInChildren<HeightMap>();
+        HeightMap heightMap = FindObjectOfType<HeightMap>();
 
         Gizmos.color = Color.red;
 

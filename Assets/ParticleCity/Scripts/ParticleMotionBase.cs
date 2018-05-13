@@ -7,8 +7,6 @@ public abstract class ParticleMotionBase : MonoBehaviour {
     public Texture2D BasePositionTexture;
     public Material ParticleMotionBlitMaterialPrefab;
 
-    public Transform CameraRig;
-
     protected Material particleMotionBlitMaterial;
     private RenderTexture particleVelocityBuffer1;
     private RenderTexture particleVelocityBuffer2;
@@ -18,7 +16,7 @@ public abstract class ParticleMotionBase : MonoBehaviour {
 
 	public virtual void Start ()
 	{
-	    particleMotionBlitMaterial = ParticleMotionBlitMaterialPrefab; //Instantiate(ParticleMotionBlitMaterialPrefab);
+	    particleMotionBlitMaterial = ParticleMotionBlitMaterialPrefab; 
         particleMotionBlitMaterial.SetTexture("_BasePositionTex", BasePositionTexture);
 
 	    particleOffsetBuffer1 = createRenderTexture();
