@@ -113,7 +113,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1194441434366452
 GameObject:
   m_ObjectHideFlags: 1
@@ -3747,6 +3747,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActiveGameObjects: []
+  SolidClearColor: {r: 0, g: 0, b: 0, a: 1}
+  PlayerScale: 20
+  Animator: {fileID: 0}
 --- !u!114 &114649518448430194
 MonoBehaviour:
   m_ObjectHideFlags: 1

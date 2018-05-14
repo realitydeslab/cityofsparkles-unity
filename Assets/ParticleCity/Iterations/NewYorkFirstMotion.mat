@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SimpleFlowMotionBlit
+  m_Name: NewYorkFirstMotion
   m_Shader: {fileID: 4800000, guid: 8a146c0dc1babea4ab928b42e10a8115, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -89,14 +89,14 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _LeftHandPos: {r: -154.42972, g: -89.76655, b: -281.7404, a: 1}
-    - _LeftHandPos0: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
-    - _LeftHandPos1: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
-    - _LeftHandPos2: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
-    - _LeftHandPos3: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
-    - _LeftHandPos4: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
-    - _LeftHandPos5: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
-    - _LeftHandPos6: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
-    - _LeftHandPos7: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
+    - _LeftHandPos0: {r: -3956.26, g: 184.18697, b: -5346.8774, a: 1}
+    - _LeftHandPos1: {r: -3956.26, g: 184.1869, b: -5346.8774, a: 1}
+    - _LeftHandPos2: {r: -3956.26, g: 184.18686, b: -5346.8774, a: 1}
+    - _LeftHandPos3: {r: -3956.26, g: 184.18686, b: -5346.8774, a: 1}
+    - _LeftHandPos4: {r: -3956.2598, g: 184.18675, b: -5346.878, a: 1}
+    - _LeftHandPos5: {r: -3956.2598, g: 184.18675, b: -5346.8784, a: 1}
+    - _LeftHandPos6: {r: -3956.2598, g: 184.18681, b: -5346.8784, a: 1}
+    - _LeftHandPos7: {r: -3956.2595, g: 184.1867, b: -5346.8784, a: 1}
     - _LeftHandTrail0: {r: 0, g: 0, b: 0, a: 1}
     - _LeftHandTrail1: {r: 0, g: 0, b: 0, a: 1}
     - _LeftHandTrail2: {r: 0, g: 0, b: 0, a: 1}
@@ -105,23 +105,23 @@ Material:
     - _LeftHandTrail5: {r: 0, g: 0, b: 0, a: 1}
     - _LeftHandTrail6: {r: 0, g: 0, b: 0, a: 1}
     - _LeftHandTrail7: {r: 0, g: 0, b: 0, a: 1}
-    - _LeftHandVel0: {r: 0, g: 0, b: 0, a: 1}
-    - _LeftHandVel1: {r: 0, g: 0, b: 0, a: 1}
+    - _LeftHandVel0: {r: 0, g: 0.0008840669, b: 0, a: 1}
+    - _LeftHandVel1: {r: 0, g: 0.00039350853, b: 0, a: 1}
     - _LeftHandVel2: {r: 0, g: 0, b: 0, a: 1}
-    - _LeftHandVel3: {r: 0, g: 0, b: 0, a: 1}
-    - _LeftHandVel4: {r: 0, g: 0, b: 0, a: 1}
-    - _LeftHandVel5: {r: 0, g: 0, b: 0, a: 1}
-    - _LeftHandVel6: {r: 0, g: 0, b: 0, a: 1}
-    - _LeftHandVel7: {r: 0, g: 0, b: 0, a: 1}
+    - _LeftHandVel3: {r: -0.0014126721, g: 0.00061804405, b: 0.0028253442, a: 1}
+    - _LeftHandVel4: {r: 0, g: 0, b: 0.0024213733, a: 1}
+    - _LeftHandVel5: {r: 0, g: -0.00025557546, b: 0, a: 1}
+    - _LeftHandVel6: {r: -0.0010593485, g: 0.00046346497, b: 0, a: 1}
+    - _LeftHandVel7: {r: 0, g: 0.000045776367, b: 0, a: 1}
     - _RightHandPos: {r: -483.90805, g: 159.26688, b: -46.272, a: 1}
-    - _RightHandPos0: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
-    - _RightHandPos1: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
-    - _RightHandPos2: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
-    - _RightHandPos3: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
-    - _RightHandPos4: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
-    - _RightHandPos5: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
-    - _RightHandPos6: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
-    - _RightHandPos7: {r: 34.6, g: 122.009995, b: -136.6, a: 1}
+    - _RightHandPos0: {r: -3955.4126, g: 184.31735, b: -5345.6553, a: 1}
+    - _RightHandPos1: {r: -3955.4138, g: 184.31737, b: -5345.656, a: 1}
+    - _RightHandPos2: {r: -3955.415, g: 184.31725, b: -5345.656, a: 1}
+    - _RightHandPos3: {r: -3955.4158, g: 184.31714, b: -5345.6562, a: 1}
+    - _RightHandPos4: {r: -3955.4175, g: 184.31721, b: -5345.6562, a: 1}
+    - _RightHandPos5: {r: -3955.4187, g: 184.31703, b: -5345.6562, a: 1}
+    - _RightHandPos6: {r: -3955.42, g: 184.3169, b: -5345.6567, a: 1}
+    - _RightHandPos7: {r: -3955.4219, g: 184.31685, b: -5345.657, a: 1}
     - _RightHandTrail0: {r: 0, g: 0, b: 0, a: 1}
     - _RightHandTrail1: {r: 0, g: 0, b: 0, a: 1}
     - _RightHandTrail2: {r: 0, g: 0, b: 0, a: 1}
@@ -130,11 +130,11 @@ Material:
     - _RightHandTrail5: {r: 0, g: 0, b: 0, a: 1}
     - _RightHandTrail6: {r: 0, g: 0, b: 0, a: 1}
     - _RightHandTrail7: {r: 0, g: 0, b: 0, a: 1}
-    - _RightHandVel0: {r: 0, g: 0, b: 0, a: 1}
-    - _RightHandVel1: {r: 0, g: 0, b: 0, a: 1}
-    - _RightHandVel2: {r: 0, g: 0, b: 0, a: 1}
-    - _RightHandVel3: {r: 0, g: 0, b: 0, a: 1}
-    - _RightHandVel4: {r: 0, g: 0, b: 0, a: 1}
-    - _RightHandVel5: {r: 0, g: 0, b: 0, a: 1}
-    - _RightHandVel6: {r: 0, g: 0, b: 0, a: 1}
-    - _RightHandVel7: {r: 0, g: 0, b: 0, a: 1}
+    - _RightHandVel0: {r: 0.017681338, g: -0.00022101673, b: 0.0070725353, a: 1}
+    - _RightHandVel1: {r: 0.010493561, g: 0.0010493561, b: 0, a: 1}
+    - _RightHandVel2: {r: 0.006229495, g: 0.00090846804, b: 0.004152997, a: 1}
+    - _RightHandVel3: {r: 0.009888705, g: -0.00044146003, b: 0, a: 1}
+    - _RightHandVel4: {r: 0.0060534333, g: 0.000908015, b: 0, a: 1}
+    - _RightHandVel5: {r: 0.0051115095, g: 0.00057504483, b: 0.0020446037, a: 1}
+    - _RightHandVel6: {r: 0.008474788, g: 0.00019862784, b: 0.002118697, a: 1}
+    - _RightHandVel7: {r: 0.005859375, g: 0.0007324219, b: 0.0014648438, a: 1}
