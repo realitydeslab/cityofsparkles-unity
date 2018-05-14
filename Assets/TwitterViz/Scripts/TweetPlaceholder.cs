@@ -5,7 +5,7 @@ using UnityEngine;
 public class TweetPlaceholder : MonoBehaviour
 {
     public TweetPlaceholder[] Next;
-    public int SwitchToStage;
+    public int SwitchToStage = -1;
 
     public TwitterDatabase.DBTweet QueryData(TwitterDatabase database)
     {
@@ -22,6 +22,11 @@ public class TweetPlaceholder : MonoBehaviour
     {
         for (int i = 0; i < Next.Length; i++)
         {
+            if (Next[i] == null)
+            {
+                continue;
+            }
+
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(transform.position, Next[i].transform.position);
         }

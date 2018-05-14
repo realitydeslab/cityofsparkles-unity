@@ -59,9 +59,6 @@ public class TweetComponent : MonoBehaviour
     public float CircularSpaceWidth = 5;
     // public float CircularMaxDegree = 90;
 
-    [Header("Internal")] 
-    public TweetPlaceholder placeholder;
-
     [Header("Debug")]
     public bool GrabPlayer;
     public TweetState State;
@@ -256,7 +253,7 @@ public class TweetComponent : MonoBehaviour
 
                 yield return null;
             }
-            StartCoroutine(wordFadeOut(tmpText, FadeOutDuration));
+            StartCoroutine(wordFadeOut(tmpText, FadeOutDuration, i == 0));
         }
 
         isPlaying = false;
@@ -334,9 +331,10 @@ public class TweetComponent : MonoBehaviour
         Vector3 lightTargetPos = transform.position;
         for (int i = 0; i < textObjects.Count; i++)
         {
+            bool isFirst = (i == 0);
             TMP_Text text = textObjects[i];
             lightTargetPos = (i == textObjects.Count - 1) ? text.transform.position : textObjects[i + 1].transform.position;
-            StartCoroutine(circularWordFadeIn(text));
+            StartCoroutine(circularWordFadeIn(text, isFirst));
 
             float time = 0;
             while (time < CircularWordInterval)
@@ -366,7 +364,7 @@ public class TweetComponent : MonoBehaviour
         isPlaying = false;
     }
 
-    private IEnumerator circularWordFadeIn(TMP_Text text)
+    private IEnumerator circularWordFadeIn(TMP_Text text, bool isFirst)
     {
         StageSwitcher.Instance.CurrentParticleCity.AddActiveGameObject(text.gameObject);
 
@@ -407,7 +405,7 @@ public class TweetComponent : MonoBehaviour
         finalOffset.y = CircularOffset;
         text.transform.localPosition = finalOffset;
 
-        StartCoroutine(wordFadeOut(text, CircularFadeOutDuration));
+        StartCoroutine(wordFadeOut(text, CircularFadeOutDuration, isFirst));
         StageSwitcher.Instance.CurrentParticleCity.RemoveActiveGameObject(text.gameObject, 1);
     }
 
@@ -461,7 +459,7 @@ public class TweetComponent : MonoBehaviour
         yield return null;
     }
 
-    private IEnumerator wordFadeOut(TMP_Text word, float duration)
+    private IEnumerator wordFadeOut(TMP_Text word, float duration, bool isFirst)
     {
         float time = 0;
         while (time < duration)
@@ -470,7 +468,13 @@ public class TweetComponent : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+
         Destroy(word.gameObject);
+
+        if (isFirst)
+        {
+            manager.RecordRevealed(this);
+        }
     }
 
     private void playMusic()

@@ -31,6 +31,10 @@ public class TwitterManager : MonoBehaviour
     public float HeightRangeOnGround = 200;
     public float MinHeightAboveGround = 30;
 
+    [Header("Waypoint System")] 
+    public HashSet<TweetPlaceholder> ActivePlaceholders = new HashSet<TweetPlaceholder>();
+    public TweetPlaceholder[] NextPlaceholders;
+
     [Header("Debugging")]
     public float PositiveRatio;
 
@@ -63,7 +67,15 @@ public class TwitterManager : MonoBehaviour
 
     void Update()
     {
-        if (PreferredSentiment != previousSentiment)
+        if (NextPlaceholders != null && NextPlaceholders.Length > 0)
+        {
+            updateForPlaceholder(NextPlaceholders);
+        }
+        else if (ActivePlaceholders.Count > 0)
+        {
+            // Wait
+        }
+        else if (PreferredSentiment != previousSentiment)
         {
             updateForSentiment();
             previousSentiment = PreferredSentiment;
@@ -90,7 +102,7 @@ public class TwitterManager : MonoBehaviour
         {
             case Sentiment.Neutral:
             default:
-                if (triggerCount > 5)
+                if (triggerCount > 3)
                 {
                     triggerCount = 0;
                     PreferredSentiment = Sentiment.Happy;
@@ -98,18 +110,20 @@ public class TwitterManager : MonoBehaviour
                 break;
             
             case Sentiment.Happy:
-                if (triggerCount > 10)
+                if (triggerCount > 3)
                 {
                     triggerCount = 0;
                     PreferredSentiment = Sentiment.Sad;
+                    StageSwitcher.Instance.SwitchToStage(2);
                 }
                 break;
             
             case Sentiment.Sad:
-                if (triggerCount > 5)
+                if (triggerCount > 3)
                 {
                     triggerCount = 0;
                     PreferredSentiment = Sentiment.Wish;
+                    StageSwitcher.Instance.SwitchToStage(3);
                 }
                 break;
             
@@ -118,8 +132,27 @@ public class TwitterManager : MonoBehaviour
                 {
                     triggerCount = 0;
                     PreferredSentiment = Sentiment.Neutral;
+                    StageSwitcher.Instance.SwitchToStage(1);
                 }
                 break;
+        }
+    }
+
+    public void RecordRevealed(TweetComponent tweet)
+    {
+        if (ActivePlaceholders.Count > 0)
+        {
+            TweetPlaceholder placeholder = tweet.GetComponentInChildren<TweetPlaceholder>();
+            if (placeholder != null && ActivePlaceholders.Contains(placeholder))
+            {
+                ActivePlaceholders.Clear();
+                NextPlaceholders = placeholder.Next;
+
+                if (placeholder.SwitchToStage >= 0)
+                {
+                    StageSwitcher.Instance.SwitchToStage(placeholder.SwitchToStage);
+                }
+            }
         }
     }
 
@@ -144,6 +177,39 @@ public class TwitterManager : MonoBehaviour
                 });
             }
         }
+    }
+
+    private void updateForPlaceholder(TweetPlaceholder[] placeholders)
+    {
+        if (placeholders == null || placeholders.Length == 0)
+        {
+            return;
+        }
+
+        tweetsToSpawn.Clear();
+        tweetsToDelete.Clear();
+        tweetsToDelete.UnionWith(tweetsSpawned.Keys);
+
+        foreach (TweetPlaceholder placeholder in placeholders)
+        {
+            TwitterDatabase.DBTweet data = placeholder.QueryData(database);
+            if (data == null)
+            {
+                updateForPlaceholder(placeholder.Next);
+                Destroy(placeholder);
+                break;
+            }
+
+            tweetsToSpawn.Add(data.id, new SpawnRequest()
+            {
+                Data = data,
+                Placeholder = placeholder
+            });
+
+            ActivePlaceholders.Add(placeholder);
+        }
+
+        NextPlaceholders = null;
     }
 
     private void spawnIfNeeded()
