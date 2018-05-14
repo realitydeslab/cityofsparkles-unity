@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ParticleCityAnimator : MonoBehaviour
 {
+    // TODO: 1. Should not look for renderers like this
+    // TODO: 2. Why bother creating instances? 
 
     private Material[] materialInstances;
 

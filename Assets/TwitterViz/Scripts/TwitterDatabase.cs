@@ -58,6 +58,13 @@ public class TwitterDatabase : MonoBehaviour {
         return dbConnection.Query<DBTweet>(query, limit);
     }
 
+    public DBTweet QueryOne()
+    {
+        string query = "SELECT * FROM tweets WHERE sentiment_negative > 0.5 ORDER BY RANDOM() LIMIT 1";
+        List<DBTweet> result = dbConnection.Query<DBTweet>(query);
+        return result.Count == 0 ? null : result[0];
+    }
+
     void Awake()
     {
         string dbPath = Application.dataPath + "/StreamingAssets/" + Database;

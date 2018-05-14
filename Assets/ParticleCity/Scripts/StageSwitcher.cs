@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using ParticleCities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -62,13 +59,13 @@ public class StageSwitcher : MonoBehaviour
 	            KeyCode key = (KeyCode) ((int) KeyCode.Alpha0 + i);
 	            if (Input.GetKeyDown(key))
 	            {
-	                switchToStage(i - 1);
+	                SwitchToStage(i - 1);
 	            }
 	        }
 	    }
 	}
 
-    private void switchToStage(int index)
+    public void SwitchToStage(int index)
     {
         cleanup();
         instantiateParticleCity(ParticleCityPrefabs[index]);
