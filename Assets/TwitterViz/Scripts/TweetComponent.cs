@@ -59,6 +59,9 @@ public class TweetComponent : MonoBehaviour
     public float CircularSpaceWidth = 5;
     // public float CircularMaxDegree = 90;
 
+    [Header("Internal")] 
+    public TweetPlaceholder placeholder;
+
     [Header("Debug")]
     public bool GrabPlayer;
     public TweetState State;
@@ -141,40 +144,42 @@ public class TweetComponent : MonoBehaviour
 	        player.forward = (transform.position - player.position);
 	    }
 
-	    // if (Trigger)
-	    // {
-	    //     Trigger = false;
+	    if (Trigger)
+	    {
+	        Trigger = false;
 
-	    //     if (!everTriggered)
-	    //     {
-	    //         manager.RecordFirstTrigger(this);    
-	    //     }
-	    //     everTriggered = true;
+	        if (!everTriggered)
+	        {
+	            manager.RecordFirstTrigger(this);
+	        }
 
-        //     if (Animation == SpawnAnimation.Unspecified)
-        //     {
-        //         Animation = UnityEngine.Random.value < 0.2f ? SpawnAnimation.Rising : SpawnAnimation.Circular;
-        //     }
+	        everTriggered = true;
 
-        //     if (!isPlaying)
-	    //     {
-	    //         switch (Animation)
-	    //         {
-	    //             case SpawnAnimation.Rising:
-	    //                 playMusic();
-        //                 StartCoroutine(wordAnimation());
-	    //                 break;
+	        //     if (Animation == SpawnAnimation.Unspecified)
+	        //     {
+	        //         Animation = UnityEngine.Random.value < 0.2f ? SpawnAnimation.Rising : SpawnAnimation.Circular;
+	        //     }
 
-        //             case SpawnAnimation.Circular:
-	    //                 playMusic();
-        //                 StartCoroutine(wordAnimationCircular());
-        //                 break;
+	        //     if (!isPlaying)
+	        //     {
+	        //         switch (Animation)
+	        //         {
+	        //             case SpawnAnimation.Rising:
+	        //                 playMusic();
+	        //                 StartCoroutine(wordAnimation());
+	        //                 break;
 
-        //             default:
-	    //                 break;
-	    //         }
-        //     }
-	    // }	
+	        //             case SpawnAnimation.Circular:
+	        //                 playMusic();
+	        //                 StartCoroutine(wordAnimationCircular());
+	        //                 break;
+
+	        //             default:
+	        //                 break;
+	        //         }
+	        //     }
+	        // }	
+	    }
 	}
 
     void OnTriggerEnter(Collider other)

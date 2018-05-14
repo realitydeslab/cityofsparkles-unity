@@ -76,7 +76,7 @@ public class StageSwitcher : MonoBehaviour
 
     private void instantiateParticleCity(ParticleCity prefab)
     {
-        Instantiate(prefab);
+        CurrentParticleCity = Instantiate(prefab);
     }
 
     private void cleanup()

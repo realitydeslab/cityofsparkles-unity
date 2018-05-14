@@ -11,6 +11,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(TwitterDatabase))]
 public class TwitterManager : MonoBehaviour
 {
     public enum Sentiment
@@ -21,8 +22,6 @@ public class TwitterManager : MonoBehaviour
         Sad,
         Wish
     }
-
-    public string Database = "twitter_sf.db";
 
     public int MaxTweets = 100;
     public TweetComponent TweetObjectPrefab;
@@ -36,7 +35,7 @@ public class TwitterManager : MonoBehaviour
     public float PositiveRatio;
 
     private Dictionary<int, TweetComponent> tweetsSpawned = new Dictionary<int, TweetComponent>();
-    private Dictionary<int, DBTweet> tweetsToSpawn = new Dictionary<int, DBTweet>();
+    private Dictionary<int, SpawnRequest> tweetsToSpawn = new Dictionary<int, SpawnRequest>();
     private HashSet<int> tweetsToDelete = new HashSet<int>();
 
     private float lastSpawnTime;
@@ -47,35 +46,12 @@ public class TwitterManager : MonoBehaviour
     private Sentiment previousSentiment;
     private int triggerCount;
 
-    private SQLiteConnection dbConnection;
-
-    public class DBTweet
-    {
-        [PrimaryKey, AutoIncrement]
-        public int id { get; set; }
-        
-        public string clean_text { get; set; }
-
-        public double latitude { get; set; }
-        public double longitude { get; set; }
-
-        public double sentiment_positive { get; set; }
-        public double sentiment_neutral { get; set; }
-        public double sentiment_negative { get; set; }
-        public double sentiment_mixed { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("[{0:0.00}, {1:0.00}] {2}", sentiment_positive, sentiment_negative, clean_text);
-        }
-    }
+    private TwitterDatabase database;
 
     void Awake()
     {
         boundingColliders = GetComponents<Collider>();
-
-        string dbPath = Application.dataPath + "/StreamingAssets/" + Database;
-        dbConnection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
+        database = GetComponent<TwitterDatabase>();
     }
 
     void Start()
@@ -98,14 +74,6 @@ public class TwitterManager : MonoBehaviour
         {
             spawnIfNeeded();
             lastSpawnTime = Time.time;
-        }
-    }
-
-    void OnDestroy()
-    {
-        if (dbConnection != null)
-        {
-            dbConnection.Close();
         }
     }
 
@@ -158,19 +126,22 @@ public class TwitterManager : MonoBehaviour
     private void updateForSentiment()
     {
         // Find new set of tweets
-        List<DBTweet> newTweets = queryTweetsForPreferredSentiment();
+        List<TwitterDatabase.DBTweet> newTweets = database.QueryTweetsForSentiment(PreferredSentiment, MaxTweets);
 
         // Diff
         tweetsToSpawn.Clear();
         tweetsToDelete.Clear();
         tweetsToDelete.UnionWith(tweetsSpawned.Keys);
 
-        foreach (DBTweet tweet in newTweets)
+        foreach (TwitterDatabase.DBTweet tweet in newTweets)
         {
             tweetsToDelete.Remove(tweet.id);
             if (!tweetsSpawned.ContainsKey(tweet.id))
             {
-                tweetsToSpawn.Add(tweet.id, tweet);
+                tweetsToSpawn.Add(tweet.id, new SpawnRequest
+                {
+                    Data = tweet
+                });
             }
         }
     }
@@ -195,30 +166,37 @@ public class TwitterManager : MonoBehaviour
         {
             var entry = tweetsToSpawn.First();
             int id = entry.Key;
-            DBTweet dbTweet = entry.Value;
+            TwitterDatabase.DBTweet dbTweet = entry.Value.Data;
             tweetsToSpawn.Remove(entry.Key);
 
             if (!tweetsSpawned.ContainsKey(id))
             {
                 Tweet tweet = new Tweet(dbTweet);
 
-                Vector3 position;
-                // Skip tweets outside bounding box
-                if (tweet.Coordinates != null)
-                {
-                    position = mapModel.EarthToUnityWorld(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], 0);
-                    if (!insideColliders(position, boundingColliders))
-                    {
-                        spawnIfNeeded();
-                        return;
-                    }
+                Vector3? position = null;
+                bool geoPos = false;
 
-                    // Sample height
-                    position.y = sampleHeight(position);
-                }
-                else
+                if (entry.Value.Placeholder != null)
                 {
-                    position = sample(boundingColliders);
+                    position = entry.Value.Placeholder.transform.position;
+                }
+                else if (tweet.Coordinates != null)
+                {
+                    Vector3 candidatePos = mapModel.EarthToUnityWorld(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], 0);
+
+                    if (insideColliders(candidatePos, boundingColliders))
+                    {
+                        // Sample height
+                        candidatePos.y = sampleHeight(candidatePos);
+                        position = candidatePos;
+                        geoPos = true;
+                    }
+                    // Do not use position outside the bounding box
+                }
+
+                if (position == null)
+                {
+                    position = sample();
                 }
 
                 TweetComponent tweetObj = Instantiate(TweetObjectPrefab, transform);
@@ -228,13 +206,22 @@ public class TwitterManager : MonoBehaviour
                 tweetObj.Sentiment = tweet.Sentiment.Polarity;
                 tweetObj.TargetSentiment = PreferredSentiment;
 
+                if (entry.Value.Placeholder != null)
+                {
+                    entry.Value.Placeholder.transform.SetParent(tweetObj.transform);
+                }
+
                 // Spawn to actual geo location
-                if (tweet.Coordinates != null)
+                if (geoPos)
                 {
                     GeoObject geoObject = tweetObj.gameObject.AddComponent<GeoObject>();
-                    geoObject.SetWorldPosition(position);
+                    geoObject.SetWorldPosition(position.Value);
 
                     // geoObject.SetGeoLocation(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], randomPosition.y);
+                }
+                else
+                {
+                    tweetObj.transform.position = position.Value;
                 }
 
                 tweetsSpawned.Add(id, tweetObj);
@@ -293,19 +280,20 @@ public class TwitterManager : MonoBehaviour
         }
     }
 
-    private static Vector3 sample(Collider[] colliders) {
+    private Vector3 sample() {
         // TODO: Better sampling
         // TODO: Check if inside collider
 
-        int index = (int)Random.Range(0, colliders.Length);
-        Collider collider = colliders[index];
+        int index = (int)Random.Range(0, boundingColliders.Length);
+        Collider collider = boundingColliders[index];
 
         var bounds = collider.bounds;
 
         float x = Random.Range(bounds.min.x, bounds.max.x);
-        float y = Random.Range(bounds.min.y, bounds.max.y);
         float z = Random.Range(bounds.min.z, bounds.max.z);
-        var p = new Vector3(x, y, z);
+        var p = new Vector3(x, 0, z);
+
+        p.y = sampleHeight(p);
 
         return p;
     }
@@ -321,34 +309,6 @@ public class TwitterManager : MonoBehaviour
         }
 
         return false;
-    }
-
-    private List<DBTweet> queryTweetsForPreferredSentiment()
-    {
-        string query;
-
-        switch (PreferredSentiment)
-        {
-            case Sentiment.Neutral:
-            default:
-                query = "SELECT * FROM tweets WHERE sentiment_neutral > 0.8 ORDER BY RANDOM() LIMIT ?";
-                break;
-
-            case Sentiment.Happy:
-                query = "SELECT * FROM tweets WHERE sentiment_positive > 0.6 AND NOT (clean_text LIKE '%wish%' OR clean_text lIKE '%hope%') ORDER BY RANDOM() LIMIT ?";
-                break;
-
-            case Sentiment.Sad:
-                query = "SELECT * FROM tweets WHERE sentiment_negative > 0.5 ORDER BY RANDOM() LIMIT ?";
-                break;
-
-            case Sentiment.Wish:
-                query = "SELECT * FROM tweets WHERE sentiment_positive > 0.3 AND (clean_text LIKE '%wish%' OR clean_text lIKE '%hope%') ORDER BY RANDOM() LIMIT ?";
-                break;
-
-        }
-
-        return dbConnection.Query<DBTweet>(query,  MaxTweets);
     }
 
     void OnDrawGizmosSelected()
@@ -368,5 +328,11 @@ public class TwitterManager : MonoBehaviour
             heightMap.Bounds.size.z
         );
         Gizmos.DrawWireCube(center, size);
+    }
+
+    private struct SpawnRequest
+    {
+        public TwitterDatabase.DBTweet Data { get; set; }
+        public TweetPlaceholder Placeholder { get; set; }
     }
 }

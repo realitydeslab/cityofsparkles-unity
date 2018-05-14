@@ -34,7 +34,7 @@ namespace TwitterViz.DataModels
         [JsonProperty("coordinates")]
         public Coordinates Coordinates;
 
-        public Tweet(TwitterManager.DBTweet dbTweet)
+        public Tweet(TwitterDatabase.DBTweet dbTweet)
         {
             Id = dbTweet.id;
             Text = dbTweet.clean_text;
