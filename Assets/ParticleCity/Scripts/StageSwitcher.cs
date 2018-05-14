@@ -53,13 +53,13 @@ public class StageSwitcher : MonoBehaviour
 	{
 	    if (KeyboardSwitch)
 	    {
-	        int keyNum = Math.Min(9, ParticleCityPrefabs.Length);
+	        int keyNum = Math.Min(9, ParticleCityPrefabs.Length - 1);
 	        for (int i = 1; i <= keyNum; i++)
 	        {
 	            KeyCode key = (KeyCode) ((int) KeyCode.Alpha0 + i);
 	            if (Input.GetKeyDown(key))
 	            {
-	                SwitchToStage(i - 1);
+	                SwitchToStage(i);
 	            }
 	        }
 	    }

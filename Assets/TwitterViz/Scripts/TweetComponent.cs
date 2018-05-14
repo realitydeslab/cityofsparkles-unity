@@ -102,6 +102,12 @@ public class TweetComponent : MonoBehaviour
                 if (Trigger)
                 {
                     Trigger = false;
+                    if (!everTriggered)
+                    {
+                        manager.RecordFirstTrigger(this);
+                    }
+                    everTriggered = true;
+
                     if (approachingTarget != null)
                     {
                         setState(TweetState.TakingOff);
@@ -141,16 +147,16 @@ public class TweetComponent : MonoBehaviour
 	        player.forward = (transform.position - player.position);
 	    }
 
-	    if (Trigger)
-	    {
-	        Trigger = false;
+	    // if (Trigger)
+	    // {
+	    //     Trigger = false;
 
-	        if (!everTriggered)
-	        {
-	            manager.RecordFirstTrigger(this);
-	        }
+	    //     if (!everTriggered)
+	    //     {
+	    //         manager.RecordFirstTrigger(this);
+	    //     }
 
-	        everTriggered = true;
+	    //     everTriggered = true;
 
 	        //     if (Animation == SpawnAnimation.Unspecified)
 	        //     {
@@ -176,7 +182,7 @@ public class TweetComponent : MonoBehaviour
 	        //         }
 	        //     }
 	        // }	
-	    }
+	    // }
 	}
 
     void OnTriggerEnter(Collider other)

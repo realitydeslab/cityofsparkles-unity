@@ -8,21 +8,37 @@ public abstract class ParticleMotionBase : MonoBehaviour {
     public Material ParticleMotionBlitMaterialPrefab;
 
     protected Material particleMotionBlitMaterial;
-    private RenderTexture particleVelocityBuffer1;
-    private RenderTexture particleVelocityBuffer2;
 
-    private RenderTexture particleOffsetBuffer1;
-    private RenderTexture particleOffsetBuffer2;
+    private static RenderTexture particleVelocityBuffer1;
+    private static RenderTexture particleVelocityBuffer2;
+
+    private static RenderTexture particleOffsetBuffer1;
+    private static RenderTexture particleOffsetBuffer2;
 
 	public virtual void Start ()
 	{
 	    particleMotionBlitMaterial = ParticleMotionBlitMaterialPrefab; 
         particleMotionBlitMaterial.SetTexture("_BasePositionTex", BasePositionTexture);
 
-	    particleOffsetBuffer1 = createRenderTexture();
-	    particleOffsetBuffer2 = createRenderTexture();
-	    particleVelocityBuffer1 = createRenderTexture();
-	    particleVelocityBuffer2 = createRenderTexture();
+	    if (particleOffsetBuffer1 == null)
+	    {
+	        particleOffsetBuffer1 = createRenderTexture();
+	    }
+
+	    if (particleOffsetBuffer2 == null)
+	    {
+	        particleOffsetBuffer2 = createRenderTexture();
+	    }
+
+	    if (particleVelocityBuffer1 == null)
+	    {
+	        particleVelocityBuffer1 = createRenderTexture();
+	    }
+
+	    if (particleOffsetBuffer2 == null)
+	    {
+            particleVelocityBuffer2 = createRenderTexture();
+        }
 
         Graphics.Blit(null, particleVelocityBuffer1, particleMotionBlitMaterial, 0);
         Graphics.Blit(null, particleVelocityBuffer2, particleMotionBlitMaterial, 0);

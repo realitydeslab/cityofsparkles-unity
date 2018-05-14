@@ -38,6 +38,9 @@ public class TwitterManager : MonoBehaviour
     [Header("Debugging")]
     public float PositiveRatio;
 
+    [Header("Internal")]
+    public int TriggerCount;
+
     private Dictionary<int, TweetComponent> tweetsSpawned = new Dictionary<int, TweetComponent>();
     private Dictionary<int, SpawnRequest> tweetsToSpawn = new Dictionary<int, SpawnRequest>();
     private HashSet<int> tweetsToDelete = new HashSet<int>();
@@ -48,7 +51,6 @@ public class TwitterManager : MonoBehaviour
     private MapModel mapModel;
 
     private Sentiment previousSentiment;
-    private int triggerCount;
 
     private TwitterDatabase database;
 
@@ -81,6 +83,47 @@ public class TwitterManager : MonoBehaviour
             previousSentiment = PreferredSentiment;
             Debug.Log("Sentiment change: " + PreferredSentiment);
         }
+        else
+        {
+            switch (PreferredSentiment)
+            {
+                case Sentiment.Neutral:
+                default:
+                    if (TriggerCount > 3)
+                    {
+                        TriggerCount = 0;
+                        PreferredSentiment = Sentiment.Happy;
+                    }
+                    break;
+                
+                case Sentiment.Happy:
+                    if (TriggerCount > 3)
+                    {
+                        TriggerCount = 0;
+                        PreferredSentiment = Sentiment.Sad;
+                        StageSwitcher.Instance.SwitchToStage(2);
+                    }
+                    break;
+                
+                case Sentiment.Sad:
+                    if (TriggerCount > 3)
+                    {
+                        TriggerCount = 0;
+                        PreferredSentiment = Sentiment.Wish;
+                        StageSwitcher.Instance.SwitchToStage(3);
+                    }
+                    break;
+                
+                case Sentiment.Wish:
+                    if (TriggerCount > 5)
+                    {
+                        TriggerCount = 0;
+                        PreferredSentiment = Sentiment.Neutral;
+                        StageSwitcher.Instance.SwitchToStage(1);
+                    }
+                    break;
+            }
+        }
 
         if (Time.time - lastSpawnTime > SpawnInterval)
         {
@@ -91,50 +134,11 @@ public class TwitterManager : MonoBehaviour
 
     public void RecordFirstTrigger(TweetComponent tweet)
     {
-        triggerCount++;
+        TriggerCount++;
 
         if (tweet.TargetSentiment == PreferredSentiment)
         {
             AkSoundEngine.SetState("RichSentimentTest", PreferredSentiment.ToString());
-        }
-
-        switch (PreferredSentiment)
-        {
-            case Sentiment.Neutral:
-            default:
-                if (triggerCount > 3)
-                {
-                    triggerCount = 0;
-                    PreferredSentiment = Sentiment.Happy;
-                }
-                break;
-            
-            case Sentiment.Happy:
-                if (triggerCount > 3)
-                {
-                    triggerCount = 0;
-                    PreferredSentiment = Sentiment.Sad;
-                    StageSwitcher.Instance.SwitchToStage(2);
-                }
-                break;
-            
-            case Sentiment.Sad:
-                if (triggerCount > 3)
-                {
-                    triggerCount = 0;
-                    PreferredSentiment = Sentiment.Wish;
-                    StageSwitcher.Instance.SwitchToStage(3);
-                }
-                break;
-            
-            case Sentiment.Wish:
-                if (triggerCount > 5)
-                {
-                    triggerCount = 0;
-                    PreferredSentiment = Sentiment.Neutral;
-                    StageSwitcher.Instance.SwitchToStage(1);
-                }
-                break;
         }
     }
 
