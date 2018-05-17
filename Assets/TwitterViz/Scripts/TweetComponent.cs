@@ -67,7 +67,7 @@ public class TweetComponent : MonoBehaviour
     [Range(-1, 1)]
     public double Sentiment;
 
-    public ISpawnSource SpawnSource;
+    public SpawnSourceNode SpawnSource;
     public object SpawnSourceUserData;
 
     private Vector3 originalPosition;
@@ -81,6 +81,8 @@ public class TweetComponent : MonoBehaviour
     private float stateChangeTime;
     private float speedLimit;
     private GuidingLight guidingLight;
+
+    private bool addedToActiveList = false;
 
     void Awake()
     {
@@ -105,7 +107,10 @@ public class TweetComponent : MonoBehaviour
                     Trigger = false;
                     if (!everTriggered)
                     {
-                        manager.RecordFirstTrigger(this);
+                        if (SpawnSource != null)
+                        {
+                            SpawnSource.OnTweetTriggered(this);
+                        }
                     }
                     everTriggered = true;
 
@@ -205,6 +210,20 @@ public class TweetComponent : MonoBehaviour
         // }
     }
 
+    void OnDestroy()
+    {
+        if (addedToActiveList)
+        {
+            ParticleCity.Current.RemoveActiveGameObject(gameObject);
+            addedToActiveList = false;
+        }
+
+        if (SpawnSource != null)
+        {
+            SpawnSource.OnTweetDestroy(this);
+        }
+    }
+
     public void MarkForDestroy()
     {
         GuidingLight light = GetComponent<GuidingLight>();
@@ -260,7 +279,7 @@ public class TweetComponent : MonoBehaviour
 
                 yield return null;
             }
-            StartCoroutine(wordFadeOut(tmpText, FadeOutDuration, i == 0));
+            StartCoroutine(wordFadeOut(tmpText, FadeOutDuration, i == 0, i == Tweet.Words.Length - 1));
         }
 
         isPlaying = false;
@@ -314,6 +333,7 @@ public class TweetComponent : MonoBehaviour
         Vector3 lightVelocity = Vector3.zero;
         // guidingLight.LightUpForSpawning();
         StageSwitcher.Instance.CurrentParticleCity.AddActiveGameObject(guidingLight.RenderPart.gameObject);
+        addedToActiveList = true;
 
         Vector3 startingPoint = textObjects[0].transform.position;
         while ((startingPoint - guidingLight.RenderPart.position).sqrMagnitude > SpawnStartingDistanceThreshold * SpawnStartingDistanceThreshold)
@@ -333,15 +353,17 @@ public class TweetComponent : MonoBehaviour
         // Animation
         guidingLight.TurnOff();
         StageSwitcher.Instance.CurrentParticleCity.RemoveActiveGameObject(guidingLight.RenderPart.gameObject, 1);
+        addedToActiveList = false;
         setState(TweetState.Spawning);
         playMusic();
         Vector3 lightTargetPos = transform.position;
         for (int i = 0; i < textObjects.Count; i++)
         {
             bool isFirst = (i == 0);
+            bool isLast = (i == textObjects.Count - 1);
             TMP_Text text = textObjects[i];
             lightTargetPos = (i == textObjects.Count - 1) ? text.transform.position : textObjects[i + 1].transform.position;
-            StartCoroutine(circularWordFadeIn(text, isFirst));
+            StartCoroutine(circularWordFadeIn(text, isFirst, isLast));
 
             float time = 0;
             while (time < CircularWordInterval)
@@ -367,19 +389,10 @@ public class TweetComponent : MonoBehaviour
             yield return null;
         }
 
-        if (guidingLight.enabled)
-        {
-            guidingLight.MarkForDestroy();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         isPlaying = false;
     }
 
-    private IEnumerator circularWordFadeIn(TMP_Text text, bool isFirst)
+    private IEnumerator circularWordFadeIn(TMP_Text text, bool isFirst, bool isLast)
     {
         StageSwitcher.Instance.CurrentParticleCity.AddActiveGameObject(text.gameObject);
 
@@ -420,7 +433,7 @@ public class TweetComponent : MonoBehaviour
         finalOffset.y = CircularOffset;
         text.transform.localPosition = finalOffset;
 
-        StartCoroutine(wordFadeOut(text, CircularFadeOutDuration, isFirst));
+        StartCoroutine(wordFadeOut(text, CircularFadeOutDuration, isFirst, isLast));
         StageSwitcher.Instance.CurrentParticleCity.RemoveActiveGameObject(text.gameObject, 1);
     }
 
@@ -474,7 +487,7 @@ public class TweetComponent : MonoBehaviour
         yield return null;
     }
 
-    private IEnumerator wordFadeOut(TMP_Text word, float duration, bool isFirst)
+    private IEnumerator wordFadeOut(TMP_Text word, float duration, bool isFirst, bool isLast)
     {
         float time = 0;
         while (time < duration)
@@ -486,9 +499,21 @@ public class TweetComponent : MonoBehaviour
 
         Destroy(word.gameObject);
 
-        if (isFirst)
+        if (isFirst && SpawnSource != null)
         {
-            manager.RecordRevealed(this);
+            SpawnSource.OnTweetRevealed(this);
+        }
+
+        if (isLast)
+        {
+            if (guidingLight.enabled)
+            {
+                guidingLight.MarkForDestroy();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

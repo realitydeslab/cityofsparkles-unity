@@ -76,6 +76,11 @@ public class ShakeEscapeMotion : ParticleMotionBase
         int i;
         for (i = 0; i < Math.Min(8, ParticleCity.Current.ActiveGameObjects.Count); i++)
         {
+            if (ParticleCity.Current.ActiveGameObjects[i] == null)
+            {
+                continue;
+            }
+
             Vector3 position = ParticleCity.Current.ActiveGameObjects[i].transform.position;
             particleMotionBlitMaterial.SetVector("_ActiveObjectPos" + i, new Vector4(position.x, position.y, position.z, 1));
         }

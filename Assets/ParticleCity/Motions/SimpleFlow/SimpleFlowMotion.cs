@@ -78,6 +78,11 @@ public class SimpleFlowMotion : ParticleMotionBase {
         int objectIndex = 0;
         for (int i = 0; i < ParticleCity.Current.ActiveGameObjects.Count; i++)
         {
+            if (ParticleCity.Current.ActiveGameObjects[i] == null)
+            {
+                continue;
+            }
+
             ObjectTrailing[] objectTrailings = ParticleCity.Current.ActiveGameObjects[i].GetComponents<ObjectTrailing>();
             if (objectTrailings.Length > 0 && objectTrailings[0].Frames != null && objectTrailings[0].Frames.Length > 0)
             {

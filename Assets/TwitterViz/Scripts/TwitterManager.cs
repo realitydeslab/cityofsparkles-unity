@@ -36,10 +36,6 @@ public class TwitterManager : MonoBehaviour
     public float HeightRangeOnGround = 200;
     public float MinHeightAboveGround = 30;
 
-    [Header("Waypoint System")] 
-    public HashSet<TweetPlaceholderNode> ActivePlaceholders = new HashSet<TweetPlaceholderNode>();
-    public TweetPlaceholderNode[] NextPlaceholders;
-
     [Header("Debugging")]
     public float PositiveRatio;
 
@@ -71,50 +67,10 @@ public class TwitterManager : MonoBehaviour
 
     void Update()
     {
-        if (NextPlaceholders != null && NextPlaceholders.Length > 0)
-        {
-            updateForPlaceholder(NextPlaceholders);
-        }
-        else if (ActivePlaceholders.Count > 0)
-        {
-            // Wait
-        }
-
         if (Time.time - lastSpawnTime > SpawnInterval)
         {
             spawnIfNeeded();
             lastSpawnTime = Time.time;
-        }
-    }
-
-    public void RecordFirstTrigger(TweetComponent tweet)
-    {
-        if (tweet.SpawnSource != null)
-        {
-            tweet.SpawnSource.OnTweetTriggered(tweet);
-        }
-    }
-
-    public void RecordRevealed(TweetComponent tweet)
-    {
-        if (tweet.SpawnSource != null)
-        {
-            tweet.SpawnSource.OnTweetRevealed(tweet);
-        }
-
-        if (ActivePlaceholders.Count > 0)
-        {
-            TweetPlaceholderNode placeholder = tweet.GetComponentInChildren<TweetPlaceholderNode>();
-            if (placeholder != null && ActivePlaceholders.Contains(placeholder))
-            {
-                ActivePlaceholders.Clear();
-                NextPlaceholders = placeholder.Next;
-
-                if (placeholder.SwitchToStage >= 0)
-                {
-                    StageSwitcher.Instance.SwitchToStage(placeholder.SwitchToStage);
-                }
-            }
         }
     }
 
@@ -149,39 +105,6 @@ public class TwitterManager : MonoBehaviour
                 tweetsToSpawn.Add(t.id, new SpawnRequest { Data = t });
             }
         }
-    }
-
-    private void updateForPlaceholder(TweetPlaceholderNode[] placeholders)
-    {
-        if (placeholders == null || placeholders.Length == 0)
-        {
-            return;
-        }
-
-        tweetsToSpawn.Clear();
-        tweetsToDelete.Clear();
-        tweetsToDelete.UnionWith(tweetsSpawned.Keys);
-
-        foreach (TweetPlaceholderNode placeholder in placeholders)
-        {
-            TwitterDatabase.DBTweet data = placeholder.QueryData(Database);
-            if (data == null)
-            {
-                updateForPlaceholder(placeholder.Next);
-                Destroy(placeholder);
-                break;
-            }
-
-            tweetsToSpawn.Add(data.id, new SpawnRequest()
-            {
-                Data = data,
-                Source = placeholder
-            });
-
-            ActivePlaceholders.Add(placeholder);
-        }
-
-        NextPlaceholders = null;
     }
 
     private void spawnIfNeeded()
@@ -368,6 +291,6 @@ public class TwitterManager : MonoBehaviour
     public struct SpawnRequest
     {
         public TwitterDatabase.DBTweet Data { get; set; }
-        public ISpawnSource Source { get; set; }
+        public SpawnSourceNode Source { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class SentimentSpawnNode : StoryNode, ISpawnSource {
+public class SentimentSpawnNode : SpawnSourceNode {
 
     public enum Sentiment
     {
@@ -29,17 +29,12 @@ public class SentimentSpawnNode : StoryNode, ISpawnSource {
         AkSoundEngine.SetState("RichSentimentTest", PreferredSentiment.ToString());
     }
 
-    public Vector3? GetPosition(TwitterDatabase.DBTweet data)
-    {
-        return null;
-    }
-
-    public void OnTweetSpawned(TweetComponent tweet)
+    public override void OnTweetSpawned(TweetComponent tweet)
     {
         tweet.SpawnSourceUserData = PreferredSentiment;
     }
 
-    public void OnTweetRevealed(TweetComponent obj)
+    public override void OnTweetRevealed(TweetComponent obj)
     {
         if ((Sentiment)obj.SpawnSourceUserData == PreferredSentiment)
         {
@@ -47,7 +42,7 @@ public class SentimentSpawnNode : StoryNode, ISpawnSource {
         }
     }
 
-    public void OnTweetTriggered(TweetComponent tweet)
+    public override void OnTweetTriggered(TweetComponent tweet)
     {
         TriggerCount++;
     }
