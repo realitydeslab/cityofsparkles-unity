@@ -29,32 +29,22 @@ public class TwitterManager : MonoBehaviour
         }
     }
 
-    public enum Sentiment
-    {
-        Unspecified = 0,
-        Neutral,
-        Happy,
-        Sad,
-        Wish
-    }
-
     public int MaxTweets = 100;
     public TweetComponent TweetObjectPrefab;
-    public Sentiment PreferredSentiment;
     public float SpawnInterval = 1;
     public AkAmbient BgmAkAmbient;
     public float HeightRangeOnGround = 200;
     public float MinHeightAboveGround = 30;
 
     [Header("Waypoint System")] 
-    public HashSet<TweetPlaceholder> ActivePlaceholders = new HashSet<TweetPlaceholder>();
-    public TweetPlaceholder[] NextPlaceholders;
+    public HashSet<TweetPlaceholderNode> ActivePlaceholders = new HashSet<TweetPlaceholderNode>();
+    public TweetPlaceholderNode[] NextPlaceholders;
 
     [Header("Debugging")]
     public float PositiveRatio;
 
     [Header("Internal")]
-    public int TriggerCount;
+    public TwitterDatabase Database;
 
     private Dictionary<int, TweetComponent> tweetsSpawned = new Dictionary<int, TweetComponent>();
     private Dictionary<int, SpawnRequest> tweetsToSpawn = new Dictionary<int, SpawnRequest>();
@@ -67,18 +57,15 @@ public class TwitterManager : MonoBehaviour
 
     private Sentiment previousSentiment;
 
-    private TwitterDatabase database;
 
     void Awake()
     {
         boundingColliders = GetComponents<Collider>();
-        database = GetComponent<TwitterDatabase>();
+        Database = GetComponent<TwitterDatabase>();
     }
 
     void Start()
     {
-        AkSoundEngine.SetState("RichSentimentTest", PreferredSentiment.ToString());
-
         mapModel = GetComponentInParent<MapModel>();
     }
 
@@ -92,53 +79,6 @@ public class TwitterManager : MonoBehaviour
         {
             // Wait
         }
-        else if (PreferredSentiment != previousSentiment)
-        {
-            updateForSentiment();
-            previousSentiment = PreferredSentiment;
-            Debug.Log("Sentiment change: " + PreferredSentiment);
-        }
-        else
-        {
-            switch (PreferredSentiment)
-            {
-                case Sentiment.Neutral:
-                default:
-                    if (TriggerCount > 3)
-                    {
-                        TriggerCount = 0;
-                        PreferredSentiment = Sentiment.Happy;
-                    }
-                    break;
-                
-                case Sentiment.Happy:
-                    if (TriggerCount > 3)
-                    {
-                        TriggerCount = 0;
-                        PreferredSentiment = Sentiment.Sad;
-                        StageSwitcher.Instance.SwitchToStage(2);
-                    }
-                    break;
-                
-                case Sentiment.Sad:
-                    if (TriggerCount > 3)
-                    {
-                        TriggerCount = 0;
-                        PreferredSentiment = Sentiment.Wish;
-                        StageSwitcher.Instance.SwitchToStage(3);
-                    }
-                    break;
-                
-                case Sentiment.Wish:
-                    if (TriggerCount > 5)
-                    {
-                        TriggerCount = 0;
-                        PreferredSentiment = Sentiment.Neutral;
-                        StageSwitcher.Instance.SwitchToStage(1);
-                    }
-                    break;
-            }
-        }
 
         if (Time.time - lastSpawnTime > SpawnInterval)
         {
@@ -149,19 +89,22 @@ public class TwitterManager : MonoBehaviour
 
     public void RecordFirstTrigger(TweetComponent tweet)
     {
-        TriggerCount++;
-
-        if (tweet.TargetSentiment == PreferredSentiment)
+        if (tweet.SpawnSource != null)
         {
-            AkSoundEngine.SetState("RichSentimentTest", PreferredSentiment.ToString());
+            tweet.SpawnSource.OnTweetTriggered(tweet);
         }
     }
 
     public void RecordRevealed(TweetComponent tweet)
     {
+        if (tweet.SpawnSource != null)
+        {
+            tweet.SpawnSource.OnTweetRevealed(tweet);
+        }
+
         if (ActivePlaceholders.Count > 0)
         {
-            TweetPlaceholder placeholder = tweet.GetComponentInChildren<TweetPlaceholder>();
+            TweetPlaceholderNode placeholder = tweet.GetComponentInChildren<TweetPlaceholderNode>();
             if (placeholder != null && ActivePlaceholders.Contains(placeholder))
             {
                 ActivePlaceholders.Clear();
@@ -208,16 +151,7 @@ public class TwitterManager : MonoBehaviour
         }
     }
 
-    private void updateForSentiment()
-    {
-        // Find new set of tweets
-        List<TwitterDatabase.DBTweet> newTweets = database.QueryTweetsForSentiment(PreferredSentiment, MaxTweets);
-
-        ClearAll();
-        Enqueue(newTweets);
-    }
-
-    private void updateForPlaceholder(TweetPlaceholder[] placeholders)
+    private void updateForPlaceholder(TweetPlaceholderNode[] placeholders)
     {
         if (placeholders == null || placeholders.Length == 0)
         {
@@ -228,9 +162,9 @@ public class TwitterManager : MonoBehaviour
         tweetsToDelete.Clear();
         tweetsToDelete.UnionWith(tweetsSpawned.Keys);
 
-        foreach (TweetPlaceholder placeholder in placeholders)
+        foreach (TweetPlaceholderNode placeholder in placeholders)
         {
-            TwitterDatabase.DBTweet data = placeholder.QueryData(database);
+            TwitterDatabase.DBTweet data = placeholder.QueryData(Database);
             if (data == null)
             {
                 updateForPlaceholder(placeholder.Next);
@@ -241,7 +175,7 @@ public class TwitterManager : MonoBehaviour
             tweetsToSpawn.Add(data.id, new SpawnRequest()
             {
                 Data = data,
-                Placeholder = placeholder
+                Source = placeholder
             });
 
             ActivePlaceholders.Add(placeholder);
@@ -259,7 +193,11 @@ public class TwitterManager : MonoBehaviour
             tweetsToDelete.Remove(index);
             if (tweetsSpawned.ContainsKey(index))
             {
-                tweetsSpawned[index].MarkForDestroy();
+                if (tweetsSpawned[index] != null)
+                {
+                    tweetsSpawned[index].MarkForDestroy();
+                }
+
                 // Destroy(tweetsSpawned[index].gameObject);
                 tweetsSpawned.Remove(index);
             }
@@ -277,14 +215,10 @@ public class TwitterManager : MonoBehaviour
             {
                 Tweet tweet = new Tweet(dbTweet);
 
-                Vector3? position = null;
+                Vector3? position = entry.Value.Source == null ? null : entry.Value.Source.GetPosition(entry.Value.Data);
                 bool geoPos = false;
 
-                if (entry.Value.Placeholder != null)
-                {
-                    position = entry.Value.Placeholder.transform.position;
-                }
-                else if (tweet.Coordinates != null)
+                if (!position.HasValue && tweet.Coordinates != null)
                 {
                     Vector3 candidatePos = mapModel.EarthToUnityWorld(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], 0);
 
@@ -295,10 +229,9 @@ public class TwitterManager : MonoBehaviour
                         position = candidatePos;
                         geoPos = true;
                     }
-                    // Do not use position outside the bounding box
                 }
 
-                if (position == null)
+                if (!position.HasValue)
                 {
                     position = sample();
                 }
@@ -308,11 +241,10 @@ public class TwitterManager : MonoBehaviour
                 tweetObj.Tweet = tweet;
                 tweetObj.Text = tweet.Text;
                 tweetObj.Sentiment = tweet.Sentiment.Polarity;
-                tweetObj.TargetSentiment = PreferredSentiment;
-
-                if (entry.Value.Placeholder != null)
+                tweetObj.SpawnSource = entry.Value.Source;
+                if (tweetObj.SpawnSource != null)
                 {
-                    entry.Value.Placeholder.transform.SetParent(tweetObj.transform);
+                    tweetObj.SpawnSource.OnTweetSpawned(tweetObj);
                 }
 
                 // Spawn to actual geo location
@@ -386,7 +318,6 @@ public class TwitterManager : MonoBehaviour
 
     private Vector3 sample() {
         // TODO: Better sampling
-        // TODO: Check if inside collider
 
         int index = (int)Random.Range(0, boundingColliders.Length);
         Collider collider = boundingColliders[index];
@@ -437,6 +368,6 @@ public class TwitterManager : MonoBehaviour
     public struct SpawnRequest
     {
         public TwitterDatabase.DBTweet Data { get; set; }
-        public TweetPlaceholder Placeholder { get; set; }
+        public ISpawnSource Source { get; set; }
     }
 }

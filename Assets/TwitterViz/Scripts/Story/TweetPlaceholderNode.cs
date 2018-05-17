@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TweetPlaceholder : StoryNode
+public class TweetPlaceholderNode : StoryNode, ISpawnSource
 {
-    public TweetPlaceholder[] Next;
+    public TweetPlaceholderNode[] Next;
     public int SwitchToStage = -1;
 
     public TwitterDatabase.DBTweet QueryData(TwitterDatabase database)
@@ -16,6 +16,25 @@ public class TweetPlaceholder : StoryNode
         }
 
         return result;
+    }
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+    }
+
+    public void OnTweetRevealed(TweetComponent obj)
+    {
+        Destroy(gameObject);
+    }
+
+    public void OnTweetSpawned(TweetComponent tweet)
+    {
+    }
+
+    public void OnTweetTriggered(TweetComponent tweet)
+    {
+
     }
 
     void OnDrawGizmosSelected()
@@ -30,5 +49,10 @@ public class TweetPlaceholder : StoryNode
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(transform.position, Next[i].transform.position);
         }
+    }
+
+    public Vector3? GetPosition(TwitterDatabase.DBTweet data)
+    {
+        return transform.position;
     }
 }

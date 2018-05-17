@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using SQLite4Unity3d;
+using TwitterViz.DataModels;
 using UnityEngine;
+using Sentiment = SentimentSpawnNode.Sentiment;
 
 public class TwitterDatabase : MonoBehaviour {
 
@@ -30,26 +32,26 @@ public class TwitterDatabase : MonoBehaviour {
 
     private SQLiteConnection dbConnection;
 
-    public List<DBTweet> QueryTweetsForSentiment(TwitterManager.Sentiment sentiment, int limit)
+    public List<DBTweet> QueryTweetsForSentiment(Sentiment sentiment, int limit)
     {
         string query;
 
         switch (sentiment)
         {
-            case TwitterManager.Sentiment.Neutral:
+            case Sentiment.Neutral:
             default:
                 query = "SELECT * FROM tweets WHERE sentiment_neutral > 0.8 ORDER BY RANDOM() LIMIT ?";
                 break;
 
-            case TwitterManager.Sentiment.Happy:
+            case Sentiment.Happy:
                 query = "SELECT * FROM tweets WHERE sentiment_positive > 0.6 AND NOT (clean_text LIKE '%wish%' OR clean_text lIKE '%hope%') ORDER BY RANDOM() LIMIT ?";
                 break;
 
-            case TwitterManager.Sentiment.Sad:
+            case Sentiment.Sad:
                 query = "SELECT * FROM tweets WHERE sentiment_negative > 0.5 ORDER BY RANDOM() LIMIT ?";
                 break;
 
-            case TwitterManager.Sentiment.Wish:
+            case Sentiment.Wish:
                 query = "SELECT * FROM tweets WHERE sentiment_positive > 0.3 AND (clean_text LIKE '%wish%' OR clean_text lIKE '%hope%') ORDER BY RANDOM() LIMIT ?";
                 break;
 
@@ -67,18 +69,27 @@ public class TwitterDatabase : MonoBehaviour {
 
     void Awake()
     {
-        string dbPath = Application.dataPath + "/StreamingAssets/" + Database;
-        dbConnection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
+        checkConnection();
     }
 
-	void Start () {
+	void Start () 
+	{
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update () 
+	{
+        checkConnection();
 	}
+
+    private void checkConnection()
+    {
+	    if (dbConnection == null)
+	    {
+            string dbPath = Application.dataPath + "/StreamingAssets/" + Database;
+            dbConnection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
+	    }
+    }
 
     void OnDestroy()
     {

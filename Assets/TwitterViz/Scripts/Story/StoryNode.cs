@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface ISpawnSource
+{
+    Vector3? GetPosition(TwitterDatabase.DBTweet data);
+
+    void OnTweetSpawned(TweetComponent tweet);
+    void OnTweetTriggered(TweetComponent tweet);
+    void OnTweetRevealed(TweetComponent tweet);
+}
+
 public class StoryNode : MonoBehaviour
 {
     public bool EnableOnAwake;
@@ -14,7 +23,7 @@ public class StoryNode : MonoBehaviour
         }
     }
 
-	public virtual void Start () {
+	public virtual void Start() {
 		
 	}
 
@@ -22,9 +31,19 @@ public class StoryNode : MonoBehaviour
     {
 
     }
+
+    public virtual void OnDisable()
+    {
+
+    }
 	
-	public virtual void Update () 
+	public virtual void Update() 
 	{
 		
 	}
+
+    public virtual void OnDestroy()
+    {
+
+    }
 }

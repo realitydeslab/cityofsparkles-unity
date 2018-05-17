@@ -67,7 +67,8 @@ public class TweetComponent : MonoBehaviour
     [Range(-1, 1)]
     public double Sentiment;
 
-    public TwitterManager.Sentiment TargetSentiment;
+    public ISpawnSource SpawnSource;
+    public object SpawnSourceUserData;
 
     private Vector3 originalPosition;
     private bool isPlaying;
@@ -365,7 +366,15 @@ public class TweetComponent : MonoBehaviour
             guidingLight.RenderPart.forward = lightVelocity.normalized;
             yield return null;
         }
-        guidingLight.MarkForDestroy();
+
+        if (guidingLight.enabled)
+        {
+            guidingLight.MarkForDestroy();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
         isPlaying = false;
     }

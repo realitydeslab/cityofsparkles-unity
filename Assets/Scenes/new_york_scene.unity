@@ -299,6 +299,7 @@ Transform:
   - {fileID: 1831152225}
   - {fileID: 680109056}
   - {fileID: 1860684494}
+  - {fileID: 1160525530}
   m_Father: {fileID: 1717712991}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -328,15 +329,14 @@ MonoBehaviour:
   MaxTweets: 500
   TweetObjectPrefab: {fileID: 114265464811481166, guid: fa727355f4449ca4b9426d1456099293,
     type: 2}
-  PreferredSentiment: 1
   SpawnInterval: 0.02
   BgmAkAmbient: {fileID: 1434208111}
   HeightRangeOnGround: 100
   MinHeightAboveGround: 30
-  NextPlaceholders:
-  - {fileID: 1588189358}
+  NextPlaceholders: []
   PositiveRatio: 0
   TriggerCount: 0
+  Database: {fileID: 0}
 --- !u!65 &110792486
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -415,11 +415,11 @@ Prefab:
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1194613027}
+      objectReference: {fileID: 1067166271}
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1674004826}
+      objectReference: {fileID: 1212906759}
     - target: {fileID: 2082592, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_ClearFlags
       value: 2
@@ -851,6 +851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882013b907b785a4da3724945c636a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnableOnAwake: 0
   Next: []
   SwitchToStage: 1
 --- !u!1001 &770198128
@@ -939,6 +940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882013b907b785a4da3724945c636a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnableOnAwake: 0
   Next:
   - {fileID: 1831152226}
   - {fileID: 680109057}
@@ -1034,7 +1036,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1194613027
+--- !u!43 &1067166271
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1180,6 +1182,82 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
+--- !u!1 &1160525529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1160525530}
+  - component: {fileID: 1160525531}
+  m_Layer: 0
+  m_Name: SentimentSpawnNode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1160525530
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1160525529}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 110792483}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1160525531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1160525529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a26194e7facb68488113af25f71f287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnableOnAwake: 1
+  PreferredSentiment: 1
+  TriggerCount: 0
+--- !u!21 &1212906759
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1372440453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,6 +1591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882013b907b785a4da3724945c636a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnableOnAwake: 0
   Next:
   - {fileID: 2139443729}
   SwitchToStage: 0
@@ -1576,39 +1655,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.181761, y: 0.03994551, z: 12.977813}
   m_Center: {x: 0.04744197, y: -0.013762346, z: -0.23599708}
---- !u!21 &1674004826
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1689145147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,6 +1814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882013b907b785a4da3724945c636a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnableOnAwake: 0
   Next: []
   SwitchToStage: 1
 --- !u!1 &1860684493
@@ -1810,6 +1857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882013b907b785a4da3724945c636a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnableOnAwake: 0
   Next: []
   SwitchToStage: 1
 --- !u!1001 &1863584758
@@ -1924,6 +1972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 882013b907b785a4da3724945c636a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnableOnAwake: 0
   Next:
   - {fileID: 795104398}
   SwitchToStage: 0
