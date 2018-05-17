@@ -102,6 +102,8 @@ Shader "Particle City/Particle City"
 
                     output.pos.y += _VolumeDeltaHeight * (max(0, pos.y - 80) / (250 - 80));
 
+                    output.pos = mul(unity_ObjectToWorld, output.pos);
+
                     output.normal = v.normal;
                     output.tex0 = v.texcoord;
 

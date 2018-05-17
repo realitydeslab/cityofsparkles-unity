@@ -23,11 +23,6 @@ public class DensityMap : MonoBehaviour
     public float DebugDensityNorm = 256.0f;
     private Texture2D debugTexture;
 
-    void Awake()
-    {
-        pixelsCache = Data.DensityMapTexture.GetPixels32();
-    }
-
     void Start () 
     {
         Bounds = GetComponent<BoxCollider>().bounds;
@@ -169,10 +164,4 @@ public class DensityMap : MonoBehaviour
             }
         }
     }
-}
-
-public class DensityMapData : ScriptableObject
-{
-    public Texture3D DensityMapTexture;
-    public int GaussianBlurRadius;
 }
