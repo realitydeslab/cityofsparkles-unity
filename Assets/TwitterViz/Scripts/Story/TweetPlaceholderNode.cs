@@ -6,26 +6,10 @@ public class TweetPlaceholderNode : SpawnSourceNode
 {
     public StoryNode[] Next;
     public int SwitchToStage = -1;
+    public string QueryTag;
 
     private TwitterDatabase.DBTweet tweet;
     private bool spawned;
-
-    public TwitterDatabase.DBTweet QueryData(TwitterDatabase database)
-    {
-        TwitterDatabase.DBTweet result = database.QueryOne();
-        if (result == null)
-        {
-            Debug.LogWarning("Cannot find tweet for placeholder. ", this);
-        }
-
-        return result;
-    }
-
-    public override void OnEnable()
-    {
-        base.OnEnable();
-
-    }
 
     public override void Update()
     {
@@ -33,10 +17,14 @@ public class TweetPlaceholderNode : SpawnSourceNode
 
         if (tweet == null)
         {
-            tweet = TwitterManager.Instance.Database.QueryOne();
-            if (tweet == null)
+            IList<TwitterDatabase.DBTweet> tweets = TwitterManager.Instance.Database.QueryForTags(QueryTag, 1);
+            if (tweets.Count == 0)
             {
                 Debug.LogWarning("Cannot find tweet for placeholder. ", this);
+            }
+            else
+            {
+                tweet = tweets[0];
             }
         }
 

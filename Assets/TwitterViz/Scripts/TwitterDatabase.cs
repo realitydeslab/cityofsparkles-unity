@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using SQLite4Unity3d;
 using TwitterViz.DataModels;
@@ -34,13 +35,14 @@ public class TwitterDatabase : MonoBehaviour {
 
     public List<DBTweet> QueryTweetsForSentiment(Sentiment sentiment, int limit)
     {
+        checkConnection();
         string query;
 
         switch (sentiment)
         {
             case Sentiment.Neutral:
             default:
-                query = "SELECT * FROM tweets WHERE sentiment_neutral > 0.8 ORDER BY RANDOM() LIMIT ?";
+                query = "SELECT * FROM tweets ORDER BY RANDOM() LIMIT ?";
                 break;
 
             case Sentiment.Happy:
@@ -57,14 +59,48 @@ public class TwitterDatabase : MonoBehaviour {
 
         }
 
-        return dbConnection.Query<DBTweet>(query, limit);
+        List<DBTweet> results = dbConnection.Query<DBTweet>(query, limit);
+        RecordLastAccessTime(results);
+
+        return results;
     }
 
     public DBTweet QueryOne()
     {
+        checkConnection();
         string query = "SELECT * FROM tweets WHERE sentiment_negative > 0.5 ORDER BY RANDOM() LIMIT 1";
         List<DBTweet> result = dbConnection.Query<DBTweet>(query);
+        RecordLastAccessTime(result);
         return result.Count == 0 ? null : result[0];
+    }
+
+    public IList<DBTweet> QueryForTags(string tag, int limit)
+    {
+        checkConnection();
+        string query = "SELECT * FROM tags ta INNER JOIN tweets tw ON ta.id = tw.id WHERE ta.tag = ? ORDER BY last_access LIMIT ?";
+        List<DBTweet> result = dbConnection.Query<DBTweet>(query, tag, limit);
+        RecordLastAccessTime(result);
+
+        return result;
+    }
+
+    public void RecordLastAccessTime(string[] ids)
+    {
+        checkConnection();
+
+        string query = string.Format("UPDATE tweets SET last_access = ? WHERE id IN ({0})", string.Join(", ", ids));
+        dbConnection.Execute(query, DateTime.UtcNow);
+    }
+
+    public void RecordLastAccessTime(IList<DBTweet> tweets)
+    {
+        string[] ids = new string[tweets.Count];
+        for (int i = 0; i < tweets.Count; i++)
+        {
+            ids[i] = tweets[i].id.ToString();
+        }
+
+        RecordLastAccessTime(ids);
     }
 
     void Awake()
@@ -79,7 +115,6 @@ public class TwitterDatabase : MonoBehaviour {
 	
 	void Update () 
 	{
-        checkConnection();
 	}
 
     private void checkConnection()
@@ -87,7 +122,7 @@ public class TwitterDatabase : MonoBehaviour {
 	    if (dbConnection == null)
 	    {
             string dbPath = Application.dataPath + "/StreamingAssets/" + Database;
-            dbConnection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite);
+            dbConnection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite, true);
 	    }
     }
 
