@@ -14,6 +14,21 @@ using Random = UnityEngine.Random;
 [RequireComponent(typeof(TwitterDatabase))]
 public class TwitterManager : MonoBehaviour
 {
+    private static TwitterManager instance;
+
+    public static TwitterManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<TwitterManager>();
+            }
+
+            return instance;
+        }
+    }
+
     public enum Sentiment
     {
         Unspecified = 0,
@@ -160,27 +175,46 @@ public class TwitterManager : MonoBehaviour
         }
     }
 
+    public void ClearAll()
+    {
+        tweetsToSpawn.Clear();
+        tweetsToDelete.Clear();
+        tweetsToDelete.UnionWith(tweetsSpawned.Keys);
+    }
+
+    public void Enqueue(IList<SpawnRequest> requests)
+    {
+        for (int i = 0; i < requests.Count; i++)
+        {
+            SpawnRequest r = requests[i];
+            tweetsToDelete.Remove(r.Data.id);
+            if (!tweetsSpawned.ContainsKey(r.Data.id))
+            {
+                tweetsToSpawn.Add(r.Data.id, r);
+            }
+        }
+    }
+
+    public void Enqueue(IList<TwitterDatabase.DBTweet> tweets)
+    {
+        for (int i = 0; i < tweets.Count; i++)
+        {
+            TwitterDatabase.DBTweet t = tweets[i];
+            tweetsToDelete.Remove(t.id);
+            if (!tweetsSpawned.ContainsKey(t.id))
+            {
+                tweetsToSpawn.Add(t.id, new SpawnRequest { Data = t });
+            }
+        }
+    }
+
     private void updateForSentiment()
     {
         // Find new set of tweets
         List<TwitterDatabase.DBTweet> newTweets = database.QueryTweetsForSentiment(PreferredSentiment, MaxTweets);
 
-        // Diff
-        tweetsToSpawn.Clear();
-        tweetsToDelete.Clear();
-        tweetsToDelete.UnionWith(tweetsSpawned.Keys);
-
-        foreach (TwitterDatabase.DBTweet tweet in newTweets)
-        {
-            tweetsToDelete.Remove(tweet.id);
-            if (!tweetsSpawned.ContainsKey(tweet.id))
-            {
-                tweetsToSpawn.Add(tweet.id, new SpawnRequest
-                {
-                    Data = tweet
-                });
-            }
-        }
+        ClearAll();
+        Enqueue(newTweets);
     }
 
     private void updateForPlaceholder(TweetPlaceholder[] placeholders)
@@ -400,7 +434,7 @@ public class TwitterManager : MonoBehaviour
         Gizmos.DrawWireCube(center, size);
     }
 
-    private struct SpawnRequest
+    public struct SpawnRequest
     {
         public TwitterDatabase.DBTweet Data { get; set; }
         public TweetPlaceholder Placeholder { get; set; }

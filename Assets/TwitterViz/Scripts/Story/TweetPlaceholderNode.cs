@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TweetPlaceholder : MonoBehaviour
+public class TweetPlaceholder : StoryNode
 {
     public TweetPlaceholder[] Next;
     public int SwitchToStage = -1;
