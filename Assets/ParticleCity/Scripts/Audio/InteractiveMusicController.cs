@@ -65,6 +65,7 @@ public class InteractiveMusicController : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+        AkSoundEngine.SetState("RichSentimentTest", SentimentSpawnNode.Sentiment.Neutral.ToString());
         Debug.Log("Controller start, tid = " + Thread.CurrentThread.ManagedThreadId);
     }
 

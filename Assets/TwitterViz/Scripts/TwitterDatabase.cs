@@ -19,9 +19,11 @@ public class TwitterDatabase : MonoBehaviour {
         public double longitude { get; set; }
 
         public double sentiment_positive { get; set; }
-        public double sentiment_neutral { get; set; }
         public double sentiment_negative { get; set; }
-        public double sentiment_mixed { get; set; }
+        public double sentiment_polarity { get; set; }
+
+        public string tag { get; set; }
+        public DateTime last_access { get; set; }
 
         public override string ToString()
         {

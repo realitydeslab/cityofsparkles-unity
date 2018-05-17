@@ -10,7 +10,10 @@ public class ParticleCityAnimator : MonoBehaviour
     private Material[] materialInstances;
 
     public float GlobalIntensity = 1;
-    private float oldGlobalIntensity;
+    private float oldGlobalIntensity = -1;
+
+    private float? targetIntensity;
+    private float intensityLerpRatio;
 
     void Awake()
     {
@@ -28,12 +31,23 @@ public class ParticleCityAnimator : MonoBehaviour
 	
 	void Update () 
     {
+        if (targetIntensity.HasValue)
+        {
+            GlobalIntensity = Mathf.Lerp(GlobalIntensity, targetIntensity.Value, intensityLerpRatio);
+        }
+
         if (!Mathf.Approximately(GlobalIntensity, oldGlobalIntensity))
         {
             SetMaterialsFloat("_GlobalIntensity", GlobalIntensity);
             oldGlobalIntensity = GlobalIntensity;
         }     
 	}
+
+    public void LerpToIntensity(float targetIntensity, float ratio)
+    {
+        this.targetIntensity = targetIntensity;
+        intensityLerpRatio = ratio;
+    }
 
     public void SetMaterialsFloat(string propertyName, float value)
     {

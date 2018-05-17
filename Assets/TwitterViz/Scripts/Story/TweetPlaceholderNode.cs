@@ -7,6 +7,7 @@ public class TweetPlaceholderNode : SpawnSourceNode
     public StoryNode[] Next;
     public int SwitchToStage = -1;
     public string QueryTag;
+    public float TargetCityIntensity = -1;
 
     private TwitterDatabase.DBTweet tweet;
     private bool spawned;
@@ -44,7 +45,7 @@ public class TweetPlaceholderNode : SpawnSourceNode
         TwitterManager.Instance.ClearAll();
         for (int i = 0; i < Next.Length; i++)
         {
-            Next[i].enabled = true; 
+            Next[i].gameObject.SetActive(true);
         }
 
         if (SwitchToStage >= 0)
@@ -52,11 +53,17 @@ public class TweetPlaceholderNode : SpawnSourceNode
             StageSwitcher.Instance.SwitchToStage(SwitchToStage);
         }
 
+        if (TargetCityIntensity >= 0)
+        {
+            ParticleCity.Current.Animator.LerpToIntensity(TargetCityIntensity, 0.01f);
+        }
+
         Destroy(gameObject);
     }
 
     public override void OnTweetDestroy(TweetComponent tweet)
     {
+        Debug.Log("Tweet destroy");
         Destroy(gameObject);
     }
 

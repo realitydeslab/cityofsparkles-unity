@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
+using UnityEngine.XR.WSA;
 
 namespace TwitterViz.DataModels
 {
@@ -40,13 +41,20 @@ namespace TwitterViz.DataModels
             Text = dbTweet.clean_text;
             CleanText = dbTweet.clean_text;
 
+            double polarity = dbTweet.sentiment_polarity;
+            if (dbTweet.sentiment_positive > 0 && dbTweet.sentiment_positive > dbTweet.sentiment_negative)
+            {
+                polarity = dbTweet.sentiment_positive;
+            }
+            else if (dbTweet.sentiment_negative > 0 && dbTweet.sentiment_negative > dbTweet.sentiment_positive)
+            {
+                polarity = -dbTweet.sentiment_negative;
+            }
+
             Sentiment = new Sentiment()
             {
-                Subjectivity = 1 - dbTweet.sentiment_neutral,
-                Polarity =
-                    (dbTweet.sentiment_positive > dbTweet.sentiment_negative)
-                        ? dbTweet.sentiment_positive
-                        : -dbTweet.sentiment_negative
+                Subjectivity = 0, // 1 - dbTweet.sentiment_neutral,
+                Polarity = polarity
             };
 
             Coordinates = new Coordinates()
