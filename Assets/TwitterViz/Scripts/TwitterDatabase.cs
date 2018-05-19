@@ -35,7 +35,7 @@ public class TwitterDatabase : MonoBehaviour {
 
     private SQLiteConnection dbConnection;
 
-    public List<DBTweet> QueryTweetsForSentiment(Sentiment sentiment, int limit)
+    public IList<DBTweet> QueryTweetsForSentiment(Sentiment sentiment, int limit)
     {
         checkConnection();
         string query;
@@ -52,12 +52,12 @@ public class TwitterDatabase : MonoBehaviour {
                 break;
 
             case Sentiment.Sad:
-                query = "SELECT * FROM tweets WHERE sentiment_negative > 0.5 ORDER BY RANDOM() LIMIT ?";
-                break;
+                // query = "SELECT * FROM tweets WHERE sentiment_negative > 0.5 ORDER BY RANDOM() LIMIT ?";
+                return QueryForTags("fuck", limit);
 
             case Sentiment.Wish:
-                query = "SELECT * FROM tweets WHERE sentiment_positive > 0.3 AND (clean_text LIKE '%wish%' OR clean_text lIKE '%hope%') ORDER BY RANDOM() LIMIT ?";
-                break;
+                // query = "SELECT * FROM tweets WHERE sentiment_positive > 0.3 AND (clean_text LIKE '%wish%' OR clean_text lIKE '%hope%') ORDER BY RANDOM() LIMIT ?";
+                return QueryForTags("positive", limit);
 
         }
 

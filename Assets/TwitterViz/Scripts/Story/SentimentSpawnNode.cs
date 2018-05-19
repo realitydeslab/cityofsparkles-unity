@@ -53,7 +53,7 @@ public class SentimentSpawnNode : SpawnSourceNode {
         if (PreferredSentiment != previousSentiment)
         {
             // Find new set of tweets
-            List<TwitterDatabase.DBTweet> newTweets = TwitterManager.Instance.Database.QueryTweetsForSentiment(PreferredSentiment, TwitterManager.Instance.MaxTweets);
+            IList<TwitterDatabase.DBTweet> newTweets = TwitterManager.Instance.Database.QueryTweetsForSentiment(PreferredSentiment, TwitterManager.Instance.MaxTweets);
             TwitterManager.SpawnRequest[] requests = new TwitterManager.SpawnRequest[newTweets.Count];
             for (int i = 0; i < newTweets.Count; i++)
             {
