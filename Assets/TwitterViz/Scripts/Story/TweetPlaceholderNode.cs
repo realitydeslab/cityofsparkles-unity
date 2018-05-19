@@ -67,18 +67,9 @@ public class TweetPlaceholderNode : SpawnSourceNode
         Destroy(gameObject);
     }
 
-    void OnDrawGizmosSelected()
+    public override IList<StoryNode> GetNextNodes()
     {
-        for (int i = 0; i < Next.Length; i++)
-        {
-            if (Next[i] == null)
-            {
-                continue;
-            }
-
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(transform.position, Next[i].transform.position);
-        }
+        return Next;
     }
 
     public override Vector3? GetPosition(TwitterDatabase.DBTweet data)

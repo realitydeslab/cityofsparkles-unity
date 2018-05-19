@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class StoryNode : MonoBehaviour
 {
+    public bool EnabledOnStart = false;
+    private bool isFirstAwake = true;
+
+    public virtual void Awake()
+    {
+        if (isFirstAwake && !EnabledOnStart)
+        {
+            isFirstAwake = false;
+            gameObject.SetActive(false);
+        }
+    }
+
 	public virtual void Start() {
 		
 	}
@@ -26,6 +38,37 @@ public class StoryNode : MonoBehaviour
     public virtual void OnDestroy()
     {
 
+    }
+
+    public virtual IList<StoryNode> GetNextNodes()
+    {
+        return null;
+    }
+
+    public virtual void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, 30);
+    }
+
+    public virtual void OnDrawGizmosSelected()
+    {
+        IList<StoryNode> nodes = GetNextNodes();
+        if (nodes == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            if (nodes[i].Equals(null))
+            {
+                continue;
+            }
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(transform.position, nodes[i].transform.position);
+        }
     }
 }
 

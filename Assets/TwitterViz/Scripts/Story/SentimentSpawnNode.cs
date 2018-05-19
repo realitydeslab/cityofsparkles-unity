@@ -72,48 +72,48 @@ public class SentimentSpawnNode : SpawnSourceNode {
         }
         else
         {
-            switch (PreferredSentiment)
-            {
-                case Sentiment.Neutral:
-                default:
-                    if (TriggerCount > 3)
-                    {
-                        TriggerCount = 0;
-                        PreferredSentiment = Sentiment.Happy;
-                    }
+            // switch (PreferredSentiment)
+            // {
+            //     case Sentiment.Neutral:
+            //     default:
+            //         if (TriggerCount > 3)
+            //         {
+            //             TriggerCount = 0;
+            //             PreferredSentiment = Sentiment.Happy;
+            //         }
 
-                    break;
+            //         break;
 
-                case Sentiment.Happy:
-                    if (TriggerCount > 3)
-                    {
-                        TriggerCount = 0;
-                        PreferredSentiment = Sentiment.Sad;
-                        StageSwitcher.Instance.SwitchToStage(2);
-                    }
+            //     case Sentiment.Happy:
+            //         if (TriggerCount > 3)
+            //         {
+            //             TriggerCount = 0;
+            //             PreferredSentiment = Sentiment.Sad;
+            //             StageSwitcher.Instance.SwitchToStage(2);
+            //         }
 
-                    break;
+            //         break;
 
-                case Sentiment.Sad:
-                    if (TriggerCount > 3)
-                    {
-                        TriggerCount = 0;
-                        PreferredSentiment = Sentiment.Wish;
-                        StageSwitcher.Instance.SwitchToStage(3);
-                    }
+            //     case Sentiment.Sad:
+            //         if (TriggerCount > 3)
+            //         {
+            //             TriggerCount = 0;
+            //             PreferredSentiment = Sentiment.Wish;
+            //             StageSwitcher.Instance.SwitchToStage(3);
+            //         }
 
-                    break;
+            //         break;
 
-                case Sentiment.Wish:
-                    if (TriggerCount > 5)
-                    {
-                        TriggerCount = 0;
-                        PreferredSentiment = Sentiment.Neutral;
-                        StageSwitcher.Instance.SwitchToStage(1);
-                    }
+            //     case Sentiment.Wish:
+            //         if (TriggerCount > 5)
+            //         {
+            //             TriggerCount = 0;
+            //             PreferredSentiment = Sentiment.Neutral;
+            //             StageSwitcher.Instance.SwitchToStage(1);
+            //         }
 
-                    break;
-            }
+            //         break;
+            // }
         }
     }
 }
