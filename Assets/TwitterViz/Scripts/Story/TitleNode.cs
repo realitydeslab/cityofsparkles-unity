@@ -5,29 +5,26 @@ using UnityEngine;
 
 public class TitleNode : StoryNode
 {
-    public float HeightOffset;
-    public float RisingDuration;
-    public float FadeInDuration;
-    public float HoldDuration;
-    public float FadeOutDuration;
-
-    private TextMeshPro text;
-
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
-        text = GetComponentInChildren<TextMeshPro>();
-        StartCoroutine(fadeInOut());
-        StartCoroutine(rising());
+        base.Awake();
+        GetComponentInChildren<TextMeshPro>().gameObject.SetActive(false);
     }
 
-    private IEnumerator fadeInOut()
+    public void OnFinished()
     {
-        yield return null;
+        GotoNext();
+        GuidingLight light = GetComponentInChildren<GuidingLight>();
+        Destroy(gameObject);
     }
 
-    private IEnumerator rising()
+    public void OnTriggerEnter(Collider other)
     {
-        yield return null;
+        Debug.Log("trigger enter");
+        GuidingLight guidingLight = GetComponentInChildren<GuidingLight>();
+        guidingLight.gameObject.SetActive(false);
+
+        GetComponent<Animator>().enabled = true;
+        GetComponentInChildren<TextMeshPro>(true).gameObject.SetActive(true);
     }
 }

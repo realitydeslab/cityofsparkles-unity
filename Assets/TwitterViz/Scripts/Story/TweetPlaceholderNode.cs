@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class TweetPlaceholderNode : SpawnSourceNode
 {
-    public StoryNode[] Next;
-    public Stage SwitchToStage = Stage.Invalid;
     public string QueryTag;
     public float TargetCityIntensity = -1;
 
@@ -57,10 +55,6 @@ public class TweetPlaceholderNode : SpawnSourceNode
     public override void OnTweetRevealed(TweetComponent obj)
     {
         TwitterManager.Instance.ClearAll();
-        for (int i = 0; i < Next.Length; i++)
-        {
-            Next[i].gameObject.SetActive(true);
-        }
 
         if (MixInRatio > 0)
         {
@@ -70,7 +64,6 @@ public class TweetPlaceholderNode : SpawnSourceNode
         if (SwitchToStage != Stage.Invalid)
         {
             AkSoundEngine.SetRTPCValue("MixInRatio", 0);
-            StageSwitcher.Instance.SwitchToStage(SwitchToStage);
         }
 
         if (TargetCityIntensity >= 0)
@@ -78,6 +71,7 @@ public class TweetPlaceholderNode : SpawnSourceNode
             ParticleCity.Current.Animator.LerpToIntensity(TargetCityIntensity, 0.01f);
         }
 
+        GotoNext();
         Destroy(gameObject);
     }
 
@@ -85,11 +79,6 @@ public class TweetPlaceholderNode : SpawnSourceNode
     {
         Debug.Log("Tweet destroy");
         Destroy(gameObject);
-    }
-
-    public override IList<StoryNode> GetNextNodes()
-    {
-        return Next;
     }
 
     public override Vector3? GetPosition(TwitterDatabase.DBTweet data)

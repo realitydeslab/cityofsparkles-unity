@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ParticleCities;
 using UnityEngine;
 
 public class StoryNode : MonoBehaviour
 {
     public bool EnabledOnStart = false;
     private bool isFirstAwake = true;
+
+    public List<StoryNode> Next;
+    public Stage SwitchToStage = Stage.Invalid;
 
     public virtual void Awake()
     {
@@ -40,11 +44,6 @@ public class StoryNode : MonoBehaviour
 
     }
 
-    public virtual IList<StoryNode> GetNextNodes()
-    {
-        return null;
-    }
-
     public virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -53,21 +52,33 @@ public class StoryNode : MonoBehaviour
 
     public virtual void OnDrawGizmosSelected()
     {
-        IList<StoryNode> nodes = GetNextNodes();
-        if (nodes == null)
+        if (Next == null)
         {
             return;
         }
 
-        for (int i = 0; i < nodes.Count; i++)
+        for (int i = 0; i < Next.Count; i++)
         {
-            if (nodes[i].Equals(null))
+            if (Next[i].Equals(null))
             {
                 continue;
             }
 
             Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(transform.position, nodes[i].transform.position);
+            Gizmos.DrawLine(transform.position, Next[i].transform.position);
+        }
+    }
+
+    protected void GotoNext()
+    {
+        for (int i = 0; i < Next.Count; i++)
+        {
+            Next[i].gameObject.SetActive(true);
+        }
+
+        if (SwitchToStage != Stage.Invalid)
+        {
+            StageSwitcher.Instance.SwitchToStage(SwitchToStage);
         }
     }
 }

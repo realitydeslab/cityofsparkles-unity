@@ -83,7 +83,7 @@ Material:
     - _SpringDrag: 5
     - _SrcBlend: 1
     - _UVSec: 0
-    - _VanR_0: 7.5
+    - _VanR_0: 3.91
     - _ZWrite: 1
     m_Colors:
     - _ActiveObjectPos: {r: 49.68235, g: 119.08413, b: 1342.7167, a: 1}
