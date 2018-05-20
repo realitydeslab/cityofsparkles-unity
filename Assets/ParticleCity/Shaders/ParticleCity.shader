@@ -7,6 +7,8 @@ Shader "Particle City/Particle City"
         _GlobalIntensity("Intencity", Range(0, 10)) = 1
         _Size ("Size", Range(0, 10)) = 0.5
         _PositionTex("Position Tex", 2D) = "white" {}
+        _PositionTex2("Position Tex 2", 2D) = "white" {}
+        _PositionRatio("Position Ratio", Range(0, 1)) = 0
         _OffsetTex("Offset Tex", 2D) = "black" {}
         _NoiseTex("Noise Tex", 2D) = "white" {}
         _ColorPalleteTex("Color Pallete", 2D) = "white" {}
@@ -75,10 +77,12 @@ Shader "Particle City/Particle City"
                 float _GlobalIntensity;
                 float _VolumeDeltaHeight;
                 float _AlphaRandomWeight;
+                float _PositionRatio;
 
                 SamplerState sampler_SpriteTex;
 
                 sampler2D _PositionTex;
+                sampler2D _PositionTex2;
                 sampler2D _OffsetTex;
                 sampler2D _NoiseTex;
                 sampler2D _ColorPalleteTex;
@@ -95,6 +99,8 @@ Shader "Particle City/Particle City"
                     float4 lodCoord = float4(v.texcoord, 0, 0);
 
                     float4 pos = tex2Dlod(_PositionTex, lodCoord);
+                    // float4 pos2 = tex2Dlod(_PositionTex2, lodCoord);
+                    // float4 posMerged = lerp(pos, pos2, _PositionRatio);
                     float4 offset = tex2Dlod(_OffsetTex, lodCoord);
                     output.pos = float4(pos.xyz + offset.xyz, 1);
 
