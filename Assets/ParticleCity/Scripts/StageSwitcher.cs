@@ -68,7 +68,7 @@ namespace ParticleCities
             if (KeyboardSwitch)
             {
                 int keyNum = Math.Min(9, ParticleCityPrefabs.Length - 1);
-                for (int i = 1; i <= keyNum; i++)
+                for (int i = 0; i <= keyNum; i++)
                 {
                     KeyCode key = (KeyCode) ((int) KeyCode.Alpha0 + i);
                     if (Input.GetKeyDown(key))
