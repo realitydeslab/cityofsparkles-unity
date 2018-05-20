@@ -51,11 +51,27 @@ namespace AK
             } // namespace STATE
         } // namespace SENTIMENT
 
+        namespace STAGE
+        {
+            static const AkUniqueID GROUP = 1063701865U;
+
+            namespace STATE
+            {
+                static const AkUniqueID FINALSPAWN = 1528378184U;
+                static const AkUniqueID FIRST = 998496889U;
+                static const AkUniqueID INTRO = 1125500713U;
+                static const AkUniqueID LAST = 489968869U;
+                static const AkUniqueID TWIST = 451915906U;
+            } // namespace STATE
+        } // namespace STAGE
+
     } // namespace STATES
 
     namespace GAME_PARAMETERS
     {
+        static const AkUniqueID DENSITY = 1551159691U;
         static const AkUniqueID MASTERVOLUME = 2918011349U;
+        static const AkUniqueID MIXINRATIO = 3473590661U;
         static const AkUniqueID SENTIMENTRATIO = 1059072165U;
     } // namespace GAME_PARAMETERS
 

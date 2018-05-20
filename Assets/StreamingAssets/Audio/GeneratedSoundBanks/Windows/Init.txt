@@ -1,11 +1,18 @@
 State Group	ID	Name			Wwise Object Path	Notes
 	610169148	Sentiment			\Default Work Unit\Sentiment	
+	1063701865	Stage			\Default Work Unit\Stage	
 	3873692266	RichSentimentTest			\Test Work Unit\RichSentimentTest	
 
 State	ID	Name	State Group			Notes
 	0	None	Sentiment			
 	1192865152	Positive	Sentiment			
 	4219547688	Negative	Sentiment			
+	0	None	Stage			
+	451915906	Twist	Stage			
+	489968869	Last	Stage			
+	998496889	First	Stage			
+	1125500713	Intro	Stage			
+	1528378184	FinalSpawn	Stage			
 	0	None	RichSentimentTest			
 	443572635	Sad	RichSentimentTest			
 	670611050	Neutral	RichSentimentTest			

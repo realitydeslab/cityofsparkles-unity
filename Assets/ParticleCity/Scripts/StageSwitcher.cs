@@ -10,7 +10,8 @@ namespace ParticleCities
         Intro,
         First,
         Twist,
-        Last
+        Last,
+        FinalSpawn
     }
 
     public class StageSwitcher : MonoBehaviour
