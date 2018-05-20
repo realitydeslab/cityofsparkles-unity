@@ -650,14 +650,17 @@ public partial class AkUtilities
 			System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
 		var positionPropInfo = inspectorType.GetProperty("position",
 			System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-		var InspectorPosition = (UnityEngine.Rect)positionPropInfo.GetValue(currentInspectorFieldInfo.GetValue(null), null);
+
+		var InspectorPosition = currentInspectorFieldInfo == null ? new UnityEngine.Rect(0, 0, 100, 100) : 
+		    (UnityEngine.Rect)positionPropInfo.GetValue(currentInspectorFieldInfo.GetValue(null), null);
 
 		if (!applyScroll)
 			return new UnityEngine.Rect(InspectorPosition.x, InspectorPosition.y, InspectorPosition.width, 0);
 
 		var scrollPosInfo = inspectorType.GetField("m_ScrollPosition",
 			System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-		var scrollPos = (UnityEngine.Vector2)scrollPosInfo.GetValue(currentInspectorFieldInfo.GetValue(null));
+		var scrollPos = currentInspectorFieldInfo == null ? new UnityEngine.Vector2(0, 0) : 
+		    (UnityEngine.Vector2)scrollPosInfo.GetValue(currentInspectorFieldInfo.GetValue(null));
 
 		var relativePos = UnityEngine.GUILayoutUtility.GetLastRect();
 

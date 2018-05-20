@@ -10,6 +10,9 @@ public class TweetPlaceholderNode : SpawnSourceNode
     public string QueryTag;
     public float TargetCityIntensity = -1;
 
+    public float MixInRatio = 0;
+    public string AkEventOnSpawn; 
+
     private TwitterDatabase.DBTweet tweet;
     private bool spawned;
 
@@ -41,6 +44,16 @@ public class TweetPlaceholderNode : SpawnSourceNode
         }
     }
 
+    public override void OnTweetSpawned(TweetComponent tweet)
+    {
+        base.OnTweetSpawned(tweet);
+
+        if (!string.IsNullOrEmpty(AkEventOnSpawn))
+        {
+            AkSoundEngine.PostEvent(AkEventOnSpawn, tweet.gameObject);
+        }
+    }
+
     public override void OnTweetRevealed(TweetComponent obj)
     {
         TwitterManager.Instance.ClearAll();
@@ -49,8 +62,14 @@ public class TweetPlaceholderNode : SpawnSourceNode
             Next[i].gameObject.SetActive(true);
         }
 
+        if (MixInRatio > 0)
+        {
+            AkSoundEngine.SetRTPCValue("MixInRatio", MixInRatio);
+        }
+
         if (SwitchToStage != Stage.Invalid)
         {
+            AkSoundEngine.SetRTPCValue("MixInRatio", 0);
             StageSwitcher.Instance.SwitchToStage(SwitchToStage);
         }
 

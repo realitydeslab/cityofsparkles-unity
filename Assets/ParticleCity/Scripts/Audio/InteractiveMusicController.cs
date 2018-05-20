@@ -62,7 +62,6 @@ public class InteractiveMusicController : MonoBehaviour
         }
     }
 
-	// Use this for initialization
 	void Start()
 	{
         AkSoundEngine.SetState("RichSentimentTest", SentimentSpawnNode.Sentiment.Neutral.ToString());
@@ -72,6 +71,7 @@ public class InteractiveMusicController : MonoBehaviour
     void Update()
     {
         Density = CityStructure.Instance.DensityMap.GetDensity(InputManager.Instance.PlayerTransform.position);
+        AkSoundEngine.SetRTPCValue("Density", Density);
     }
 
     void OnDestroy()
