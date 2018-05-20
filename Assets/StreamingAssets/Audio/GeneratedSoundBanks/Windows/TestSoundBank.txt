@@ -1,6 +1,7 @@
 Event	ID	Name			Wwise Object Path	Notes
 	241412554	Play_Tweet_Short			\Default Work Unit\Play_Tweet_Short	
 	914952687	Play_TwitterBgm			\Default Work Unit\Play_TwitterBgm	
+	973706497	Play_StoryBGM			\Test Work Unit\Play_StoryBGM	
 	1993745496	Play_Twist_BGM			\Test Work Unit\Play_Twist_BGM	
 	2470127684	Play_ParticleCity_Improv_BGM			\Test Work Unit\Play_ParticleCity_Improv_BGM	
 	2937301117	Play_SentimentBGMTest			\Test Work Unit\Play_SentimentBGMTest	
@@ -9,6 +10,9 @@ Event	ID	Name			Wwise Object Path	Notes
 	3560716643	Play_Tweet_Med_Long			\Default Work Unit\Play_Tweet_Med_Long	
 	3656440737	Play_HearTheWindWhisper			\Test Work Unit\Play_HearTheWindWhisper	
 	3980605832	Play_TwistNoisyPart			\Test Work Unit\Play_TwistNoisyPart	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	749878685	DistanceToPOI			\Default Work Unit\DistanceToPOI	
 
 Modulator Envelope	ID	Name			Wwise Object Path	Notes
 	93863261	TestEnvelope			\Default Work Unit\TestEnvelope	
@@ -31,6 +35,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	407719945	HearTheWindWhisper	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\HearTheWindWhisper_21CA2154.wem		\Interactive Music Hierarchy\Test Work Unit\HearTheWindWhisper\HearTheWindWhisper		1409627
 	408862344	Tweet-Short_03	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Short_03_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Tweet-Short\Tweet-Short_03\Tweet-Short_03		1753052
 	420134523	Tweet-Med-Long_02	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med-Long_02_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Tweet-Med-Long\Tweet-Med-Long_02\Tweet-Med-Long_02		1701368
+	438016900	01 - Intro - Starting Loop	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-01 - Intro - Starting Loop_F17FB28C.wem		\Interactive Music Hierarchy\Test Work Unit\StoryBGM\InitialDark\Starting Loop\01 - Intro - Starting Loop		1220320
 	483971353	Tweet-Med-Long_03	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med-Long_03_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Tweet-Med-Long\Tweet-Med-Long_03\Tweet-Med-Long_03		2061324
 	600856261	Tweet-Long_02	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Long_02_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Tweet-Long\Tweet-Long_02\Tweet-Long_02		3034376
 	694171849	Tweet-Long_01	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Long_01_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Tweet-Long\Tweet-Long_01\Tweet-Long_01		3106936

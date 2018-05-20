@@ -28,9 +28,12 @@ public class InteractiveMusicController : MonoBehaviour
     public AnimationCurve MIDIForceToIntensity;
     public AnimationCurve MIDIForceToMinorIntensity;
 
-    public event Action<string> AkMarkerTriggered; 
+
+    public event Action<string> AkMarkerTriggered;
+    public event Action<string> AkMusicSyncCueTriggered;
 
     private AkAmbient akAmbient;
+    private List<GameObject> PointsOfInterest = new List<GameObject>(); 
 
     [Header("Debug")]
     public float MajorIntensity;
@@ -45,14 +48,27 @@ public class InteractiveMusicController : MonoBehaviour
         return meter;
     }
 
+    public void AddPointOfInterest(GameObject poi)
+    {
+        if (!PointsOfInterest.Contains(poi))
+        {
+            PointsOfInterest.Add(poi);
+        }
+    }
+
+    public void RemovePointOfInterest(GameObject poi)
+    {
+        PointsOfInterest.Remove(poi);
+    }
+
     void Awake()
     {
 	    akAmbient = GetComponent<AkAmbient>();
         akAmbient.m_callbackData = new AkEventCallbackData()
         {
-            callbackFlags = {(int)AkCallbackType.AK_MusicPlayStarted, (int)AkCallbackType.AK_MIDIEvent, (int)AkCallbackType.AK_Marker},
-            callbackFunc = {"OnAkStart", "OnAkMIDI", "OnAkMarker"},
-            callbackGameObj = {gameObject, gameObject, gameObject},
+            callbackFlags = {(int)AkCallbackType.AK_MusicPlayStarted, (int)AkCallbackType.AK_MIDIEvent, (int)AkCallbackType.AK_Marker, (int)AkCallbackType.AK_MusicSyncUserCue},
+            callbackFunc = {"OnAkStart", "OnAkMIDI", "OnAkMarker", "OnAkMusicSyncCue"},
+            callbackGameObj = {gameObject, gameObject, gameObject, gameObject},
         };
 
         akAmbient.m_callbackData.uFlags = 0;
@@ -72,6 +88,13 @@ public class InteractiveMusicController : MonoBehaviour
     {
         Density = CityStructure.Instance.DensityMap.GetDensity(InputManager.Instance.PlayerTransform.position);
         AkSoundEngine.SetRTPCValue("Density", Density);
+
+        if (PointsOfInterest.Count > 0)
+        {
+            Vector3 poiPos = PointsOfInterest[PointsOfInterest.Count - 1].transform.position;
+            Vector3 playerPos = InputManager.Instance.CenterCamera.gameObject.transform.position;
+            AkSoundEngine.SetRTPCValue("DistanceToPOI", Vector3.Distance(poiPos, playerPos));
+        }
     }
 
     void OnDestroy()
@@ -122,6 +145,17 @@ public class InteractiveMusicController : MonoBehaviour
         }
         if (pitch < 50 /*&& info.byType == 144*/)
         {
+        }
+    }
+
+    void OnAkMusicSyncCue(AkEventCallbackMsg msg)
+    {
+        AkMusicSyncCallbackInfo syncInfo = (AkMusicSyncCallbackInfo)msg.info;
+        string cue = syncInfo.userCueName;
+        Debug.Log("Ak Cue: " + cue);
+        if (AkMusicSyncCueTriggered != null)
+        {
+            AkMusicSyncCueTriggered(cue);
         }
     }
 }

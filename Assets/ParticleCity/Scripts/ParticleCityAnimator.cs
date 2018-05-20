@@ -25,11 +25,12 @@ public class ParticleCityAnimator : MonoBehaviour
         }
     }
 
-	void Start () {
-		
-	}
-	
-	void Update () 
+	void Start () 
+	{
+        SetMaterialsFloat("_GlobalIntensity", GlobalIntensity);
+    }
+
+    void Update () 
     {
         if (targetIntensity.HasValue)
         {

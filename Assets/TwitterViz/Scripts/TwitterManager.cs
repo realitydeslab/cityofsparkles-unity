@@ -168,6 +168,7 @@ public class TwitterManager : MonoBehaviour
                 if (tweetObj.SpawnSource != null)
                 {
                     tweetObj.SpawnSource.OnTweetSpawned(tweetObj);
+                    tweetObj.GetComponent<GuidingLight>().MusicSync = tweetObj.SpawnSource.MusicSync;
                 }
 
                 // Spawn to actual geo location

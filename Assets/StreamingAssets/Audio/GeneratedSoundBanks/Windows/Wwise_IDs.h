@@ -16,6 +16,7 @@ namespace AK
         static const AkUniqueID PLAY_HEARTHEWINDWHISPER = 3656440737U;
         static const AkUniqueID PLAY_PARTICLECITY_IMPROV_BGM = 2470127684U;
         static const AkUniqueID PLAY_SENTIMENTBGMTEST = 2937301117U;
+        static const AkUniqueID PLAY_STORYBGM = 973706497U;
         static const AkUniqueID PLAY_TWEET_LONG = 2998930726U;
         static const AkUniqueID PLAY_TWEET_MED = 2959931726U;
         static const AkUniqueID PLAY_TWEET_MED_LONG = 3560716643U;
@@ -59,6 +60,7 @@ namespace AK
             {
                 static const AkUniqueID FINALSPAWN = 1528378184U;
                 static const AkUniqueID FIRST = 998496889U;
+                static const AkUniqueID INITIALDARK = 3276465343U;
                 static const AkUniqueID INTRO = 1125500713U;
                 static const AkUniqueID LAST = 489968869U;
                 static const AkUniqueID TWIST = 451915906U;
@@ -70,6 +72,7 @@ namespace AK
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID DENSITY = 1551159691U;
+        static const AkUniqueID DISTANCETOPOI = 749878685U;
         static const AkUniqueID MASTERVOLUME = 2918011349U;
         static const AkUniqueID MIXINRATIO = 3473590661U;
         static const AkUniqueID SENTIMENTRATIO = 1059072165U;

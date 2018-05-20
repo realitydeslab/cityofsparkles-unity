@@ -13,6 +13,7 @@ State	ID	Name	State Group			Notes
 	998496889	First	Stage			
 	1125500713	Intro	Stage			
 	1528378184	FinalSpawn	Stage			
+	3276465343	InitialDark	Stage			
 	0	None	RichSentimentTest			
 	443572635	Sad	RichSentimentTest			
 	670611050	Neutral	RichSentimentTest			

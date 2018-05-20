@@ -24,6 +24,7 @@
 				<Event Id="3656440737" Name="Play_HearTheWindWhisper" ObjectPath="\Events\Test Work Unit\Play_HearTheWindWhisper"/>
 				<Event Id="2470127684" Name="Play_ParticleCity_Improv_BGM" ObjectPath="\Events\Test Work Unit\Play_ParticleCity_Improv_BGM"/>
 				<Event Id="2937301117" Name="Play_SentimentBGMTest" ObjectPath="\Events\Test Work Unit\Play_SentimentBGMTest"/>
+				<Event Id="973706497" Name="Play_StoryBGM" ObjectPath="\Events\Test Work Unit\Play_StoryBGM"/>
 				<Event Id="2998930726" Name="Play_Tweet_Long" ObjectPath="\Events\Default Work Unit\Play_Tweet_Long"/>
 				<Event Id="2959931726" Name="Play_Tweet_Med" ObjectPath="\Events\Default Work Unit\Play_Tweet_Med"/>
 				<Event Id="3560716643" Name="Play_Tweet_Med_Long" ObjectPath="\Events\Default Work Unit\Play_Tweet_Med_Long"/>
@@ -84,6 +85,10 @@
 				<File Id="420134523" Language="SFX">
 					<ShortName>Tweet-Med-Long_02.wav</ShortName>
 					<Path>SFX\Tweet-Med-Long_02_F17FB28C.wem</Path>
+				</File>
+				<File Id="438016900" Language="SFX">
+					<ShortName>Tweet-01 - Intro - Starting Loop.wav</ShortName>
+					<Path>SFX\Tweet-01 - Intro - Starting Loop_F17FB28C.wem</Path>
 				</File>
 				<File Id="483971353" Language="SFX">
 					<ShortName>Tweet-Med-Long_03.wav</ShortName>

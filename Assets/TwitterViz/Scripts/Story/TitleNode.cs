@@ -14,7 +14,6 @@ public class TitleNode : StoryNode
     public void OnFinished()
     {
         GotoNext();
-        GuidingLight light = GetComponentInChildren<GuidingLight>();
         Destroy(gameObject);
     }
 

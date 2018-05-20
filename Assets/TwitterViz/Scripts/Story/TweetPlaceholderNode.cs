@@ -9,7 +9,13 @@ public class TweetPlaceholderNode : SpawnSourceNode
     public float TargetCityIntensity = -1;
 
     public float MixInRatio = 0;
-    public string AkEventOnSpawn; 
+    public string AkEventOnSpawn;
+
+    public bool musicSync = false;
+    public override bool MusicSync
+    {
+        get { return musicSync; }
+    }
 
     private TwitterDatabase.DBTweet tweet;
     private bool spawned;

@@ -165,6 +165,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &13489166
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +231,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &13489170
 MonoBehaviour:
@@ -291,7 +292,7 @@ Animator:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 16162380}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d2a5e6d31dd224447aa5b4987c2f7525, type: 2}
   m_CullingMode: 0
@@ -695,7 +696,153 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 125528432}
   m_Mesh: {fileID: 0}
---- !u!21 &172598764
+--- !u!43 &169278451
+Mesh:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  serializedVersion: 8
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 24
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 8
+    localAABB:
+      m_Center: {x: 0, y: 0.01, z: 0}
+      m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
+  m_Skin: []
+  m_VertexData:
+    serializedVersion: 2
+    m_VertexCount: 8
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 28
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 288
+    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0.01, z: 0}
+    m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshOptimized: 0
+--- !u!21 &190046641
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -780,6 +927,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &200943831
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,6 +976,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1001 &218525749
 Prefab:
   m_ObjectHideFlags: 0
@@ -865,16 +1014,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 420908, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 848392245}
+      objectReference: {fileID: 169278451}
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 172598764}
+      objectReference: {fileID: 190046641}
     - target: {fileID: 2082592, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_ClearFlags
       value: 2
@@ -1106,6 +1255,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &247463587
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,6 +1304,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &274089780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,6 +1353,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &325967028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,6 +1402,7 @@ MonoBehaviour:
   TargetCityIntensity: 3
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &326561276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,54 +1451,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
---- !u!1001 &351920105
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &351920106 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114335009429023242, guid: 392e5d8642041f0458f17660a6c5904a,
-    type: 2}
-  m_PrefabInternal: {fileID: 351920105}
-  m_Script: {fileID: 11500000, guid: 0ef416fd561919d469592584dcbc853e, type: 3}
+  musicSync: 0
 --- !u!1 &356701649
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,7 +1482,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &356701651
 MonoBehaviour:
@@ -1536,6 +1642,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &415276252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,6 +1725,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &431721075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,6 +1778,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &442889274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1718,6 +1827,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &464902216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1766,6 +1876,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &507961588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,7 +1941,7 @@ Transform:
   - {fileID: 376220141}
   - {fileID: 1160525530}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &556081756
 Prefab:
@@ -1869,7 +1980,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 458990, guid: 4f35fa249b5008c44ac2998be6f82d4d, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f35fa249b5008c44ac2998be6f82d4d, type: 2}
@@ -1991,6 +2102,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &574022397
 GameObject:
   m_ObjectHideFlags: 0
@@ -2070,6 +2182,7 @@ MonoBehaviour:
   TargetCityIntensity: 1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &645745862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2190,6 +2303,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &680109055
 GameObject:
   m_ObjectHideFlags: 0
@@ -2238,6 +2352,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &761371851
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,6 +2401,7 @@ MonoBehaviour:
   TargetCityIntensity: 1.1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1001 &770198128
 Prefab:
   m_ObjectHideFlags: 0
@@ -2382,6 +2498,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &799479974
 GameObject:
   m_ObjectHideFlags: 0
@@ -2430,6 +2547,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &810800615
 GameObject:
   m_ObjectHideFlags: 0
@@ -2511,152 +2629,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
---- !u!43 &848392245
-Mesh:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  serializedVersion: 8
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 24
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 8
-    localAABB:
-      m_Center: {x: 0, y: 0.01, z: 0}
-      m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
-  m_Skin: []
-  m_VertexData:
-    serializedVersion: 2
-    m_VertexCount: 8
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 28
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 288
-    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0.01, z: 0}
-    m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshOptimized: 0
+  musicSync: 0
 --- !u!1 &869792980
 GameObject:
   m_ObjectHideFlags: 0
@@ -2709,6 +2682,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &869894947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2757,6 +2731,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &895009780
 GameObject:
   m_ObjectHideFlags: 0
@@ -2798,7 +2773,7 @@ Transform:
   m_Children:
   - {fileID: 1439352582}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &899213350
 GameObject:
@@ -2885,6 +2860,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1001 &914645799
 Prefab:
   m_ObjectHideFlags: 0
@@ -2986,6 +2962,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1026036915
 GameObject:
   m_ObjectHideFlags: 0
@@ -3034,6 +3011,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1036309887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3061,12 +3039,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b1b04539abf2c4aac640296ea2bea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InitialStage: 6
   ParticleCityPrefabs:
-  - {fileID: 351920106}
+  - {fileID: 114335009429023242, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
   - {fileID: 114761582497104718, guid: 93b68c6addaf5c642b337809bb3eb0bb, type: 2}
   - {fileID: 114376787756978894, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
   - {fileID: 114335009429023242, guid: 8371fcb5e1a6fa74a845418d6d147af4, type: 2}
   - {fileID: 114335009429023242, guid: 8371fcb5e1a6fa74a845418d6d147af4, type: 2}
+  - {fileID: 114335009429023242, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
   KeyboardSwitch: 1
   CurrentParticleCity: {fileID: 0}
   CurrentStage: 0
@@ -3081,7 +3061,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1138966074
 GameObject:
@@ -3135,6 +3115,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1160525529
 GameObject:
   m_ObjectHideFlags: 0
@@ -3232,6 +3213,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1209614201
 GameObject:
   m_ObjectHideFlags: 0
@@ -3280,6 +3262,7 @@ MonoBehaviour:
   TargetCityIntensity: 4
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1219764101
 GameObject:
   m_ObjectHideFlags: 0
@@ -3332,6 +3315,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1287750174
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,11 +3390,12 @@ MonoBehaviour:
   EnabledOnStart: 1
   Next:
   - {fileID: 1878613025}
-  SwitchToStage: 0
+  SwitchToStage: 1
   QueryTag: nice
   TargetCityIntensity: 0.2
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 1
 --- !u!1 &1323121327
 GameObject:
   m_ObjectHideFlags: 0
@@ -3463,6 +3448,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1336725410
 GameObject:
   m_ObjectHideFlags: 0
@@ -3511,6 +3497,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1372440453
 GameObject:
   m_ObjectHideFlags: 0
@@ -3549,7 +3536,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1410114298 stripped
 Transform:
@@ -3590,12 +3577,12 @@ MonoBehaviour:
   actionOnEventType: 0
   curveInterpolation: 4
   enableActionOnEvent: 0
-  eventID: -1357666179
+  eventID: 973706497
   m_callbackData: {fileID: 0}
   playingId: 0
   soundEmitterObject: {fileID: 0}
   transitionDuration: 0
-  valueGuid: f0d8f24c61e7c949aca8d0d0c58e5a32
+  valueGuid: fd421f8d5f96b14b9fbfd95f087865c4
   multiPositionArray: []
   MultiPositionType: 1
   multiPositionTypeLabel: 0
@@ -3632,7 +3619,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1434208114
 MonoBehaviour:
@@ -3809,6 +3796,7 @@ MonoBehaviour:
   TargetCityIntensity: 1.1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1548457110
 GameObject:
   m_ObjectHideFlags: 0
@@ -3857,6 +3845,7 @@ MonoBehaviour:
   TargetCityIntensity: 5.3
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1001 &1558635623
 Prefab:
   m_ObjectHideFlags: 0
@@ -3894,7 +3883,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 255333d57084e4e46b3d948279746a47, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400002, guid: 255333d57084e4e46b3d948279746a47, type: 2}
@@ -3948,6 +3937,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1632892195
 GameObject:
   m_ObjectHideFlags: 0
@@ -4056,6 +4046,7 @@ MonoBehaviour:
   TargetCityIntensity: 2
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1667687664
 GameObject:
   m_ObjectHideFlags: 0
@@ -4104,6 +4095,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1689145147
 GameObject:
   m_ObjectHideFlags: 0
@@ -4193,7 +4185,7 @@ Transform:
   - {fileID: 1632892196}
   - {fileID: 110792483}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1717712992
 MonoBehaviour:
@@ -4304,6 +4296,7 @@ MonoBehaviour:
   TargetCityIntensity: 5.3
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1802288285
 GameObject:
   m_ObjectHideFlags: 0
@@ -4356,6 +4349,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1831152224
 GameObject:
   m_ObjectHideFlags: 0
@@ -4404,6 +4398,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1860684493
 GameObject:
   m_ObjectHideFlags: 0
@@ -4452,6 +4447,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1001 &1863584758
 Prefab:
   m_ObjectHideFlags: 0
@@ -4546,6 +4542,7 @@ MonoBehaviour:
   TargetCityIntensity: 1.1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1878613023
 GameObject:
   m_ObjectHideFlags: 0
@@ -4596,6 +4593,7 @@ MonoBehaviour:
   TargetCityIntensity: 0.4
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &1949761227 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 155680, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
@@ -4704,6 +4702,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!1 &2108059281
 GameObject:
   m_ObjectHideFlags: 0
@@ -4785,6 +4784,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0
 --- !u!4 &2137844407 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4341588032091684, guid: fa727355f4449ca4b9426d1456099293,
@@ -4838,3 +4838,4 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  musicSync: 0

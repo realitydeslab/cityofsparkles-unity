@@ -19,11 +19,13 @@ public class GuidingLight : MonoBehaviour
 
     public GameObject RisingParticlePrefab;
 
+    public bool MusicSync;
+
     private Renderer lightRenderer;
     private Coroutine lightUpCouroutine;
     private AkAmbient akAmbient;
 
-    private float timeSinceLastTrigger;
+    private float timeSinceLastTrigger = float.MaxValue;
     private bool destroyRequested;
     private bool turnOffRequested;
     private bool lightUpForSpawning;
@@ -33,7 +35,7 @@ public class GuidingLight : MonoBehaviour
     [Range(0, 1)]
     public float Intensity;
 
-	void Start ()
+    void Start ()
 	{
 	    akAmbient = GetComponent<AkAmbient>();
 	    lightRenderer = GetComponentInChildren<Renderer>();
@@ -47,10 +49,17 @@ public class GuidingLight : MonoBehaviour
 	    {
 	        Instantiate(RisingParticlePrefab, this.transform);
 	    }
+
+        setIntensity(0);
+        if (MusicSync)
+        {
+            InteractiveMusicController.Instance.AkMusicSyncCueTriggered += OnAkMusicSyncCueTriggered;
+            InteractiveMusicController.Instance.AddPointOfInterest(gameObject);
+        }
 	}
 	
 	void Update () {
-	    if (timeSinceLastTrigger > Interval)
+	    if (!MusicSync && timeSinceLastTrigger > Interval)
 	    {
 	        Trigger = true;
 	    }
@@ -122,6 +131,15 @@ public class GuidingLight : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        if (InteractiveMusicController.Instance != null)
+        {
+            InteractiveMusicController.Instance.AkMusicSyncCueTriggered -= OnAkMusicSyncCueTriggered;
+            InteractiveMusicController.Instance.RemovePointOfInterest(gameObject);
+        }
+    }
+
     public void LightUpForSpawning()
     {
         if (lightUpCouroutine != null)
@@ -153,4 +171,15 @@ public class GuidingLight : MonoBehaviour
         Intensity = intensity;
         lightRenderer.material.SetFloat("_Intensity", intensity);
     }
+
+    private void OnAkMusicSyncCueTriggered(string cue)
+    {
+        Debug.Log("Light sync: " + cue);
+        string[] comp = cue.Split(':');
+        EaseInDuration = float.Parse(comp[1]);
+        SustainDuration = float.Parse(comp[2]);
+        EaseOutDuration = float.Parse(comp[3]);
+        Trigger = true;
+    }
+
 }

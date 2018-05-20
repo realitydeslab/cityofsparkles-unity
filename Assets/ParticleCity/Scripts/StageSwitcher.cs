@@ -11,7 +11,8 @@ namespace ParticleCities
         First,
         Twist,
         Last,
-        FinalSpawn
+        FinalSpawn,
+        InitialDark
     }
 
     public class StageSwitcher : MonoBehaviour
@@ -31,6 +32,7 @@ namespace ParticleCities
             }
         }
 
+        public Stage InitialStage;
         public ParticleCity[] ParticleCityPrefabs;
         public bool KeyboardSwitch;
 
@@ -59,7 +61,7 @@ namespace ParticleCities
                     return;
                 }
 
-                instantiateParticleCity(ParticleCityPrefabs[0]);
+                SwitchToStage(InitialStage);
             }
         }
 

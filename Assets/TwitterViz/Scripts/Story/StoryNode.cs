@@ -85,6 +85,11 @@ public class StoryNode : MonoBehaviour
 
 public abstract class SpawnSourceNode : StoryNode
 {
+    public virtual bool MusicSync
+    {
+        get { return false; }
+    }
+
     public virtual Vector3? GetPosition(TwitterDatabase.DBTweet data)
     {
         return null;
