@@ -136,6 +136,8 @@ MonoBehaviour:
   EaseOutDuration: 2
   Interval: 4.5
   RenderPart: {fileID: 0}
+  RisingParticlePrefab: {fileID: 1257488255029074, guid: 4afd72319442d3d46a0b4333180b4938,
+    type: 2}
   Intensity: 0
 --- !u!114 &114107650119667882
 MonoBehaviour:
@@ -200,7 +202,7 @@ MonoBehaviour:
   State: 0
   Text: 
   Sentiment: 0
-  TargetSentiment: 0
+  SpawnSource: {fileID: 0}
 --- !u!114 &114625628585303582
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -2,90 +2,116 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StageSwitcher : MonoBehaviour
+namespace ParticleCities
 {
-    private static StageSwitcher instance;
-    public static StageSwitcher Instance
+    public enum Stage
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = FindObjectOfType<StageSwitcher>();
-            }
-
-            return instance;
-        }
+        Invalid = 0,
+        Intro,
+        First,
+        Twist,
+        Last
     }
 
-    public ParticleCity[] ParticleCityPrefabs;
-    public bool KeyboardSwitch;
-
-    [Header("Auto")] 
-    public ParticleCity CurrentParticleCity;
-
-    void Start()
+    public class StageSwitcher : MonoBehaviour
     {
-        // Find the current enabled city
-        ParticleCity[] cities = FindObjectsOfType<ParticleCity>();
-        foreach (ParticleCity city in cities)
+        private static StageSwitcher instance;
+
+        public static StageSwitcher Instance
         {
-            if (city.enabled)
+            get
             {
-                CurrentParticleCity = city;
-                break;
+                if (instance == null)
+                {
+                    instance = FindObjectOfType<StageSwitcher>();
+                }
+
+                return instance;
             }
         }
 
-        if (CurrentParticleCity == null)
+        public ParticleCity[] ParticleCityPrefabs;
+        public bool KeyboardSwitch;
+
+        [Header("Auto")] 
+        public ParticleCity CurrentParticleCity;
+        public Stage CurrentStage;
+
+        void Start()
         {
-            if (ParticleCityPrefabs.Length == 0)
+            // Find the current enabled city
+            ParticleCity[] cities = FindObjectsOfType<ParticleCity>();
+            foreach (ParticleCity city in cities)
             {
-                Debug.LogError("No particle city prefab specified in stage switcher.");
+                if (city.enabled)
+                {
+                    CurrentParticleCity = city;
+                    break;
+                }
+            }
+
+            if (CurrentParticleCity == null)
+            {
+                if (ParticleCityPrefabs.Length == 0)
+                {
+                    Debug.LogError("No particle city prefab specified in stage switcher.");
+                    return;
+                }
+
+                instantiateParticleCity(ParticleCityPrefabs[0]);
+            }
+        }
+
+        void Update()
+        {
+            if (KeyboardSwitch)
+            {
+                int keyNum = Math.Min(9, ParticleCityPrefabs.Length - 1);
+                for (int i = 1; i <= keyNum; i++)
+                {
+                    KeyCode key = (KeyCode) ((int) KeyCode.Alpha0 + i);
+                    if (Input.GetKeyDown(key))
+                    {
+                        SwitchToStage(i);
+                    }
+                }
+            }
+        }
+
+        public void SwitchToStage(int index)
+        {
+            cleanup();
+            instantiateParticleCity(ParticleCityPrefabs[index]);
+            CurrentStage = (Stage)(index + 1);
+        }
+
+        public void SwitchToStage(Stage stage)
+        {
+            if (stage == Stage.Invalid)
+            {
                 return;
             }
 
-            instantiateParticleCity(ParticleCityPrefabs[0]);
+            SwitchToStage((int)stage - 1);
+            AkSoundEngine.SetState("Stage", stage.ToString());
         }
-    }
 
-	void Update ()
-	{
-	    if (KeyboardSwitch)
-	    {
-	        int keyNum = Math.Min(9, ParticleCityPrefabs.Length - 1);
-	        for (int i = 1; i <= keyNum; i++)
-	        {
-	            KeyCode key = (KeyCode) ((int) KeyCode.Alpha0 + i);
-	            if (Input.GetKeyDown(key))
-	            {
-	                SwitchToStage(i);
-	            }
-	        }
-	    }
-	}
-
-    public void SwitchToStage(int index)
-    {
-        cleanup();
-        instantiateParticleCity(ParticleCityPrefabs[index]);
-    }
-
-    private void instantiateParticleCity(ParticleCity prefab)
-    {
-        CurrentParticleCity = Instantiate(prefab);
-    }
-
-    private void cleanup()
-    {
-        GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
-        for (int i = 0; i < rootObjects.Length; i++)
+        private void instantiateParticleCity(ParticleCity prefab)
         {
-            if (rootObjects[i].GetComponent<ParticleCity>() != null)
-            {
-                Destroy(rootObjects[i]);
-            }
+            CurrentParticleCity = Instantiate(prefab);
         }
 
+        private void cleanup()
+        {
+            GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
+            for (int i = 0; i < rootObjects.Length; i++)
+            {
+                if (rootObjects[i].GetComponent<ParticleCity>() != null)
+                {
+                    Destroy(rootObjects[i]);
+                }
+            }
+
+        }
     }
 }

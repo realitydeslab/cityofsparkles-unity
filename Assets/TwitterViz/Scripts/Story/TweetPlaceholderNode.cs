@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ParticleCities;
 using UnityEngine;
 
 public class TweetPlaceholderNode : SpawnSourceNode
 {
     public StoryNode[] Next;
-    public int SwitchToStage = -1;
+    public Stage SwitchToStage = Stage.Invalid;
     public string QueryTag;
     public float TargetCityIntensity = -1;
 
@@ -48,7 +49,7 @@ public class TweetPlaceholderNode : SpawnSourceNode
             Next[i].gameObject.SetActive(true);
         }
 
-        if (SwitchToStage >= 0)
+        if (SwitchToStage != Stage.Invalid)
         {
             StageSwitcher.Instance.SwitchToStage(SwitchToStage);
         }

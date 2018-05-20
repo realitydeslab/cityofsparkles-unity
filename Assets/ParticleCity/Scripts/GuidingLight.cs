@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using ParticleCities;
 using UnityEngine;
 
 public class GuidingLight : MonoBehaviour
@@ -15,6 +16,8 @@ public class GuidingLight : MonoBehaviour
     public float Interval;
 
     public Transform RenderPart;
+
+    public GameObject RisingParticlePrefab;
 
     private Renderer lightRenderer;
     private Coroutine lightUpCouroutine;
@@ -39,6 +42,11 @@ public class GuidingLight : MonoBehaviour
 	    particleSystem = GetComponentInChildren<ParticleSystem>(true);
 
 	    RenderPart = lightRenderer.transform;
+
+	    if (StageSwitcher.Instance.CurrentStage == Stage.Twist)
+	    {
+	        Instantiate(RisingParticlePrefab, this.transform);
+	    }
 	}
 	
 	void Update () {
