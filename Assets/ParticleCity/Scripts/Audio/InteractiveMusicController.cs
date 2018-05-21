@@ -28,17 +28,20 @@ public class InteractiveMusicController : MonoBehaviour
     public AnimationCurve MIDIForceToIntensity;
     public AnimationCurve MIDIForceToMinorIntensity;
 
+    // Track randomizer
+    public float TrackRandomizeInterval;
 
     public event Action<string> AkMarkerTriggered;
     public event Action<string> AkMusicSyncCueTriggered;
-
-    private AkAmbient akAmbient;
-    private List<GameObject> PointsOfInterest = new List<GameObject>(); 
 
     [Header("Debug")]
     public float MajorIntensity;
     public float MinorIntensity;
     public float Density;
+
+    private AkAmbient akAmbient;
+    private List<GameObject> PointsOfInterest = new List<GameObject>();
+    private float lastTrackRandomizeTime;
 
     public float GetVolumeMeter()
     {
@@ -95,6 +98,8 @@ public class InteractiveMusicController : MonoBehaviour
             Vector3 playerPos = InputManager.Instance.CenterCamera.gameObject.transform.position;
             AkSoundEngine.SetRTPCValue("DistanceToPOI", Vector3.Distance(poiPos, playerPos));
         }
+
+        updateTrackRandomize();
     }
 
     void OnDestroy()
@@ -156,6 +161,20 @@ public class InteractiveMusicController : MonoBehaviour
         if (AkMusicSyncCueTriggered != null)
         {
             AkMusicSyncCueTriggered(cue);
+        }
+    }
+
+    private void updateTrackRandomize()
+    {
+        if (Time.time - lastTrackRandomizeTime > TrackRandomizeInterval)
+        {
+            for (int i = 1; i <= 12; i++)
+            {
+                string state = (UnityEngine.Random.value > 0.5f) ? "Enabled" : "Disabled";
+                AkSoundEngine.SetSwitch("TR" + i, state, gameObject);
+            }
+
+            lastTrackRandomizeTime = 0;
         }
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TitleNode : StoryNode
 {
+    private bool triggered = false; 
+
     public override void Awake()
     {
         base.Awake();
@@ -19,11 +21,18 @@ public class TitleNode : StoryNode
 
     public void OnTriggerEnter(Collider other)
     {
+        if (triggered)
+        {
+            return;
+        }
+
         Debug.Log("trigger enter");
         GuidingLight guidingLight = GetComponentInChildren<GuidingLight>();
         guidingLight.gameObject.SetActive(false);
 
         GetComponent<Animator>().enabled = true;
         GetComponentInChildren<TextMeshPro>(true).gameObject.SetActive(true);
+
+        triggered = true;
     }
 }

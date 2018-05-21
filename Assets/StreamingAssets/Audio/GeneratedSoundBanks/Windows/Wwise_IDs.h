@@ -69,6 +69,142 @@ namespace AK
 
     } // namespace STATES
 
+    namespace SWITCHES
+    {
+        namespace TR1
+        {
+            static const AkUniqueID GROUP = 627876232U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID DISABLED = 3248502869U;
+                static const AkUniqueID ENABLED = 4174102348U;
+            } // namespace SWITCH
+        } // namespace TR1
+
+        namespace TR2
+        {
+            static const AkUniqueID GROUP = 627876235U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID DISABLED = 3248502869U;
+                static const AkUniqueID ENABLED = 4174102348U;
+            } // namespace SWITCH
+        } // namespace TR2
+
+        namespace TR3
+        {
+            static const AkUniqueID GROUP = 627876234U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID DISABLED = 3248502869U;
+                static const AkUniqueID ENABLED = 4174102348U;
+            } // namespace SWITCH
+        } // namespace TR3
+
+        namespace TR4
+        {
+            static const AkUniqueID GROUP = 627876237U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID DISABLED = 3248502869U;
+                static const AkUniqueID ENABLED = 4174102348U;
+            } // namespace SWITCH
+        } // namespace TR4
+
+        namespace TR5
+        {
+            static const AkUniqueID GROUP = 627876236U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID DISABLED = 3248502869U;
+                static const AkUniqueID ENABLED = 4174102348U;
+            } // namespace SWITCH
+        } // namespace TR5
+
+        namespace TR6
+        {
+            static const AkUniqueID GROUP = 627876239U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID DISABLED = 3248502869U;
+                static const AkUniqueID ENABLED = 4174102348U;
+            } // namespace SWITCH
+        } // namespace TR6
+
+        namespace TR7
+        {
+            static const AkUniqueID GROUP = 627876238U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID DISABLED = 3248502869U;
+                static const AkUniqueID ENABLED = 4174102348U;
+            } // namespace SWITCH
+        } // namespace TR7
+
+        namespace TR8
+        {
+            static const AkUniqueID GROUP = 627876225U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID DISABLED = 3248502869U;
+                static const AkUniqueID ENABLED = 4174102348U;
+            } // namespace SWITCH
+        } // namespace TR8
+
+        namespace TR9
+        {
+            static const AkUniqueID GROUP = 627876224U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID DISABLED = 3248502869U;
+                static const AkUniqueID ENABLED = 4174102348U;
+            } // namespace SWITCH
+        } // namespace TR9
+
+        namespace TR10
+        {
+            static const AkUniqueID GROUP = 1912752424U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID DISABLED = 3248502869U;
+                static const AkUniqueID ENABLED = 4174102348U;
+            } // namespace SWITCH
+        } // namespace TR10
+
+        namespace TR11
+        {
+            static const AkUniqueID GROUP = 1912752425U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID DISABLED = 3248502869U;
+                static const AkUniqueID ENABLED = 4174102348U;
+            } // namespace SWITCH
+        } // namespace TR11
+
+        namespace TR12
+        {
+            static const AkUniqueID GROUP = 1912752426U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID DISABLED = 3248502869U;
+                static const AkUniqueID ENABLED = 4174102348U;
+            } // namespace SWITCH
+        } // namespace TR12
+
+    } // namespace SWITCHES
+
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID DENSITY = 1551159691U;
