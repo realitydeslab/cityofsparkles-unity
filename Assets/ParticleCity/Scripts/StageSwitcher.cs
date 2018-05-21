@@ -86,6 +86,7 @@ namespace ParticleCities
             cleanup();
             instantiateParticleCity(ParticleCityPrefabs[index]);
             CurrentStage = (Stage)(index + 1);
+            AkSoundEngine.SetState("Stage", CurrentStage.ToString());
         }
 
         public void SwitchToStage(Stage stage)
@@ -96,7 +97,6 @@ namespace ParticleCities
             }
 
             SwitchToStage((int)stage - 1);
-            AkSoundEngine.SetState("Stage", stage.ToString());
         }
 
         private void instantiateParticleCity(ParticleCity prefab)

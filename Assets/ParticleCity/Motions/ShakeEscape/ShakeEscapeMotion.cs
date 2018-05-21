@@ -108,6 +108,10 @@ public class ShakeEscapeMotion : ParticleMotionBase
         // Hand Gravity
         float limit = 0.8f;
         limit *= (Mathf.Clamp(meter, -6, 0) + 6) / 6 * 0.2f + 0.9f;
+        
+        float leftHandGravity = 0;
+        float rightHandGravity = 0;
+        
 
         if (InputManager.Instance.IsGrabContinuous || !InputManager.Instance.HasTouchpad)
         {
@@ -123,8 +127,8 @@ public class ShakeEscapeMotion : ParticleMotionBase
                 rightGrab = 0;
             }
 
-            particleMotionBlitMaterial.SetFloat("_LeftHandGravity", leftGrab * limit);
-            particleMotionBlitMaterial.SetFloat("_RightHandGravity", rightGrab * limit);
+            leftHandGravity = leftGrab * limit;
+            rightHandGravity = rightGrab * limit;
         }
         else if (InputManager.Instance.HasTouchpad)
         {
@@ -138,8 +142,21 @@ public class ShakeEscapeMotion : ParticleMotionBase
             Vector2 rightTouch = InputManager.Instance.GetTouchpadValue(HandType.Right, out rightTouchPressed);
             float rightGravity = rightTouchPressed ? rightTouch.magnitude * 1.667f : 0;
 
-            particleMotionBlitMaterial.SetFloat("_LeftHandGravity", leftGravity * limit);
-            particleMotionBlitMaterial.SetFloat("_RightHandGravity", rightGravity * limit);
+            leftHandGravity = leftGravity * limit;
+            rightHandGravity = rightGravity * limit;
+        }
+
+        particleMotionBlitMaterial.SetFloat("_LeftHandGravity", leftHandGravity);
+        particleMotionBlitMaterial.SetFloat("_RightHandGravity", rightHandGravity);
+
+        if (leftHandGravity > 0 || rightHandGravity > 0)
+        {
+            InteractiveMusicController.Instance.AddAccumulatedForce(leftHandGravity);
+            InteractiveMusicController.Instance.AddAccumulatedForce(rightHandGravity);
+        }
+        else
+        {
+            InteractiveMusicController.Instance.ResetAccumulatedForce();
         }
     }
 }

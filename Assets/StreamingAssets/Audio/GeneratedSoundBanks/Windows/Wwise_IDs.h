@@ -207,6 +207,7 @@ namespace AK
 
     namespace GAME_PARAMETERS
     {
+        static const AkUniqueID ACCUMULATEDFORCE = 2095365754U;
         static const AkUniqueID DENSITY = 1551159691U;
         static const AkUniqueID DISTANCETOPOI = 749878685U;
         static const AkUniqueID MASTERVOLUME = 2918011349U;

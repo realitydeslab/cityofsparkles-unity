@@ -38,6 +38,10 @@
 					<ShortName>PCBGM-atmosphere.wav</ShortName>
 					<Path>SFX\PCBGM-atmosphere_21CA2154.wem</Path>
 				</File>
+				<File Id="34834793" Language="SFX">
+					<ShortName>Tweet-03 - Twist - e Twist.wav</ShortName>
+					<Path>SFX\Tweet-03 - Twist - e Twist_F17FB28C.wem</Path>
+				</File>
 				<File Id="42020522" Language="SFX">
 					<ShortName>Tweet-Long_03.wav</ShortName>
 					<Path>SFX\Tweet-Long_03_F17FB28C.wem</Path>
@@ -74,6 +78,10 @@
 					<ShortName>TwistNoisyPart.wav</ShortName>
 					<Path>SFX\TwistNoisyPart_21CA2154.wem</Path>
 				</File>
+				<File Id="383937372" Language="SFX">
+					<ShortName>Tweet-03 - Twist - c Evo 2.wav</ShortName>
+					<Path>SFX\Tweet-03 - Twist - c Evo 2_F17FB28C.wem</Path>
+				</File>
 				<File Id="407719945" Language="SFX">
 					<ShortName>HearTheWindWhisper.wav</ShortName>
 					<Path>SFX\HearTheWindWhisper_21CA2154.wem</Path>
@@ -98,9 +106,17 @@
 					<ShortName>Tweet-Long_02.wav</ShortName>
 					<Path>SFX\Tweet-Long_02_F17FB28C.wem</Path>
 				</File>
+				<File Id="633447123" Language="SFX">
+					<ShortName>Tweet-03 - Twist - b Evo 1.wav</ShortName>
+					<Path>SFX\Tweet-03 - Twist - b Evo 1_F17FB28C.wem</Path>
+				</File>
 				<File Id="694171849" Language="SFX">
 					<ShortName>Tweet-Long_01.wav</ShortName>
 					<Path>SFX\Tweet-Long_01_F17FB28C.wem</Path>
+				</File>
+				<File Id="802538555" Language="SFX">
+					<ShortName>Tweet-03 - Twist - d Evo 3.wav</ShortName>
+					<Path>SFX\Tweet-03 - Twist - d Evo 3_F17FB28C.wem</Path>
 				</File>
 				<File Id="810202103" Language="SFX">
 					<ShortName>duet.wav</ShortName>
@@ -125,6 +141,10 @@
 				<File Id="1049042582" Language="SFX">
 					<ShortName>Tweet-Med_04.wav</ShortName>
 					<Path>SFX\Tweet-Med_04_F17FB28C.wem</Path>
+				</File>
+				<File Id="1066262541" Language="SFX">
+					<ShortName>Tweet-03 - Twist - a haunted spaces.wav</ShortName>
+					<Path>SFX\Tweet-03 - Twist - a haunted spaces_F17FB28C.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

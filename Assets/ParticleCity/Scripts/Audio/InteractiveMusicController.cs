@@ -38,6 +38,7 @@ public class InteractiveMusicController : MonoBehaviour
     public float MajorIntensity;
     public float MinorIntensity;
     public float Density;
+    public float AccumulatedForce;
 
     private AkAmbient akAmbient;
     private List<GameObject> PointsOfInterest = new List<GameObject>();
@@ -62,6 +63,16 @@ public class InteractiveMusicController : MonoBehaviour
     public void RemovePointOfInterest(GameObject poi)
     {
         PointsOfInterest.Remove(poi);
+    }
+
+    public void AddAccumulatedForce(float force)
+    {
+        AccumulatedForce += force;
+    }
+
+    public void ResetAccumulatedForce()
+    {
+        AccumulatedForce = 0;
     }
 
     void Awake()
@@ -98,6 +109,8 @@ public class InteractiveMusicController : MonoBehaviour
             Vector3 playerPos = InputManager.Instance.CenterCamera.gameObject.transform.position;
             AkSoundEngine.SetRTPCValue("DistanceToPOI", Vector3.Distance(poiPos, playerPos));
         }
+
+        AkSoundEngine.SetRTPCValue("AccumulatedForce", AccumulatedForce, gameObject);
 
         updateTrackRandomize();
     }
@@ -174,7 +187,7 @@ public class InteractiveMusicController : MonoBehaviour
                 AkSoundEngine.SetSwitch("TR" + i, state, gameObject);
             }
 
-            lastTrackRandomizeTime = 0;
+            lastTrackRandomizeTime = Time.time;
         }
     }
 }
