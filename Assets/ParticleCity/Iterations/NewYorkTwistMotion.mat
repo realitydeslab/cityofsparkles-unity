@@ -105,3 +105,8 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _HeadPos: {r: 3124.17, g: 128.54805, b: -264.37082, a: 1}
+    - _LeftHandForward: {r: 0.17617841, g: 0.2581415, b: -0.94990766, a: 1}
+    - _LeftHandPos: {r: 3125.275, g: 127.35232, b: -267.52762, a: 1}
+    - _RightHandForward: {r: -0.8727846, g: 0.07983121, b: 0.48153365, a: 1}
+    - _RightHandPos: {r: 3124.1353, g: 154.93915, b: -288.405, a: 1}

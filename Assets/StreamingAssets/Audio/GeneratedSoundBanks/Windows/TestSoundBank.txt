@@ -13,6 +13,7 @@ Event	ID	Name			Wwise Object Path	Notes
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	749878685	DistanceToPOI			\Default Work Unit\DistanceToPOI	
+	1551159691	Density			\Default Work Unit\Density	
 	2095365754	AccumulatedForce			\Default Work Unit\AccumulatedForce	
 
 Modulator Envelope	ID	Name			Wwise Object Path	Notes
@@ -32,6 +33,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	122761794	Tweet-Short_02	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Short_02_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Tweet-Short\Tweet-Short_02\Tweet-Short_02		1266808
 	138061797	Tweet-Med_01	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med_01_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Tweet-Med\Tweet-Med_01\Tweet-Med_01		1436008
 	297268359	ParticleCity Improv	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\ParticleCity Improv_21CA2154.wem		\Interactive Music Hierarchy\Test Work Unit\ParticleCity Improv BGM\ParticleCity Improv		1291792
+	325562668	02 - First - b Aurora Pluck(Density)	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-02 - First - b Aurora Pluck(Density)_F17FB28C.wem		\Interactive Music Hierarchy\Test Work Unit\StoryBGM\First\First\02 - First - b Aurora Pluck(Density)		18654032
 	376149469	Tweet-Med-Long_01	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med-Long_01_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Tweet-Med-Long\Tweet-Med-Long_01\Tweet-Med-Long_01		1877764
 	378625576	TwistNoisyPart	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\TwistNoisyPart_21CA2154.wem		\Interactive Music Hierarchy\Test Work Unit\TwistNoisyPart\TwistNoisyPart		1838188
 	383937372	03 - Twist - c Evo 2	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-03 - Twist - c Evo 2_F17FB28C.wem		\Interactive Music Hierarchy\Test Work Unit\StoryBGM\Twist\20180519 BGM\03 - Twist - c Evo 2		8820064
@@ -46,6 +48,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	802538555	03 - Twist - d Evo 3	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-03 - Twist - d Evo 3_F17FB28C.wem		\Interactive Music Hierarchy\Test Work Unit\StoryBGM\Twist\20180519 BGM\03 - Twist - d Evo 3		8820064
 	810202103	duet	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\duet_F17FB28C.wem		\Interactive Music Hierarchy\Test Work Unit\SentimentBGMTest\Happy\duet\duet		5799112
 	810328542	Twist	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Twist_CDB5649E.wem		\Interactive Music Hierarchy\Test Work Unit\Twist BGM\Twist		19846214
+	831186808	02 - First - a Astral Organ	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-02 - First - a Astral Organ_F17FB28C.wem		\Interactive Music Hierarchy\Test Work Unit\StoryBGM\First\First\02 - First - a Astral Organ		18653952
 	922462996	Tweet-Med_02	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med_02_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Tweet-Med\Tweet-Med_02\Tweet-Med_02		1816568
 	995012014	Tweet-Med_03	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med_03_F17FB28C.wem		\Interactive Music Hierarchy\Default Work Unit\Tweet-Med\Tweet-Med_03\Tweet-Med_03		1889712
 	1043598777	ParticleCityCommands	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\ParticleCityCommands_00000000.wem		\Interactive Music Hierarchy\Test Work Unit\ParticleCity Improv BGM\ParticleCityCommands		4777

@@ -70,6 +70,10 @@
 					<ShortName>ParticleCity Improv.wav</ShortName>
 					<Path>SFX\ParticleCity Improv_21CA2154.wem</Path>
 				</File>
+				<File Id="325562668" Language="SFX">
+					<ShortName>Tweet-02 - First - b Aurora Pluck(Density).wav</ShortName>
+					<Path>SFX\Tweet-02 - First - b Aurora Pluck(Density)_F17FB28C.wem</Path>
+				</File>
 				<File Id="376149469" Language="SFX">
 					<ShortName>Tweet-Med-Long_01.wav</ShortName>
 					<Path>SFX\Tweet-Med-Long_01_F17FB28C.wem</Path>
@@ -125,6 +129,10 @@
 				<File Id="810328542" Language="SFX">
 					<ShortName>Twist.wav</ShortName>
 					<Path>SFX\Twist_CDB5649E.wem</Path>
+				</File>
+				<File Id="831186808" Language="SFX">
+					<ShortName>Tweet-02 - First - a Astral Organ.wav</ShortName>
+					<Path>SFX\Tweet-02 - First - a Astral Organ_F17FB28C.wem</Path>
 				</File>
 				<File Id="922462996" Language="SFX">
 					<ShortName>Tweet-Med_02.wav</ShortName>
