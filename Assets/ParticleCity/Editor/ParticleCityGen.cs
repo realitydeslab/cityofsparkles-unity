@@ -8,29 +8,25 @@ using UnityEditor;
 using ParticleCity.Editor;
 using Random = UnityEngine.Random;
 
-public class ParticleCityGen : EditorWindow {
+public class ParticleCityGen : EditorWindow
+{
+    private ParticleCityGenParams genParams; 
 
-    private string groupName = "untitled";
     private Material cityMatTempalte;
     private Material motionBlitMatTemplate;
-
-    private float samplePerCubeUnit = 0.0005f;
-
-    private float samplePerSquareUnit = 100;
-    private float triangleEdgeSamplePerUnit = 10;
 
     private bool shouldGenDebugParticles = false;
     private bool shouldGenTextures = true;
     private bool shouldGenMesh = true;
 
-    private const int TEX_WIDTH = 2048;
-    private const int TEX_HEIGHT = 2048;
     private const int MAX_MESH_VERTEX = 65000;
 
-    private List<Vector3> points = new List<Vector3>(TEX_HEIGHT * TEX_HEIGHT);
+    private List<Vector3> points;
     private GameObject debugParticles = null;
     private Texture2D positionTexture = null;
     private GameObject particleCity = null;
+
+    private ParticleCityGenParams genParamsToLoad;
 
     [MenuItem("ParticleCity/Particle City Gen")]
     static void ShowWindow() {
@@ -38,17 +34,34 @@ public class ParticleCityGen : EditorWindow {
     }
 
     void OnGUI() {
+        // Default 
+        if (genParams == null)
+        {
+            genParams = new ParticleCityGenParams();
+        }
+
+        if (cityMatTempalte == null)
+        {
+            cityMatTempalte = AssetDatabase.LoadAssetAtPath<Material>("Assets/ParticleCity/Materials/ParticleCityTemplate.mat");
+        }
+
+        if (motionBlitMatTemplate == null)
+        {
+            motionBlitMatTemplate = AssetDatabase.LoadAssetAtPath<Material>("Assets/ParticleCity/Materials/ParticleCityMotionTemplate.mat");
+        }
+
+
         EditorGUILayout.BeginVertical();
 
         EditorGUILayout.Space();
 
-        groupName = EditorGUILayout.TextField("Name", groupName);
+        genParams.GroupName = EditorGUILayout.TextField("Name", genParams.GroupName);
         cityMatTempalte = (Material)EditorGUILayout.ObjectField("City Material", cityMatTempalte, typeof(Material), false);
         motionBlitMatTemplate = (Material)EditorGUILayout.ObjectField("Motion Material", motionBlitMatTemplate, typeof(Material), false);
 
-        samplePerCubeUnit = EditorGUILayout.FloatField("Sample Per Cube Unit", samplePerCubeUnit);
-        samplePerSquareUnit = EditorGUILayout.FloatField("Sample Per Square Unit", samplePerSquareUnit);
-        triangleEdgeSamplePerUnit = EditorGUILayout.FloatField("Triangle Edge Sample Per Unit", triangleEdgeSamplePerUnit);
+        genParams.SamplePerCubeUnit = EditorGUILayout.FloatField("Sample Per Cube Unit", genParams.SamplePerCubeUnit);
+        genParams.SamplePerSquareUnit = EditorGUILayout.FloatField("Sample Per Square Unit", genParams.SamplePerSquareUnit);
+        genParams.TriangleEdgeSamplePerUnit = EditorGUILayout.FloatField("Triangle Edge Sample Per Unit", genParams.TriangleEdgeSamplePerUnit);
 
         shouldGenDebugParticles = EditorGUILayout.Toggle("Debug Particle", shouldGenDebugParticles);
         shouldGenTextures = EditorGUILayout.Toggle("Build Textures", shouldGenTextures);
@@ -62,8 +75,17 @@ public class ParticleCityGen : EditorWindow {
 
         EditorGUILayout.Space();
 
-        if (GUILayout.Button("Clear")) {
+        if (GUILayout.Button("Clear")) 
+        {
             clearParticles();
+        }
+
+        EditorGUILayout.Space();
+
+        genParamsToLoad = (ParticleCityGenParams)EditorGUILayout.ObjectField("Params", genParamsToLoad, typeof(ParticleCityGenParams), false);
+        if (GUILayout.Button("Load Settings") && genParamsToLoad != null)
+        {
+            genParams = Instantiate(genParamsToLoad);
         }
 
         EditorGUILayout.EndVertical();
@@ -92,11 +114,18 @@ public class ParticleCityGen : EditorWindow {
             genDebugParticles();
         }
 
-        if (shouldGenTextures) {
+        if (shouldGenTextures || shouldGenMesh)
+        {
+            AssetDatabase.CreateAsset(Instantiate(genParams), getPath("Params.asset"));     
+        }
+
+        if (shouldGenTextures) 
+        {
             genPositionTexture();
         }
 
-        if (shouldGenMesh) {
+        if (shouldGenMesh) 
+        {
             genMesh();
         }
 
@@ -112,7 +141,7 @@ public class ParticleCityGen : EditorWindow {
         Debug.Log("Particle City Gen: Samping particles");
         Debug.Log("Found " + colliders.Length + " colliders");
 
-        points.Clear();
+        points = new List<Vector3>(genParams.TextureWidth * genParams.TextureHeight);
 
         int totalSampleCount = 0;
 
@@ -130,7 +159,7 @@ public class ParticleCityGen : EditorWindow {
             Vector3 boundsDelta = boundsMaxLocal - boundsMinLocal;
 
             float volume = Mathf.Abs(boundsDelta.x * boundsDelta.y * boundsDelta.z);
-            int sampleCount = (int)(volume * samplePerCubeUnit);
+            int sampleCount = (int)(volume * genParams.SamplePerCubeUnit);
 
             totalSampleCount += sampleCount;
             // Debug.Log("Sample count: " + sampleCount + ", Total: " + totalSampleCount);
@@ -150,7 +179,7 @@ public class ParticleCityGen : EditorWindow {
         Debug.Log("Total sample count: " + totalSampleCount);
         Debug.Log(points.Count + " points sampled");
 
-        if (points.Count > TEX_WIDTH * TEX_HEIGHT) {
+        if (points.Count > genParams.TextureWidth * genParams.TextureHeight) {
             Debug.LogError("Particle City Gen: Too many points for specified texture size");
         }
 
@@ -161,7 +190,7 @@ public class ParticleCityGen : EditorWindow {
         Debug.Log("Particle City Gen: Samping particles");
         Debug.Log("Found " + meshFilters.Length + " mesh filters");
 
-        points.Clear();
+        points = new List<Vector3>(genParams.TextureWidth * genParams.TextureHeight);
 
         int totalSampleCount = 0;
 
@@ -187,7 +216,7 @@ public class ParticleCityGen : EditorWindow {
 
                 // Sample interior
                 float area = Vector3.Cross(v1, v2).magnitude / 2.0f;
-                int sampleCount = (int)(area * samplePerSquareUnit);
+                int sampleCount = (int)(area * genParams.SamplePerSquareUnit);
                 totalSampleCount += sampleCount;
 
                 for (int k = 0; k < sampleCount; k++)
@@ -206,7 +235,7 @@ public class ParticleCityGen : EditorWindow {
 
                 // Sample edge
                 float circumstance = v1.magnitude + v2.magnitude + (v2 - v1).magnitude;
-                int edgeSampleCount = (int) (circumstance * triangleEdgeSamplePerUnit);
+                int edgeSampleCount = (int) (circumstance * genParams.TriangleEdgeSamplePerUnit);
                 totalSampleCount += edgeSampleCount;
 
                 for (int k = 0; k < edgeSampleCount; k++)
@@ -224,7 +253,7 @@ public class ParticleCityGen : EditorWindow {
         Debug.Log("Total sample count: " + totalSampleCount);
         Debug.Log(points.Count + " points sampled");
 
-        if (points.Count > TEX_WIDTH * TEX_HEIGHT) {
+        if (points.Count > genParams.TextureWidth * genParams.TextureHeight) {
             Debug.LogError("Particle City Gen: Too many points for specified texture size");
         }
 
@@ -247,19 +276,19 @@ public class ParticleCityGen : EditorWindow {
     }
 
     private void genPositionTexture() {
-        if (TEX_WIDTH * TEX_HEIGHT < points.Count) {
+        if (genParams.TextureWidth * genParams.TextureHeight < points.Count) {
             Debug.LogError("Texture is too small to hold " + points.Count + " points.");
         }
 
         Debug.Log("Building position texture...");
 
         // TODO Perf: Generate raw data
-        Color[] colors = new Color[TEX_WIDTH * TEX_HEIGHT];
+        Color[] colors = new Color[genParams.TextureWidth * genParams.TextureHeight];
         for (var i = 0; i < points.Count; i++) {
             colors[i] = new Color(points[i].x, points[i].y, points[i].z);
         }
 
-        positionTexture = new Texture2D(TEX_WIDTH, TEX_HEIGHT, TextureFormat.RGBAFloat, false, true);
+        positionTexture = new Texture2D(genParams.TextureWidth, genParams.TextureHeight, TextureFormat.RGBAFloat, false, true);
         positionTexture.anisoLevel = 1;
         positionTexture.filterMode = FilterMode.Point;
         positionTexture.SetPixels(colors);
@@ -289,8 +318,8 @@ public class ParticleCityGen : EditorWindow {
 
         // https://github.com/keijiro/KvantStream/blob/master/Assets/Kvant/Stream/Stream.cs CreateMesh
 
-        int Nx = TEX_WIDTH;
-        int Ny = ceiling(pointCount, TEX_WIDTH); // int ceiling
+        int Nx = genParams.TextureWidth;
+        int Ny = ceiling(pointCount, genParams.TextureWidth); // int ceiling
 
         Debug.Log("Creating grid mesh " + Nx + "x" + Ny + "...");
 
@@ -303,8 +332,8 @@ public class ParticleCityGen : EditorWindow {
             for (var y = 0; y < Ny; y++) {
                 vertexArray[index] = new Vector3(x, 0, y);
 
-                var u = (float)x / TEX_WIDTH;
-                var v = (float)y / TEX_HEIGHT;
+                var u = (float)x / genParams.TextureWidth;
+                var v = (float)y / genParams.TextureHeight;
                 uvArray[index] = new Vector2(u, v);
 
                 index += 1;
@@ -337,7 +366,7 @@ public class ParticleCityGen : EditorWindow {
         }
 
         // Create Prefab
-        particleCity = new GameObject(groupName + "_ParticleCity", typeof(ParticleMotion));
+        particleCity = new GameObject(genParams.GroupName + "_ParticleCity", typeof(ParticleMotion));
         var particleMotion = particleCity.GetComponent<ParticleMotion>();
         particleMotion.BasePositionTexture = positionTexture;
         particleMotion.ParticleMotionBlitMaterialPrefab = AssetDatabase.LoadAssetAtPath<Material>(getPath("ParticleMotionBlit.mat"));
@@ -345,7 +374,7 @@ public class ParticleCityGen : EditorWindow {
         // particleMotion.RightHand = GameObject.Find("/[CameraRig]/Controller (right)").transform;
 
         for (int i = 0; i < meshes.Length; i++) {
-            GameObject meshObject = new GameObject(groupName + "_Mesh" + i, typeof(MeshFilter), typeof(MeshRenderer));
+            GameObject meshObject = new GameObject(genParams.GroupName + "_Mesh" + i, typeof(MeshFilter), typeof(MeshRenderer));
             meshObject.transform.parent = particleCity.transform;
 
             meshObject.GetComponent<MeshFilter>().mesh = meshes[i];
@@ -357,7 +386,8 @@ public class ParticleCityGen : EditorWindow {
         Debug.Log("Prefab saved to " + getPath("ParticleCityPrefab.prefab"));
     }
 
-    private void clearParticles() {
+    private void clearParticles() 
+    {
         if (debugParticles != null) {
             while (debugParticles.transform.childCount > 0) {
                 DestroyImmediate(debugParticles.transform.GetChild(0).gameObject);
@@ -373,14 +403,15 @@ public class ParticleCityGen : EditorWindow {
         }
         positionTexture = null;
 
-        Directory.Delete(Path.Combine("Assets/ParticleCityGen/", groupName).Replace('\\', '/'), true);
+        Directory.Delete(Path.Combine("Assets/ParticleCityGen/", genParams.GroupName).Replace('\\', '/'), true);
         AssetDatabase.Refresh();
     }
 
-    private void loadGeneratedAssets() {
+    private void loadGeneratedAssets() 
+    {
         // Try to load generated assets
         positionTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(getPath("ParticlePositions.asset"));
-        particleCity = GameObject.Find("/" + groupName + "_ParticleCity");
+        particleCity = GameObject.Find("/" + genParams.GroupName + "_ParticleCity");
         debugParticles = GameObject.Find("/DebugParticles");
     }
 
@@ -390,13 +421,13 @@ public class ParticleCityGen : EditorWindow {
 
     private string getPath(string assetName, bool createDir = true)
     {
-        string dir = Path.Combine("Assets/ParticleCityGen/", groupName);
+        string dir = Path.Combine("Assets/ParticleCityGen/", genParams.GroupName);
         if (createDir && !Directory.Exists(dir))
         {
             Directory.CreateDirectory(dir);
         }
 
-        string path = Path.Combine(dir, groupName + "_" + assetName);
+        string path = Path.Combine(dir, genParams.GroupName + "_" + assetName);
         return path.Replace('\\', '/');
     }
 }
