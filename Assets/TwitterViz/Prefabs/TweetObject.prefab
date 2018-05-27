@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 114265464811481166}
   - component: {fileID: 135063769366119374}
   - component: {fileID: 114983399612899474}
-  - component: {fileID: 114107650119667882}
   m_Layer: 0
   m_Name: TweetObject
   m_TagString: Untagged
@@ -138,32 +137,8 @@ MonoBehaviour:
   RenderPart: {fileID: 0}
   RisingParticlePrefab: {fileID: 1257488255029074, guid: 4afd72319442d3d46a0b4333180b4938,
     type: 2}
+  MusicSync: 0
   Intensity: 0
---- !u!114 &114107650119667882
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1721390962176636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca9b7dce0271fcd4c9a632a128478dab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerList: 
-  useOtherObject: 0
-  actionOnEventType: 0
-  curveInterpolation: 4
-  enableActionOnEvent: 0
-  eventID: -1335035570
-  m_callbackData: {fileID: 0}
-  playingId: 0
-  soundEmitterObject: {fileID: 0}
-  transitionDuration: 0
-  valueGuid: 35f1346c2076db41aaed8ddc7639c8d6
-  multiPositionArray: []
-  MultiPositionType: 1
-  multiPositionTypeLabel: 0
 --- !u!114 &114265464811481166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f3d91233db044b41a9a3513dc9cf3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NodeRole: 1
   WordPrefab: {fileID: 114259831664582430, guid: 5f470f46a5db1994ba43c2d55e48c2b6,
     type: 2}
   Trigger: 0

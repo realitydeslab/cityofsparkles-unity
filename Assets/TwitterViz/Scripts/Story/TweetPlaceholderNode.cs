@@ -10,6 +10,7 @@ public class TweetPlaceholderNode : SpawnSourceNode
 
     public float MixInRatio = 0;
     public string AkEventOnSpawn;
+    public string AkEventOnReveal = "Play_TweetRevealCommon";
 
     [Tooltip("Trigger the next story node without spawning tweets.")]
     public bool IsStoryTrigger;
@@ -86,6 +87,11 @@ public class TweetPlaceholderNode : SpawnSourceNode
         {
             tweet.NodeRole = TweetComponent.NodeRoleType.StoryTrigger;
         }
+
+        if (!string.IsNullOrEmpty(AkEventOnReveal))
+        {
+            tweet.AkEventOnReveal = AkEventOnReveal;
+        }
     }
 
     public override void OnTweetRevealed(TweetComponent obj)
@@ -102,12 +108,13 @@ public class TweetPlaceholderNode : SpawnSourceNode
             AkSoundEngine.SetRTPCValue("MixInRatio", 0);
         }
 
+        GotoNext();
+
         if (TargetCityIntensity >= 0)
         {
             ParticleCity.Current.Animator.LerpToIntensity(TargetCityIntensity, 0.01f);
         }
 
-        GotoNext();
         Destroy(gameObject);
     }
 

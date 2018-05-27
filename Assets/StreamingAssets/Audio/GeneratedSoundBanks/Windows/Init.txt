@@ -1,3 +1,12 @@
+Switch Group	ID	Name			Wwise Object Path	Notes
+	697194084	TweetWordsLengthGroup			\Default Work Unit\TweetWordsLengthGroup	
+
+Switch	ID	Name	Switch Group			Notes
+	674228435	Long	TweetWordsLengthGroup			
+	1531954074	MediumLong	TweetWordsLengthGroup			
+	2585211341	Short	TweetWordsLengthGroup			
+	2849147824	Medium	TweetWordsLengthGroup			
+
 State Group	ID	Name			Wwise Object Path	Notes
 	610169148	Sentiment			\Default Work Unit\Sentiment	
 	1063701865	Stage			\Default Work Unit\Stage	

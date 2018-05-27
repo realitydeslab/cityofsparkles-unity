@@ -29,9 +29,11 @@
 				<Event Id="2959931726" Name="Play_Tweet_Med" ObjectPath="\Events\Default Work Unit\Play_Tweet_Med"/>
 				<Event Id="3560716643" Name="Play_Tweet_Med_Long" ObjectPath="\Events\Default Work Unit\Play_Tweet_Med_Long"/>
 				<Event Id="241412554" Name="Play_Tweet_Short" ObjectPath="\Events\Default Work Unit\Play_Tweet_Short"/>
+				<Event Id="2476052365" Name="Play_TweetRevealCommon" ObjectPath="\Events\Default Work Unit\Play_TweetRevealCommon"/>
 				<Event Id="1993745496" Name="Play_Twist_BGM" ObjectPath="\Events\Test Work Unit\Play_Twist_BGM"/>
 				<Event Id="3980605832" Name="Play_TwistNoisyPart" ObjectPath="\Events\Test Work Unit\Play_TwistNoisyPart"/>
 				<Event Id="914952687" Name="Play_TwitterBgm" ObjectPath="\Events\Default Work Unit\Play_TwitterBgm"/>
+				<Event Id="3160623154" Name="Silent" ObjectPath="\Events\Default Work Unit\Silent" MaxAttenuation="0.000000"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="30958087" Language="SFX">

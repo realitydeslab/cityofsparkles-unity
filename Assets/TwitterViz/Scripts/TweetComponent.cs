@@ -68,6 +68,9 @@ public class TweetComponent : MonoBehaviour
     public float CircularSpaceWidth = 5;
     // public float CircularMaxDegree = 90;
 
+    [Header("Sound")]
+    public string AkEventOnReveal = "Play_TweetRevealCommon";
+
     [Header("Debug")]
     public bool GrabPlayer;
     public TweetState State;
@@ -81,7 +84,6 @@ public class TweetComponent : MonoBehaviour
 
     private Vector3 originalPosition;
     private bool isPlaying;
-    private AkAmbient akAmbient;
     private AkGameObj akGameObj;
     private bool everTriggered;
     private TwitterManager manager;
@@ -95,7 +97,6 @@ public class TweetComponent : MonoBehaviour
 
     void Awake()
     {
-        akAmbient = GetComponent<AkAmbient>();
         akGameObj = GetComponent<AkGameObj>();
     }
 
@@ -574,23 +575,10 @@ public class TweetComponent : MonoBehaviour
 
     private void playMusic()
     {
-        int length = Tweet.Words.Length;
-        if (length < 6)
-        {
-            AkSoundEngine.PostEvent("Play_Tweet_Short", gameObject);
-        }
-        else if (length < 10)
-        {
-            AkSoundEngine.PostEvent("Play_Tweet_Med", gameObject);
-        }
-        else if (length < 20)
-        {
-            AkSoundEngine.PostEvent("Play_Tweet_Med_Long", gameObject);
-        }
-        else
-        {
-            AkSoundEngine.PostEvent("Play_Tweet_Long", gameObject);
-        }
+        int length = (Tweet == null || Tweet.Words == null) ? 0 : Tweet.Words.Length;
+        AkSoundEngine.SetRTPCValue("TweetWordsLength", length, gameObject);
+        AkSoundEngine.SetRTPCValue("TweetSentiment", (float)Sentiment, gameObject);
+        AkSoundEngine.PostEvent(AkEventOnReveal, gameObject);
     }
 
     private void setState(TweetState newState)

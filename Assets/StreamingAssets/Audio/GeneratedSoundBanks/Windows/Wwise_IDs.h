@@ -21,9 +21,11 @@ namespace AK
         static const AkUniqueID PLAY_TWEET_MED = 2959931726U;
         static const AkUniqueID PLAY_TWEET_MED_LONG = 3560716643U;
         static const AkUniqueID PLAY_TWEET_SHORT = 241412554U;
+        static const AkUniqueID PLAY_TWEETREVEALCOMMON = 2476052365U;
         static const AkUniqueID PLAY_TWIST_BGM = 1993745496U;
         static const AkUniqueID PLAY_TWISTNOISYPART = 3980605832U;
         static const AkUniqueID PLAY_TWITTERBGM = 914952687U;
+        static const AkUniqueID SILENT = 3160623154U;
     } // namespace EVENTS
 
     namespace STATES
@@ -203,6 +205,19 @@ namespace AK
             } // namespace SWITCH
         } // namespace TR12
 
+        namespace TWEETWORDSLENGTHGROUP
+        {
+            static const AkUniqueID GROUP = 697194084U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID LONG = 674228435U;
+                static const AkUniqueID MEDIUM = 2849147824U;
+                static const AkUniqueID MEDIUMLONG = 1531954074U;
+                static const AkUniqueID SHORT = 2585211341U;
+            } // namespace SWITCH
+        } // namespace TWEETWORDSLENGTHGROUP
+
     } // namespace SWITCHES
 
     namespace GAME_PARAMETERS
@@ -213,6 +228,8 @@ namespace AK
         static const AkUniqueID MASTERVOLUME = 2918011349U;
         static const AkUniqueID MIXINRATIO = 3473590661U;
         static const AkUniqueID SENTIMENTRATIO = 1059072165U;
+        static const AkUniqueID TWEETSENTIMENT = 171889219U;
+        static const AkUniqueID TWEETWORDSLENGTH = 946993767U;
     } // namespace GAME_PARAMETERS
 
     namespace BANKS
