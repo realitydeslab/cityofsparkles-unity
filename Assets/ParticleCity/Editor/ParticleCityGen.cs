@@ -2,12 +2,17 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using ParticleCity.Editor;
 using Random = UnityEngine.Random;
 
 public class ParticleCityGen : EditorWindow {
+
+    private string groupName = "untitled";
+    private Material cityMatTempalte;
+    private Material motionBlitMatTemplate;
 
     private float samplePerCubeUnit = 0.0005f;
 
@@ -36,6 +41,10 @@ public class ParticleCityGen : EditorWindow {
         EditorGUILayout.BeginVertical();
 
         EditorGUILayout.Space();
+
+        groupName = EditorGUILayout.TextField("Name", groupName);
+        cityMatTempalte = (Material)EditorGUILayout.ObjectField("City Material", cityMatTempalte, typeof(Material), false);
+        motionBlitMatTemplate = (Material)EditorGUILayout.ObjectField("Motion Material", motionBlitMatTemplate, typeof(Material), false);
 
         samplePerCubeUnit = EditorGUILayout.FloatField("Sample Per Cube Unit", samplePerCubeUnit);
         samplePerSquareUnit = EditorGUILayout.FloatField("Sample Per Square Unit", samplePerSquareUnit);
@@ -92,6 +101,11 @@ public class ParticleCityGen : EditorWindow {
         }
 
         AssetDatabase.SaveAssets();
+
+        if (particleCity != null)
+        {
+            Selection.activeObject = particleCity;
+        }
     }
 
     private void samplePoints(Collider[] colliders) {
@@ -251,16 +265,22 @@ public class ParticleCityGen : EditorWindow {
         positionTexture.SetPixels(colors);
         positionTexture.Apply();
 
-        AssetDatabase.CreateAsset(positionTexture, "Assets/ParticleCityGen/ParticlePositions.asset");
+        AssetDatabase.CreateAsset(positionTexture, getPath("ParticlePositions.asset"));
 
-        // Update material
-        var particleCityGenMat = AssetDatabase.LoadAssetAtPath<Material>("Assets/ParticleCityGen/ParticleCity.mat");
+        // Create material
+        string templatePath = AssetDatabase.GetAssetPath(cityMatTempalte);
+        string newCityMatPath = getPath("ParticleCity.mat");
+        AssetDatabase.CopyAsset(templatePath, newCityMatPath);
+        Material particleCityGenMat = AssetDatabase.LoadAssetAtPath<Material>(newCityMatPath);
         particleCityGenMat.SetTexture("_PositionTex", positionTexture);
 
-        var particleMotionBlitMat = AssetDatabase.LoadAssetAtPath<Material>("Assets/ParticleCityGen/ParticleMotionBlit.mat");
+        templatePath = AssetDatabase.GetAssetPath(motionBlitMatTemplate);
+        string newMotionPath = getPath("ParticleMotionBlit.mat");
+        AssetDatabase.CopyAsset(templatePath, newMotionPath);
+        Material particleMotionBlitMat = AssetDatabase.LoadAssetAtPath<Material>(newMotionPath);
         particleMotionBlitMat.SetTexture("_BasePositionTex", positionTexture);
 
-        Debug.Log("Positions texture saved to Assets/ParticleCityGen/ParticlePositions.asset");
+        Debug.Log("Positions texture saved to " + getPath("ParticlePositions.asset"));
     }
 
     private void genMesh() {
@@ -313,29 +333,28 @@ public class ParticleCityGen : EditorWindow {
             // Avoid being culled.
             meshes[i].bounds = new Bounds(Vector3.zero, Vector3.one * 100000);
 
-            // TODO: Not tested!!!
-            AssetDatabase.CreateAsset(meshes[i], string.Format("Assets/ParticleCityGen/Mesh {0}.asset", i));
+            AssetDatabase.CreateAsset(meshes[i], getPath(string.Format("Mesh {0}.asset", i)));
         }
 
         // Create Prefab
-        particleCity = new GameObject("Particle City", typeof(ParticleMotion));
+        particleCity = new GameObject(groupName + "_ParticleCity", typeof(ParticleMotion));
         var particleMotion = particleCity.GetComponent<ParticleMotion>();
         particleMotion.BasePositionTexture = positionTexture;
-        particleMotion.ParticleMotionBlitMaterialPrefab = AssetDatabase.LoadAssetAtPath<Material>("Assets/ParticleCityGen/ParticleMotionBlit.mat");
+        particleMotion.ParticleMotionBlitMaterialPrefab = AssetDatabase.LoadAssetAtPath<Material>(getPath("ParticleMotionBlit.mat"));
         // particleMotion.LeftHand = GameObject.Find("/[CameraRig]/Controller (left)").transform;
         // particleMotion.RightHand = GameObject.Find("/[CameraRig]/Controller (right)").transform;
 
         for (int i = 0; i < meshes.Length; i++) {
-            GameObject meshObject = new GameObject("Mesh " + i, typeof(MeshFilter), typeof(MeshRenderer));
+            GameObject meshObject = new GameObject(groupName + "_Mesh" + i, typeof(MeshFilter), typeof(MeshRenderer));
             meshObject.transform.parent = particleCity.transform;
 
             meshObject.GetComponent<MeshFilter>().mesh = meshes[i];
-            meshObject.GetComponent<MeshRenderer>().material = AssetDatabase.LoadAssetAtPath<Material>("Assets/ParticleCityGen/ParticleCity.mat");
+            meshObject.GetComponent<MeshRenderer>().material = AssetDatabase.LoadAssetAtPath<Material>(getPath("ParticleCity.mat"));
         }
 
-        PrefabUtility.CreatePrefab("Assets/ParticleCityGen/ParticleCityPrefab.prefab", particleCity);
+        PrefabUtility.CreatePrefab(getPath("ParticleCityPrefab.prefab"), particleCity);
 
-        Debug.Log("Prefab saved to Assets/ParticleCityGen/ParticleCityPrefab.prefab");
+        Debug.Log("Prefab saved to " + getPath("ParticleCityPrefab.prefab"));
     }
 
     private void clearParticles() {
@@ -354,18 +373,30 @@ public class ParticleCityGen : EditorWindow {
         }
         positionTexture = null;
 
-        AssetDatabase.DeleteAsset("Assets/ParticleCityGen/ParticlePositions.asset");
-        AssetDatabase.DeleteAsset("Assets/ParticleCityGen/ParticleCityPrefab.prefab");
+        Directory.Delete(Path.Combine("Assets/ParticleCityGen/", groupName).Replace('\\', '/'), true);
+        AssetDatabase.Refresh();
     }
 
     private void loadGeneratedAssets() {
         // Try to load generated assets
-        positionTexture = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/ParticleCityGen/ParticlePositions.asset");
-        particleCity = GameObject.Find("/Particle City");
+        positionTexture = AssetDatabase.LoadAssetAtPath<Texture2D>(getPath("ParticlePositions.asset"));
+        particleCity = GameObject.Find("/" + groupName + "_ParticleCity");
         debugParticles = GameObject.Find("/DebugParticles");
     }
 
     private static int ceiling(int a, int b) {
         return 1 + (int) ((a - 1) / b);
+    }
+
+    private string getPath(string assetName, bool createDir = true)
+    {
+        string dir = Path.Combine("Assets/ParticleCityGen/", groupName);
+        if (createDir && !Directory.Exists(dir))
+        {
+            Directory.CreateDirectory(dir);
+        }
+
+        string path = Path.Combine(dir, groupName + "_" + assetName);
+        return path.Replace('\\', '/');
     }
 }
