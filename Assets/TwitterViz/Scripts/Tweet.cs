@@ -38,6 +38,7 @@ namespace TwitterViz.DataModels
         public Tweet(TwitterDatabase.DBTweet dbTweet)
         {
             Id = dbTweet.id;
+
             Text = dbTweet.clean_text;
             CleanText = dbTweet.clean_text;
 
@@ -57,11 +58,14 @@ namespace TwitterViz.DataModels
                 Polarity = polarity
             };
 
-            Coordinates = new Coordinates()
+            if (!Mathf.Approximately((float) dbTweet.latitude, 0) && !Mathf.Approximately((float) dbTweet.longitude, 0))
             {
-                CoordinatesType = "Point",
-                Data = new double[] {dbTweet.longitude, dbTweet.latitude}
-            };
+                Coordinates = new Coordinates()
+                {
+                    CoordinatesType = "Point",
+                    Data = new double[] {dbTweet.longitude, dbTweet.latitude}
+                };
+            }
 
             Place = null;
 

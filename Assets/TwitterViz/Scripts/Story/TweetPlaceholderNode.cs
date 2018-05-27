@@ -11,6 +11,9 @@ public class TweetPlaceholderNode : SpawnSourceNode
     public float MixInRatio = 0;
     public string AkEventOnSpawn;
 
+    [Tooltip("Trigger the next story node without spawning tweets.")]
+    public bool IsStoryTrigger;
+
     public bool musicSync = false;
     public override bool MusicSync
     {
@@ -24,27 +27,48 @@ public class TweetPlaceholderNode : SpawnSourceNode
     {
         base.Update();
 
-        if (tweet == null)
+        if (IsStoryTrigger)
         {
-            IList<TwitterDatabase.DBTweet> tweets = TwitterManager.Instance.Database.QueryForTags(QueryTag, 1);
-            if (tweets.Count == 0)
+            if (!spawned)
             {
-                Debug.LogWarning("Cannot find tweet for placeholder. ", this);
-            }
-            else
-            {
-                tweet = tweets[0];
+                TwitterManager.Instance.Enqueue(new[]
+                {
+                    new TwitterManager.SpawnRequest
+                    {
+                        Data = TwitterDatabase.DBTweet.EmptyPlaceholder(),
+                        Source = this
+                    }
+                });
+                spawned = true;
             }
         }
-
-        if (tweet != null && !spawned)
+        else
         {
-            TwitterManager.Instance.Enqueue(new [] {new TwitterManager.SpawnRequest
+            if (tweet == null)
             {
-                Data = tweet,
-                Source = this
-            }});
-            spawned = true;
+                IList<TwitterDatabase.DBTweet> tweets = TwitterManager.Instance.Database.QueryForTags(QueryTag, 1);
+                if (tweets.Count == 0)
+                {
+                    Debug.LogWarning("Cannot find tweet for placeholder. ", this);
+                }
+                else
+                {
+                    tweet = tweets[0];
+                }
+            }
+
+            if (tweet != null && !spawned)
+            {
+                TwitterManager.Instance.Enqueue(new[]
+                {
+                    new TwitterManager.SpawnRequest
+                    {
+                        Data = tweet,
+                        Source = this
+                    }
+                });
+                spawned = true;
+            }
         }
     }
 
@@ -55,6 +79,12 @@ public class TweetPlaceholderNode : SpawnSourceNode
         if (!string.IsNullOrEmpty(AkEventOnSpawn))
         {
             AkSoundEngine.PostEvent(AkEventOnSpawn, tweet.gameObject);
+        }
+
+        // Decorate tweet component
+        if (IsStoryTrigger)
+        {
+            tweet.NodeRole = TweetComponent.NodeRoleType.StoryTrigger;
         }
     }
 

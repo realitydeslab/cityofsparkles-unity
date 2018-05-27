@@ -46,7 +46,7 @@ public class StoryNode : MonoBehaviour
 
     public virtual void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
+        Gizmos.color = EnabledOnStart ? Color.green : Color.yellow;
         Gizmos.DrawWireSphere(transform.position, 30);
     }
 

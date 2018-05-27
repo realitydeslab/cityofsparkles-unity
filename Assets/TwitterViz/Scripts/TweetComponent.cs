@@ -29,6 +29,15 @@ public class TweetComponent : MonoBehaviour
         Returning,
     }
 
+    public enum NodeRoleType
+    {
+        Invalid = 0,
+        Tweet,
+        StoryTrigger
+    }
+
+    public NodeRoleType NodeRole = NodeRoleType.Tweet;
+
     public TMP_Text WordPrefab;
     public bool Trigger;
     public Tweet Tweet;
@@ -437,6 +446,45 @@ public class TweetComponent : MonoBehaviour
         StageSwitcher.Instance.CurrentParticleCity.RemoveActiveGameObject(text.gameObject, 1);
     }
 
+    private IEnumerator storyTriggerAnimation()
+    {
+        if (SpawnSource == null || SpawnSource.Next == null || SpawnSource.Next.Count == 0)
+        {
+            Debug.LogWarning("No SpawnSource or Next node defined on StoryTrigger node. ", this);
+            guidingLight.TurnOff();
+            MarkForDestroy();
+            yield break;
+        }
+
+        // Lighting up
+        Vector3 lightVelocity = Vector3.zero;
+        ParticleCity.Current.AddActiveGameObject(guidingLight.RenderPart.gameObject);
+        addedToActiveList = true;
+
+        StoryNode next = SpawnSource.Next[0];
+        Vector3 startingPoint = next.gameObject.transform.position;
+        while ((startingPoint - guidingLight.RenderPart.position).sqrMagnitude > SpawnStartingDistanceThreshold * SpawnStartingDistanceThreshold)
+        {
+            Vector3 newPos = Vector3.Lerp(guidingLight.RenderPart.position, startingPoint, SpawningLerpRatio * Time.deltaTime);
+            lightVelocity = (newPos - guidingLight.RenderPart.position) / Time.deltaTime;
+            if (lightVelocity.sqrMagnitude > LightUpMaxSpeed * LightUpMaxSpeed)
+            {
+                lightVelocity = lightVelocity.normalized * LightUpMaxSpeed;
+                newPos = guidingLight.RenderPart.position + lightVelocity * Time.deltaTime;
+            }
+            guidingLight.RenderPart.position = newPos;
+            yield return null;
+        }
+
+        SpawnSource.OnTweetRevealed(this);
+
+        guidingLight.TurnOff();
+        ParticleCity.Current.RemoveActiveGameObject(guidingLight.RenderPart.gameObject, 1);
+        addedToActiveList = false;
+        setState(TweetState.Spawning);
+        MarkForDestroy();
+    }
+
     private void updateTakingOff()
     {
         float progress = (Time.time - stateChangeTime) / TakingOffDuration;
@@ -479,7 +527,14 @@ public class TweetComponent : MonoBehaviour
 
     private IEnumerator revealTweetAnimations()
     {
-        yield return StartCoroutine(wordAnimationCircular());
+        if (NodeRole == NodeRoleType.StoryTrigger)
+        {
+            yield return StartCoroutine(storyTriggerAnimation());
+        }
+        else
+        {
+            yield return StartCoroutine(wordAnimationCircular());
+        }
     }
 
     private IEnumerator returnAnimation()

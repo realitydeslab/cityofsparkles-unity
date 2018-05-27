@@ -11,28 +11,14 @@ public class TitleNode : StoryNode
     {
         base.Awake();
         GetComponentInChildren<TextMeshPro>().gameObject.SetActive(false);
+
+        GetComponent<Animator>().enabled = true;
+        GetComponentInChildren<TextMeshPro>(true).gameObject.SetActive(true);
     }
 
     public void OnFinished()
     {
         GotoNext();
         Destroy(gameObject);
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (triggered)
-        {
-            return;
-        }
-
-        Debug.Log("trigger enter");
-        GuidingLight guidingLight = GetComponentInChildren<GuidingLight>();
-        guidingLight.gameObject.SetActive(false);
-
-        GetComponent<Animator>().enabled = true;
-        GetComponentInChildren<TextMeshPro>(true).gameObject.SetActive(true);
-
-        triggered = true;
     }
 }

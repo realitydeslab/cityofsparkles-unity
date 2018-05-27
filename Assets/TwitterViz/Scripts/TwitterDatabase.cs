@@ -29,6 +29,24 @@ public class TwitterDatabase : MonoBehaviour {
         {
             return string.Format("[{0:0.00}, {1:0.00}] {2}", sentiment_positive, sentiment_negative, clean_text);
         }
+
+        public bool IsDummy
+        {
+            get { return id < 0; }
+        }
+
+        private static int emptyPlaceholderIdCount = -1;
+        public static DBTweet EmptyPlaceholder()
+        {
+            DBTweet result = new DBTweet
+            {
+                id = emptyPlaceholderIdCount,
+                clean_text = "",
+                last_access = DateTime.UtcNow
+            };
+            emptyPlaceholderIdCount--;
+            return result;
+        }
     }
 
     public string Database = "twitter_sf.db";
@@ -123,6 +141,7 @@ public class TwitterDatabase : MonoBehaviour {
     {
 	    if (dbConnection == null)
 	    {
+            Debug.Log("Connecting to DB");
             string dbPath = Application.dataPath + "/StreamingAssets/" + Database;
             dbConnection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite, true);
 	    }

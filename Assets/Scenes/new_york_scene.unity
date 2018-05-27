@@ -165,6 +165,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &13489166
 GameObject:
@@ -260,9 +261,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 16162381}
-  - component: {fileID: 16162383}
   - component: {fileID: 16162382}
-  - component: {fileID: 16162384}
   m_Layer: 0
   m_Name: P1 (6)
   m_TagString: Untagged
@@ -279,31 +278,11 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4279, y: 0, z: 5668}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 125528433}
-  - {fileID: 2137844407}
+  m_Children: []
   m_Father: {fileID: 650990239}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &16162382
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 16162380}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d2a5e6d31dd224447aa5b4987c2f7525, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &16162383
+--- !u!114 &16162382
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -311,29 +290,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 16162380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59dc9c0d0846e0f4dbc4b7ff4bb5ed0c, type: 3}
+  m_Script: {fileID: 11500000, guid: 882013b907b785a4da3724945c636a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   EnabledOnStart: 0
   Next:
-  - {fileID: 1138966076}
-  - {fileID: 1802288287}
-  - {fileID: 658235330}
-  - {fileID: 9733441}
-  - {fileID: 233093220}
-  SwitchToStage: 2
---- !u!135 &16162384
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 16162380}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 30
-  m_Center: {x: 0, y: 0, z: 0}
+  - {fileID: 1406934816}
+  SwitchToStage: 0
+  QueryTag: 
+  TargetCityIntensity: -1
+  MixInRatio: 0
+  AkEventOnSpawn: 
+  IsStoryTrigger: 1
+  musicSync: 0
 --- !u!1 &105494390 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 189822, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
@@ -499,203 +468,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Database: twitter_nyc_tags.db
---- !u!1 &125528432
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 125528433}
-  - component: {fileID: 125528437}
-  - component: {fileID: 125528436}
-  - component: {fileID: 125528435}
-  - component: {fileID: 125528434}
-  m_Layer: 0
-  m_Name: TextMeshPro
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &125528433
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 125528432}
-  m_LocalRotation: {x: -0.17824203, y: -0.4779722, z: -0.09972471, w: 0.8542993}
-  m_LocalPosition: {x: 0, y: 0, z: 797.6919}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_Children: []
-  m_Father: {fileID: 16162381}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -23.570002, y: -58.453003, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1164.7856, y: 849.86475}
-  m_SizeDelta: {x: 20, y: 5}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &125528434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 125528432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -806885394, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: UNTITLED
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_outlineColor:
-    serializedVersion: 2
-    rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_textAlignment: 258
-  m_isAlignmentEnumConverted: 1
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
-  m_linkedTextComponent: {fileID: 0}
-  m_isLinkedTextComponent: 0
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 0
-  m_isCullingEnabled: 0
-  m_ignoreRectMaskCulling: 0
-  m_ignoreCulling: 1
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_firstVisibleCharacter: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_textInfo:
-    textComponent: {fileID: 125528434}
-    characterCount: 8
-    spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
-    linkCount: 0
-    lineCount: 1
-    pageCount: 1
-    materialCount: 1
-  m_havePropertiesChanged: 0
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
-  m_inputSource: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 125528436}
-  m_subTextObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_maskType: 0
---- !u!222 &125528435
-CanvasRenderer:
-  m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 125528432}
---- !u!23 &125528436
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 125528432}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &125528437
-MeshFilter:
-  m_ObjectHideFlags: 2
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 125528432}
-  m_Mesh: {fileID: 0}
 --- !u!1 &200331696
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,6 +520,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &200943831
 GameObject:
@@ -797,6 +570,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1001 &218525749
 Prefab:
@@ -840,11 +614,11 @@ Prefab:
     - target: {fileID: 3380982, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 577772016}
+      objectReference: {fileID: 426521080}
     - target: {fileID: 2348914, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1587487614}
+      objectReference: {fileID: 1873203470}
     - target: {fileID: 2082592, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
       propertyPath: m_ClearFlags
       value: 2
@@ -1076,6 +850,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &247463587
 GameObject:
@@ -1125,6 +900,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &274089780
 GameObject:
@@ -1174,6 +950,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &325967028
 GameObject:
@@ -1223,6 +1000,7 @@ MonoBehaviour:
   TargetCityIntensity: 3
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &326561276
 GameObject:
@@ -1272,6 +1050,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &356701649
 GameObject:
@@ -1463,6 +1242,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &415276252
 GameObject:
@@ -1546,7 +1326,154 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
+--- !u!43 &426521080
+Mesh:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  serializedVersion: 8
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 24
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 8
+    localAABB:
+      m_Center: {x: 0, y: 0.01, z: 0}
+      m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
+  m_Skin: []
+  m_VertexData:
+    serializedVersion: 2
+    m_VertexCount: 8
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 28
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 288
+    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0.01, z: 0}
+    m_Extent: {x: 1.65, y: 0, z: 1.275}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshOptimized: 0
 --- !u!1 &431721075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1599,6 +1526,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &442889274
 GameObject:
@@ -1648,6 +1576,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &464902216
 GameObject:
@@ -1697,6 +1626,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &507961588
 GameObject:
@@ -1923,6 +1853,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &574022397
 GameObject:
@@ -1955,152 +1886,6 @@ Transform:
   m_Father: {fileID: 507961589}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &577772016
-Mesh:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  serializedVersion: 8
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 24
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 8
-    localAABB:
-      m_Center: {x: 0, y: 0.01, z: 0}
-      m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 000004000100010004000500010005000200020005000600020006000300030006000700030007000000000007000400
-  m_Skin: []
-  m_VertexData:
-    serializedVersion: 2
-    m_VertexCount: 8
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 4
-    - stream: 0
-      offset: 28
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 288
-    _typelessdata: 0000c03f0ad7233c000090bf000000000000803f0000803f0000803f00000000000000000000c0bf0ad7233c000090bf000000000000803f0000803f0000803f0000803f000000000000c0bf0ad7233c0000903f000000000000803f0000803f0000803f00000000000000000000c03f0ad7233c0000903f000000000000803f0000803f0000803f0000803f000000003333d33f0ad7233c3333a3bf000000000000803f0000803f00000000000000000000803f3333d3bf0ad7233c3333a3bf000000000000803f0000803f000000000000803f0000803f3333d3bf0ad7233c3333a33f000000000000803f0000803f00000000000000000000803f3333d33f0ad7233c3333a33f000000000000803f0000803f000000000000803f0000803f
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0.01, z: 0}
-    m_Extent: {x: 1.65, y: 0, z: 1.275}
-  m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshOptimized: 0
 --- !u!1 &635865720
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,6 +1934,7 @@ MonoBehaviour:
   TargetCityIntensity: 1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &645745862
 GameObject:
@@ -2215,6 +2001,7 @@ Transform:
   - {fileID: 761371852}
   - {fileID: 1548457111}
   - {fileID: 16162381}
+  - {fileID: 1406934813}
   m_Father: {fileID: 522203963}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2270,6 +2057,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &680109055
 GameObject:
@@ -2319,6 +2107,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &761371851
 GameObject:
@@ -2368,6 +2157,7 @@ MonoBehaviour:
   TargetCityIntensity: 1.1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1001 &770198128
 Prefab:
@@ -2465,6 +2255,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &799479974
 GameObject:
@@ -2514,6 +2305,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &810800615
 GameObject:
@@ -2596,6 +2388,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &869792980
 GameObject:
@@ -2649,6 +2442,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &869894947
 GameObject:
@@ -2698,6 +2492,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &895009780
 GameObject:
@@ -2827,56 +2622,8 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
---- !u!1001 &914645799
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 16162381}
-    m_Modifications:
-    - target: {fileID: 4341588032091684, guid: fa727355f4449ca4b9426d1456099293, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341588032091684, guid: fa727355f4449ca4b9426d1456099293, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341588032091684, guid: fa727355f4449ca4b9426d1456099293, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341588032091684, guid: fa727355f4449ca4b9426d1456099293, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341588032091684, guid: fa727355f4449ca4b9426d1456099293, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341588032091684, guid: fa727355f4449ca4b9426d1456099293, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341588032091684, guid: fa727355f4449ca4b9426d1456099293, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341588032091684, guid: fa727355f4449ca4b9426d1456099293, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114265464811481166, guid: fa727355f4449ca4b9426d1456099293,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114265464811481166, guid: fa727355f4449ca4b9426d1456099293, type: 2}
-    - {fileID: 135063769366119374, guid: fa727355f4449ca4b9426d1456099293, type: 2}
-  m_ParentPrefab: {fileID: 100100000, guid: fa727355f4449ca4b9426d1456099293, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &929274425
 GameObject:
   m_ObjectHideFlags: 0
@@ -2929,6 +2676,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1026036915
 GameObject:
@@ -2978,6 +2726,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1036309887
 GameObject:
@@ -3082,6 +2831,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1160525529
 GameObject:
@@ -3180,6 +2930,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1209614201
 GameObject:
@@ -3229,6 +2980,7 @@ MonoBehaviour:
   TargetCityIntensity: 4
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1219764101
 GameObject:
@@ -3282,6 +3034,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1287750174
 GameObject:
@@ -3362,6 +3115,7 @@ MonoBehaviour:
   TargetCityIntensity: 0.2
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 1
 --- !u!1 &1323121327
 GameObject:
@@ -3415,6 +3169,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1336725410
 GameObject:
@@ -3464,6 +3219,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1372440453
 GameObject:
@@ -3505,6 +3261,87 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1406934812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1406934813}
+  - component: {fileID: 1406934816}
+  - component: {fileID: 1406934815}
+  - component: {fileID: 1406934814}
+  m_Layer: 0
+  m_Name: P1 (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1406934813
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1406934812}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3951.2, y: 244, z: 5888.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1453102789}
+  m_Father: {fileID: 650990239}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1406934814
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1406934812}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 30
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1406934815
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1406934812}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2a5e6d31dd224447aa5b4987c2f7525, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1406934816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1406934812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59dc9c0d0846e0f4dbc4b7ff4bb5ed0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnabledOnStart: 0
+  Next:
+  - {fileID: 1138966076}
+  - {fileID: 1802288287}
+  - {fileID: 658235330}
+  - {fileID: 9733441}
+  - {fileID: 233093220}
+  SwitchToStage: 2
 --- !u!4 &1410114298 stripped
 Transform:
   m_PrefabParentObject: {fileID: 408470, guid: 4d293c8e162f3874b982baadd71153d2, type: 2}
@@ -3651,6 +3488,7 @@ MonoBehaviour:
   MajorIntensity: 0
   MinorIntensity: 0
   Density: 0
+  AccumulatedForce: 0
 --- !u!1 &1439352578
 GameObject:
   m_ObjectHideFlags: 0
@@ -3716,6 +3554,203 @@ Transform:
   m_Father: {fileID: 895009782}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 2.391, y: -60.946003, z: 0}
+--- !u!1 &1453102788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1453102789}
+  - component: {fileID: 1453102793}
+  - component: {fileID: 1453102792}
+  - component: {fileID: 1453102791}
+  - component: {fileID: 1453102790}
+  m_Layer: 0
+  m_Name: TextMeshPro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1453102789
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1453102788}
+  m_LocalRotation: {x: -0.17824203, y: -0.4779722, z: -0.09972471, w: 0.8542993}
+  m_LocalPosition: {x: 0, y: 0, z: 577.3921}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_Children: []
+  m_Father: {fileID: 1406934813}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -23.570002, y: -58.453003, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -836.9856, y: 605.86475}
+  m_SizeDelta: {x: 20, y: 5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1453102790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1453102788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -806885394, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_text: UNTITLED
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_textAlignment: 258
+  m_isAlignmentEnumConverted: 1
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 0
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 1453102790}
+    characterCount: 8
+    spriteCount: 0
+    spaceCount: 0
+    wordCount: 1
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_havePropertiesChanged: 0
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_isInputParsingRequired: 0
+  m_inputSource: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1453102792}
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_maskType: 0
+--- !u!222 &1453102791
+CanvasRenderer:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1453102788}
+--- !u!23 &1453102792
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1453102788}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1453102793
+MeshFilter:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1453102788}
+  m_Mesh: {fileID: 0}
 --- !u!1 &1537637257
 GameObject:
   m_ObjectHideFlags: 0
@@ -3764,6 +3799,7 @@ MonoBehaviour:
   TargetCityIntensity: 1.1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1548457110
 GameObject:
@@ -3807,12 +3843,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnabledOnStart: 0
   Next:
-  - {fileID: 16162383}
+  - {fileID: 16162382}
   SwitchToStage: 0
   QueryTag: nice
   TargetCityIntensity: 5.3
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1001 &1558635623
 Prefab:
@@ -3857,39 +3894,6 @@ Prefab:
     - {fileID: 11400002, guid: 255333d57084e4e46b3d948279746a47, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 255333d57084e4e46b3d948279746a47, type: 2}
   m_IsPrefabParent: 0
---- !u!21 &1587487614
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1588189356
 GameObject:
   m_ObjectHideFlags: 0
@@ -3938,6 +3942,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1632892195
 GameObject:
@@ -4047,6 +4052,7 @@ MonoBehaviour:
   TargetCityIntensity: 2
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1667687664
 GameObject:
@@ -4096,6 +4102,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1689145147
 GameObject:
@@ -4297,6 +4304,7 @@ MonoBehaviour:
   TargetCityIntensity: 5.3
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1802288285
 GameObject:
@@ -4350,6 +4358,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1831152224
 GameObject:
@@ -4399,6 +4408,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1860684493
 GameObject:
@@ -4448,6 +4458,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1001 &1863584758
 Prefab:
@@ -4543,7 +4554,41 @@ MonoBehaviour:
   TargetCityIntensity: 1.1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
+--- !u!21 &1873203470
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1878613023
 GameObject:
   m_ObjectHideFlags: 0
@@ -4594,6 +4639,7 @@ MonoBehaviour:
   TargetCityIntensity: 0.4
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &1949761227 stripped
 GameObject:
@@ -4703,6 +4749,7 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
 --- !u!1 &2108059281
 GameObject:
@@ -4785,12 +4832,8 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
---- !u!4 &2137844407 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4341588032091684, guid: fa727355f4449ca4b9426d1456099293,
-    type: 2}
-  m_PrefabInternal: {fileID: 914645799}
 --- !u!1 &2139443727
 GameObject:
   m_ObjectHideFlags: 0
@@ -4839,4 +4882,5 @@ MonoBehaviour:
   TargetCityIntensity: -1
   MixInRatio: 0
   AkEventOnSpawn: 
+  IsStoryTrigger: 0
   musicSync: 0
