@@ -59,9 +59,17 @@ public class ParticleCityGen : EditorWindow
         cityMatTempalte = (Material)EditorGUILayout.ObjectField("City Material", cityMatTempalte, typeof(Material), false);
         motionBlitMatTemplate = (Material)EditorGUILayout.ObjectField("Motion Material", motionBlitMatTemplate, typeof(Material), false);
 
-        genParams.SamplePerCubeUnit = EditorGUILayout.FloatField("Sample Per Cube Unit", genParams.SamplePerCubeUnit);
-        genParams.SamplePerSquareUnit = EditorGUILayout.FloatField("Sample Per Square Unit", genParams.SamplePerSquareUnit);
-        genParams.TriangleEdgeSamplePerUnit = EditorGUILayout.FloatField("Triangle Edge Sample Per Unit", genParams.TriangleEdgeSamplePerUnit);
+        genParams.SampleMethod = (ParticleCityGenSampleMethod)EditorGUILayout.EnumPopup("Sampler", genParams.SampleMethod);
+
+        if (genParams.SampleMethod == ParticleCityGenSampleMethod.Volume)
+        {
+            genParams.SamplePerCubeUnit = EditorGUILayout.FloatField("Sample Per Cube Unit", genParams.SamplePerCubeUnit);
+        }
+        else if (genParams.SampleMethod == ParticleCityGenSampleMethod.Surface)
+        {
+            genParams.SamplePerSquareUnit = EditorGUILayout.FloatField("Sample Per Square Unit", genParams.SamplePerSquareUnit);
+            genParams.TriangleEdgeSamplePerUnit = EditorGUILayout.FloatField("Triangle Edge Sample Per Unit", genParams.TriangleEdgeSamplePerUnit);
+        }
 
         shouldGenDebugParticles = EditorGUILayout.Toggle("Debug Particle", shouldGenDebugParticles);
         shouldGenTextures = EditorGUILayout.Toggle("Build Textures", shouldGenTextures);
@@ -92,23 +100,29 @@ public class ParticleCityGen : EditorWindow
     }
 
     private void generateParticles() {
-        // var colliders = Selection.GetFiltered(typeof(Collider), SelectionMode.Deep).Select((obj) => (Collider)obj).ToArray();
-
-        // if (colliders.Length == 0) {
-        //     Debug.LogError("Particle City Gen: No model selected");
-        //     return;
-        // }
-
-        MeshFilter[] meshFilters = Selection.GetFiltered<MeshFilter>(SelectionMode.Deep);
-        if (meshFilters.Length == 0) {
-            Debug.LogError("Particle City Gen: No model selected");
-            return;
-        }
-
         loadGeneratedAssets();
 
-        // samplePoints(colliders);
-        sampleTriangles(meshFilters);
+        if (genParams.SampleMethod == ParticleCityGenSampleMethod.Volume)
+        {
+            var colliders = Selection.GetFiltered(typeof(Collider), SelectionMode.Deep).Select((obj) => (Collider)obj).ToArray();
+
+            if (colliders.Length == 0) {
+                Debug.LogError("Particle City Gen: No model selected");
+                return;
+            }
+
+            samplePoints(colliders);
+        }
+        else if (genParams.SampleMethod == ParticleCityGenSampleMethod.Surface)
+        {
+            MeshFilter[] meshFilters = Selection.GetFiltered<MeshFilter>(SelectionMode.Deep);
+            if (meshFilters.Length == 0)
+            {
+                Debug.LogError("Particle City Gen: No model selected");
+                return;
+            }
+            sampleTriangles(meshFilters);
+        }
 
         if (shouldGenDebugParticles) {
             genDebugParticles();
@@ -157,6 +171,8 @@ public class ParticleCityGen : EditorWindow
             Vector3 boundsMaxLocal = collider.transform.InverseTransformPoint(collider.bounds.max);
             Vector3 boundsMinLocal = collider.transform.InverseTransformPoint(collider.bounds.min);
             Vector3 boundsDelta = boundsMaxLocal - boundsMinLocal;
+
+            Debug.DrawLine(collider.bounds.min, collider.bounds.max, Color.red, 5);
 
             float volume = Mathf.Abs(boundsDelta.x * boundsDelta.y * boundsDelta.z);
             int sampleCount = (int)(volume * genParams.SamplePerCubeUnit);

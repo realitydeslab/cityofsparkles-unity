@@ -13,5 +13,12 @@ public class ParticleCityGenParams : ScriptableObject
 
     public int TextureWidth = 2048;
     public int TextureHeight = 2048;
+
+    public ParticleCityGenSampleMethod SampleMethod;
 }
 
+public enum ParticleCityGenSampleMethod
+{
+    Surface,
+    Volume,
+}

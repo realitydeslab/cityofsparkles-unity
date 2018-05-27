@@ -100,7 +100,7 @@ Shader "Particle City/Particle City"
 
                     float4 pos = tex2Dlod(_PositionTex, lodCoord);
                     // float4 pos2 = tex2Dlod(_PositionTex2, lodCoord);
-                    // float4 posMerged = lerp(pos, pos2, _PositionRatio);
+                    // 1pos = lerp(pos, pos2, _PositionRatio);
                     float4 offset = tex2Dlod(_OffsetTex, lodCoord);
                     output.pos = float4(pos.xyz + offset.xyz, 1);
 

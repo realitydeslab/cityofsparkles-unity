@@ -10,10 +10,10 @@ public class TitleNode : StoryNode
     public override void Awake()
     {
         base.Awake();
-        GetComponentInChildren<TextMeshPro>().gameObject.SetActive(false);
+        // GetComponentInChildren<TextMeshPro>().gameObject.SetActive(false);
 
         GetComponent<Animator>().enabled = true;
-        GetComponentInChildren<TextMeshPro>(true).gameObject.SetActive(true);
+        // GetComponentInChildren<TextMeshPro>(true).gameObject.SetActive(true);
     }
 
     public void OnFinished()
