@@ -53,6 +53,11 @@ public class DensityMap : MonoBehaviour
 
     public float GetDensity(Vector3 pos)
     {
+        if (Data == null || Data.DensityMapTexture == null)
+        {
+            return 0;
+        }
+
         if (pixelsCache == null)
         {
             pixelsCache = Data.DensityMapTexture.GetPixels32();

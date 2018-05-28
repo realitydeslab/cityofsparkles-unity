@@ -47,7 +47,7 @@ public abstract class ParticleMotionBase : MonoBehaviour {
 	
 	public virtual void Update ()
 	{
-	    if (Time.time - startTime < 3)
+	    if (Time.time - startTime < 0.5f)
 	    {
             Graphics.Blit(null, particleVelocityBuffer1, particleMotionBlitMaterial, 0);
             Graphics.Blit(null, particleVelocityBuffer2, particleMotionBlitMaterial, 0);

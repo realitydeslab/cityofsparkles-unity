@@ -209,7 +209,7 @@ Shader "Particle City/Particle City"
                         up = cross(look, right);
                         up = normalize(up);
 
-                        halfS *= min(100, 0.3 * pow(p[0].pos.y - refl.y, 0.5));
+                        halfS *= max(1, min(100, 0.3 * pow(p[0].pos.y - refl.y, 0.5)));
                         p[0].color.a *= min(0.6f, 50 * pow(p[0].pos.y - refl.y, -1.3));
                         v[0] = float4(refl + halfS * right - halfS * up, 1.0f);
                         v[1] = float4(refl + halfS * right + halfS * up, 1.0f);
