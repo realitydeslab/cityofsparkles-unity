@@ -13,13 +13,6 @@ Shader "Particle City/ShakeEscapeMotionBlit" {
         _ImpulseScale("Impulse Scale", Float) = 0
         _VerticalImpulse("Vertical Pulse", Float) = 0
 
-        _HeadPos("Head Position", Vector) = (0, 0, 0, 1)
-        _RightHandPos("Right Hand Position", Vector) = (0, 0, 0, 1)
-        _LeftHandPos("Left Hand Position", Vector) = (0, 0, 0, 1)
-        _RightHandForward("Right Hand Forward", Vector) = (0, 0, 0, 1)
-        _LeftHandForward("Left Hand Forward", Vector) = (0, 0, 0, 1)
-        _LeftHandGravity("Left Hand Gravity", Float) = 0
-        _RightHandGravity("Right Hand Gravity", Float) = 0
         _HandGravityScale("Hand Gravity Scale", Float) = 0
 
         _TwistSpeed("Twist Speed", Float) = 0

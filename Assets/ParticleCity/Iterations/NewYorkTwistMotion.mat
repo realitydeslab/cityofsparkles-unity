@@ -88,12 +88,10 @@ Material:
     - _HandPush: 50000000
     - _ImpulseScale: 0
     - _InitSpeed: 3
-    - _LeftHandGravity: 0
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RightHandGravity: 0
     - _SpringDamp: 10
     - _SpringDrag: 500
     - _SrcBlend: 1
@@ -105,5 +103,3 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HeadPos: {r: 372.89215, g: 381.83463, b: 725.72656, a: 1}
-    

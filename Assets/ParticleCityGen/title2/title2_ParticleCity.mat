@@ -90,7 +90,9 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _PlanarReflectionY: 83.7
     - _PositionRatio: 0
+    - _Reflection: 0
     - _Size: 1.5
     - _SrcBlend: 1
     - _UVSec: 0

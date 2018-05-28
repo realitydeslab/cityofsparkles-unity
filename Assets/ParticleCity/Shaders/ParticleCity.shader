@@ -14,6 +14,8 @@ Shader "Particle City/Particle City"
         _ColorPalleteTex("Color Pallete", 2D) = "white" {}
         _VolumeDeltaHeight("Volume Delta Height", Float) = 0
         _AlphaRandomWeight("Alpha Random Weight", Float) = 0.6
+        [Toggle] _Reflection("Reflection", Float) = 0
+        _PlanarReflectionY("Planar Reflection Y", Float) = 0
     }
 
     SubShader 
@@ -78,6 +80,8 @@ Shader "Particle City/Particle City"
                 float _VolumeDeltaHeight;
                 float _AlphaRandomWeight;
                 float _PositionRatio;
+                float _PlanarReflectionY;
+                float _Reflection;
 
                 SamplerState sampler_SpriteTex;
 
@@ -138,7 +142,7 @@ Shader "Particle City/Particle City"
                 }
 
                 // Geometry Shader -----------------------------------------------------
-                [maxvertexcount(4)]
+                [maxvertexcount(8)]
                 void GS_Main(point GS_INPUT p[1], inout TriangleStream<FS_INPUT> triStream)
                 {
                     float4 lodCoord = float4(p[0].tex0, 0, 0);
@@ -167,14 +171,16 @@ Shader "Particle City/Particle City"
 #endif 
 #endif
 
+                    float texEdge = _Reflection ? 0.5f : 1.0f;
+
                     FS_INPUT pIn;
                     pIn.pos = mul(vp, v[0]);
-                    pIn.tex0 = float2(1.0f, 0.0f);
+                    pIn.tex0 = float2(texEdge, 0.0f);
                     pIn.color = p[0].color;
                     triStream.Append(pIn);
 
                     pIn.pos =  mul(vp, v[1]);
-                    pIn.tex0 = float2(1.0f, 1.0f);
+                    pIn.tex0 = float2(texEdge, 1.0f);
                     pIn.color = p[0].color;
                     triStream.Append(pIn);
 
@@ -187,9 +193,50 @@ Shader "Particle City/Particle City"
                     pIn.tex0 = float2(0.0f, 1.0f);
                     pIn.color = p[0].color;
                     triStream.Append(pIn);
+
+                    // Reflection
+                    if (_Reflection && p[0].pos.y > _PlanarReflectionY)
+                    {
+                        triStream.RestartStrip();
+
+                        float4 refl = p[0].pos;
+                        refl.y = _PlanarReflectionY * 2 - refl.y;
+
+                        look = _WorldSpaceCameraPos - refl;
+                        look = normalize(look);
+                        right = cross(look, float3(0, 1, 0));
+                        right = normalize(right);
+                        up = cross(look, right);
+                        up = normalize(up);
+
+                        halfS *= min(100, 0.3 * pow(p[0].pos.y - refl.y, 0.5));
+                        p[0].color.a *= min(0.6f, 50 * pow(p[0].pos.y - refl.y, -1.3));
+                        v[0] = float4(refl + halfS * right - halfS * up, 1.0f);
+                        v[1] = float4(refl + halfS * right + halfS * up, 1.0f);
+                        v[2] = float4(refl - halfS * right - halfS * up, 1.0f);
+                        v[3] = float4(refl - halfS * right + halfS * up, 1.0f);
+
+                        pIn.pos = mul(vp, v[0]);
+                        pIn.tex0 = float2(1.0f, 0.0f);
+                        pIn.color = p[0].color;
+                        triStream.Append(pIn);
+
+                        pIn.pos = mul(vp, v[1]);
+                        pIn.tex0 = float2(1.0f, 1.0f);
+                        pIn.color = p[0].color;
+                        triStream.Append(pIn);
+
+                        pIn.pos = mul(vp, v[2]);
+                        pIn.tex0 = float2(0.5f, 0.0f);
+                        pIn.color = p[0].color;
+                        triStream.Append(pIn);
+
+                        pIn.pos = mul(vp, v[3]);
+                        pIn.tex0 = float2(0.5f, 1.0f);
+                        pIn.color = p[0].color;
+                        triStream.Append(pIn);
+                    }
                 }
-
-
 
                 // Fragment Shader -----------------------------------------------
                 float4 FS_Main(FS_INPUT input) : COLOR

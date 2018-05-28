@@ -15,6 +15,8 @@ public abstract class ParticleMotionBase : MonoBehaviour {
     private static RenderTexture particleOffsetBuffer1;
     private static RenderTexture particleOffsetBuffer2;
 
+    private float startTime;
+
 	public virtual void Start ()
 	{
 	    particleMotionBlitMaterial = ParticleMotionBlitMaterialPrefab; 
@@ -40,16 +42,18 @@ public abstract class ParticleMotionBase : MonoBehaviour {
             particleVelocityBuffer2 = createRenderTexture();
         }
 
-        Graphics.Blit(null, particleVelocityBuffer1, particleMotionBlitMaterial, 0);
-        Graphics.Blit(null, particleVelocityBuffer2, particleMotionBlitMaterial, 0);
-        Graphics.Blit(null, particleOffsetBuffer1, particleMotionBlitMaterial, 0);
-        Graphics.Blit(null, particleOffsetBuffer2, particleMotionBlitMaterial, 0);
+	    startTime = Time.time;
 	}
 	
-	public virtual void Update () {
-	    if (Time.time < 3)
+	public virtual void Update ()
+	{
+	    if (Time.time - startTime < 3)
 	    {
-	        return;
+            Graphics.Blit(null, particleVelocityBuffer1, particleMotionBlitMaterial, 0);
+            Graphics.Blit(null, particleVelocityBuffer2, particleMotionBlitMaterial, 0);
+            Graphics.Blit(null, particleOffsetBuffer1, particleMotionBlitMaterial, 0);
+            Graphics.Blit(null, particleOffsetBuffer2, particleMotionBlitMaterial, 0);
+            return;
 	    }
 
         UpdateInput();
