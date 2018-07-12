@@ -41,7 +41,7 @@ MonoBehaviour:
     m_leaf: Recordings
   m_InputsSettings:
     m_InputsSettingsAssets:
-    - {fileID: 114550043198999498}
+    - {fileID: 114969092788213190}
     - {fileID: 114368705980774166}
     ownerRecorderSettingsAssetId: 6490c57ffb41eae45a6e52afe02b8fd8
   m_RecorderTypeName: UnityEditor.Recorder.MediaRecorder, Assembly-CSharp-Editor,
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_DisplayName: Audio
   m_Id: 054ef84c-fd9a-49bd-9897-c988da99ea96
   m_PreserveAudio: 1
---- !u!114 &114550043198999498
+--- !u!114 &114969092788213190
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -71,12 +71,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ef190f44e596a94ebfec7c7b888a950, type: 3}
-  m_Name: 0ead64c4-e3f6-48a0-a818-e9bf1fb017f4
+  m_Script: {fileID: 11500000, guid: 8d935bf7a4fcf66488738bda5536c1cb, type: 3}
+  m_Name: c248152f-5070-495a-a0cb-0333677a2e42
   m_EditorClassIdentifier: 
   m_DisplayName: Pixels
-  m_Id: cb77621a-3b2c-45c6-bace-75ae25016251
+  m_Id: 81f86d03-113a-4abe-bfe2-75eb9848093c
   m_OutputSize: 720
   m_AspectRatio: 0
-  m_ForceEvenSize: 0
-  m_SourceRTxtr: {fileID: 8400000, guid: ea920b1c61540ba4fbe2ae8af6ac3514, type: 2}
+  m_ForceEvenSize: 1
+  source: 1
+  m_CameraTag: 
+  m_FlipFinalOutput: 0
+  m_AllowTransparency: 0
+  m_CaptureUI: 0
