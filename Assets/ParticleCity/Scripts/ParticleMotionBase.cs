@@ -37,7 +37,7 @@ public abstract class ParticleMotionBase : MonoBehaviour {
 	        particleVelocityBuffer1 = createRenderTexture();
 	    }
 
-	    if (particleOffsetBuffer2 == null)
+	    if (particleVelocityBuffer2 == null)
 	    {
             particleVelocityBuffer2 = createRenderTexture();
         }
@@ -49,6 +49,7 @@ public abstract class ParticleMotionBase : MonoBehaviour {
 	{
 	    if (Time.time - startTime < 0.5f)
 	    {
+	        Debug.Log("Clear frame.");
             Graphics.Blit(null, particleVelocityBuffer1, particleMotionBlitMaterial, 0);
             Graphics.Blit(null, particleVelocityBuffer2, particleMotionBlitMaterial, 0);
             Graphics.Blit(null, particleOffsetBuffer1, particleMotionBlitMaterial, 0);
@@ -61,11 +62,13 @@ public abstract class ParticleMotionBase : MonoBehaviour {
         // Update velocity
         particleMotionBlitMaterial.SetTexture("_OffsetTex", particleOffsetBuffer1);
         Graphics.Blit(particleVelocityBuffer1, particleVelocityBuffer2, particleMotionBlitMaterial, 1);
+        particleVelocityBuffer2.IncrementUpdateCount();
         swapBuffer(ref particleVelocityBuffer1, ref particleVelocityBuffer2);
 
         // Update offset
         particleMotionBlitMaterial.SetTexture("_VelocityTex", particleVelocityBuffer1);
         Graphics.Blit(particleOffsetBuffer1, particleOffsetBuffer2, particleMotionBlitMaterial, 2);
+        particleOffsetBuffer2.IncrementUpdateCount();
         swapBuffer(ref particleOffsetBuffer1, ref particleOffsetBuffer2);
 
         Renderer[] renderers = GetComponentsInChildren<Renderer>();
@@ -89,11 +92,14 @@ public abstract class ParticleMotionBase : MonoBehaviour {
 
     private RenderTexture createRenderTexture()
     {
-        RenderTexture tex = new RenderTexture(BasePositionTexture.width, BasePositionTexture.height, 0, RenderTextureFormat.ARGBFloat);
-        tex.useMipMap = false;
-        tex.autoGenerateMips = false;
-        tex.filterMode = FilterMode.Point;
-        tex.anisoLevel = 0;
+        RenderTexture tex = new RenderTexture(BasePositionTexture.width, BasePositionTexture.height, 0, RenderTextureFormat.ARGBFloat)
+        {
+            useMipMap = false,
+            autoGenerateMips = false,
+            filterMode = FilterMode.Point,
+            anisoLevel = 0,
+            antiAliasing = 1
+        };
 
         return tex;
     }

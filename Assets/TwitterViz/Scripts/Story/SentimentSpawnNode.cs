@@ -27,6 +27,8 @@ public class SentimentSpawnNode : SpawnSourceNode {
         base.OnEnable();
 
         AkSoundEngine.SetState("RichSentimentTest", PreferredSentiment.ToString());
+
+        GotoNext(); 
     }
 
     public override void OnTweetSpawned(TweetComponent tweet)

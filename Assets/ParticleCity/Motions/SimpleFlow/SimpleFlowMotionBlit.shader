@@ -205,6 +205,11 @@ Shader "Particle City/SimpleFlowMotionBlit" {
         float3 offset = tex2D(_MainTex, i.uv);
         float3 velocity = tex2D(_VelocityTex, i.uv);
 
+        if (velocity.x < 0.9)
+        {
+            velocity.x = -2;
+        }
+
         offset += velocity * unity_DeltaTime.x;
 
         return float4(offset, 1);
