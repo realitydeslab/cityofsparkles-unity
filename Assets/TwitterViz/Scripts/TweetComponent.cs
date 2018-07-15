@@ -92,6 +92,7 @@ public class TweetComponent : MonoBehaviour
     private float stateChangeTime;
     private float speedLimit;
     private GuidingLight guidingLight;
+    private WindZone windZone;
 
     private bool addedToActiveList = false;
 
@@ -104,6 +105,7 @@ public class TweetComponent : MonoBehaviour
 	{
 	    manager = GetComponentInParent<TwitterManager>();
 	    guidingLight = GetComponentInChildren<GuidingLight>();
+	    windZone = GetComponentInChildren<WindZone>(true);
 
 	    originalPosition = transform.position;
 	}
@@ -295,6 +297,13 @@ public class TweetComponent : MonoBehaviour
         isPlaying = false;
     }
 
+    private void updateRenderPart(Vector3 pos, Vector3 velocity)
+    {
+        guidingLight.RenderPart.position = pos;
+        guidingLight.RenderPart.forward = velocity.normalized;
+        windZone.transform.forward = pos - transform.position;
+    }
+
     private IEnumerator wordAnimationCircular()
     {
         isPlaying = true;
@@ -355,7 +364,7 @@ public class TweetComponent : MonoBehaviour
                 lightVelocity = lightVelocity.normalized * LightUpMaxSpeed;
                 newPos = guidingLight.RenderPart.position + lightVelocity * Time.deltaTime;
             }
-            guidingLight.RenderPart.position = newPos;
+            updateRenderPart(newPos, lightVelocity);
             yield return null;
         }
 
@@ -379,9 +388,8 @@ public class TweetComponent : MonoBehaviour
             while (time < CircularWordInterval)
             {
                 // guidingLight.RenderPart.position = Vector3.Lerp(guidingLight.RenderPart.position, lightTargetPos, SpawningLerpRatio * Time.deltaTime);
-                guidingLight.RenderPart.position = Vector3.SmoothDamp(guidingLight.RenderPart.position, lightTargetPos,
-                    ref lightVelocity, Mathf.Max(CircularRisingDuration, CircularFadeInDuration));
-                guidingLight.RenderPart.forward = lightVelocity.normalized;
+                Vector3 pos = Vector3.SmoothDamp(guidingLight.RenderPart.position, lightTargetPos, ref lightVelocity, Mathf.Max(CircularRisingDuration, CircularFadeInDuration));
+                updateRenderPart(pos, lightVelocity);
                 time += Time.deltaTime;
 
                 yield return null;
@@ -393,9 +401,8 @@ public class TweetComponent : MonoBehaviour
         // Keep flying the light until it dies
         while ((lightTargetPos - guidingLight.RenderPart.position).sqrMagnitude > 0.01f)
         {
-            guidingLight.RenderPart.position = Vector3.SmoothDamp(guidingLight.RenderPart.position, lightTargetPos,
-                ref lightVelocity, Mathf.Max(CircularRisingDuration, CircularFadeInDuration));
-            guidingLight.RenderPart.forward = lightVelocity.normalized;
+            Vector3 pos = Vector3.SmoothDamp(guidingLight.RenderPart.position, lightTargetPos, ref lightVelocity, Mathf.Max(CircularRisingDuration, CircularFadeInDuration));
+            updateRenderPart(pos, lightVelocity);
             yield return null;
         }
 
@@ -473,7 +480,7 @@ public class TweetComponent : MonoBehaviour
                 lightVelocity = lightVelocity.normalized * LightUpMaxSpeed;
                 newPos = guidingLight.RenderPart.position + lightVelocity * Time.deltaTime;
             }
-            guidingLight.RenderPart.position = newPos;
+            updateRenderPart(newPos, lightVelocity);
             yield return null;
         }
 
@@ -536,12 +543,22 @@ public class TweetComponent : MonoBehaviour
     {
         if (NodeRole == NodeRoleType.StoryTrigger)
         {
-            yield return StartCoroutine(storyTriggerAnimation());
+            StartCoroutine(storyTriggerAnimation());
         }
         else
         {
-            yield return StartCoroutine(wordAnimationCircular());
+            StartCoroutine(wordAnimationCircular());
         }
+
+        ParticleSystem particle = GetComponentInChildren<ParticleSystem>(true);
+        particle.gameObject.SetActive(true);
+        particle.Play();
+
+        // guidingLight.TurnOff(true);
+
+        yield return new WaitForSeconds(0.1f);
+
+        windZone.gameObject.SetActive(true);
     }
 
     private IEnumerator returnAnimation()

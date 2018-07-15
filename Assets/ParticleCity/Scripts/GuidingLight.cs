@@ -154,9 +154,16 @@ public class GuidingLight : MonoBehaviour
         // particleSystem.gameObject.SetActive(true);
     }
 
-    public void TurnOff()
+    public void TurnOff(bool immediate = false)
     {
-        turnOffRequested = true;
+        if (immediate)
+        {
+            setIntensity(0);
+        }
+        else
+        {
+            turnOffRequested = true;
+        }
     }
 
     public void MarkForDestroy()
