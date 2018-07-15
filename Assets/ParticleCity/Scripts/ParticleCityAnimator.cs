@@ -12,6 +12,8 @@ public class ParticleCityAnimator : MonoBehaviour
     public float GlobalIntensity = 1;
     private float oldGlobalIntensity = -1;
 
+    public float Size;
+
     private float? targetIntensity;
     private float intensityLerpRatio;
 
@@ -42,6 +44,8 @@ public class ParticleCityAnimator : MonoBehaviour
             SetMaterialsFloat("_GlobalIntensity", GlobalIntensity);
             oldGlobalIntensity = GlobalIntensity;
         }     
+
+        SetMaterialsFloat("_Size", Size);
 	}
 
     public void LerpToIntensity(float targetIntensity, float ratio)
