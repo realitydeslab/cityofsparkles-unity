@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1942545374883598}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.2, y: 0, z: -35.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4102841283528122}
@@ -237,11 +237,13 @@ MonoBehaviour:
   LightUpDistanceThreshold: 10
   SpawnStartingDistanceThreshold: 20
   SpawningLerpRatio: 1
+  ExplodeEffect: 0
   TargetOffset: 5
   FadeInDuration: 0.5
   RisingDuration: 0.7
   FadeOutDuration: 0.5
-  CircularOffset: 60
+  CircularSpawnOffset: 15
+  CircularRisingOffset: 5
   CircularRadius: 100
   CircularFadeInDuration: 0.5
   CircularRisingDuration: 0.5

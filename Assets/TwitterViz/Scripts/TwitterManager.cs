@@ -118,7 +118,7 @@ public class TwitterManager : MonoBehaviour
             {
                 if (tweetsSpawned[index] != null)
                 {
-                    tweetsSpawned[index].MarkForDestroy();
+                    tweetsSpawned[index].Finish();
                 }
 
                 // Destroy(tweetsSpawned[index].gameObject);

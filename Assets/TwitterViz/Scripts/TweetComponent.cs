@@ -19,14 +19,40 @@ public class TweetComponent : MonoBehaviour
     {
         Idle = 0,
         
+        /// <summary>
+        /// Accelerate, flying towards a hand
+        /// </summary>
         TakingOff,
+
+        /// <summary>
+        /// Flying towards a hand
+        /// </summary>
         Approaching,
 
+        /// <summary>
+        /// Triggered, flying towards the first word
+        /// </summary>
         LightingUp,
+
+        /// <summary>
+        /// Spawning words
+        /// </summary>
         Spawning,
+
+        /// <summary>
+        /// Words are fading out
+        /// </summary>
         FadingOut,
 
+        /// <summary>
+        /// Not used
+        /// </summary>
         Returning,
+
+        /// <summary>
+        /// Lifecycle finished and should be destroyed
+        /// </summary>
+        Finished,
     }
 
     public enum NodeRoleType
@@ -51,6 +77,7 @@ public class TweetComponent : MonoBehaviour
     public float LightUpDistanceThreshold = 0.2f;
     public float SpawnStartingDistanceThreshold = 0.2f;
     public float SpawningLerpRatio = 10f;
+    public bool ExplodeEffect = false;
 
     [Header("Animation Rising")]
     public float TargetOffset = 20;
@@ -59,7 +86,8 @@ public class TweetComponent : MonoBehaviour
     public float FadeOutDuration = 0.2f;
 
     [Header("Animation Circular")] 
-    public float CircularOffset = 20;
+    public float CircularSpawnOffset = 15;
+    public float CircularRisingOffset = 5;
     public float CircularRadius = 50;
     public float CircularFadeInDuration = 0.3f;
     public float CircularRisingDuration = 0.5f;
@@ -154,6 +182,13 @@ public class TweetComponent : MonoBehaviour
             case TweetState.Returning:
                 // Coroutine happening
                 break;
+
+            case TweetState.Finished:
+                if (guidingLight == null || !guidingLight.enabled)
+                {
+                    Destroy(gameObject);
+                }
+                break;
 	    }
 
         // Debug
@@ -203,6 +238,11 @@ public class TweetComponent : MonoBehaviour
 	    // }
 	}
 
+    public void Finish()
+    {
+        setState(TweetState.Finished);
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (State == TweetState.Idle)
@@ -233,19 +273,6 @@ public class TweetComponent : MonoBehaviour
         if (SpawnSource != null)
         {
             SpawnSource.OnTweetDestroy(this);
-        }
-    }
-
-    public void MarkForDestroy()
-    {
-        GuidingLight light = GetComponent<GuidingLight>();
-        if (light != null)
-        {
-            light.MarkForDestroy();
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 
@@ -322,7 +349,7 @@ public class TweetComponent : MonoBehaviour
 
         // Circular layout
         Vector3 cameraToPointDir = (transform.position - Camera.main.transform.position);
-        cameraToPointDir.y = 0;
+        cameraToPointDir.y = CircularSpawnOffset / CircularRadius * Mathf.Sqrt(cameraToPointDir.x * cameraToPointDir.x + cameraToPointDir.z * cameraToPointDir.z);
         cameraToPointDir.Normalize();
         Debug.DrawLine(Camera.main.transform.position, transform.position, Color.yellow, 5);
         Debug.DrawRay(transform.position, cameraToPointDir * CircularRadius, Color.blue, 5);
@@ -351,7 +378,7 @@ public class TweetComponent : MonoBehaviour
         // Lighting up
         Vector3 lightVelocity = Vector3.zero;
         // guidingLight.LightUpForSpawning();
-        StageSwitcher.Instance.CurrentParticleCity.AddActiveGameObject(guidingLight.RenderPart.gameObject);
+        ParticleCity.Current.AddActiveGameObject(guidingLight.RenderPart.gameObject);
         addedToActiveList = true;
 
         Vector3 startingPoint = textObjects[0].transform.position;
@@ -368,10 +395,8 @@ public class TweetComponent : MonoBehaviour
             yield return null;
         }
 
-
         // Animation
-        guidingLight.TurnOff();
-        StageSwitcher.Instance.CurrentParticleCity.RemoveActiveGameObject(guidingLight.RenderPart.gameObject, 1);
+        ParticleCity.Current.RemoveActiveGameObject(guidingLight.RenderPart.gameObject, 1);
         addedToActiveList = false;
         setState(TweetState.Spawning);
         playMusic();
@@ -411,7 +436,7 @@ public class TweetComponent : MonoBehaviour
 
     private IEnumerator circularWordFadeIn(TMP_Text text, bool isFirst, bool isLast)
     {
-        StageSwitcher.Instance.CurrentParticleCity.AddActiveGameObject(text.gameObject);
+        ParticleCity.Current.AddActiveGameObject(text.gameObject);
 
         float time = 0;
         while (time < CircularFadeInDuration || time < CircularRisingDuration)
@@ -428,11 +453,11 @@ public class TweetComponent : MonoBehaviour
             Vector3 offset = text.transform.localPosition;
             if (time < CircularRisingDuration)
             {
-                offset.y = Mathf.SmoothStep(0, CircularOffset, time / CircularRisingDuration);
+                offset.y = CircularSpawnOffset + Mathf.SmoothStep(0, CircularRisingOffset, time / CircularRisingDuration);
             }
             else
             {
-                offset.y = CircularOffset;
+                offset.y = CircularSpawnOffset + CircularRisingOffset;
             }
             text.transform.localPosition = offset;
 
@@ -447,11 +472,11 @@ public class TweetComponent : MonoBehaviour
         }
 
         Vector3 finalOffset = text.transform.localPosition;
-        finalOffset.y = CircularOffset;
+        finalOffset.y = CircularSpawnOffset + CircularRisingOffset;
         text.transform.localPosition = finalOffset;
 
         StartCoroutine(wordFadeOut(text, CircularFadeOutDuration, isFirst, isLast));
-        StageSwitcher.Instance.CurrentParticleCity.RemoveActiveGameObject(text.gameObject, 1);
+        ParticleCity.Current.RemoveActiveGameObject(text.gameObject, 1);
     }
 
     private IEnumerator storyTriggerAnimation()
@@ -459,8 +484,7 @@ public class TweetComponent : MonoBehaviour
         if (SpawnSource == null || SpawnSource.Next == null || SpawnSource.Next.Count == 0)
         {
             Debug.LogWarning("No SpawnSource or Next node defined on StoryTrigger node. ", this);
-            guidingLight.TurnOff();
-            MarkForDestroy();
+            Finish();
             yield break;
         }
 
@@ -486,11 +510,9 @@ public class TweetComponent : MonoBehaviour
 
         SpawnSource.OnTweetRevealed(this);
 
-        guidingLight.TurnOff();
         ParticleCity.Current.RemoveActiveGameObject(guidingLight.RenderPart.gameObject, 1);
         addedToActiveList = false;
-        setState(TweetState.Spawning);
-        MarkForDestroy();
+        Finish();
     }
 
     private void updateTakingOff()
@@ -550,15 +572,18 @@ public class TweetComponent : MonoBehaviour
             StartCoroutine(wordAnimationCircular());
         }
 
-        ParticleSystem particle = GetComponentInChildren<ParticleSystem>(true);
-        particle.gameObject.SetActive(true);
-        particle.Play();
+        if (ExplodeEffect)
+        {
+            ParticleSystem particle = GetComponentInChildren<ParticleSystem>(true);
+            particle.gameObject.SetActive(true);
+            particle.Play();
 
-        // guidingLight.TurnOff(true);
+            // guidingLight.TurnOff(true);
 
-        yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.1f);
 
-        windZone.gameObject.SetActive(true);
+            windZone.gameObject.SetActive(true);
+        }
     }
 
     private IEnumerator returnAnimation()
@@ -585,14 +610,7 @@ public class TweetComponent : MonoBehaviour
 
         if (isLast)
         {
-            if (guidingLight.enabled)
-            {
-                guidingLight.MarkForDestroy();
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            Finish();
         }
     }
 
@@ -609,11 +627,7 @@ public class TweetComponent : MonoBehaviour
         State = newState;
         stateChangeTime = Time.time;
 
-        if (newState == TweetState.TakingOff)
-        {
-            guidingLight.LightUpForSpawning();
-        }
-        else if (newState == TweetState.LightingUp)
+        if (newState == TweetState.LightingUp)
         {
             StartCoroutine(revealTweetAnimations());
         }

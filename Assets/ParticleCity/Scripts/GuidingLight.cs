@@ -6,6 +6,12 @@ using UnityEngine;
 
 public class GuidingLight : MonoBehaviour
 {
+    private enum FadeType
+    {
+        FadeInOut = 0,
+        FadeOut
+    }
+
     [Range(0.0f, 5.0f)]
     public float MaxIntensity;
     public bool Trigger;
@@ -22,18 +28,17 @@ public class GuidingLight : MonoBehaviour
     public bool MusicSync;
 
     private Renderer lightRenderer;
-    private Coroutine lightUpCouroutine;
+    private Coroutine smoothLightCoroutine;
     private AkAmbient akAmbient;
 
     private float timeSinceLastTrigger = float.MaxValue;
-    private bool destroyRequested;
-    private bool turnOffRequested;
-    private bool lightUpForSpawning;
-    private ParticleSystem particleSystem;
+    // private ParticleSystem particleSystem;
 
     [Header("Debug")]
     [Range(0, 1)]
     public float Intensity;
+
+    private TweetComponent tweetComponent;
 
     void Start ()
 	{
@@ -41,7 +46,7 @@ public class GuidingLight : MonoBehaviour
 	    lightRenderer = GetComponentInChildren<Renderer>();
 
         // TODO: Pooling
-	    particleSystem = GetComponentInChildren<ParticleSystem>(true);
+	    // particleSystem = GetComponentInChildren<ParticleSystem>(true);
 
 	    RenderPart = lightRenderer.transform;
 
@@ -64,40 +69,79 @@ public class GuidingLight : MonoBehaviour
 	        Trigger = true;
 	    }
 
+        bool triggeredThisFrame = Trigger;
 	    if (Trigger)
 	    {
 	        timeSinceLastTrigger = 0;
 	        Trigger = false;
-
-	        if (!destroyRequested && !turnOffRequested && !lightUpForSpawning)
-	        {
-	            if (lightUpCouroutine != null)
-	            {
-	                StopCoroutine(lightUpCouroutine);
-	            }
-
-                lightUpCouroutine = StartCoroutine(lightUp(false));
-
-                /*
-                if (akAmbient != null)
-                {
-                    AkSoundEngine.PostEvent((uint)akAmbient.eventID, akAmbient.gameObject);
-                }
-                */
-            }
         }
+	    timeSinceLastTrigger += Time.deltaTime;
 
-	    if ((destroyRequested || turnOffRequested) && lightUpCouroutine == null)
+	    if (tweetComponent == null)
 	    {
-	        lightUpCouroutine = StartCoroutine(lightUp(true));
+	        tweetComponent = GetComponent<TweetComponent>();
 	    }
 
-	    timeSinceLastTrigger += Time.deltaTime;
+	    switch (tweetComponent.State)
+	    {
+            case TweetComponent.TweetState.Idle:
+                if (triggeredThisFrame)
+                {
+                    if (smoothLightCoroutine != null)
+                    {
+                        StopCoroutine(smoothLightCoroutine);
+                    }
+
+                    smoothLightCoroutine = StartCoroutine(smoothLight(FadeType.FadeInOut, null));
+
+                    /*
+                    if (akAmbient != null)
+                    {
+                        AkSoundEngine.PostEvent((uint)akAmbient.eventID, akAmbient.gameObject);
+                    }
+                    */
+                }
+                break;
+
+            case TweetComponent.TweetState.TakingOff:
+            case TweetComponent.TweetState.Approaching:
+                if (smoothLightCoroutine != null)
+                {
+                    StopCoroutine(smoothLightCoroutine);
+                }
+                setIntensity(1.5f);
+                break;
+
+            case TweetComponent.TweetState.LightingUp:
+                break;
+
+            case TweetComponent.TweetState.Spawning:
+                if (smoothLightCoroutine == null)
+                {
+                    smoothLightCoroutine = StartCoroutine(smoothLight(FadeType.FadeOut, null));
+                }
+                break;
+
+            case TweetComponent.TweetState.FadingOut:
+            case TweetComponent.TweetState.Returning:
+                break;
+
+            case TweetComponent.TweetState.Finished:
+                if (Intensity < 0.1f)
+                {
+                    Destroy(gameObject);
+                }
+                else if (smoothLightCoroutine == null)
+                {
+                    smoothLightCoroutine = StartCoroutine(smoothLight(FadeType.FadeOut, () => { Destroy(gameObject); }));
+                }
+                break;
+	    }
 	}
 
-    IEnumerator lightUp(bool fadeOut)
+    IEnumerator smoothLight(FadeType fadeType, Action onFinished)
     {
-        float t = fadeOut ? EaseInDuration + SustainDuration : 0;
+        float t = fadeType == FadeType.FadeOut ? EaseInDuration + SustainDuration : 0;
 
         while (t <= EaseInDuration + SustainDuration + EaseOutDuration)
         {
@@ -118,16 +162,11 @@ public class GuidingLight : MonoBehaviour
         }
 
         setIntensity(0);
-        lightUpCouroutine = null;
+        smoothLightCoroutine = null;
 
-        if (destroyRequested)
+        if (onFinished != null)
         {
-            Destroy(gameObject);
-            destroyRequested = false;
-        }
-        else if (turnOffRequested)
-        {
-            enabled = false;
+            onFinished();
         }
     }
 
@@ -138,39 +177,6 @@ public class GuidingLight : MonoBehaviour
             InteractiveMusicController.Instance.AkMusicSyncCueTriggered -= OnAkMusicSyncCueTriggered;
             InteractiveMusicController.Instance.RemovePointOfInterest(gameObject);
         }
-    }
-
-    public void LightUpForSpawning()
-    {
-        if (lightUpCouroutine != null)
-        {
-            StopCoroutine(lightUpCouroutine);
-            lightUpCouroutine = null;
-        }
-
-        // TODO: State
-        setIntensity(1.5f);
-        lightUpForSpawning = true;
-        // particleSystem.gameObject.SetActive(true);
-    }
-
-    public void TurnOff(bool immediate = false)
-    {
-        if (immediate)
-        {
-            setIntensity(0);
-        }
-        else
-        {
-            turnOffRequested = true;
-        }
-    }
-
-    public void MarkForDestroy()
-    {
-        destroyRequested = true;
-        lightUpForSpawning = false;
-        // particleSystem.gameObject.SetActive(false);
     }
 
     private void setIntensity(float intensity)
