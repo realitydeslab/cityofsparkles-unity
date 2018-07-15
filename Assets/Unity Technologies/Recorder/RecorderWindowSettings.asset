@@ -33,6 +33,20 @@ MonoBehaviour:
   m_FlipFinalOutput: 0
   m_AllowTransparency: 0
   m_CaptureUI: 0
+--- !u!114 &114472906639638186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae41d0797227451ea4b10db1c086647, type: 3}
+  m_Name: 0803e7ca-c960-4add-be9f-a59322d4ec1a
+  m_EditorClassIdentifier: 
+  m_DisplayName: Audio
+  m_Id: 8880de34-2c0e-407a-b433-7548f3387844
+  m_PreserveAudio: 1
 --- !u!114 &114478964946531536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,6 +61,27 @@ MonoBehaviour:
   m_DisplayName: Audio
   m_Id: 6824aa36-1011-4a5a-869c-f6279718d304
   m_PreserveAudio: 0
+--- !u!114 &114725595046902062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d935bf7a4fcf66488738bda5536c1cb, type: 3}
+  m_Name: ab3ec505-0588-4d2f-b3a2-326ba00b31c3
+  m_EditorClassIdentifier: 
+  m_DisplayName: Pixels
+  m_Id: 5a9ea85c-193a-4153-a4f2-2832c8d82a42
+  m_OutputSize: 720
+  m_AspectRatio: 0
+  m_ForceEvenSize: 1
+  source: 1
+  m_CameraTag: 
+  m_FlipFinalOutput: 0
+  m_AllowTransparency: 0
+  m_CaptureUI: 0
 --- !u!114 &114741419899107776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +113,43 @@ MonoBehaviour:
     m_InputsSettingsAssets:
     - {fileID: 114013273092235790}
     - {fileID: 114478964946531536}
+    ownerRecorderSettingsAssetId: 6490c57ffb41eae45a6e52afe02b8fd8
+  m_RecorderTypeName: UnityEditor.Recorder.MediaRecorder, Assembly-CSharp-Editor,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_OutputFormat: 0
+  m_VideoBitRateMode: 2
+  m_AppendSuffix: 0
+--- !u!114 &114828050303304032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fde0a8ac3e6b482c95fa602e65ab045, type: 3}
+  m_Name: Recorder Settings
+  m_EditorClassIdentifier: 
+  m_AssetID: 6490c57ffb41eae45a6e52afe02b8fd8
+  m_CaptureEveryNthFrame: 1
+  m_FrameRateMode: 1
+  m_FrameRate: 30
+  m_FrameRateExact: 1
+  m_StartFrame: 0
+  m_EndFrame: 10
+  m_StartTime: 0
+  m_EndTime: 1
+  m_DurationMode: 0
+  m_SynchFrameRate: 1
+  m_BaseFileName:
+    m_Pattern: movie.<ext>
+  m_DestinationPath:
+    m_root: 1
+    m_leaf: Recordings
+  m_InputsSettings:
+    m_InputsSettingsAssets:
+    - {fileID: 114725595046902062}
+    - {fileID: 114472906639638186}
     ownerRecorderSettingsAssetId: 6490c57ffb41eae45a6e52afe02b8fd8
   m_RecorderTypeName: UnityEditor.Recorder.MediaRecorder, Assembly-CSharp-Editor,
     Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
