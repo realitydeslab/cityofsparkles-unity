@@ -106,8 +106,9 @@ public class ShakeEscapeMotion : ParticleMotionBase
         animator.SetMaterialsFloat("_VolumeDeltaHeight", deltaHeight);
 
         // Hand Gravity
-        float limit = 0.8f;
-        limit *= (Mathf.Clamp(meter, -6, 0) + 6) / 6 * 0.2f + 0.9f;
+        // float limit = 0.8f;
+        // limit *= (Mathf.Clamp(meter, -6, 0) + 6) / 6 * 0.2f + 0.9f;
+        float limit = 1.0f;
         
         float leftHandGravity = 0;
         float rightHandGravity = 0;

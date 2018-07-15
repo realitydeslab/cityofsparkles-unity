@@ -49,7 +49,6 @@ public abstract class ParticleMotionBase : MonoBehaviour {
 	{
 	    if (Time.time - startTime < 0.5f)
 	    {
-	        Debug.Log("Clear frame.");
             Graphics.Blit(null, particleVelocityBuffer1, particleMotionBlitMaterial, 0);
             Graphics.Blit(null, particleVelocityBuffer2, particleMotionBlitMaterial, 0);
             Graphics.Blit(null, particleOffsetBuffer1, particleMotionBlitMaterial, 0);
