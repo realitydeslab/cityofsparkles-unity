@@ -3790,3 +3790,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalIntensity: 1
+  Size: 2

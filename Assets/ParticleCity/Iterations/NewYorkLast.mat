@@ -84,7 +84,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _GlobalIntensity: 3.85
+    - _GlobalIntensity: 6.96
     - _Glossiness: 0.5
     - _Metallic: 0
     - _Mode: 0
@@ -93,7 +93,7 @@ Material:
     - _PlanarReflectionY: 83.7
     - _PositionRatio: 0
     - _Reflection: 1
-    - _Size: 2
+    - _Size: 2.1005633
     - _SrcBlend: 1
     - _UVSec: 0
     - _VolumeDeltaHeight: 0
