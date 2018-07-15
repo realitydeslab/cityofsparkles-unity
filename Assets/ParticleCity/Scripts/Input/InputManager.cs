@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,10 +21,15 @@ namespace ParticleCities
         public abstract float GetTriggerValue(HandType handType);
         public abstract float GetGrabValue(HandType handType);
         public abstract Vector2 GetTouchpadValue(HandType handType, out bool isPressed);
+        public abstract bool GetGrabDown(HandType handType);
+        public abstract bool GetGrabUp(HandType handType);
 
         public abstract bool IsGrabContinuous { get; }
         public abstract bool HasSticker { get; }
         public abstract bool HasTouchpad { get; }
+
+        public abstract HandType GetHandType(Transform transform);
+
 
         private static InputManager instance = null;
 

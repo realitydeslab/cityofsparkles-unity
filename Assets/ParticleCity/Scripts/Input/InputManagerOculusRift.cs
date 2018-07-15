@@ -71,5 +71,37 @@ namespace ParticleCities
             isPressed = false;
             return Vector2.zero;
         }
+
+        public override bool GetGrabUp(HandType handType)
+        {
+            return OVRInput.GetUp(handType == HandType.Left ? OVRInput.RawButton.LHandTrigger : OVRInput.RawButton.RHandTrigger);
+        }
+
+        public override bool GetGrabDown(HandType handType)
+        {
+            return OVRInput.GetDown(handType == HandType.Left ? OVRInput.RawButton.LHandTrigger : OVRInput.RawButton.RHandTrigger);
+        }
+
+        public override HandType GetHandType(Transform transform)
+        {
+            OvrAvatarHand hand = transform.GetComponentInParent<OvrAvatarHand>();
+            if (hand == null)
+            {
+                return HandType.Unknown;
+            }
+
+            if (hand.gameObject.name == "hand_left")
+            {
+                return HandType.Left;
+            }
+            else if (hand.gameObject.name == "hand_right")
+            {
+                return HandType.Right;
+            }
+            else
+            {
+                return HandType.Unknown;
+            }
+        }
     }
 }

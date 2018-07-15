@@ -91,6 +91,34 @@ namespace ParticleCities
             return (handType == HandType.Left ? LeftTouchPad : RightTouchPad);
         }
 
+        public override bool GetGrabDown(HandType handType)
+        {
+            // TODO
+            return false;
+        }
+
+        public override bool GetGrabUp(HandType handType)
+        {
+            // TODO
+            return false;
+        }
+
+        public override HandType GetHandType(Transform transform)
+        {
+            if (transform == LeftHand || transform.IsChildOf(LeftHand))
+            {
+                return HandType.Left;
+            }
+            else if (transform == RightHand || transform.IsChildOf(RightHand))
+            {
+                return HandType.Right;
+            }
+            else
+            {
+                return HandType.Unknown;
+            }
+        }
+
         private void OnDrawGizmos()
         {
             if (RightHand != null)

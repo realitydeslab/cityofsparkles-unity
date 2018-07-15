@@ -25,11 +25,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DisplayName: Pixels
   m_Id: 6af12d77-00aa-45f7-8b3c-7bf414c53759
-  m_OutputSize: 720
+  m_OutputSize: 2160
   m_AspectRatio: 0
   m_ForceEvenSize: 1
-  source: 1
-  m_CameraTag: 
+  source: 8
+  m_CameraTag: Stereo
   m_FlipFinalOutput: 0
   m_AllowTransparency: 0
   m_CaptureUI: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DisplayName: Audio
   m_Id: 6824aa36-1011-4a5a-869c-f6279718d304
-  m_PreserveAudio: 1
+  m_PreserveAudio: 0
 --- !u!114 &114741419899107776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_CaptureEveryNthFrame: 1
   m_FrameRateMode: 1
   m_FrameRate: 30
-  m_FrameRateExact: 1
+  m_FrameRateExact: 64
   m_StartFrame: 0
   m_EndFrame: 10
   m_StartTime: 0

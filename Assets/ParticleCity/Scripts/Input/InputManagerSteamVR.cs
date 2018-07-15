@@ -102,6 +102,50 @@ namespace ParticleCities
             return device.GetAxis(EVRButtonId.k_EButton_SteamVR_Touchpad);
         }
 
+        public override bool GetGrabDown(HandType handType)
+        {
+            SteamVR_Controller.Device device = getDevice(handType);
+            if (device == null)
+            {
+                return false;
+            }
+
+            return device.GetPressDown(EVRButtonId.k_EButton_Grip);
+        }
+
+        public override bool GetGrabUp(HandType handType)
+        {
+            SteamVR_Controller.Device device = getDevice(handType);
+            if (device == null)
+            {
+                return false;
+            }
+
+            return device.GetPressUp(EVRButtonId.k_EButton_Grip);
+        }
+
+        public override HandType GetHandType(Transform transform)
+        {
+            SteamVR_TrackedObject trackedObject = transform.GetComponentInParent<SteamVR_TrackedObject>();
+            if (trackedObject == null)
+            {
+                return HandType.Unknown;
+            }
+
+            if (controllerManager.left == trackedObject.gameObject)
+            {
+                return HandType.Left;
+            }
+            else if (controllerManager.right == trackedObject.gameObject)
+            {
+                return HandType.Right;
+            }
+            else
+            {
+                return HandType.Unknown;
+            }
+        }
+
         private SteamVR_Controller.Device getDevice(HandType handType)
         {
             GameObject deviceGameObject = null;
