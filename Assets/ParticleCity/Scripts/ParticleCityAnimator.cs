@@ -16,6 +16,9 @@ public class ParticleCityAnimator : MonoBehaviour
     public float Size = 2;
     private float oldSize = -1;
 
+    public Vector4 NoiseST = new Vector4(1, 1, 0, 0);
+    private Vector4 oldNoiseST = new Vector4(1, 1, 0, 0);
+
     private float? targetIntensity;
     private float intensityLerpRatio;
 
@@ -55,6 +58,12 @@ public class ParticleCityAnimator : MonoBehaviour
             SetMaterialsFloat("_Size", Size);
             oldSize = Size;
         }
+
+        if (NoiseST != oldNoiseST) 
+        {
+            SetMaterialsFloat4("_NoiseTex_ST", NoiseST);
+            oldNoiseST = NoiseST;
+        }
 	}
 
     public void LerpToIntensity(float targetIntensity, float ratio)
@@ -76,6 +85,22 @@ public class ParticleCityAnimator : MonoBehaviour
         {
             Renderer renderer = GetComponentInChildren<Renderer>();
             renderer.sharedMaterial.SetFloat(propertyName, value);
+        }
+    }
+
+    public void SetMaterialsFloat4(string propertyName, Vector4 value)
+    {
+        if (Application.isPlaying)
+        {
+            for (int i = 0; i < materialInstances.Length; i++)
+            {
+                materialInstances[i].SetVector(propertyName, value);
+            }
+        }
+        else
+        {
+            Renderer renderer = GetComponentInChildren<Renderer>();
+            renderer.sharedMaterial.SetVector(propertyName, value);
         }
     }
 }

@@ -16,6 +16,8 @@ Shader "Particle City/Particle City"
         _AlphaRandomWeight("Alpha Random Weight", Float) = 0.6
         [Toggle] _Reflection("Reflection", Float) = 0
         _PlanarReflectionY("Planar Reflection Y", Float) = 0
+        _SizeOverHeightLower("Size Over Height Lower", Float) = 200
+        _SizeOverHeightUpper("Size Over Height Upper", Float) = 500
     }
 
     SubShader 
@@ -82,6 +84,8 @@ Shader "Particle City/Particle City"
                 float _PositionRatio;
                 float _PlanarReflectionY;
                 float _Reflection;
+                float _SizeOverHeightLower;
+                float _SizeOverHeightUpper;
 
                 SamplerState sampler_SpriteTex;
 
@@ -89,6 +93,7 @@ Shader "Particle City/Particle City"
                 sampler2D _PositionTex2;
                 sampler2D _OffsetTex;
                 sampler2D _NoiseTex;
+                float4 _NoiseTex_ST;
                 sampler2D _ColorPalleteTex;
 
                 // **************************************************************
@@ -119,13 +124,15 @@ Shader "Particle City/Particle City"
 
                     // Light effects
 
-                    float4 lightCoord = lodCoord; // +float4(_Time.y / 512, 0, 0, 0);
-
-                    float4 noise = tex2Dlod(_NoiseTex, lightCoord);
+                    float4 noiseCoord = float4(v.texcoord * _NoiseTex_ST.xy + _NoiseTex_ST.zw, 0, 0);
+                    float4 noise = tex2Dlod(_NoiseTex, noiseCoord);
                     float lightNoise = noise.r;
                     float phase = noise.g;
 
                     float intense = clamp(sin(_Time.y + phase * 50) * 1.5 + 0.5, 0, 1);
+                    float minIntenseOverHeight = lerp(0.5, 1, saturate((pos.y - _SizeOverHeightLower) / (_SizeOverHeightUpper - _SizeOverHeightLower)));
+                    // float intenseOverHeight = 1 + clamp((pos.y - _SizeOverHeightLower) / (_SizeOverHeightUpper - _SizeOverHeightLower), 0, 1);
+                    intense = max(minIntenseOverHeight, intense);
 
                     // Color Pallete
                     float4 pallete = tex2Dlod(_ColorPalleteTex, noise.b);
@@ -146,7 +153,8 @@ Shader "Particle City/Particle City"
                 void GS_Main(point GS_INPUT p[1], inout TriangleStream<FS_INPUT> triStream)
                 {
                     float4 lodCoord = float4(p[0].tex0, 0, 0);
-                    float4 noise = tex2Dlod(_NoiseTex, lodCoord);
+                    float4 noiseCoord = float4(lodCoord.xy * _NoiseTex_ST.xy + _NoiseTex_ST.zw, 0, 0);
+                    float4 noise = tex2Dlod(_NoiseTex, noiseCoord);
 
                     float3 look = _WorldSpaceCameraPos - p[0].pos;
                     look = normalize(look);
@@ -155,7 +163,9 @@ Shader "Particle City/Particle City"
                     float3 up = cross(look, right);
                     up = normalize(up);
 
-                    float halfS = 0.5f * _Size * noise.b * 1;
+                    float minScale = saturate((p[0].pos.y - _SizeOverHeightLower) / (_SizeOverHeightUpper - _SizeOverHeightLower)) * 0.7;
+                    float scale = max(minScale, noise.b);
+                    float halfS = 0.5f * _Size * scale * 1;
                             
                     float4 v[4];
                     v[0] = float4(p[0].pos + halfS * right - halfS * up, 1.0f);

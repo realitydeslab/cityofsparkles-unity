@@ -6,24 +6,24 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: NewYorkLast
-  m_Shader: {fileID: 4800000, guid: 80049cc3a78ed2048be43c24a713d62f, type: 3}
-  m_ShaderKeywords: _REFLECTION_ON
+  m_Name: NewYorkYellowLightMotion
+  m_Shader: {fileID: 4800000, guid: 8a146c0dc1babea4ab928b42e10a8115, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
+    - _BasePositionTex:
+        m_Texture: {fileID: 2800000, guid: 4d4177488f059f64f84f43f80bc27e34, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _ColorPalleteTex:
-        m_Texture: {fileID: 2800000, guid: 8d119da0b81694b49b4550de9ac8d096, type: 3}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -50,10 +50,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _NoiseTex:
-        m_Texture: {fileID: 2800000, guid: 2d72a333fcd6bf94a9603135e2bd1f04, type: 3}
-        m_Scale: {x: 2.03, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -66,43 +62,29 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _PositionTex:
-        m_Texture: {fileID: 2800000, guid: 4d4177488f059f64f84f43f80bc27e34, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _PositionTex2:
+    - _VelocityTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SpriteTex:
-        m_Texture: {fileID: 2800000, guid: ad05998741387dd4894d1a41169590be, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AlphaRandomWeight: 0.6
     - _BumpScale: 1
+    - _ClosingDamp: 5
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _GlobalIntensity: 3.3577943
     - _Glossiness: 0.5
+    - _HandPush: 100
+    - _MaxDistance: 100
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PlanarReflectionY: 83.7
-    - _PositionRatio: 0
-    - _Reflection: 1
-    - _Size: 2
-    - _SizeOverHeightLower: 150
-    - _SizeOverHeightUpper: 300
+    - _SpringDamp: 5
+    - _SpringDrag: 5
     - _SrcBlend: 1
     - _UVSec: 0
-    - _VolumeDeltaHeight: 0
+    - _VanR_0: 10
     - _ZWrite: 1
     m_Colors:
-    - _BoundsMax: {r: 492.8, g: 305.6, b: 1340.5, a: 0}
-    - _BoundsMin: {r: -693.7, g: -48.5, b: -179.6, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpriteColor: {r: 0.89705884, g: 0.89705884, b: 0.89705884, a: 1}

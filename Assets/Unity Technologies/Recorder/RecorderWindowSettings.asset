@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0205cb8957891b44b142689caa23987, type: 3}
   m_Name: RecorderWindowSettings
   m_EditorClassIdentifier: 
-  m_Settings: {fileID: 0}
+  m_Settings: {fileID: 114000206549908672}
 --- !u!114 &114000206549908672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
   m_DurationMode: 0
   m_SynchFrameRate: 1
   m_BaseFileName:
-    m_Pattern: movie.<ext>
+    m_Pattern: Highway.<ext>
   m_DestinationPath:
     m_root: 1
     m_leaf: Recordings
@@ -83,10 +83,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DisplayName: Pixels
   m_Id: cb0be5ac-4ed1-4a70-9c78-4ddf0584017c
-  m_OutputSize: 720
+  m_OutputSize: 2160
   m_AspectRatio: 0
   m_ForceEvenSize: 1
-  source: 1
+  source: 4
   m_CameraTag: 
   m_FlipFinalOutput: 0
   m_AllowTransparency: 0
@@ -227,4 +227,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DisplayName: Audio
   m_Id: c16e7c0b-ba9b-44ca-821e-27d345518ac7
-  m_PreserveAudio: 1
+  m_PreserveAudio: 0
