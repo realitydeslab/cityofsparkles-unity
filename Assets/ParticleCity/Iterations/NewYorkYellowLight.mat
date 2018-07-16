@@ -80,20 +80,25 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaRandomWeight: 0.6
+    - _BottomOnly: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _GlobalIntensity: 1.26
+    - _GlobalIntensity: 0.52
     - _Glossiness: 0.5
+    - _MaxHeight: 10000
     - _Metallic: 0
+    - _MinHeight: 100
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _PlanarReflectionY: 0
     - _PositionRatio: 0
     - _Reflection: 0
-    - _Size: 1.56
+    - _Size: 2
+    - _SizeOverHeightLower: 200
+    - _SizeOverHeightUpper: 200
     - _SrcBlend: 1
     - _UVSec: 0
     - _VolumeDeltaHeight: 0
@@ -103,4 +108,4 @@ Material:
     - _BoundsMin: {r: -693.7, g: -48.5, b: -179.6, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpriteColor: {r: 0.89705884, g: 0.89705884, b: 0.89705884, a: 1}
+    - _SpriteColor: {r: 1, g: 1, b: 1, a: 1}

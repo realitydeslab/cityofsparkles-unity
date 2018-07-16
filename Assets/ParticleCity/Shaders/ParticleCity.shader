@@ -18,6 +18,8 @@ Shader "Particle City/Particle City"
         _PlanarReflectionY("Planar Reflection Y", Float) = 0
         _SizeOverHeightLower("Size Over Height Lower", Float) = 200
         _SizeOverHeightUpper("Size Over Height Upper", Float) = 500
+        _MinHeight("MinHeight", Float) = -10000
+        _MaxHeight("MaxHeight", Float) = 10000
     }
 
     SubShader 
@@ -35,7 +37,10 @@ Shader "Particle City/Particle City"
             Lighting Off
             ZWrite Off
             ZTest Off
-            Blend One OneMinusSrcAlpha
+            // Blend One OneMinusSrcAlpha
+            // color = 1 * src + (1 - src.a) * dst
+            Blend SrcAlpha One
+            // color = src.a * src + 1 * dst
         
             CGPROGRAM
                 #pragma target 5.0
@@ -87,6 +92,9 @@ Shader "Particle City/Particle City"
                 float _SizeOverHeightLower;
                 float _SizeOverHeightUpper;
 
+                float _MinHeight;
+                float _MaxHeight;
+
                 SamplerState sampler_SpriteTex;
 
                 sampler2D _PositionTex;
@@ -118,9 +126,14 @@ Shader "Particle City/Particle City"
                     output.pos.y += _VolumeDeltaHeight * (max(0, pos.y - 80) / (250 - 80));
 
                     output.pos = mul(unity_ObjectToWorld, output.pos);
-
                     output.normal = v.normal;
                     output.tex0 = v.texcoord;
+
+                    if (pos.y < _MinHeight || pos.y > _MaxHeight)
+                    {
+                        output.color = float4(0, 0, 0, 0);
+                        return output;
+                    }
 
                     // Light effects
 
@@ -142,7 +155,14 @@ Shader "Particle City/Particle City"
                     output.color = _SpriteColor * pallete * max(1, _GlobalIntensity);
                     output.color.a = ((1 - lightNoise) * _AlphaRandomWeight + lightNoise * intense) * _SpriteColor.a * min(1, _GlobalIntensity);
 
+                    if (length(output.pos) < 5)
+                    {
+                        output.color = float4(0, 0, 0, 0);
+                    }
+
                     // Fog
+                    // float fog = 1 - 0.7 * saturate((distance(_WorldSpaceCameraPos, output.pos) - 100) / (1000 - 100));
+                    // output.color *= (fog * 0.2 + 1);
                     // output.color.a *= 1 - 0.7 * saturate((distance(_WorldSpaceCameraPos, output.pos) - 100) / (1000 - 100));
 
                     return output;
@@ -257,7 +277,8 @@ Shader "Particle City/Particle City"
 #if !defined(UNITY_COLORSPACE_GAMMA)
                     c.a = pow(c.a, 2.2);
 #endif
-                    c.rgb *= c.a;
+                    // c.rgb *= c.a;
+                    c *= 2;
 
                     return c;
                 }
