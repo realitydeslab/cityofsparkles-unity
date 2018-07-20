@@ -21,6 +21,11 @@ public class TweetPlaceholderNode : SpawnSourceNode
         get { return musicSync; }
     }
 
+    [Header("Animation")] 
+    public bool Trigger;
+    // TODO: Spawn by animation
+    private TweetComponent spawnedTweet;
+
     private TwitterDatabase.DBTweet tweet;
     private bool spawned;
 
