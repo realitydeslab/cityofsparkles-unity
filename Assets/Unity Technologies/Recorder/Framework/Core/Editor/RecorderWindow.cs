@@ -331,7 +331,7 @@ namespace UnityEditor.Recorder
             if( m_WindowSettingsAsset.m_Settings == null )
                 m_WindowSettingsAsset.m_Settings = RecordersInventory.GenerateRecorderInitialSettings(m_WindowSettingsAsset, m_recorderSelector.selectedRecorder );
             m_Editor = Editor.CreateEditor( m_WindowSettingsAsset.m_Settings ) as RecorderEditor;
-            AssetDatabase.Refresh();
+            // AssetDatabase.Refresh();
 
         }
 

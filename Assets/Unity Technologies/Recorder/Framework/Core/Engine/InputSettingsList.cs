@@ -202,7 +202,7 @@ namespace UnityEngine.Recorder
 #endif
             }
 #if UNITY_EDITOR
-            AssetDatabase.Refresh();
+            // AssetDatabase.Refresh();
 #endif
 
         }

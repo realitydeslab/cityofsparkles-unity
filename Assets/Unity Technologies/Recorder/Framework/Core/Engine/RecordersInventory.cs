@@ -201,7 +201,7 @@ namespace UnityEngine.Recorder
 
                 AssetDatabase.AddObjectToAsset(settings, parent);
                 AssetDatabase.SaveAssets();
-                AssetDatabase.Refresh();
+                // AssetDatabase.Refresh();
                 settings.assetID = AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(settings));
                 settings.inputsSettings.AddRange( settings.GetDefaultInputSettings() );
 
