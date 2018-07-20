@@ -168,6 +168,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &13489166
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +402,7 @@ MonoBehaviour:
   AkEventOnReveal: Silent
   IsStoryTrigger: 1
   musicSync: 0
+  Trigger: 0
 --- !u!1 &55909307 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000010482306814, guid: 84c8b8609f9bb434eaf5248f17ff1293,
@@ -552,6 +554,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Database: twitter_nyc_tags.db
+--- !u!1 &148351677
+GameObject:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 148351678}
+  - component: {fileID: 148351679}
+  m_Layer: 0
+  m_Name: cm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &148351678
+Transform:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 148351677}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 803.00385, y: 197.81738, z: -652.8799}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2097769275}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &148351679
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 148351677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &200331696
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,6 +649,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &200943831
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +701,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &233093218
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,6 +757,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &247463587
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,6 +809,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &260684091
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +946,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &317550941
 GameObject:
   m_ObjectHideFlags: 0
@@ -994,6 +1041,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &326561276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,6 +1093,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &342031812 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011125779090, guid: 84c8b8609f9bb434eaf5248f17ff1293,
@@ -1398,6 +1447,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &415276252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1483,6 +1533,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &431721075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,6 +1589,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &442889274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,6 +1641,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &464902216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,6 +1693,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &465032426
 GameObject:
   m_ObjectHideFlags: 1
@@ -2018,6 +2072,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &574022397
 GameObject:
   m_ObjectHideFlags: 0
@@ -2164,25 +2219,27 @@ GameObject:
   m_Component:
   - component: {fileID: 613699949}
   - component: {fileID: 613699950}
+  - component: {fileID: 613699951}
   m_Layer: 0
   m_Name: InputAnimated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &613699949
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 613699948}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5123, y: -427, z: -4021}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 317550942}
   - {fileID: 693341152}
+  - {fileID: 1839235002}
   m_Father: {fileID: 624680531}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2207,6 +2264,24 @@ MonoBehaviour:
   LeftTouchPadClicked: 0
   RightTouchPad: {x: 0, y: 0}
   RightTouchPadClicked: 0
+--- !u!95 &613699951
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 613699948}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &619172354
 GameObject:
   m_ObjectHideFlags: 3
@@ -2275,7 +2350,7 @@ PlayableDirector:
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
-  m_InitialTime: 10
+  m_InitialTime: 100
   m_SceneBindings:
   - key: {fileID: 0}
     value: {fileID: 624680529}
@@ -2297,6 +2372,14 @@ PlayableDirector:
     value: {fileID: 1036309887}
   - key: {fileID: 114927909169136498, guid: e4e2be11e8ba457498730fd28690a4d0, type: 2}
     value: {fileID: 1260405775}
+  - key: {fileID: 114363621500142776, guid: e4e2be11e8ba457498730fd28690a4d0, type: 2}
+    value: {fileID: 613699948}
+  - key: {fileID: 114065732957717690, guid: e4e2be11e8ba457498730fd28690a4d0, type: 2}
+    value: {fileID: 2097769273}
+  - key: {fileID: 114761202702331162, guid: e4e2be11e8ba457498730fd28690a4d0, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 114683811745755126, guid: e4e2be11e8ba457498730fd28690a4d0, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 1d83da2f64c09cb4e9d3b8ba2e81c69c: {fileID: 963445808}
@@ -2305,6 +2388,7 @@ PlayableDirector:
     - 42ebeca85fa82a4478f4aaffa9a7bb0c: {fileID: 751266026}
     - a69835e0f852abf40a9caa132676b56c: {fileID: 1260405776}
     - ebb0bc75da709e049b0a81f271797d7c: {fileID: 927652610}
+    - af2f7b1052188884badeb66d512d629e: {fileID: 2097769274}
 --- !u!4 &624680531
 Transform:
   m_ObjectHideFlags: 0
@@ -2327,6 +2411,7 @@ Transform:
   - {fileID: 539103084}
   - {fileID: 1260405777}
   - {fileID: 633628107}
+  - {fileID: 2097769275}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2453,6 +2538,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &645745862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2577,6 +2663,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &680109055
 GameObject:
   m_ObjectHideFlags: 0
@@ -2628,6 +2715,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &682462544
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,7 +2885,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 751266023}
-  m_LocalRotation: {x: 0.07277286, y: -0.605418, z: 0.055726435, w: 0.7906122}
+  m_LocalRotation: {x: 0.048487123, y: -0.83861893, z: 0.07568565, w: 0.5372514}
   m_LocalPosition: {x: -2417, y: -82, z: 1016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2859,53 +2947,6 @@ MonoBehaviour:
         Culture=neutral, PublicKeyToken=null
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 993037641}
---- !u!1001 &753361906
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4982601177906644, guid: 151b704900b89b04b92fa18536364afd, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -2606.4746
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982601177906644, guid: 151b704900b89b04b92fa18536364afd, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1078.5415
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982601177906644, guid: 151b704900b89b04b92fa18536364afd, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -1292.1261
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982601177906644, guid: 151b704900b89b04b92fa18536364afd, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982601177906644, guid: 151b704900b89b04b92fa18536364afd, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982601177906644, guid: 151b704900b89b04b92fa18536364afd, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982601177906644, guid: 151b704900b89b04b92fa18536364afd, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4982601177906644, guid: 151b704900b89b04b92fa18536364afd, type: 2}
-      propertyPath: m_RootOrder
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 114939349923270740, guid: 151b704900b89b04b92fa18536364afd,
-        type: 2}
-      propertyPath: GlobalIntensity
-      value: 0.31
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 151b704900b89b04b92fa18536364afd, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &761371851
 GameObject:
   m_ObjectHideFlags: 0
@@ -2957,6 +2998,7 @@ MonoBehaviour:
   AkEventOnReveal: Silent
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1001 &775001753
 Prefab:
   m_ObjectHideFlags: 0
@@ -3052,6 +3094,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &799479974
 GameObject:
   m_ObjectHideFlags: 0
@@ -3103,6 +3146,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &806437405
 GameObject:
   m_ObjectHideFlags: 0
@@ -3118,7 +3162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &806437406
 Transform:
   m_ObjectHideFlags: 0
@@ -3288,6 +3332,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &869792980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3343,6 +3388,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &869894947
 GameObject:
   m_ObjectHideFlags: 0
@@ -3394,6 +3440,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &895009780
 GameObject:
   m_ObjectHideFlags: 0
@@ -3416,7 +3463,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 895009780}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 601abd6c757a4b1489815e3ca9f08f8e, type: 3}
   m_Name: 
@@ -3525,6 +3572,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &923041247
 GameObject:
   m_ObjectHideFlags: 0
@@ -3693,6 +3741,49 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
+--- !u!1001 &930011378
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &963445807
 GameObject:
   m_ObjectHideFlags: 0
@@ -3923,6 +4014,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1028518079
 GameObject:
   m_ObjectHideFlags: 0
@@ -4419,6 +4511,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1153748430
 GameObject:
   m_ObjectHideFlags: 3
@@ -4615,6 +4708,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1209614201
 GameObject:
   m_ObjectHideFlags: 0
@@ -4666,6 +4760,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1219764101
 GameObject:
   m_ObjectHideFlags: 0
@@ -4721,6 +4816,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1260405775
 GameObject:
   m_ObjectHideFlags: 0
@@ -4780,7 +4876,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1260405775}
-  m_LocalRotation: {x: -0.29070008, y: 0.49652973, z: -0.18096422, w: -0.7976238}
+  m_LocalRotation: {x: -0.29070008, y: 0.49652973, z: -0.1809642, w: -0.7976238}
   m_LocalPosition: {x: -2342.401, y: 114.98282, z: 182.73128}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4888,6 +4984,7 @@ MonoBehaviour:
   AkEventOnReveal: Silent
   IsStoryTrigger: 0
   musicSync: 1
+  Trigger: 0
 --- !u!1 &1323121327
 GameObject:
   m_ObjectHideFlags: 0
@@ -4943,6 +5040,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1336725410
 GameObject:
   m_ObjectHideFlags: 0
@@ -4994,6 +5092,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1359020484
 GameObject:
   m_ObjectHideFlags: 0
@@ -5726,6 +5825,7 @@ MonoBehaviour:
   AkEventOnReveal: Silent
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1548457110
 GameObject:
   m_ObjectHideFlags: 0
@@ -5777,6 +5877,7 @@ MonoBehaviour:
   AkEventOnReveal: Silent
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1588189356
 GameObject:
   m_ObjectHideFlags: 0
@@ -5828,6 +5929,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1001 &1615082890
 Prefab:
   m_ObjectHideFlags: 0
@@ -5873,15 +5975,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: m_BackGroundColor.r
-      value: 0
+      value: 0.7294118
       objectReference: {fileID: 0}
     - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: m_BackGroundColor.g
-      value: 0
+      value: 0.7294118
       objectReference: {fileID: 0}
     - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: m_BackGroundColor.b
-      value: 0
+      value: 0.7294118
       objectReference: {fileID: 0}
     - target: {fileID: 2037080, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: far clip plane
@@ -5913,31 +6015,31 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 66.09766
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 489.68314
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -46.39302
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.49652973
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.1809642
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -0.9005302
+      value: 0.9813785
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.29070008
       objectReference: {fileID: 0}
     - target: {fileID: 11400010, guid: 126d619cf4daa52469682f85c1378b4a, type: 2}
       propertyPath: m_Enabled
@@ -6047,7 +6149,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1615082893}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbda4bd7a6b9a0145a6bc6ac2e8db008, type: 3}
   m_Name: 
@@ -6072,7 +6174,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1619926621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6208,6 +6310,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1667687664
 GameObject:
   m_ObjectHideFlags: 0
@@ -6259,6 +6362,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1689145147
 GameObject:
   m_ObjectHideFlags: 0
@@ -6610,6 +6714,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1802288285
 GameObject:
   m_ObjectHideFlags: 0
@@ -6665,6 +6770,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1811055841
 GameObject:
   m_ObjectHideFlags: 0
@@ -6757,11 +6863,97 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!4 &1838646291 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4234578822287920, guid: b0ee66d2c64939c4d9078643435975a4,
     type: 2}
   m_PrefabInternal: {fileID: 710252511}
+--- !u!1 &1839235001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1839235002}
+  - component: {fileID: 1839235005}
+  - component: {fileID: 1839235004}
+  - component: {fileID: 1839235003}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1839235002
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1839235001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 308.05746, y: 308.05756, z: 308.05756}
+  m_Children: []
+  m_Father: {fileID: 613699949}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1839235003
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1839235001}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1839235004
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1839235001}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1839235005
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1839235001}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1860312063
 Prefab:
   m_ObjectHideFlags: 0
@@ -6875,6 +7067,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1863752271
 GameObject:
   m_ObjectHideFlags: 0
@@ -6926,6 +7119,7 @@ MonoBehaviour:
   AkEventOnReveal: Silent
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &1878613023
 GameObject:
   m_ObjectHideFlags: 0
@@ -6979,6 +7173,7 @@ MonoBehaviour:
   AkEventOnReveal: Silent
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &2063061248
 GameObject:
   m_ObjectHideFlags: 0
@@ -7082,6 +7277,92 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
+--- !u!1 &2097769273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2097769275}
+  - component: {fileID: 2097769274}
+  - component: {fileID: 2097769276}
+  m_Layer: 0
+  m_Name: CM vcam Twsit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2097769274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2097769273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ExcludedPropertiesInInspector:
+  - m_Script
+  m_LockStageInInspector: 
+  m_StreamingVersion: 20170927
+  m_Priority: 10
+  m_StandbyUpdate: 2
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
+  m_Lens:
+    FieldOfView: 67
+    OrthographicSize: 10
+    NearClipPlane: 0.1
+    FarClipPlane: 15000
+    Dutch: 0
+    LensShift: {x: 0, y: 0}
+  m_Transitions:
+    m_BlendHint: 0
+    m_InheritPosition: 0
+    m_OnCameraLive:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Cinemachine, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  m_LegacyBlendHint: 0
+  m_ComponentOwner: {fileID: 148351678}
+--- !u!4 &2097769275
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2097769273}
+  m_LocalRotation: {x: 0.14185862, y: 0.12950511, z: 0.0009071396, w: 0.9813785}
+  m_LocalPosition: {x: -5222, y: 105, z: -5556}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 148351678}
+  m_Father: {fileID: 624680531}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 16.153, y: 15.361001, z: 2.299}
+--- !u!95 &2097769276
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2097769273}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2108059281
 GameObject:
   m_ObjectHideFlags: 0
@@ -7194,6 +7475,7 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0
 --- !u!1 &2139443727
 GameObject:
   m_ObjectHideFlags: 0
@@ -7245,3 +7527,4 @@ MonoBehaviour:
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
+  Trigger: 0

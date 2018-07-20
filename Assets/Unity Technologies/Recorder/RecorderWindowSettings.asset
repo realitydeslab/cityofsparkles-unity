@@ -12,23 +12,6 @@ MonoBehaviour:
   m_Name: RecorderWindowSettings
   m_EditorClassIdentifier: 
   m_Settings: {fileID: 114096866942018714}
---- !u!114 &114057566826294624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ef190f44e596a94ebfec7c7b888a950, type: 3}
-  m_Name: 3653aa06-d0bf-4ea7-ae8a-684a7b75c31c
-  m_EditorClassIdentifier: 
-  m_DisplayName: Pixels
-  m_Id: 1b145b58-51dd-4ee0-bb64-f6d93536b33e
-  m_OutputSize: 720
-  m_AspectRatio: 0
-  m_ForceEvenSize: 0
-  m_SourceRTxtr: {fileID: 8400000, guid: ea920b1c61540ba4fbe2ae8af6ac3514, type: 2}
 --- !u!114 &114096866942018714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,13 +35,13 @@ MonoBehaviour:
   m_DurationMode: 0
   m_SynchFrameRate: 1
   m_BaseFileName:
-    m_Pattern: stereo.<ext>
+    m_Pattern: twist.<ext>
   m_DestinationPath:
     m_root: 1
     m_leaf: Recordings
   m_InputsSettings:
     m_InputsSettingsAssets:
-    - {fileID: 114057566826294624}
+    - {fileID: 114797713177309316}
     - {fileID: 114398172502395842}
     ownerRecorderSettingsAssetId: 6490c57ffb41eae45a6e52afe02b8fd8
   m_RecorderTypeName: UnityEditor.Recorder.MediaRecorder, Assembly-CSharp-Editor,
@@ -79,4 +62,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DisplayName: Audio
   m_Id: d693f375-1ee3-473d-b9d7-14b5c53e80be
-  m_PreserveAudio: 1
+  m_PreserveAudio: 0
+--- !u!114 &114797713177309316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d935bf7a4fcf66488738bda5536c1cb, type: 3}
+  m_Name: ee7c93e1-216d-4007-a565-84fc26990f3c
+  m_EditorClassIdentifier: 
+  m_DisplayName: Pixels
+  m_Id: 05624090-7e26-4cca-bf18-55f4fe3fa9e5
+  m_OutputSize: 2160
+  m_AspectRatio: 0
+  m_ForceEvenSize: 1
+  source: 4
+  m_CameraTag: 
+  m_FlipFinalOutput: 0
+  m_AllowTransparency: 0
+  m_CaptureUI: 0
