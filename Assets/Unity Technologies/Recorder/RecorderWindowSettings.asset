@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0205cb8957891b44b142689caa23987, type: 3}
   m_Name: RecorderWindowSettings
   m_EditorClassIdentifier: 
-  m_Settings: {fileID: 114096866942018714}
---- !u!114 &114096866942018714
+  m_Settings: {fileID: 0}
+--- !u!114 &114050849675525264
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -20,7 +20,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fde0a8ac3e6b482c95fa602e65ab045, type: 3}
+  m_Script: {fileID: 11500000, guid: 06397f605c749fe4dbe2df4bbd1ef4a1, type: 3}
   m_Name: Recorder Settings
   m_EditorClassIdentifier: 
   m_AssetID: 6490c57ffb41eae45a6e52afe02b8fd8
@@ -35,35 +35,18 @@ MonoBehaviour:
   m_DurationMode: 0
   m_SynchFrameRate: 1
   m_BaseFileName:
-    m_Pattern: twist.<ext>
+    m_Pattern: image_<0000>.<ext>
   m_DestinationPath:
     m_root: 1
     m_leaf: Recordings
   m_InputsSettings:
     m_InputsSettingsAssets:
-    - {fileID: 114797713177309316}
-    - {fileID: 114398172502395842}
+    - {fileID: 114753629779222278}
     ownerRecorderSettingsAssetId: 6490c57ffb41eae45a6e52afe02b8fd8
-  m_RecorderTypeName: UnityEditor.Recorder.MediaRecorder, Assembly-CSharp-Editor,
-    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_OutputFormat: 0
-  m_VideoBitRateMode: 2
-  m_AppendSuffix: 0
---- !u!114 &114398172502395842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fae41d0797227451ea4b10db1c086647, type: 3}
-  m_Name: 19861709-aa04-4110-98e9-a7a0cb18c06f
-  m_EditorClassIdentifier: 
-  m_DisplayName: Audio
-  m_Id: d693f375-1ee3-473d-b9d7-14b5c53e80be
-  m_PreserveAudio: 0
---- !u!114 &114797713177309316
+  m_RecorderTypeName: UnityEngine.Recorder.ImageRecorder, Assembly-CSharp, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  m_OutputFormat: 1
+--- !u!114 &114753629779222278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -72,14 +55,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d935bf7a4fcf66488738bda5536c1cb, type: 3}
-  m_Name: ee7c93e1-216d-4007-a565-84fc26990f3c
+  m_Name: 4d858023-a3bf-473a-bc6f-5c7109a7bf59
   m_EditorClassIdentifier: 
   m_DisplayName: Pixels
-  m_Id: 05624090-7e26-4cca-bf18-55f4fe3fa9e5
-  m_OutputSize: 2160
+  m_Id: e3636969-8653-4d05-b0e9-95c7d8f1c925
+  m_OutputSize: 720
   m_AspectRatio: 0
-  m_ForceEvenSize: 1
-  source: 4
+  m_ForceEvenSize: 0
+  source: 1
   m_CameraTag: 
   m_FlipFinalOutput: 0
   m_AllowTransparency: 0
