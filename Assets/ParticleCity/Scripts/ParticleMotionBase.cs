@@ -17,6 +17,8 @@ public abstract class ParticleMotionBase : MonoBehaviour {
 
     private float startTime;
 
+    public bool Reset;
+
 	public virtual void Start ()
 	{
 	    particleMotionBlitMaterial = ParticleMotionBlitMaterialPrefab; 
@@ -47,12 +49,13 @@ public abstract class ParticleMotionBase : MonoBehaviour {
 	
 	public virtual void Update ()
 	{
-	    if (Time.time - startTime < 5f)
+	    if (Time.time - startTime < 5f || Reset)
 	    {
             Graphics.Blit(null, particleVelocityBuffer1, particleMotionBlitMaterial, 0);
             Graphics.Blit(null, particleVelocityBuffer2, particleMotionBlitMaterial, 0);
             Graphics.Blit(null, particleOffsetBuffer1, particleMotionBlitMaterial, 0);
             Graphics.Blit(null, particleOffsetBuffer2, particleMotionBlitMaterial, 0);
+	        Reset = false;
             return;
 	    }
 

@@ -13,6 +13,7 @@ public class ObjectTrailing : MonoBehaviour
     public const int TrailLength = 8;
     public float TrailInterval = 0.1f;
     public bool Visualize = false;
+    public bool LocalSpace = false;
 
     public TrailFrame[] Frames;
     private float lastCaptureTime;
@@ -27,7 +28,7 @@ public class ObjectTrailing : MonoBehaviour
             {
                 Frames[i] = new TrailFrame
                 {
-                    Position = transform.position,
+                    Position = LocalSpace ? transform.localPosition : transform.position,
                     Velocity = Vector3.zero
                 };
             }
@@ -43,8 +44,8 @@ public class ObjectTrailing : MonoBehaviour
 	            Frames[i] = Frames[i - 1];
 	        }
 
-	        Frames[0].Velocity = (transform.position - Frames[0].Position) / Time.deltaTime;
-	        Frames[0].Position = transform.position;
+	        Frames[0].Velocity = (LocalSpace ? transform.localPosition : transform.position - Frames[0].Position) / Time.deltaTime;
+	        Frames[0].Position = LocalSpace ? transform.localPosition : transform.position;
 
 	        lastCaptureTime = Time.time;
 	    }

@@ -1,4 +1,4 @@
-Shader "Particle City/SimpleFlowMotionBlit" {
+Shader "Particle City/FlyAwayMotionBlit" {
     Properties {
         _MainTex ("Base (RGB)", 2D) = "white" {}
         _BasePositionTex("Base Position Tex", 2D) = "white" {}
