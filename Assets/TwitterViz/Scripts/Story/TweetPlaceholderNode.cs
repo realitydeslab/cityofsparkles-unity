@@ -7,6 +7,7 @@ public class TweetPlaceholderNode : SpawnSourceNode
 {
     public string QueryTag;
     public float TargetCityIntensity = -1;
+    public float IntensityLerpRatio = 0.01f;
 
     public float MixInRatio = 0;
     public string AkEventOnSpawn;
@@ -117,7 +118,7 @@ public class TweetPlaceholderNode : SpawnSourceNode
 
         if (TargetCityIntensity >= 0)
         {
-            ParticleCity.Current.Animator.LerpToIntensity(TargetCityIntensity, 0.01f);
+            ParticleCity.Current.Animator.LerpToIntensity(TargetCityIntensity, IntensityLerpRatio);
         }
 
         Destroy(gameObject);

@@ -163,6 +163,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -397,6 +398,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: 
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Silent
@@ -644,6 +646,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -696,6 +699,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: fuck
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -752,6 +756,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -804,6 +809,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: fuck
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -941,6 +947,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: fuck
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -1036,6 +1043,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: positive
   TargetCityIntensity: 3
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -1088,6 +1096,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -1186,6 +1195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalIntensity: 1
+  IntensityFadeOnStart: -1
+  IntensityLerpRatioOnStart: -1
   Size: 0
   NoiseST: {x: 1, y: 1, z: 0, w: 0}
 --- !u!1 &356701649
@@ -1307,7 +1318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &376220141
 Transform:
   m_ObjectHideFlags: 0
@@ -1324,7 +1335,7 @@ Transform:
   - {fileID: 1793308587}
   - {fileID: 635865721}
   m_Father: {fileID: 522203963}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &388850119
 GameObject:
@@ -1442,6 +1453,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: fuck
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -1463,14 +1475,14 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &409912860
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 409912859}
-  m_LocalRotation: {x: -0.030058717, y: 0.0036960954, z: 0.00011112011, w: 0.9995413}
+  m_LocalRotation: {x: -0.030058715, y: 0.0036961094, z: 0.000111119574, w: 0.9995413}
   m_LocalPosition: {x: -66.09766, y: -489.68314, z: 26.39302}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1528,7 +1540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &415276253
 Transform:
   m_ObjectHideFlags: 0
@@ -1546,7 +1558,7 @@ Transform:
   - {fileID: 680109056}
   - {fileID: 1860684494}
   m_Father: {fileID: 522203963}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &421552308
 GameObject:
@@ -1594,6 +1606,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: fuck
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -1650,6 +1663,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -1702,6 +1716,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: fuck
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -1754,6 +1769,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: fuck
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -1838,7 +1854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &507961589
 Transform:
   m_ObjectHideFlags: 0
@@ -1854,7 +1870,7 @@ Transform:
   - {fileID: 810800616}
   - {fileID: 574022398}
   m_Father: {fileID: 522203963}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &522203962
 GameObject:
@@ -1870,7 +1886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &522203963
 Transform:
   m_ObjectHideFlags: 0
@@ -1881,6 +1897,7 @@ Transform:
   m_LocalPosition: {x: -3009, y: 159, z: -4893}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 543335833}
   - {fileID: 806437406}
   - {fileID: 415276253}
   - {fileID: 650990239}
@@ -1976,6 +1993,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &543335832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 543335833}
+  m_Layer: 0
+  m_Name: TitleDemo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &543335833
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 543335832}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 736009906}
+  - {fileID: 2136466808}
+  m_Father: {fileID: 522203963}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &559462510
 Prefab:
   m_ObjectHideFlags: 0
@@ -2133,6 +2180,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: fuck
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -2599,6 +2647,7 @@ MonoBehaviour:
   SwitchToStage: 5
   QueryTag: positive
   TargetCityIntensity: 1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -2652,7 +2701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &650990239
 Transform:
   m_ObjectHideFlags: 0
@@ -2672,7 +2721,7 @@ Transform:
   - {fileID: 16162381}
   - {fileID: 1406934813}
   m_Father: {fileID: 522203963}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &658235328
 GameObject:
@@ -2724,6 +2773,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -2776,6 +2826,7 @@ MonoBehaviour:
   SwitchToStage: 1
   QueryTag: nice
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -2928,6 +2979,59 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b0ee66d2c64939c4d9078643435975a4, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &736009905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 736009906}
+  - component: {fileID: 736009907}
+  m_Layer: 0
+  m_Name: P1 (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &736009906
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 736009905}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4279, y: 29.3, z: 5668}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 543335833}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &736009907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 736009905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 882013b907b785a4da3724945c636a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnabledOnStart: 1
+  Next:
+  - {fileID: 2136466811}
+  SwitchToStage: 0
+  QueryTag: 
+  TargetCityIntensity: 0.72
+  IntensityLerpRatio: 0.001
+  MixInRatio: 0
+  AkEventOnSpawn: 
+  AkEventOnReveal: Silent
+  IsStoryTrigger: 1
+  musicSync: 0
+  Trigger: 0
 --- !u!1 &751266023
 GameObject:
   m_ObjectHideFlags: 0
@@ -3059,6 +3163,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: nice
   TargetCityIntensity: 1.1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Silent
@@ -3159,6 +3264,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: nice
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -3211,6 +3317,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: fuck
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -3244,7 +3351,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 522203963}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &806437407
 MonoBehaviour:
@@ -3397,6 +3504,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -3453,6 +3561,7 @@ MonoBehaviour:
   SwitchToStage: 3
   QueryTag: fuck
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -3505,12 +3614,79 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+--- !u!1 &892491410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 892491411}
+  - component: {fileID: 892491412}
+  m_Layer: 0
+  m_Name: CM vcam3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &892491411
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 892491410}
+  m_LocalRotation: {x: -0.0900666, y: -0.49231362, z: -0.05187737, w: 0.86418974}
+  m_LocalPosition: {x: 2066, y: -362, z: 265}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1504829417}
+  m_Father: {fileID: 2099016565}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -11.932, y: -59.333004, z: -0.057000004}
+--- !u!114 &892491412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 892491410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ExcludedPropertiesInInspector:
+  - m_Script
+  m_LockStageInInspector: 
+  m_StreamingVersion: 20170927
+  m_Priority: 10
+  m_StandbyUpdate: 2
+  m_LookAt: {fileID: 0}
+  m_Follow: {fileID: 0}
+  m_Lens:
+    FieldOfView: 60
+    OrthographicSize: 10
+    NearClipPlane: 0.1
+    FarClipPlane: 15000
+    Dutch: 0
+    LensShift: {x: 0, y: 0}
+  m_Transitions:
+    m_BlendHint: 0
+    m_InheritPosition: 0
+    m_OnCameraLive:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Cinemachine, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  m_LegacyBlendHint: 0
+  m_ComponentOwner: {fileID: 1504829417}
 --- !u!1 &895009780
 GameObject:
   m_ObjectHideFlags: 0
@@ -3538,7 +3714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601abd6c757a4b1489815e3ca9f08f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerStartingPoint: {fileID: 2113364632}
+  PlayerStartingPoint: {fileID: 2007827421}
   FlyFullSpeed: 50
 --- !u!4 &895009782
 Transform:
@@ -3552,6 +3728,7 @@ Transform:
   m_Children:
   - {fileID: 1439352582}
   - {fileID: 2113364632}
+  - {fileID: 2007827421}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3638,6 +3815,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: fuck
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -3807,64 +3985,13 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
---- !u!1001 &930011378
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4184296292794812, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
-      propertyPath: m_RootOrder
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 114762664099150494, guid: 2bbcf3bec859dbf47911dcd1bc16c30f,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114376787756978894, guid: 2bbcf3bec859dbf47911dcd1bc16c30f,
-        type: 2}
-      propertyPath: HandParticleMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: f790c3ecaf5a28d45a8502bc7f158408, type: 2}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &963445807
 GameObject:
   m_ObjectHideFlags: 0
@@ -4044,6 +4171,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1016347195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1016347196}
+  - component: {fileID: 1016347198}
+  - component: {fileID: 1016347197}
+  m_Layer: 0
+  m_Name: Title3_Mesh1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1016347196
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1016347195}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1606837539}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1016347197
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1016347195}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 0b7199d4be115b843800bd3836fd540e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1016347198
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1016347195}
+  m_Mesh: {fileID: 4300000, guid: a85fc999bb849cb4083187adae25e660, type: 2}
 --- !u!1 &1026036915
 GameObject:
   m_ObjectHideFlags: 0
@@ -4090,6 +4289,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -4198,6 +4398,78 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1129645800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1129645801}
+  - component: {fileID: 1129645803}
+  - component: {fileID: 1129645802}
+  m_Layer: 0
+  m_Name: Title3_Mesh0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1129645801
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1129645800}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1606837539}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1129645802
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1129645800}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 0b7199d4be115b843800bd3836fd540e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1129645803
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1129645800}
+  m_Mesh: {fileID: 4300000, guid: ed5fbf9feabf4e84eadfeeee6ab641be, type: 2}
 --- !u!1 &1138966074
 GameObject:
   m_ObjectHideFlags: 0
@@ -4248,6 +4520,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -4322,6 +4595,63 @@ MonoBehaviour:
     m_PositionOffset: 0
     m_SearchRadius: 2
     m_SearchResolution: 5
+--- !u!1001 &1156850609
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414819596465634, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 114649518448430194, guid: 392e5d8642041f0458f17660a6c5904a,
+        type: 2}
+      propertyPath: GlobalIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114649518448430194, guid: 392e5d8642041f0458f17660a6c5904a,
+        type: 2}
+      propertyPath: IntensityFadeOnStart
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114649518448430194, guid: 392e5d8642041f0458f17660a6c5904a,
+        type: 2}
+      propertyPath: IntensityLerpRatioOnStart
+      value: 0.001
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 392e5d8642041f0458f17660a6c5904a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1160525529
 GameObject:
   m_ObjectHideFlags: 0
@@ -4337,7 +4667,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1160525530
 Transform:
   m_ObjectHideFlags: 0
@@ -4349,7 +4679,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 522203963}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1160525531
 MonoBehaviour:
@@ -4445,6 +4775,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: fuck
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -4497,6 +4828,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: positive
   TargetCityIntensity: 4
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -4553,6 +4885,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -4658,7 +4991,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1287750175
 Transform:
   m_ObjectHideFlags: 0
@@ -4673,7 +5006,7 @@ Transform:
   - {fileID: 899213351}
   - {fileID: 2063061249}
   m_Father: {fileID: 522203963}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1314853615
 GameObject:
@@ -4721,6 +5054,7 @@ MonoBehaviour:
   SwitchToStage: 1
   QueryTag: nice
   TargetCityIntensity: 0.2
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Silent
@@ -4777,6 +5111,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -4829,6 +5164,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -4894,7 +5230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1406934813
 Transform:
   m_ObjectHideFlags: 0
@@ -5365,6 +5701,164 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1453102788}
   m_Mesh: {fileID: 0}
+--- !u!1 &1490125189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1490125190}
+  - component: {fileID: 1490125192}
+  - component: {fileID: 1490125191}
+  m_Layer: 0
+  m_Name: title2_Mesh0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1490125190
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1490125189}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1706938716}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1490125191
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1490125189}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: df40c25990b36b2498a2fb06f3b8cfa9, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1490125192
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1490125189}
+  m_Mesh: {fileID: 4300000, guid: 0a844c93ec230e84095cf0889c2c329d, type: 2}
+--- !u!1 &1504829416
+GameObject:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1504829417}
+  - component: {fileID: 1504829420}
+  - component: {fileID: 1504829419}
+  - component: {fileID: 1504829418}
+  m_Layer: 0
+  m_Name: cm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1504829417
+Transform:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1504829416}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.065933, y: -117.865814, z: 15.211304}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 892491411}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1504829418
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1504829416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BindingMode: 1
+  m_FollowOffset: {x: 2235.1636, y: 539.8174, z: 677.81793}
+  m_XDamping: 1
+  m_YDamping: 1
+  m_ZDamping: 1
+  m_PitchDamping: 0
+  m_YawDamping: 0
+  m_RollDamping: 0
+--- !u!114 &1504829419
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1504829416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4044717213e31446939f7bd49c896ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
+  m_LookaheadTime: 0
+  m_LookaheadSmoothing: 10
+  m_LookaheadIgnoreY: 0
+  m_HorizontalDamping: 0.5
+  m_VerticalDamping: 0.5
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
+  m_SoftZoneWidth: 0.8
+  m_SoftZoneHeight: 0.8
+  m_BiasX: 0
+  m_BiasY: 0
+--- !u!114 &1504829420
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1504829416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1533646938
 GameObject:
   m_ObjectHideFlags: 0
@@ -5483,6 +5977,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: nice
   TargetCityIntensity: 1.1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Silent
@@ -5535,6 +6030,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: nice
   TargetCityIntensity: 5.3
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Silent
@@ -5587,12 +6083,77 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: nice
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+--- !u!1 &1606837537
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1606837539}
+  - component: {fileID: 1606837538}
+  - component: {fileID: 1606837540}
+  m_Layer: 0
+  m_Name: Title3_ParticleCity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1606837538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1606837537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c750a034f85f694cb892af75442646d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BasePositionTexture: {fileID: 2800000, guid: 4a6c832f5b308a54b8a0dca69e287e7e, type: 2}
+  ParticleMotionBlitMaterialPrefab: {fileID: 2100000, guid: 2bece6a173debbd44bb35f1dd2e55c54,
+    type: 2}
+  RightHand: {fileID: 0}
+  LeftHand: {fileID: 0}
+--- !u!4 &1606837539
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1606837537}
+  m_LocalRotation: {x: 0.0000000073327913, y: 0.87528545, z: -0.000000003423796, w: 0.48360676}
+  m_LocalPosition: {x: -844, y: 471, z: 601}
+  m_LocalScale: {x: 24.909039, y: 24.909044, z: 24.909044}
+  m_Children:
+  - {fileID: 1129645801}
+  - {fileID: 1016347196}
+  m_Father: {fileID: 2136466808}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 122.158005, z: 0}
+--- !u!114 &1606837540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1606837537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd30324a6f18ef4da11abd46f43f327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalIntensity: 1.72
+  IntensityFadeOnStart: -1
+  IntensityLerpRatioOnStart: -1
+  Size: 2
+  NoiseST: {x: 1, y: 1, z: 0, w: 0}
 --- !u!1001 &1615082890
 Prefab:
   m_ObjectHideFlags: 0
@@ -5994,6 +6555,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: positive
   TargetCityIntensity: 2
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -6046,6 +6608,7 @@ MonoBehaviour:
   SwitchToStage: 4
   QueryTag: positive
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -6134,8 +6697,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1702355590}
-  m_LocalRotation: {x: -0.030058717, y: 0.0036960954, z: 0.00011112011, w: 0.9995413}
-  m_LocalPosition: {x: -66.09766, y: -489.68314, z: 26.39302}
+  m_LocalRotation: {x: -0.090066604, y: -0.49231365, z: -0.051877372, w: 0.8641898}
+  m_LocalPosition: {x: 2066, y: -362, z: 265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2099016565}
@@ -6198,7 +6761,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.7294118, g: 0.7294118, b: 0.7294118, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -6225,6 +6788,52 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &1706938715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1706938716}
+  - component: {fileID: 1706938717}
+  m_Layer: 0
+  m_Name: title2_ParticleCity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1706938716
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1706938715}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -942.19995, y: -403, z: -995.2998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1490125190}
+  m_Father: {fileID: 2136466808}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1706938717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1706938715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd30324a6f18ef4da11abd46f43f327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalIntensity: 1
+  IntensityFadeOnStart: -1
+  IntensityLerpRatioOnStart: -1
+  Size: 2
+  NoiseST: {x: 1, y: 1, z: 0, w: 0}
 --- !u!1 &1717712990
 GameObject:
   m_ObjectHideFlags: 0
@@ -6604,12 +7213,79 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: positive
   TargetCityIntensity: 5.3
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+--- !u!1 &1794990822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1794990825}
+  - component: {fileID: 1794990824}
+  - component: {fileID: 1794990823}
+  m_Layer: 0
+  m_Name: TitleTimeline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!95 &1794990823
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1794990822}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!320 &1794990824
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1794990822}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 14284ba95b6af044c8f994e77c00a58a, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 114340308286915738, guid: 14284ba95b6af044c8f994e77c00a58a, type: 2}
+    value: {fileID: 1794990822}
+  m_ExposedReferences:
+    m_References: []
+--- !u!4 &1794990825
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1794990822}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1802288285
 GameObject:
   m_ObjectHideFlags: 0
@@ -6660,6 +7336,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: city
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -6753,6 +7430,7 @@ MonoBehaviour:
   SwitchToStage: 1
   QueryTag: nice
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -6962,6 +7640,7 @@ MonoBehaviour:
   SwitchToStage: 1
   QueryTag: nice
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -7014,6 +7693,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: nice
   TargetCityIntensity: 1.1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Silent
@@ -7068,12 +7748,78 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: nice
   TargetCityIntensity: 0.4
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Silent
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+--- !u!1 &2007827420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2007827421}
+  - component: {fileID: 2007827422}
+  m_Layer: 0
+  m_Name: StartPointTitleDemo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2007827421
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2007827420}
+  m_LocalRotation: {x: 0.11221664, y: -0.53099144, z: 0.07984657, w: 0.8361101}
+  m_LocalPosition: {x: 1558.4, y: 250.9, z: 606}
+  m_LocalScale: {x: 19.999996, y: 20, z: 19.999996}
+  m_Children: []
+  m_Father: {fileID: 895009782}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 15.81, y: -64.718, z: 0.85400003}
+--- !u!20 &2007827422
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2007827420}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 15000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &2063061248
 GameObject:
   m_ObjectHideFlags: 0
@@ -7172,6 +7918,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: fuck
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
@@ -7290,8 +8037,9 @@ Transform:
   m_Children:
   - {fileID: 1702355591}
   - {fileID: 409912860}
+  - {fileID: 892491411}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2108059281
 GameObject:
@@ -7465,12 +8213,95 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: positive
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+--- !u!1 &2136466807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2136466808}
+  - component: {fileID: 2136466811}
+  - component: {fileID: 2136466810}
+  - component: {fileID: 2136466809}
+  m_Layer: 0
+  m_Name: TitleNode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2136466808
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2136466807}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3951.2, y: 244, z: 5888.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1706938716}
+  - {fileID: 1606837539}
+  m_Father: {fileID: 543335833}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2136466809
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2136466807}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 30
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &2136466810
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2136466807}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2a5e6d31dd224447aa5b4987c2f7525, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2136466811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2136466807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59dc9c0d0846e0f4dbc4b7ff4bb5ed0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnabledOnStart: 0
+  Next:
+  - {fileID: 1138966076}
+  - {fileID: 1802288287}
+  - {fileID: 658235330}
+  - {fileID: 9733441}
+  - {fileID: 233093220}
+  SwitchToStage: 0
 --- !u!1 &2139443727
 GameObject:
   m_ObjectHideFlags: 0
@@ -7517,6 +8348,7 @@ MonoBehaviour:
   SwitchToStage: 0
   QueryTag: nice
   TargetCityIntensity: -1
+  IntensityLerpRatio: 0.01
   MixInRatio: 0
   AkEventOnSpawn: 
   AkEventOnReveal: Play_TweetRevealCommon

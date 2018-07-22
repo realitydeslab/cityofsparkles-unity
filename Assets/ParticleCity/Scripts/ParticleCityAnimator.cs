@@ -13,6 +13,9 @@ public class ParticleCityAnimator : MonoBehaviour
     public float GlobalIntensity = 1;
     private float oldGlobalIntensity = -1;
 
+    public float IntensityFadeOnStart = -1;
+    public float IntensityLerpRatioOnStart = -1;
+
     public float Size = 2;
     private float oldSize = -1;
 
@@ -38,6 +41,11 @@ public class ParticleCityAnimator : MonoBehaviour
 	void Start () 
 	{
         SetMaterialsFloat("_GlobalIntensity", GlobalIntensity);
+
+	    if (Application.isPlaying && IntensityFadeOnStart >= 0)
+	    {
+            LerpToIntensity(IntensityFadeOnStart, IntensityLerpRatioOnStart);    
+	    }
     }
 
     void Update () 
