@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd84fa71fb8b684baa50ac25d0d9d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxIntensity: 1
+  MaxIntensity: 1.2
   Trigger: 0
   EaseInDuration: 1
   SustainDuration: 1
@@ -213,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrailInterval: 0.1
   Visualize: 0
+  LocalSpace: 0
 --- !u!114 &114547852909917368
 MonoBehaviour:
   m_ObjectHideFlags: 1

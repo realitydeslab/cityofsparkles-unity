@@ -84,7 +84,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _GlobalIntensity: 1.72
+    - _GlobalIntensity: 0
     - _Glossiness: 0.5
     - _MaxHeight: 10000
     - _Metallic: 0
@@ -96,8 +96,8 @@ Material:
     - _PositionRatio: 0
     - _Reflection: 0
     - _Size: 2
-    - _SizeOverHeightLower: 200
-    - _SizeOverHeightUpper: 500
+    - _SizeOverHeightLower: 10000
+    - _SizeOverHeightUpper: 20000
     - _SrcBlend: 1
     - _UVSec: 0
     - _VolumeDeltaHeight: 0

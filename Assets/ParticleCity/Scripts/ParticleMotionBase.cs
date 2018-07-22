@@ -18,6 +18,7 @@ public abstract class ParticleMotionBase : MonoBehaviour {
     private float startTime;
 
     public bool Reset;
+    public float DelayOnStart = 5f;
 
 	public virtual void Start ()
 	{
@@ -49,7 +50,7 @@ public abstract class ParticleMotionBase : MonoBehaviour {
 	
 	public virtual void Update ()
 	{
-	    if (Time.time - startTime < 5f || Reset)
+	    if (Time.time - startTime < DelayOnStart || Reset)
 	    {
             Graphics.Blit(null, particleVelocityBuffer1, particleMotionBlitMaterial, 0);
             Graphics.Blit(null, particleVelocityBuffer2, particleMotionBlitMaterial, 0);

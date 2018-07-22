@@ -512,7 +512,7 @@ public class TweetComponent : MonoBehaviour
 
         ParticleCity.Current.RemoveActiveGameObject(guidingLight.RenderPart.gameObject, 1);
         addedToActiveList = false;
-        Finish();
+        Destroy(gameObject);
     }
 
     private void updateTakingOff()
