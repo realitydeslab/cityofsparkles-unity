@@ -17,6 +17,8 @@ public class ParticleCity : MonoBehaviour
     [Range(1, 60)]
     public float PlayerScale = 20;
 
+    public Material HandParticleMaterial;
+
     [Header("Auto")]
     public ParticleCityAnimator Animator;
 

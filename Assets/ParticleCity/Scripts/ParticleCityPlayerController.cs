@@ -51,6 +51,17 @@ namespace ParticleCities
             leftParticle.gameObject.SetActive(FlyMode);
             rightParticle.gameObject.SetActive(FlyMode);
 
+            if (FlyMode)
+            {
+                Material handParticleMat = ParticleCity.Current.HandParticleMaterial;
+                if (handParticleMat != null)
+                {
+                    leftParticle.GetComponent<ParticleSystemRenderer>().material = handParticleMat;
+                    rightParticle.GetComponent<ParticleSystemRenderer>().material = handParticleMat;
+                }
+            }
+
+
             if (!Mathf.Approximately(InputManager.Instance.PlayerTransform.localScale.x, ParticleCity.Current.PlayerScale))
             {
                 Vector3 prevCenter = InputManager.Instance.CenterCamera.transform.position;
