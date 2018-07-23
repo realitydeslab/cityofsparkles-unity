@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0205cb8957891b44b142689caa23987, type: 3}
   m_Name: RecorderWindowSettings
   m_EditorClassIdentifier: 
-  m_Settings: {fileID: 114716857515120534}
---- !u!114 &114650831024641956
+  m_Settings: {fileID: 114380742207076668}
+--- !u!114 &114031292800793610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -21,19 +21,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d935bf7a4fcf66488738bda5536c1cb, type: 3}
-  m_Name: aa1c5944-bc56-46a7-8845-574998806ee6
+  m_Name: 6ca151b3-eab9-4628-9c59-dcba667c67f0
   m_EditorClassIdentifier: 
   m_DisplayName: Pixels
-  m_Id: fef864fe-bc98-4fa2-83fa-b0016beadfe0
-  m_OutputSize: 1080
+  m_Id: 50a00f63-f13b-41b1-9757-c7658662385d
+  m_OutputSize: 2160
   m_AspectRatio: 0
   m_ForceEvenSize: 0
-  source: 8
-  m_CameraTag: Capture
+  source: 1
+  m_CameraTag: 
   m_FlipFinalOutput: 0
   m_AllowTransparency: 0
   m_CaptureUI: 0
---- !u!114 &114716857515120534
+--- !u!114 &114380742207076668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -56,14 +56,14 @@ MonoBehaviour:
   m_DurationMode: 0
   m_SynchFrameRate: 1
   m_BaseFileName:
-    m_Pattern: title2_<0000>.<ext>
+    m_Pattern: Bridge_<0000>.<ext>
   m_DestinationPath:
     m_root: 1
     m_leaf: Recordings
   m_InputsSettings:
     m_InputsSettingsAssets:
-    - {fileID: 114650831024641956}
+    - {fileID: 114031292800793610}
     ownerRecorderSettingsAssetId: 6490c57ffb41eae45a6e52afe02b8fd8
   m_RecorderTypeName: UnityEngine.Recorder.ImageRecorder, Assembly-CSharp, Version=0.0.0.0,
     Culture=neutral, PublicKeyToken=null
-  m_OutputFormat: 0
+  m_OutputFormat: 1
