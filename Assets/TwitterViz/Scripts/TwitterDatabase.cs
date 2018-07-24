@@ -26,7 +26,7 @@ public class TwitterDatabase : MonoBehaviour {
         public DateTime last_access { get; set; }
 
         public string username { get; set; }
-        public DateTime created_time { get; set; }
+        public string created_at { get; set; }
 
         public override string ToString()
         {

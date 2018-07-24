@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -76,8 +77,11 @@ namespace TwitterViz.DataModels
             stripped = Regex.Replace(stripped, @",(\S)", @", $1");
 
             List<string> wordsList = new List<string>(stripped.Split(' '));
-            wordsList.Add(dbTweet.username);
-            wordsList.Add(dbTweet.created_time.ToShortDateString());
+            wordsList.Add("@" + dbTweet.username);
+
+            DateTime createdAt = DateTime.Parse(dbTweet.created_at);
+            wordsList.Add(createdAt.ToShortDateString());
+            Words = wordsList.ToArray();
         }
 
         public override string ToString()
