@@ -116,7 +116,7 @@ public class TwitterManager : MonoBehaviour
             tweetsToDelete.Remove(index);
             if (tweetsSpawned.ContainsKey(index))
             {
-                if (tweetsSpawned[index] != null)
+                if (tweetsSpawned[index] != null && tweetsSpawned[index].State == TweetComponent.TweetState.Idle)
                 {
                     tweetsSpawned[index].Finish();
                 }

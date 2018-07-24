@@ -29,6 +29,7 @@ public class GuidingLight : MonoBehaviour
 
     private Renderer lightRenderer;
     private Coroutine smoothLightCoroutine;
+    private FadeType currentFadeType;
     private AkAmbient akAmbient;
 
     private float timeSinceLastTrigger = float.MaxValue;
@@ -120,6 +121,11 @@ public class GuidingLight : MonoBehaviour
                 {
                     smoothLightCoroutine = StartCoroutine(smoothLight(FadeType.FadeOut, null));
                 }
+                else if (currentFadeType != FadeType.FadeOut)
+                {
+                    StopCoroutine(smoothLightCoroutine);
+                    smoothLightCoroutine = StartCoroutine(smoothLight(FadeType.FadeOut, null));
+                }
                 break;
 
             case TweetComponent.TweetState.FadingOut:
@@ -135,12 +141,18 @@ public class GuidingLight : MonoBehaviour
                 {
                     smoothLightCoroutine = StartCoroutine(smoothLight(FadeType.FadeOut, () => { Destroy(gameObject); }));
                 }
+                else if (currentFadeType != FadeType.FadeOut)
+                {
+                    StopCoroutine(smoothLightCoroutine);
+                    smoothLightCoroutine = StartCoroutine(smoothLight(FadeType.FadeOut, () => { Destroy(gameObject); }));
+                }
                 break;
 	    }
 	}
 
     IEnumerator smoothLight(FadeType fadeType, Action onFinished)
     {
+        currentFadeType = fadeType;
         float t = fadeType == FadeType.FadeOut ? EaseInDuration + SustainDuration : 0;
 
         while (t <= EaseInDuration + SustainDuration + EaseOutDuration)

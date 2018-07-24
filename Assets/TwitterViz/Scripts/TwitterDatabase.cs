@@ -45,7 +45,8 @@ public class TwitterDatabase : MonoBehaviour {
             {
                 id = emptyPlaceholderIdCount,
                 clean_text = "",
-                last_access = DateTime.UtcNow
+                last_access = DateTime.UtcNow,
+                created_at = DateTime.UtcNow.ToLongTimeString(),
             };
             emptyPlaceholderIdCount--;
             return result;

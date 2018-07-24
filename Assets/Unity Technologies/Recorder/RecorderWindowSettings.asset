@@ -25,7 +25,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DisplayName: Pixels
   m_Id: 50a00f63-f13b-41b1-9757-c7658662385d
-  m_OutputSize: 1080
+  m_OutputSize: 0
   m_AspectRatio: 0
   m_ForceEvenSize: 0
   source: 1

@@ -245,7 +245,7 @@ MonoBehaviour:
   FadeOutDuration: 0.5
   CircularSpawnOffset: 30
   CircularRisingOffset: 20
-  CircularRadius: 100
+  CircularRadius: 200
   CircularFadeInDuration: 0.5
   CircularRisingDuration: 0.5
   CircularWordInterval: 0.2
