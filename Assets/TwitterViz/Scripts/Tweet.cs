@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using Newtonsoft.Json;
 using UnityEngine.XR.WSA;
@@ -70,7 +72,12 @@ namespace TwitterViz.DataModels
             Place = null;
 
             // Words
-            Words = CleanText.Split(' ');
+            string stripped = Regex.Replace(CleanText, @"[^\u0000-\u007F]+", string.Empty);
+            stripped = Regex.Replace(stripped, @",(\S)", @", $1");
+
+            List<string> wordsList = new List<string>(stripped.Split(' '));
+            wordsList.Add(dbTweet.username);
+            wordsList.Add(dbTweet.created_time.ToShortDateString());
         }
 
         public override string ToString()

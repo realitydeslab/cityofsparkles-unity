@@ -25,6 +25,9 @@ public class TwitterDatabase : MonoBehaviour {
         public string tag { get; set; }
         public DateTime last_access { get; set; }
 
+        public string username { get; set; }
+        public DateTime created_time { get; set; }
+
         public override string ToString()
         {
             return string.Format("[{0:0.00}, {1:0.00}] {2}", sentiment_positive, sentiment_negative, clean_text);
