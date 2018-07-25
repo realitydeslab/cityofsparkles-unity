@@ -103,5 +103,34 @@ namespace ParticleCities
                 return HandType.Unknown;
             }
         }
+
+        public override bool GetButtonDown(Button button)
+        {
+            // TODO
+            OVRInput.RawButton? rawButton;
+            switch (button)
+            {
+                case Button.A:
+                    rawButton = OVRInput.RawButton.A;
+                    break;
+
+                case Button.B:
+                    rawButton = OVRInput.RawButton.B;
+                    break;
+
+                default:
+                    rawButton = null;
+                    break;
+            }
+
+            if (rawButton.HasValue)
+            {
+                return OVRInput.GetDown(rawButton.Value);
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

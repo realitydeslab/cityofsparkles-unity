@@ -19,6 +19,8 @@ public class ParticleCity : MonoBehaviour
 
     public Material HandParticleMaterial;
 
+    public SentimentSpawnNode.Sentiment SentimentForRandomTweet = SentimentSpawnNode.Sentiment.Neutral;
+
     [Header("Auto")]
     public ParticleCityAnimator Animator;
 

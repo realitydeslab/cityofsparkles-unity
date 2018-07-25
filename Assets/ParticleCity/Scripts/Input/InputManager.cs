@@ -12,6 +12,13 @@ namespace ParticleCities
         Right
     }
 
+    public enum Button
+    {
+        Unknown = 0,
+        A,
+        B
+    }
+
     public abstract class InputManager : MonoBehaviour
     {
         public abstract Transform GetHand(HandType handType);
@@ -30,6 +37,7 @@ namespace ParticleCities
 
         public abstract HandType GetHandType(Transform transform);
 
+        public abstract bool GetButtonDown(Button button);
 
         private static InputManager instance = null;
 

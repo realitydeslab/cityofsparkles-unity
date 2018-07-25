@@ -146,6 +146,12 @@ namespace ParticleCities
             }
         }
 
+        public override bool GetButtonDown(Button button)
+        {
+            // TODO
+            return false;
+        }
+
         private SteamVR_Controller.Device getDevice(HandType handType)
         {
             GameObject deviceGameObject = null;

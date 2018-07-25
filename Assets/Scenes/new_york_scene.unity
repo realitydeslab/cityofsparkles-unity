@@ -7678,6 +7678,7 @@ Transform:
   - {fileID: 1689145148}
   - {fileID: 1632892196}
   - {fileID: 110792483}
+  - {fileID: 2133479298}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9315,6 +9316,48 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+--- !u!1 &2133479297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2133479298}
+  - component: {fileID: 2133479299}
+  m_Layer: 0
+  m_Name: RandomTweets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2133479298
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2133479297}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1717712991}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2133479299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2133479297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1057bf88dab82ce4eb72bf4cf8dc1e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RandomTweetPrefab: {fileID: 114547852909917368, guid: 7dee4c6eaa38bb6488262dfc606e9e3f,
+    type: 2}
 --- !u!1 &2136466807
 GameObject:
   m_ObjectHideFlags: 0

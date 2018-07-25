@@ -119,6 +119,12 @@ namespace ParticleCities
             }
         }
 
+        public override bool GetButtonDown(Button button)
+        {
+            // TODO
+            return false;
+        }
+
         private void OnDrawGizmos()
         {
             if (RightHand != null)

@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4199592771347310}
   - component: {fileID: 114547852909917368}
-  - component: {fileID: 135298744652710850}
   - component: {fileID: 114978553576871426}
   m_Layer: 0
   m_Name: TweetObjectRandomPlace
@@ -36,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1942545374883598}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -73.6, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,7 +55,7 @@ MonoBehaviour:
   NodeRole: 3
   WordPrefab: {fileID: 114259831664582430, guid: 5f470f46a5db1994ba43c2d55e48c2b6,
     type: 2}
-  Trigger: 0
+  Trigger: 1
   Tweet: {fileID: 0}
   Animation: 0
   TakingOffDuration: 1
@@ -106,15 +105,3 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
---- !u!135 &135298744652710850
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1942545374883598}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 30
-  m_Center: {x: 0, y: 0, z: 0}
