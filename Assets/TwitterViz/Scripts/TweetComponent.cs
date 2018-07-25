@@ -59,7 +59,8 @@ public class TweetComponent : MonoBehaviour
     {
         Invalid = 0,
         Tweet,
-        StoryTrigger
+        StoryTrigger,
+        RandomSpotTweet
     }
 
     public NodeRoleType NodeRole = NodeRoleType.Tweet;
@@ -407,7 +408,12 @@ public class TweetComponent : MonoBehaviour
             bool isLast = (i == textObjects.Count - 1);
             TMP_Text text = textObjects[i];
             lightTargetPos = (i == textObjects.Count - 1) ? text.transform.position : textObjects[i + 1].transform.position;
-            StartCoroutine(circularWordFadeIn(text, isFirst, isLast));
+
+            Vector3 originLocal = text.transform.localPosition;
+            originLocal.y = CircularSpawnOffset;
+            Vector3 targetLocal = originLocal + new Vector3(0, CircularRisingOffset, 0);
+
+            StartCoroutine(circularWordFadeIn(text, isFirst, isLast, originLocal, targetLocal));
 
             float time = 0;
             while (time < CircularWordInterval)
@@ -434,7 +440,72 @@ public class TweetComponent : MonoBehaviour
         isPlaying = false;
     }
 
-    private IEnumerator circularWordFadeIn(TMP_Text text, bool isFirst, bool isLast)
+    private IEnumerator wordAnimationOneSpot()
+    {
+        isPlaying = true;
+
+        List<TMP_Text> textObjects = new List<TMP_Text>();
+        for (int i = 0; i < Tweet.Words.Length; i++)
+        {
+            TMP_Text text = Instantiate(WordPrefab, transform, false);
+            text.text = Tweet.Words[i];
+            text.alpha = 0;
+            textObjects.Add(text);
+        }
+
+        // Wait for one frame for TMP's layout
+        yield return null;
+
+        // Circular layout
+        Vector3 cameraToPointDir = (transform.position - Camera.main.transform.position);
+        cameraToPointDir.y = CircularSpawnOffset / CircularRadius * Mathf.Sqrt(cameraToPointDir.x * cameraToPointDir.x + cameraToPointDir.z * cameraToPointDir.z);
+        cameraToPointDir.Normalize();
+        Debug.DrawLine(Camera.main.transform.position, transform.position, Color.yellow, 5);
+        Debug.DrawRay(transform.position, cameraToPointDir * CircularRadius, Color.blue, 5);
+
+        float totalWidth = CircularSpaceWidth * (textObjects.Count - 1);
+        for (int i = 0; i < textObjects.Count; i++)
+        {
+            totalWidth += textObjects[i].preferredWidth;
+        }
+        float totalDegree = totalWidth / (CircularRadius * Mathf.PI * 2) * 360.0f;
+        float accumulatedWidth = 0;
+        for (int i = 0; i < textObjects.Count; i++)
+        {
+            accumulatedWidth += textObjects[i].preferredWidth / 2;
+            float currentDegree = (accumulatedWidth / totalWidth - 0.5f) * totalDegree;
+            Vector3 pointToWordDir = Quaternion.Euler(0, currentDegree, 0) * cameraToPointDir;
+            Debug.DrawRay(transform.position, pointToWordDir * CircularRadius, Color.red, 5);
+
+            Vector3 localPosition = CircularRadius * pointToWordDir;
+            textObjects[i].transform.localPosition = localPosition;
+            textObjects[i].transform.forward = pointToWordDir;
+
+            accumulatedWidth += textObjects[i].preferredWidth / 2 + CircularSpaceWidth;
+        }
+
+        // Animation
+        setState(TweetState.Spawning);
+        playMusic();
+        for (int i = 0; i < textObjects.Count; i++)
+        {
+            bool isFirst = (i == 0);
+            bool isLast = (i == textObjects.Count - 1);
+            TMP_Text text = textObjects[i];
+
+            Vector3 originLocal = Vector3.zero;
+            Vector3 targetLocal = textObjects[i].transform.localPosition + new Vector3(0, CircularSpawnOffset + CircularRisingOffset, 0);
+            StartCoroutine(circularWordFadeIn(text, isFirst, isLast, originLocal, targetLocal));
+
+            yield return new WaitForSeconds(CircularWordInterval);
+        }
+
+        setState(TweetState.FadingOut);
+
+        isPlaying = false;
+    }
+
+    private IEnumerator circularWordFadeIn(TMP_Text text, bool isFirst, bool isLast, Vector3 originLocal, Vector3 targetLocal)
     {
         ParticleCity.Current.AddActiveGameObject(text.gameObject);
 
@@ -450,16 +521,18 @@ public class TweetComponent : MonoBehaviour
                 text.alpha = 1;
             }
 
-            Vector3 offset = text.transform.localPosition;
+            // Vector3 offset = text.transform.localPosition;
             if (time < CircularRisingDuration)
             {
-                offset.y = CircularSpawnOffset + Mathf.SmoothStep(0, CircularRisingOffset, time / CircularRisingDuration);
+                // offset.y = CircularSpawnOffset + Mathf.SmoothStep(0, CircularRisingOffset, time / CircularRisingDuration);
+                text.transform.localPosition = Vector3.Lerp(originLocal, targetLocal, Mathf.SmoothStep(0, 1, time / CircularRisingDuration));
             }
             else
             {
-                offset.y = CircularSpawnOffset + CircularRisingOffset;
+                // offset.y = CircularSpawnOffset + CircularRisingOffset;
+                text.transform.localPosition = targetLocal;
             }
-            text.transform.localPosition = offset;
+            // text.transform.localPosition = offset;
 
             akGameObj.m_positionOffsetData = new AkGameObjPositionOffsetData()
             {
@@ -471,9 +544,7 @@ public class TweetComponent : MonoBehaviour
             yield return null;
         }
 
-        Vector3 finalOffset = text.transform.localPosition;
-        finalOffset.y = CircularSpawnOffset + CircularRisingOffset;
-        text.transform.localPosition = finalOffset;
+        text.transform.localPosition = targetLocal;
 
         StartCoroutine(wordFadeOut(text, CircularFadeOutDuration, isFirst, isLast));
         ParticleCity.Current.RemoveActiveGameObject(text.gameObject, 1);
@@ -563,13 +634,20 @@ public class TweetComponent : MonoBehaviour
 
     private IEnumerator revealTweetAnimations()
     {
-        if (NodeRole == NodeRoleType.StoryTrigger)
+        switch (NodeRole)
         {
-            StartCoroutine(storyTriggerAnimation());
-        }
-        else
-        {
-            StartCoroutine(wordAnimationCircular());
+            case NodeRoleType.Tweet:
+            default:
+                StartCoroutine(wordAnimationCircular());
+                break;
+
+            case NodeRoleType.StoryTrigger:
+                StartCoroutine(storyTriggerAnimation());
+                break;
+
+            case NodeRoleType.RandomSpotTweet:
+                StartCoroutine(wordAnimationOneSpot());
+                break;
         }
 
         if (ExplodeEffect)
@@ -581,6 +659,7 @@ public class TweetComponent : MonoBehaviour
             // guidingLight.TurnOff(true);
 
             yield return new WaitForSeconds(0.1f);
+
 
             windZone.gameObject.SetActive(true);
         }
@@ -639,7 +718,11 @@ public class TweetComponent : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(GetComponentInChildren<Renderer>().transform.position, LightUpDistanceThreshold);
+        Renderer [] renderers = GetComponentsInChildren<Renderer>();
+        if (renderers.Length > 0)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(renderers[0].transform.position, LightUpDistanceThreshold);
+        }
     }
 }
