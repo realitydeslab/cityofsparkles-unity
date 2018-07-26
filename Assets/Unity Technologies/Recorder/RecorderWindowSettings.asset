@@ -56,7 +56,7 @@ MonoBehaviour:
   m_DurationMode: 0
   m_SynchFrameRate: 1
   m_BaseFileName:
-    m_Pattern: Ending2_<0000>.<ext>
+    m_Pattern: Intro2_<0000>.<ext>
   m_DestinationPath:
     m_root: 1
     m_leaf: Recordings

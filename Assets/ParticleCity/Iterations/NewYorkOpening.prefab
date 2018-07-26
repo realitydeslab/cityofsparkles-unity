@@ -3751,7 +3751,9 @@ MonoBehaviour:
   ActiveGameObjects: []
   SolidClearColor: {r: 0, g: 0, b: 0, a: 1}
   PlayerScale: 20
-  HandParticleMaterial: {fileID: 0}
+  HandParticleMaterial: {fileID: 2100000, guid: 5e69ed2b863d4d34580f4d0e364ae758,
+    type: 2}
+  SentimentForRandomTweet: 1
   Animator: {fileID: 0}
 --- !u!114 &114649518448430194
 MonoBehaviour:
