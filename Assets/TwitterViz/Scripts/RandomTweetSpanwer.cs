@@ -13,7 +13,8 @@ public class RandomTweetSpanwer : MonoBehaviour
 	    {
 	        TweetComponent tweetObj = Instantiate(RandomTweetPrefab, InputManager.Instance.GetHand(HandType.Right).transform.position, Quaternion.identity, transform);
 
-	        IList<TwitterDatabase.DBTweet> dbTweets = TwitterManager.Instance.Database.QueryTweetsForSentiment(ParticleCity.Current.SentimentForRandomTweet, 1);
+	        // IList<TwitterDatabase.DBTweet> dbTweets = TwitterManager.Instance.Database.QueryTweetsForSentiment(ParticleCity.Current.SentimentForRandomTweet, 1);
+	        IList<TwitterDatabase.DBTweet> dbTweets = TwitterManager.Instance.Database.QueryForTags("city", 1);
 	        if (dbTweets.Count > 0)
 	        {
 	            Tweet tweet = new Tweet(dbTweets[0]);

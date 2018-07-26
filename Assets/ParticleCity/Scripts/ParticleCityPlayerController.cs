@@ -14,6 +14,7 @@ namespace ParticleCities
         }
 
         public float FlyFullSpeed = 100;
+        public bool TrailingParticle = true;
 
         // private OVRPlayerController ovrPlayerController;
         private CharacterController characterController;
@@ -48,10 +49,10 @@ namespace ParticleCities
             // ovrPlayerController.enabled = !FlyMode;
             // characterController.enabled = !FlyMode;
 
-            leftParticle.gameObject.SetActive(FlyMode);
-            rightParticle.gameObject.SetActive(FlyMode);
+            leftParticle.gameObject.SetActive(FlyMode && TrailingParticle);
+            rightParticle.gameObject.SetActive(FlyMode && TrailingParticle);
 
-            if (FlyMode)
+            if (FlyMode && TrailingParticle)
             {
                 Material handParticleMat = ParticleCity.Current.HandParticleMaterial;
                 if (handParticleMat != null)
