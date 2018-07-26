@@ -50,13 +50,13 @@ MonoBehaviour:
   m_FrameRate: 30
   m_FrameRateExact: 1
   m_StartFrame: 0
-  m_EndFrame: 0
+  m_EndFrame: 280
   m_StartTime: 0
   m_EndTime: 1
   m_DurationMode: 0
   m_SynchFrameRate: 1
   m_BaseFileName:
-    m_Pattern: Title2_4k_revised_<0000>.<ext>
+    m_Pattern: WholeCityMotionTweet_4K_<0000>.<ext>
   m_DestinationPath:
     m_root: 1
     m_leaf: Recordings

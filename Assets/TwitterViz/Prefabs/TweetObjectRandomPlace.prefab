@@ -77,7 +77,7 @@ MonoBehaviour:
   CircularRisingDuration: 0.5
   CircularWordInterval: 0.2
   CircularFadeOutDuration: 5
-  CircularSpaceWidth: 3
+  CircularSpaceWidth: 1.5
   AkEventOnReveal: Play_TweetRevealCommon
   GrabPlayer: 0
   State: 0

@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd84fa71fb8b684baa50ac25d0d9d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxIntensity: 1.2
+  MaxIntensity: 2
   Trigger: 0
   EaseInDuration: 1
   SustainDuration: 1
@@ -250,12 +250,13 @@ MonoBehaviour:
   CircularRisingDuration: 0.5
   CircularWordInterval: 0.2
   CircularFadeOutDuration: 5
-  CircularSpaceWidth: 3
+  CircularSpaceWidth: 1.5
   AkEventOnReveal: Play_TweetRevealCommon
   GrabPlayer: 0
   State: 0
   Text: 
   Sentiment: 0
+  FacingCamera: {fileID: 0}
   SpawnSource: {fileID: 0}
 --- !u!114 &114978553576871426
 MonoBehaviour:
