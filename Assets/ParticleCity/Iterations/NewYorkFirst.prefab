@@ -3766,6 +3766,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActiveGameObjects: []
   SolidClearColor: {r: 0, g: 0, b: 0, a: 1}
-  PlayerScale: 8.1
-  HandParticleMaterial: {fileID: 0}
+  PlayerScale: 20
+  HandParticleMaterial: {fileID: 2100000, guid: 13ba34c3cdb8c744e98d800b7b1e7dc9,
+    type: 2}
+  SentimentForRandomTweet: 1
   Animator: {fileID: 0}

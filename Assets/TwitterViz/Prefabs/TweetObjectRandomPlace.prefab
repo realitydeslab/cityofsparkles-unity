@@ -70,9 +70,9 @@ MonoBehaviour:
   FadeInDuration: 0.5
   RisingDuration: 0.7
   FadeOutDuration: 0.5
-  CircularSpawnOffset: 30
+  CircularSpawnOffset: 20
   CircularRisingOffset: 20
-  CircularRadius: 200
+  CircularRadius: 150
   CircularFadeInDuration: 0.5
   CircularRisingDuration: 0.5
   CircularWordInterval: 0.2
@@ -83,6 +83,7 @@ MonoBehaviour:
   State: 0
   Text: 
   Sentiment: 0
+  FacingCamera: {fileID: 0}
   SpawnSource: {fileID: 0}
 --- !u!114 &114978553576871426
 MonoBehaviour:

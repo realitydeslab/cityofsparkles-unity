@@ -77,10 +77,10 @@ namespace TwitterViz.DataModels
             stripped = Regex.Replace(stripped, @",(\S)", @", $1");
 
             List<string> wordsList = new List<string>(stripped.Split(' '));
-            wordsList.Add("@" + dbTweet.username);
+            wordsList.Add("- @" + dbTweet.username + ".");
 
             DateTime createdAt = DateTime.Parse(dbTweet.created_at);
-            wordsList.Add(createdAt.ToShortDateString());
+            wordsList.Add(createdAt.ToString("htt, MMM d, yyyy"));
             Words = wordsList.ToArray();
         }
 

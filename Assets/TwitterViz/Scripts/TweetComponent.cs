@@ -107,6 +107,7 @@ public class TweetComponent : MonoBehaviour
     public string Text;
     [Range(-1, 1)]
     public double Sentiment;
+    public Camera FacingCamera;
 
     public SpawnSourceNode SpawnSource;
     public object SpawnSourceUserData;
@@ -137,6 +138,12 @@ public class TweetComponent : MonoBehaviour
 	    windZone = GetComponentInChildren<WindZone>(true);
 
 	    originalPosition = transform.position;
+
+	    GameObject captureGameObject = GameObject.FindWithTag("Capture");
+	    if (captureGameObject != null)
+	    {
+	        FacingCamera = captureGameObject.GetComponent<Camera>();
+	    }
 	}
 	
 	void Update () {
@@ -457,10 +464,11 @@ public class TweetComponent : MonoBehaviour
         yield return null;
 
         // Circular layout
-        Vector3 cameraToPointDir = (transform.position - Camera.main.transform.position);
+        Vector3 cameraPos = (FacingCamera != null) ? FacingCamera.transform.position : Camera.main.transform.position;
+        Vector3 cameraToPointDir = (transform.position - cameraPos);
         cameraToPointDir.y = CircularSpawnOffset / CircularRadius * Mathf.Sqrt(cameraToPointDir.x * cameraToPointDir.x + cameraToPointDir.z * cameraToPointDir.z);
         cameraToPointDir.Normalize();
-        Debug.DrawLine(Camera.main.transform.position, transform.position, Color.yellow, 5);
+        Debug.DrawLine(cameraPos, transform.position, Color.yellow, 5);
         Debug.DrawRay(transform.position, cameraToPointDir * CircularRadius, Color.blue, 5);
 
         float totalWidth = CircularSpaceWidth * (textObjects.Count - 1);

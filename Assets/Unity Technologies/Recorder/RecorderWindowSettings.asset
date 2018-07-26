@@ -25,11 +25,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DisplayName: Pixels
   m_Id: 50a00f63-f13b-41b1-9757-c7658662385d
-  m_OutputSize: 0
+  m_OutputSize: 1080
   m_AspectRatio: 0
   m_ForceEvenSize: 0
-  source: 1
-  m_CameraTag: 
+  source: 8
+  m_CameraTag: Capture
   m_FlipFinalOutput: 0
   m_AllowTransparency: 0
   m_CaptureUI: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_DurationMode: 0
   m_SynchFrameRate: 1
   m_BaseFileName:
-    m_Pattern: WholeCity_<0000>.<ext>
+    m_Pattern: RandomTweet_Green2_<0000>.<ext>
   m_DestinationPath:
     m_root: 1
     m_leaf: Recordings
