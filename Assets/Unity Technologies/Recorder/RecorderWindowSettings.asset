@@ -52,11 +52,11 @@ MonoBehaviour:
   m_StartFrame: 0
   m_EndFrame: 280
   m_StartTime: 0
-  m_EndTime: 1
-  m_DurationMode: 0
+  m_EndTime: 6
+  m_DurationMode: 3
   m_SynchFrameRate: 0
   m_BaseFileName:
-    m_Pattern: MoveForward3_DOF_4K_<0000>.<ext>
+    m_Pattern: Skyline_DOF_4K_<0000>.<ext>
   m_DestinationPath:
     m_root: 1
     m_leaf: Recordings
