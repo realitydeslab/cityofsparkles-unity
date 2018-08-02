@@ -1,3 +1,5 @@
+using UnityEngine.XR;
+
 #if ! (UNITY_DASHBOARD_WIDGET || UNITY_WEBPLAYER || UNITY_WII || UNITY_WIIU || UNITY_NACL || UNITY_FLASH || UNITY_BLACKBERRY) // Disable under unsupported platforms.
 public class AkSoundEngineController
 {
@@ -171,7 +173,16 @@ public class AkSoundEngineController
 			"Plugins" + System.IO.Path.DirectorySeparatorChar);
 #endif
 
-		var platformSettings = new AkPlatformInitSettings();
+        // EDIT BY WANDER
+	    if (XRSettings.loadedDeviceName == "Oculus")
+	    {
+	        string audioDevice = OVRManager.audioOutId;
+	        uint audioOutId = AkSoundEngine.GetDeviceIDFromName(audioDevice);
+	        initSettings.settingsMainOutput.idDevice = audioOutId;
+	    }
+	    // EDIT END
+
+        var platformSettings = new AkPlatformInitSettings();
 		AkSoundEngine.GetDefaultPlatformInitSettings(platformSettings);
 		platformSettings.uLEngineDefaultPoolSize = (uint) akInitializer.lowerPoolSize * 1024;
 		platformSettings.fLEngineDefaultPoolRatioThreshold = akInitializer.memoryCutoffThreshold;

@@ -35,6 +35,7 @@ namespace ParticleCities
         public Stage InitialStage;
         public ParticleCity[] ParticleCityPrefabs;
         public bool KeyboardSwitch;
+        public Transform[] StoryGroupOnManualSwitch;
 
         [Header("Auto")] 
         public ParticleCity CurrentParticleCity;
@@ -76,6 +77,19 @@ namespace ParticleCities
                     if (Input.GetKeyDown(key))
                     {
                         SwitchToStage(i);
+
+                        if (i < StoryGroupOnManualSwitch.Length && !StoryGroupOnManualSwitch[i].Equals(null))
+                        {
+                            StoryGroupOnManualSwitch[i].gameObject.SetActive(true); 
+                            for (int j = 0; j < StoryGroupOnManualSwitch[i].childCount; j++)
+                            {
+                                Transform child = StoryGroupOnManualSwitch[i].GetChild(j);
+                                if (!child.Equals(null))
+                                {
+                                    child.gameObject.SetActive(true);
+                                }
+                            }
+                        }
                     }
                 }
             }
