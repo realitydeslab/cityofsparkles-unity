@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a3bdb2cd68f901469e7cc149151eb49, type: 3}
-  m_Name: ColorPostProcessing
+  m_Name: BlueColorPostProcessing
   m_EditorClassIdentifier: 
   debugViews:
     m_Enabled: 1
@@ -109,7 +109,7 @@ MonoBehaviour:
         texture: {fileID: 0}
         intensity: 3
   colorGrading:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       tonemapping:
         tonemapper: 2
@@ -184,8 +184,8 @@ MonoBehaviour:
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
-              time: 0.4067086
-              value: 0.6447369
+              time: 0.45073375
+              value: 0.49122804
               inSlope: 1
               outSlope: 1
               tangentMode: 0
@@ -221,8 +221,8 @@ MonoBehaviour:
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
-              time: 0.4465409
-              value: 0.4517544
+              time: 0.45073375
+              value: 0.45614034
               inSlope: 1
               outSlope: 1
               tangentMode: 0
@@ -258,8 +258,8 @@ MonoBehaviour:
               inWeight: 0
               outWeight: 0
             - serializedVersion: 3
-              time: 0.39203355
-              value: 0.622807
+              time: 0.4528302
+              value: 0.46929824
               inSlope: 1
               outSlope: 1
               tangentMode: 0
