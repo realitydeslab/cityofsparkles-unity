@@ -8,11 +8,22 @@ namespace ParticleCities
 {
     public class InputManagerSteamVR : InputManager
     {
-        private SteamVR_ControllerManager controllerManager;
+        private SteamVR_ControllerManager _controllerManager;
+        private SteamVR_ControllerManager controllerManager
+        {
+            get
+            {
+                if (_controllerManager == null)
+                {
+                    _controllerManager = FindObjectOfType<SteamVR_ControllerManager>();
+                }
+
+                return _controllerManager;
+            }
+        }
 
         void Start()
         {
-            controllerManager = FindObjectOfType<SteamVR_ControllerManager>();
         }
         
         public override Transform GetHand(HandType handType)
