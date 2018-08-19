@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Title4_ParticleCity
+  m_Name: Title5_ParticleCity
   m_Shader: {fileID: 4800000, guid: fdc87156547133b44a4e6ba9552c7e58, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -67,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PositionTex:
-        m_Texture: {fileID: 2800000, guid: 7999af058fc18d24493fbdee16ffd34f, type: 2}
+        m_Texture: {fileID: 2800000, guid: 8869b686389d58b408cb6c6fec4721ab, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PositionTex2:
