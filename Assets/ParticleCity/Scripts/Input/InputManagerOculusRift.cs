@@ -10,14 +10,13 @@ namespace ParticleCities
         private OvrAvatar avatar;
         private OVRCameraRig cameraRig;
 
-        void Start()
-        {
-            avatar = FindObjectOfType<OvrAvatar>();
-            cameraRig = FindObjectOfType<OVRCameraRig>();
-        }
-        
         public override Transform GetHand(HandType handType)
         {
+            if (avatar == null)
+            {
+                avatar = FindObjectOfType<OvrAvatar>();
+            }
+
             switch (handType)
             {
                 case HandType.Left:
@@ -43,7 +42,14 @@ namespace ParticleCities
 
         public override Transform PlayerTransform
         {
-            get { return cameraRig.transform; }
+            get
+            {
+                if (cameraRig == null)
+                {
+                    cameraRig = FindObjectOfType<OVRCameraRig>();
+                }
+                return cameraRig.transform;
+            }
         }
 
         public override bool IsGrabContinuous

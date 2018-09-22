@@ -95,7 +95,7 @@ Material:
     - _PlanarReflectionY: 83.7
     - _PositionRatio: 0
     - _Reflection: 0
-    - _Size: 0
+    - _Size: 2
     - _SizeOverHeightLower: 200
     - _SizeOverHeightUpper: 500
     - _SrcBlend: 1

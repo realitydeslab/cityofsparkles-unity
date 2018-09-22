@@ -3735,6 +3735,9 @@ MonoBehaviour:
   ActiveGameObjects: []
   SolidClearColor: {r: 0.7294118, g: 0.7294118, b: 0.7294118, a: 1}
   PlayerScale: 20
+  HandParticleMaterial: {fileID: 2100000, guid: f790c3ecaf5a28d45a8502bc7f158408,
+    type: 2}
+  SentimentForRandomTweet: 1
   Animator: {fileID: 0}
 --- !u!114 &114762664099150494
 MonoBehaviour:
@@ -3750,6 +3753,8 @@ MonoBehaviour:
   BasePositionTexture: {fileID: 2800000, guid: 4d4177488f059f64f84f43f80bc27e34, type: 2}
   ParticleMotionBlitMaterialPrefab: {fileID: 2100000, guid: 060117ea26573414f97dfcfb091004c0,
     type: 2}
+  Reset: 0
+  DelayOnStart: 3
   ParticleCityMaterial: {fileID: 2100000, guid: 92b506720e2b28a40b2099fc3ee58820,
     type: 2}
   Impulse: 0
@@ -3790,4 +3795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GlobalIntensity: 1
+  IntensityFadeOnStart: -1
+  IntensityLerpRatioOnStart: -1
   Size: 2
+  NoiseST: {x: 1, y: 1, z: 0, w: 0}

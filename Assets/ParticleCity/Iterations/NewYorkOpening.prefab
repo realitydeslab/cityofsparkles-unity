@@ -3736,7 +3736,7 @@ MonoBehaviour:
   ParticleMotionBlitMaterialPrefab: {fileID: 2100000, guid: 4eb03a2cb957fbe47805670d5dcd7c6d,
     type: 2}
   Reset: 0
-  DelayOnStart: 5
+  DelayOnStart: 1
 --- !u!114 &114335009429023242
 MonoBehaviour:
   m_ObjectHideFlags: 1

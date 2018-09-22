@@ -19,7 +19,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BasePositionTex:
-        m_Texture: {fileID: 2800000, guid: 4a6c832f5b308a54b8a0dca69e287e7e, type: 2}
+        m_Texture: {fileID: 2800000, guid: 8869b686389d58b408cb6c6fec4721ab, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -89,35 +89,35 @@ Material:
     - _ActiveObjectPos: {r: 49.68235, g: 119.08413, b: 1342.7167, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LeftHandPos0: {r: 100, g: 9.239342, b: 0, a: 1}
-    - _LeftHandPos1: {r: 100, g: 9.907795, b: 0, a: 1}
-    - _LeftHandPos2: {r: 100, g: 10.195108, b: 0, a: 1}
-    - _LeftHandPos3: {r: 100, g: 10.0710125, b: 0, a: 1}
-    - _LeftHandPos4: {r: 100, g: 9.272711, b: 0, a: 1}
-    - _LeftHandPos5: {r: 100, g: 8.113351, b: 0, a: 1}
-    - _LeftHandPos6: {r: 100, g: 7.2113605, b: 0, a: 1}
-    - _LeftHandPos7: {r: 100, g: 6.2380323, b: 0, a: 1}
-    - _LeftHandVel0: {r: 2999.9998, g: 277.18024, b: 0, a: 1}
-    - _LeftHandVel1: {r: 2999.9998, g: 297.23383, b: 0, a: 1}
-    - _LeftHandVel2: {r: 2999.9998, g: 305.85324, b: 0, a: 1}
-    - _LeftHandVel3: {r: 2999.9998, g: 302.13037, b: 0, a: 1}
-    - _LeftHandVel4: {r: 2999.9998, g: 278.1813, b: 0, a: 1}
-    - _LeftHandVel5: {r: 2999.9998, g: 243.40051, b: 0, a: 1}
-    - _LeftHandVel6: {r: 2999.9998, g: 216.3408, b: 0, a: 1}
-    - _LeftHandVel7: {r: 2999.9998, g: 187.14096, b: 0, a: 1}
-    - _RightHandPos0: {r: -100, g: 4.92079, b: 0, a: 1}
-    - _RightHandPos1: {r: -100, g: 7.536351, b: 0, a: 1}
-    - _RightHandPos2: {r: -100, g: 9.305471, b: 0, a: 1}
-    - _RightHandPos3: {r: -100, g: 11.132065, b: 0, a: 1}
-    - _RightHandPos4: {r: -100, g: 12.035524, b: 0, a: 1}
-    - _RightHandPos5: {r: -100, g: 11.7253, b: 0, a: 1}
-    - _RightHandPos6: {r: -100, g: 10.767502, b: 0, a: 1}
-    - _RightHandPos7: {r: -100, g: 8.79892, b: 0, a: 1}
-    - _RightHandVel0: {r: -2999.9998, g: 147.6237, b: 0, a: 1}
-    - _RightHandVel1: {r: -2999.9998, g: 226.09053, b: 0, a: 1}
-    - _RightHandVel2: {r: -2999.9998, g: 279.16412, b: 0, a: 1}
-    - _RightHandVel3: {r: -2999.9998, g: 333.9619, b: 0, a: 1}
-    - _RightHandVel4: {r: -2999.9998, g: 361.0657, b: 0, a: 1}
-    - _RightHandVel5: {r: -2999.9998, g: 351.75897, b: 0, a: 1}
-    - _RightHandVel6: {r: -2999.9998, g: 323.02502, b: 0, a: 1}
-    - _RightHandVel7: {r: -2999.9998, g: 263.9676, b: 0, a: 1}
+    - _LeftHandPos0: {r: 136.25308, g: 7.4595585, b: 20.945946, a: 1}
+    - _LeftHandPos1: {r: 136.25308, g: 7.488803, b: 20.945946, a: 1}
+    - _LeftHandPos2: {r: 136.25308, g: 7.8026943, b: 20.945946, a: 1}
+    - _LeftHandPos3: {r: 136.25308, g: 8.354492, b: 20.945946, a: 1}
+    - _LeftHandPos4: {r: 136.25308, g: 8.999755, b: 20.945946, a: 1}
+    - _LeftHandPos5: {r: 136.25308, g: 9.624044, b: 20.945946, a: 1}
+    - _LeftHandPos6: {r: 136.25308, g: 10.0769825, b: 20.945946, a: 1}
+    - _LeftHandPos7: {r: 136.25308, g: 10.232996, b: 20.945946, a: 1}
+    - _LeftHandVel0: {r: 6081.3154, g: 332.93872, b: 934.8699, a: 1}
+    - _LeftHandVel1: {r: 6278.626, g: 345.08865, b: 965.2021, a: 1}
+    - _LeftHandVel2: {r: 6043.4985, g: 346.0881, b: 929.05634, a: 1}
+    - _LeftHandVel3: {r: 6032.875, g: 369.91168, b: 927.4232, a: 1}
+    - _LeftHandVel4: {r: 6160.4473, g: 406.90836, b: 947.03467, a: 1}
+    - _LeftHandVel5: {r: 6019.6816, g: 425.19174, b: 925.395, a: 1}
+    - _LeftHandVel6: {r: 6373.489, g: 471.36942, b: 979.7852, a: 1}
+    - _LeftHandVel7: {r: 6055.343, g: 454.77356, b: 930.8772, a: 1}
+    - _RightHandPos0: {r: -135.51129, g: -1.8636665, b: 24.98238, a: 1}
+    - _RightHandPos1: {r: -135.51129, g: -1.2014017, b: 24.98238, a: 1}
+    - _RightHandPos2: {r: -135.51129, g: 0.15291882, b: 24.98238, a: 1}
+    - _RightHandPos3: {r: -135.51129, g: 1.9993153, b: 24.98238, a: 1}
+    - _RightHandPos4: {r: -135.51129, g: 4.10416, b: 24.98238, a: 1}
+    - _RightHandPos5: {r: -135.51129, g: 6.3319077, b: 24.98238, a: 1}
+    - _RightHandPos6: {r: -135.51129, g: 8.423411, b: 24.98238, a: 1}
+    - _RightHandPos7: {r: -135.51129, g: 10.220701, b: 24.98238, a: 1}
+    - _RightHandVel0: {r: -6048.207, g: -83.18009, b: 1115.026, a: 1}
+    - _RightHandVel1: {r: -6244.444, g: -55.36133, b: 1151.2034, a: 1}
+    - _RightHandVel2: {r: -6010.596, g: 6.7827063, b: 1108.0922, a: 1}
+    - _RightHandVel3: {r: -6000.031, g: 88.52364, b: 1106.1443, a: 1}
+    - _RightHandVel4: {r: -6126.9087, g: 185.56248, b: 1129.535, a: 1}
+    - _RightHandVel5: {r: -5986.909, g: 279.74463, b: 1103.7253, a: 1}
+    - _RightHandVel6: {r: -6338.79, g: 394.02057, b: 1168.5968, a: 1}
+    - _RightHandVel7: {r: -6022.3765, g: 454.22717, b: 1110.2639, a: 1}

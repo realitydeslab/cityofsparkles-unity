@@ -144,7 +144,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 21269487037049056, guid: 9dc54059b0b5eab438754d772172f506, type: 2}
+  - {fileID: 21697242437755356, guid: 91fc2199d87c36d4f86789b96bd17d40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -241,8 +241,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "I had a fun day today \U0001F600 "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9dc54059b0b5eab438754d772172f506, type: 2}
-  m_sharedMaterial: {fileID: 21269487037049056, guid: 9dc54059b0b5eab438754d772172f506,
+  m_fontAsset: {fileID: 11400000, guid: 91fc2199d87c36d4f86789b96bd17d40, type: 2}
+  m_sharedMaterial: {fileID: 21697242437755356, guid: 91fc2199d87c36d4f86789b96bd17d40,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

@@ -52,6 +52,9 @@ public class StoryNode : MonoBehaviour
 
     public virtual void OnDrawGizmosSelected()
     {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 30);
+
         if (Next == null)
         {
             return;
@@ -73,7 +76,10 @@ public class StoryNode : MonoBehaviour
     {
         for (int i = 0; i < Next.Count; i++)
         {
-            Next[i].gameObject.SetActive(true);
+            if (!Next[i].Equals(null))
+            {
+                Next[i].gameObject.SetActive(true);
+            }
         }
 
         if (SwitchToStage != Stage.Invalid)

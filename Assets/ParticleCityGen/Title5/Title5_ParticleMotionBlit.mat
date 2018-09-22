@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Title5_ParticleMotionBlit
+  m_Shader: {fileID: 4800000, guid: ceb5094a69e1a4e4490ed06767a112e4, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BasePositionTex:
+        m_Texture: {fileID: 2800000, guid: 8869b686389d58b408cb6c6fec4721ab, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OffsetTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _VelocityTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _ClosingDamp: 5
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _Glossiness: 0.5
+    - _HandPush: 100
+    - _MaxDistance: 100
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SpringDamp: 5
+    - _SpringDrag: 5
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _VanR_0: 7.5
+    - _ZWrite: 1
+    m_Colors:
+    - _ActiveObjectPos: {r: 49.68235, g: 119.08413, b: 1342.7167, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _LeftHandPos0: {r: 100, g: 8.950469, b: 0, a: 1}
+    - _LeftHandPos1: {r: 100, g: 9.617664, b: 0, a: 1}
+    - _LeftHandPos2: {r: 100, g: 10.050866, b: 0, a: 1}
+    - _LeftHandPos3: {r: 100, g: 10.228453, b: 0, a: 1}
+    - _LeftHandPos4: {r: 100, g: 9.829818, b: 0, a: 1}
+    - _LeftHandPos5: {r: 100, g: 8.997521, b: 0, a: 1}
+    - _LeftHandPos6: {r: 100, g: 7.9611683, b: 0, a: 1}
+    - _LeftHandPos7: {r: 100, g: 6.8784027, b: 0, a: 1}
+    - _LeftHandVel0: {r: 3317.2446, g: 296.90897, b: 0, a: 1}
+    - _LeftHandVel1: {r: 3554.9236, g: 341.9006, b: 0, a: 1}
+    - _LeftHandVel2: {r: 3629.6323, g: 364.8095, b: 0, a: 1}
+    - _LeftHandVel3: {r: 2573.0024, g: 263.17834, b: 0, a: 1}
+    - _LeftHandVel4: {r: 3230.0264, g: 317.5057, b: 0, a: 1}
+    - _LeftHandVel5: {r: 4093.462, g: 368.31012, b: 0, a: 1}
+    - _LeftHandVel6: {r: 3799.7673, g: 302.50586, b: 0, a: 1}
+    - _LeftHandVel7: {r: 2692.0073, g: 185.16711, b: 0, a: 1}
+    - _RightHandPos0: {r: -100, g: 3.9397955, b: 0, a: 1}
+    - _RightHandPos1: {r: -100, g: 6.306968, b: 0, a: 1}
+    - _RightHandPos2: {r: -100, g: 8.270417, b: 0, a: 1}
+    - _RightHandPos3: {r: -100, g: 10.314337, b: 0, a: 1}
+    - _RightHandPos4: {r: -100, g: 11.605528, b: 0, a: 1}
+    - _RightHandPos5: {r: -100, g: 12.076878, b: 0, a: 1}
+    - _RightHandPos6: {r: -100, g: 11.604845, b: 0, a: 1}
+    - _RightHandPos7: {r: -100, g: 10.2455845, b: 0, a: 1}
+    - _RightHandVel0: {r: -3317.2446, g: 130.69266, b: 0, a: 1}
+    - _RightHandVel1: {r: -3554.9236, g: 224.2079, b: 0, a: 1}
+    - _RightHandVel2: {r: -3629.6323, g: 300.18576, b: 0, a: 1}
+    - _RightHandVel3: {r: -2573.0024, g: 265.38815, b: 0, a: 1}
+    - _RightHandVel4: {r: -3230.0264, g: 374.8616, b: 0, a: 1}
+    - _RightHandVel5: {r: -4093.462, g: 494.3624, b: 0, a: 1}
+    - _RightHandVel6: {r: -3799.7673, g: 440.95712, b: 0, a: 1}
+    - _RightHandVel7: {r: -2692.0073, g: 275.8119, b: 0, a: 1}

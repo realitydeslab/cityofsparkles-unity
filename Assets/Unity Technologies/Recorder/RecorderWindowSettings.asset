@@ -47,16 +47,16 @@ MonoBehaviour:
   m_AssetID: 6490c57ffb41eae45a6e52afe02b8fd8
   m_CaptureEveryNthFrame: 1
   m_FrameRateMode: 1
-  m_FrameRate: 60
+  m_FrameRate: 30
   m_FrameRateExact: 1
   m_StartFrame: 0
   m_EndFrame: 280
   m_StartTime: 0
   m_EndTime: 6
   m_DurationMode: 0
-  m_SynchFrameRate: 1
+  m_SynchFrameRate: 0
   m_BaseFileName:
-    m_Pattern: TopDownRotate60_<0000>.<ext>
+    m_Pattern: Title3_<0000>.<ext>
   m_DestinationPath:
     m_root: 1
     m_leaf: Recordings
