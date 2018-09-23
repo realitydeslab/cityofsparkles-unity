@@ -4254,13 +4254,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3fb500074b394e4b8fbfe7b4ecef4e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 50
+  MaxSpeed: 25
   SlowDownRadius: 200
   Accelleration: 10
   RotationLerpRatio: 0.1
   RotationSmoothTime: 10
   MaxAngularVelocity: 15
   WaitTime: 10
+  IdleTimeOut: 10
   StoryRoot: {fileID: 522203963}
   TargetDistance: 50
   Target: {fileID: 0}

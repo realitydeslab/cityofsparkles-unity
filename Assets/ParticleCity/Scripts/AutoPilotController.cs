@@ -28,6 +28,7 @@ public class AutoPilotController : MonoBehaviour
     public float RotationSmoothTime = 5.0f;
     public float MaxAngularVelocity = 30.0f;
     public float WaitTime = 10;
+    public float IdleTimeOut = 10;
 
     [Header("Auto Targeting")]
     public Transform StoryRoot;
@@ -40,6 +41,7 @@ public class AutoPilotController : MonoBehaviour
     public float StoppedTime;
 
     private float angularVelocity;
+    private ParticleCityPlayerController playerController;
 
     public bool IsAutoPilotTargetValid
     {
@@ -47,19 +49,46 @@ public class AutoPilotController : MonoBehaviour
     }
 
 	void Start () {
-		
 	}
 	
 	void Update () {
+	    if (playerController == null)
+	    {
+	        playerController = GetComponent<ParticleCityPlayerController>();
+	    }
+
 	    if (!StoryFinished && !IsAutoPilotTargetValid)
 	    {
             findAutoPilotTarget();
+	    }
+
+        // Stop auto-pilot when there is any action
+	    if (Time.time - playerController.LastActionTime < IdleTimeOut)
+	    {
+	        Speed = 0;
+	        angularVelocity = 0;
+	        return;
 	    }
 
 	    Vector3 offset = Target.transform.position - InputManager.Instance.PlayerTransform.position;
 	    Vector3 dir = offset.normalized;
 
 	    offset -= dir * TargetDistance;
+
+	    Vector3 groundDir = new Vector3(dir.x, 0, dir.z);
+        Quaternion targetRotation = Quaternion.LookRotation(groundDir, Vector3.up);
+
+	    float targetEulerY = targetRotation.eulerAngles.y;
+	    float currentEulerY = InputManager.Instance.PlayerTransform.rotation.eulerAngles.y;
+	    float eulerY = Mathf.SmoothDampAngle(currentEulerY, targetEulerY, ref angularVelocity, RotationSmoothTime, MaxAngularVelocity, Time.deltaTime);
+
+        InputManager.Instance.PlayerTransform.rotation = Quaternion.Euler(0, eulerY, 0);
+
+	    if (Mathf.Abs(targetEulerY - currentEulerY) > 30)
+	    {
+            // Do not move until the camera rotates to the target angle
+	        return;
+	    }
 
 	    if (offset.sqrMagnitude > SlowDownRadius * SlowDownRadius)
 	    {
@@ -71,19 +100,6 @@ public class AutoPilotController : MonoBehaviour
 	        Speed = Mathf.Max(0, Speed - deceleration * Time.deltaTime);
 	    }
 	    InputManager.Instance.PlayerTransform.position += dir * Speed * Time.deltaTime;
-
-	    Vector3 groundDir = new Vector3(dir.x, 0, dir.z);
-        Quaternion targetRotation = Quaternion.LookRotation(groundDir, Vector3.up);
-
-	    float targetEulerY = targetRotation.eulerAngles.y;
-	    float currentEulerY = InputManager.Instance.PlayerTransform.rotation.eulerAngles.y;
-	    float eulerY = Mathf.SmoothDampAngle(currentEulerY, targetEulerY, ref angularVelocity, RotationSmoothTime, MaxAngularVelocity, Time.deltaTime);
-
-        InputManager.Instance.PlayerTransform.rotation = Quaternion.Euler(0, eulerY, 0);
-
-	    // float angle = Quaternion.Angle(InputManager.Instance.PlayerTransform.rotation, targetRotation);
-	    // float rotationRatio = Mathf.SmoothDampAngle(0, angle, ref rotationAngularVelocity, RotationSmoothTime, MaxAngularVelocity, Time.deltaTime);
-	    // InputManager.Instance.PlayerTransform.rotation = Quaternion.Slerp(InputManager.Instance.PlayerTransform.rotation, targetRotation, rotationRatio);
 
 	    if (Speed < 0.1f)
 	    {

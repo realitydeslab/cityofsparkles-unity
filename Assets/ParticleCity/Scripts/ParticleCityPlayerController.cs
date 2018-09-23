@@ -15,19 +15,19 @@ namespace ParticleCities
 
         public float FlyFullSpeed = 100;
         public bool TrailingParticle = true;
+        
+        public float LastActionTime { get; private set; }
 
-        // private OVRPlayerController ovrPlayerController;
         private CharacterController characterController;
 
         private ParticleSystem leftParticle;
         private ParticleSystem rightParticle;
         private float particleFullRate;
+        
 
         void Start()
         {
-            // TODO: Cross platform
-            // ovrPlayerController = playerTransform.GetComponent<OVRPlayerController>();
-            // characterController = playerTransform.GetComponent<CharacterController>();
+            LastActionTime = Time.time;
 
             Transform playerTransform = InputManager.Instance.PlayerTransform;
 
@@ -46,9 +46,6 @@ namespace ParticleCities
 
         void Update()
         {
-            // ovrPlayerController.enabled = !FlyMode;
-            // characterController.enabled = !FlyMode;
-
             leftParticle.gameObject.SetActive(FlyMode && TrailingParticle);
             rightParticle.gameObject.SetActive(FlyMode && TrailingParticle);
 
@@ -107,6 +104,7 @@ namespace ParticleCities
             {
                 Vector3 movement = activeHand.forward * FlyFullSpeed * activeTrigger * Time.deltaTime;
                 InputManager.Instance.PlayerTransform.transform.position += movement;
+                LastActionTime = Time.time;
             }
 
             ParticleSystem.EmissionModule leftEmission = leftParticle.emission;
