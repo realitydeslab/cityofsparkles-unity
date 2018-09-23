@@ -161,6 +161,7 @@ MonoBehaviour:
   - {fileID: 431721077}
   - {fileID: 929274427}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -376,6 +377,7 @@ MonoBehaviour:
   Next:
   - {fileID: 535977730}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: 
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -817,6 +819,7 @@ MonoBehaviour:
   - {fileID: 869894949}
   - {fileID: 1026036917}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -870,6 +873,7 @@ MonoBehaviour:
   Next:
   - {fileID: 869792982}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: fuck
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -927,6 +931,7 @@ MonoBehaviour:
   - {fileID: 431721077}
   - {fileID: 929274427}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -1052,6 +1057,7 @@ MonoBehaviour:
   Next:
   - {fileID: 200943833}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: fuck
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -1105,6 +1111,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1640307867}
   SwitchToStage: 4
+  AutoPilotSkip: 0
   QueryTag: fuck
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -1231,6 +1238,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1209614203}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: positive
   TargetCityIntensity: 0.5
   IntensityLerpRatio: 0.01
@@ -1288,6 +1296,7 @@ MonoBehaviour:
   - {fileID: 572818596}
   - {fileID: 399865416}
   SwitchToStage: 3
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -1629,6 +1638,7 @@ MonoBehaviour:
   - {fileID: 421552310}
   - {fileID: 464902218}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: fuck
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -1788,6 +1798,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1640307867}
   SwitchToStage: 4
+  AutoPilotSkip: 0
   QueryTag: fuck
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -1915,6 +1926,7 @@ MonoBehaviour:
   - {fileID: 869894949}
   - {fileID: 1026036917}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -2041,6 +2053,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1640307867}
   SwitchToStage: 4
+  AutoPilotSkip: 0
   QueryTag: fuck
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -2163,6 +2176,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1640307867}
   SwitchToStage: 4
+  AutoPilotSkip: 0
   QueryTag: fuck
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -2200,7 +2214,7 @@ Transform:
   - {fileID: 477265240}
   - {fileID: 1165224641}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &477265239
 GameObject:
@@ -2262,6 +2276,36 @@ Transform:
   - {fileID: 574022398}
   m_Father: {fileID: 522203963}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &513548416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 513548417}
+  m_Layer: 0
+  m_Name: DollyTracks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &513548417
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 513548416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1192977601}
+  - {fileID: 2054343326}
+  m_Father: {fileID: 1232247283}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518048268
 GameObject:
@@ -2335,6 +2379,53 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 518048268}
   m_Mesh: {fileID: 4300000, guid: 106393a9550260b4c833519c81180139, type: 2}
+--- !u!1001 &521270705
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4414819596465634, guid: 8371fcb5e1a6fa74a845418d6d147af4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414819596465634, guid: 8371fcb5e1a6fa74a845418d6d147af4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414819596465634, guid: 8371fcb5e1a6fa74a845418d6d147af4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414819596465634, guid: 8371fcb5e1a6fa74a845418d6d147af4, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414819596465634, guid: 8371fcb5e1a6fa74a845418d6d147af4, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414819596465634, guid: 8371fcb5e1a6fa74a845418d6d147af4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414819596465634, guid: 8371fcb5e1a6fa74a845418d6d147af4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4414819596465634, guid: 8371fcb5e1a6fa74a845418d6d147af4, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114649518448430194, guid: 8371fcb5e1a6fa74a845418d6d147af4,
+        type: 2}
+      propertyPath: GlobalIntensity
+      value: 1.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 8371fcb5e1a6fa74a845418d6d147af4, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &522203962
 GameObject:
   m_ObjectHideFlags: 0
@@ -2415,6 +2506,7 @@ MonoBehaviour:
   Next:
   - {fileID: 701764996}
   SwitchToStage: 0
+  AutoPilotSkip: 0
 --- !u!1 &543335832
 GameObject:
   m_ObjectHideFlags: 0
@@ -2632,6 +2724,7 @@ MonoBehaviour:
   - {fileID: 421552310}
   - {fileID: 464902218}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: fuck
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -2862,6 +2955,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1160525531}
   SwitchToStage: 5
+  AutoPilotSkip: 0
   QueryTag: positive
   TargetCityIntensity: 0.65
   IntensityLerpRatio: 0.01
@@ -3063,6 +3157,7 @@ MonoBehaviour:
   - {fileID: 431721077}
   - {fileID: 929274427}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -3216,6 +3311,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1160525531}
   SwitchToStage: 1
+  AutoPilotSkip: 0
   QueryTag: nice
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -3306,6 +3402,7 @@ MonoBehaviour:
   - {fileID: 9733441}
   - {fileID: 233093220}
   SwitchToStage: 2
+  AutoPilotSkip: 0
 --- !u!1 &730613423
 GameObject:
   m_ObjectHideFlags: 0
@@ -3398,6 +3495,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1594020369}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: 
   TargetCityIntensity: 0.72
   IntensityLerpRatio: 0.01
@@ -3451,6 +3549,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1548457112}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: nice
   TargetCityIntensity: 0.4
   IntensityLerpRatio: 0.01
@@ -3506,6 +3605,7 @@ MonoBehaviour:
   - {fileID: 680109057}
   - {fileID: 1860684495}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: nice
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -3559,6 +3659,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1640307867}
   SwitchToStage: 4
+  AutoPilotSkip: 0
   QueryTag: fuck
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -3684,6 +3785,7 @@ MonoBehaviour:
   EnabledOnStart: 1
   Next: []
   SwitchToStage: 0
+  AutoPilotSkip: 0
   PreferredSentiment: 1
   TriggerCount: 0
 --- !u!1 &810800615
@@ -3840,6 +3942,7 @@ MonoBehaviour:
   - {fileID: 572818596}
   - {fileID: 399865416}
   SwitchToStage: 3
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -3997,6 +4100,7 @@ MonoBehaviour:
   - {fileID: 572818596}
   - {fileID: 399865416}
   SwitchToStage: 3
+  AutoPilotSkip: 0
   QueryTag: fuck
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -4054,6 +4158,7 @@ MonoBehaviour:
   - {fileID: 572818596}
   - {fileID: 399865416}
   SwitchToStage: 3
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -4144,6 +4249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 895009782}
   - component: {fileID: 895009781}
+  - component: {fileID: 895009783}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -4184,6 +4290,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &895009783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 895009780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3fb500074b394e4b8fbfe7b4ecef4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StoryRoot: {fileID: 522203963}
+  Target: {fileID: 0}
+  StoryFinished: 0
 --- !u!1 &899213350
 GameObject:
   m_ObjectHideFlags: 0
@@ -4265,6 +4385,7 @@ MonoBehaviour:
   - {fileID: 421552310}
   - {fileID: 464902218}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: fuck
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -4322,6 +4443,7 @@ MonoBehaviour:
   - {fileID: 869894949}
   - {fileID: 1026036917}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -4479,6 +4601,7 @@ MonoBehaviour:
   - {fileID: 572818596}
   - {fileID: 399865416}
   SwitchToStage: 3
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -4796,6 +4919,7 @@ MonoBehaviour:
   - {fileID: 431721077}
   - {fileID: 929274427}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -4848,6 +4972,7 @@ MonoBehaviour:
   EnabledOnStart: 0
   Next: []
   SwitchToStage: 0
+  AutoPilotSkip: 0
   PreferredSentiment: 1
   TriggerCount: 0
 --- !u!1 &1165224640
@@ -4877,6 +5002,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 465032427}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1192977599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1192977601}
+  - component: {fileID: 1192977600}
+  m_Layer: 0
+  m_Name: DollyTrack1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1192977600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1192977599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a200b19ca1a9685429ed7e043c28e904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Resolution: 20
+  m_Appearance:
+    pathColor: {r: 0, g: 1, b: 0, a: 1}
+    inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    width: 0.2
+  m_Looped: 0
+  m_Waypoints:
+  - position: {x: 3132, y: 119, z: -279}
+    roll: 0
+  - position: {x: 2774, y: 159, z: -82}
+    roll: 0
+  - position: {x: 1879, y: 406, z: 421}
+    roll: 0
+  - position: {x: 1591, y: 328, z: 585}
+    roll: 0
+  - position: {x: 1270, y: 159, z: 775}
+    roll: 0
+--- !u!4 &1192977601
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1192977599}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 513548417}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1199234348
 GameObject:
@@ -4926,6 +5108,7 @@ MonoBehaviour:
   - {fileID: 421552310}
   - {fileID: 464902218}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: fuck
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -4979,6 +5162,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1793308588}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: positive
   TargetCityIntensity: 0.6
   IntensityLerpRatio: 0.01
@@ -5036,6 +5220,7 @@ MonoBehaviour:
   - {fileID: 869894949}
   - {fileID: 1026036917}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -5045,6 +5230,35 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+--- !u!1 &1232247282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1232247283}
+  m_Layer: 0
+  m_Name: AutoPilot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1232247283
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1232247282}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 513548417}
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1268465018
 GameObject:
   m_ObjectHideFlags: 0
@@ -5193,6 +5407,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1878613025}
   SwitchToStage: 1
+  AutoPilotSkip: 0
   QueryTag: nice
   TargetCityIntensity: 0.1
   IntensityLerpRatio: 0.01
@@ -5250,6 +5465,7 @@ MonoBehaviour:
   - {fileID: 869894949}
   - {fileID: 1026036917}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -5307,6 +5523,7 @@ MonoBehaviour:
   - {fileID: 572818596}
   - {fileID: 399865416}
   SwitchToStage: 3
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -5441,6 +5658,7 @@ MonoBehaviour:
   - {fileID: 9733441}
   - {fileID: 233093220}
   SwitchToStage: 2
+  AutoPilotSkip: 0
 --- !u!4 &1418464499 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: bfa13a05ef4d0aa43be85f3927c000ae, type: 3}
@@ -6038,6 +6256,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1548457112}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: nice
   TargetCityIntensity: 0.4
   IntensityLerpRatio: 0.01
@@ -6091,6 +6310,7 @@ MonoBehaviour:
   Next:
   - {fileID: 16162382}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: nice
   TargetCityIntensity: 0.7
   IntensityLerpRatio: 0.01
@@ -6144,6 +6364,7 @@ MonoBehaviour:
   Next:
   - {fileID: 2139443729}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: nice
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -6197,6 +6418,7 @@ MonoBehaviour:
   Next:
   - {fileID: 2136466811}
   SwitchToStage: 0
+  AutoPilotSkip: 0
 --- !u!1 &1606837537
 GameObject:
   m_ObjectHideFlags: 0
@@ -6453,6 +6675,7 @@ MonoBehaviour:
   Next:
   - {fileID: 325967030}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: positive
   TargetCityIntensity: 0.45
   IntensityLerpRatio: 0.01
@@ -6506,6 +6729,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1640307867}
   SwitchToStage: 4
+  AutoPilotSkip: 0
   QueryTag: positive
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -6831,6 +7055,7 @@ MonoBehaviour:
   Next:
   - {fileID: 635865722}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: positive
   TargetCityIntensity: 0.7
   IntensityLerpRatio: 0.01
@@ -6888,6 +7113,7 @@ MonoBehaviour:
   - {fileID: 431721077}
   - {fileID: 929274427}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: city
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -6941,6 +7167,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1160525531}
   SwitchToStage: 1
+  AutoPilotSkip: 0
   QueryTag: nice
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -6994,6 +7221,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1160525531}
   SwitchToStage: 1
+  AutoPilotSkip: 0
   QueryTag: nice
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -7047,6 +7275,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1548457112}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: nice
   TargetCityIntensity: 0.4
   IntensityLerpRatio: 0.01
@@ -7247,6 +7476,7 @@ MonoBehaviour:
   - {fileID: 1537637259}
   - {fileID: 761371853}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: nice
   TargetCityIntensity: 0.2
   IntensityLerpRatio: 0.01
@@ -7549,6 +7779,52 @@ MonoBehaviour:
   - {fileID: 9733441}
   - {fileID: 233093220}
   SwitchToStage: 2
+  AutoPilotSkip: 0
+--- !u!1 &2054343325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2054343326}
+  - component: {fileID: 2054343327}
+  m_Layer: 0
+  m_Name: DollyCart1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2054343326
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2054343325}
+  m_LocalRotation: {x: 0.08440209, y: -0.51252836, z: 0.05071297, w: 0.853006}
+  m_LocalPosition: {x: 3132, y: 119, z: -279}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 513548417}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2054343327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2054343325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a9c787e5d1bbf48a389834c4a9641c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Path: {fileID: 1192977600}
+  m_UpdateMethod: 0
+  m_PositionUnits: 1
+  m_Speed: 0
+  m_Position: 0
 --- !u!1 &2063061248
 GameObject:
   m_ObjectHideFlags: 0
@@ -7645,6 +7921,7 @@ MonoBehaviour:
   - {fileID: 421552310}
   - {fileID: 464902218}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: fuck
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -7896,6 +8173,7 @@ MonoBehaviour:
   Next:
   - {fileID: 1667687666}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: positive
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01
@@ -8026,6 +8304,7 @@ MonoBehaviour:
   EnabledOnStart: 0
   Next: []
   SwitchToStage: 0
+  AutoPilotSkip: 0
 --- !u!1 &2139443727
 GameObject:
   m_ObjectHideFlags: 0
@@ -8070,6 +8349,7 @@ MonoBehaviour:
   Next:
   - {fileID: 795104398}
   SwitchToStage: 0
+  AutoPilotSkip: 0
   QueryTag: nice
   TargetCityIntensity: -1
   IntensityLerpRatio: 0.01

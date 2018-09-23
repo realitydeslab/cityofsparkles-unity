@@ -11,6 +11,8 @@ public class StoryNode : MonoBehaviour
     public List<StoryNode> Next;
     public Stage SwitchToStage = Stage.Invalid;
 
+    public bool AutoPilotSkip = false;
+
     public virtual void Awake()
     {
         if (isFirstAwake && !EnabledOnStart)
@@ -47,6 +49,10 @@ public class StoryNode : MonoBehaviour
     public virtual void OnDrawGizmos()
     {
         Gizmos.color = EnabledOnStart ? Color.green : Color.yellow;
+        if (AutoPilotController.Instance != null && AutoPilotController.Instance.Target == this)
+        {
+            Gizmos.color = Color.magenta;
+        }
         Gizmos.DrawWireSphere(transform.position, 30);
     }
 

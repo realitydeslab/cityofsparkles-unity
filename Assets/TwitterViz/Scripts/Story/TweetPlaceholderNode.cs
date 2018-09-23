@@ -24,7 +24,6 @@ public class TweetPlaceholderNode : SpawnSourceNode
 
     [Header("Animation")] 
     public bool Trigger;
-    // TODO: Spawn by animation
     private TweetComponent spawnedTweet;
 
     private TwitterDatabase.DBTweet tweet;
@@ -76,12 +75,22 @@ public class TweetPlaceholderNode : SpawnSourceNode
                 });
                 spawned = true;
             }
+
+            if (Trigger)
+            {
+                Trigger = false;
+                if (spawnedTweet != null)
+                {
+                    spawnedTweet.Trigger = true;
+                }
+            }
         }
     }
 
     public override void OnTweetSpawned(TweetComponent tweet)
     {
         base.OnTweetSpawned(tweet);
+        spawnedTweet = tweet;
 
         if (!string.IsNullOrEmpty(AkEventOnSpawn))
         {
