@@ -109,7 +109,7 @@ public class TweetPlaceholderNode : SpawnSourceNode
         }
     }
 
-    public override void OnTweetRevealed(TweetComponent obj)
+    public override void GotoNext()
     {
         TwitterManager.Instance.ClearAll();
 
@@ -123,7 +123,7 @@ public class TweetPlaceholderNode : SpawnSourceNode
             AkSoundEngine.SetRTPCValue("MixInRatio", 0);
         }
 
-        GotoNext();
+        base.GotoNext();
 
         if (TargetCityIntensity >= 0)
         {
@@ -131,6 +131,11 @@ public class TweetPlaceholderNode : SpawnSourceNode
         }
 
         Destroy(gameObject);
+    }
+
+    public override void OnTweetRevealed(TweetComponent obj)
+    {
+        GotoNext();
     }
 
     public override void OnTweetDestroy(TweetComponent tweet)

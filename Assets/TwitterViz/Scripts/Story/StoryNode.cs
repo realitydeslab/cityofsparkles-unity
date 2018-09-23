@@ -78,7 +78,7 @@ public class StoryNode : MonoBehaviour
         }
     }
 
-    protected void GotoNext()
+    public virtual void GotoNext()
     {
         for (int i = 0; i < Next.Count; i++)
         {
