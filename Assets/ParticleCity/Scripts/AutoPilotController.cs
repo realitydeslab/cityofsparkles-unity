@@ -29,23 +29,31 @@ public class AutoPilotController : MonoBehaviour
     public float MaxAngularVelocity = 30.0f;
     public float WaitTime = 10;
     public float IdleTimeOut = 10;
+    public float StoryNodeTriggerIdleTimeOut = 30;
 
     [Header("Auto Targeting")]
     public Transform StoryRoot;
     public float TargetDistance = 10;
+    public float TargetLostTimeout = 10;
 
     [Header("Debug")]
     public StoryNode Target = null;
-    public bool StoryFinished = false;
     public float Speed = 0;
     public float StoppedTime;
+    public float NullTargetAccumulatedTime = 0;
 
     private float angularVelocity;
     private ParticleCityPlayerController playerController;
+    private float lastTriggeredTime;
 
     public bool IsAutoPilotTargetValid
     {
         get { return Target != null && Target.enabled; }
+    }
+
+    public void OnStoryNodeTriggered(StoryNode node)
+    {
+        lastTriggeredTime = Time.time;
     }
 
 	void Start () {
@@ -57,13 +65,13 @@ public class AutoPilotController : MonoBehaviour
 	        playerController = GetComponent<ParticleCityPlayerController>();
 	    }
 
-	    if (!StoryFinished && !IsAutoPilotTargetValid)
+	    if (!IsAutoPilotTargetValid)
 	    {
             findAutoPilotTarget();
 	    }
 
         // Stop auto-pilot when there is any action
-	    if (Time.time - playerController.LastActionTime < IdleTimeOut)
+	    if ( !Target || (Time.time - playerController.LastActionTime < IdleTimeOut) && (Time.time - lastTriggeredTime < StoryNodeTriggerIdleTimeOut) )
 	    {
 	        Speed = 0;
 	        angularVelocity = 0;
@@ -84,11 +92,11 @@ public class AutoPilotController : MonoBehaviour
 
         InputManager.Instance.PlayerTransform.rotation = Quaternion.Euler(0, eulerY, 0);
 
-	    if (Mathf.Abs(targetEulerY - currentEulerY) > 30)
-	    {
-            // Do not move until the camera rotates to the target angle
-	        return;
-	    }
+	    // if (Mathf.Abs(targetEulerY - currentEulerY) > 30)
+	    // {
+        //     // Do not move until the camera rotates to the target angle (bad idea)
+	    //     return;
+	    // }
 
 	    if (offset.sqrMagnitude > SlowDownRadius * SlowDownRadius)
 	    {
@@ -131,7 +139,6 @@ public class AutoPilotController : MonoBehaviour
         if (availableNodes.Count == 0)
         {
             Target = null;
-            StoryFinished = true;
         }
         else if (availableNodes.Count == 1)
         {
@@ -141,6 +148,29 @@ public class AutoPilotController : MonoBehaviour
         {
             int rand = (int) (Random.value * availableNodes.Count);
             Target = availableNodes[rand];
+        }
+
+        if (Target == null)
+        {
+            NullTargetAccumulatedTime += Time.deltaTime;
+            if (NullTargetAccumulatedTime > TargetLostTimeout)
+            {
+                availableNodes = new List<StoryNode>(StoryRoot.GetComponentsInChildren<StoryNode>(true));
+                for (int i = 0; i < availableNodes.Count; i++)
+                {
+                    if (!availableNodes[i].AutoPilotSkip)
+                    {
+                        availableNodes[i].gameObject.SetActive(true);
+                        Target = availableNodes[i];
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (Target != null)
+        {
+            NullTargetAccumulatedTime = 0;
         }
     }
 }

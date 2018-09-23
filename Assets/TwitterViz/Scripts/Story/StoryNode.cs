@@ -92,6 +92,24 @@ public class StoryNode : MonoBehaviour
         {
             StageSwitcher.Instance.SwitchToStage(SwitchToStage);
         }
+
+        if (AutoPilotController.Instance != null)
+        {
+            AutoPilotController.Instance.OnStoryNodeTriggered(this);
+        }
+    }
+
+    public bool HasNext()
+    {
+        for (int i = 0; i < Next.Count; i++)
+        {
+            if (!Next[i].Equals(null))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 

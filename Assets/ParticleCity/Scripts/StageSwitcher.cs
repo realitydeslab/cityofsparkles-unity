@@ -123,12 +123,12 @@ namespace ParticleCities
             GameObject[] rootObjects = SceneManager.GetActiveScene().GetRootGameObjects();
             for (int i = 0; i < rootObjects.Length; i++)
             {
-                if (rootObjects[i].GetComponent<ParticleCity>() != null)
+                ParticleCity city = rootObjects[i].GetComponent<ParticleCity>();
+                if (city != null)
                 {
-                    Destroy(rootObjects[i]);
+                    city.DestroyWithFadeOut();
                 }
             }
-
         }
     }
 }

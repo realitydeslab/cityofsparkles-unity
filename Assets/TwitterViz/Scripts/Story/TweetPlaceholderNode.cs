@@ -111,7 +111,10 @@ public class TweetPlaceholderNode : SpawnSourceNode
 
     public override void GotoNext()
     {
-        TwitterManager.Instance.ClearAll();
+        if (HasNext())
+        {
+            TwitterManager.Instance.ClearAll();
+        }
 
         if (MixInRatio > 0)
         {

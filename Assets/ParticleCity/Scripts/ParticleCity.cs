@@ -24,6 +24,8 @@ public class ParticleCity : MonoBehaviour
     [Header("Auto")]
     public ParticleCityAnimator Animator;
 
+    private bool destroyRequested = false;
+
     void Awake()
     {
         Animator = GetComponent<ParticleCityAnimator>();
@@ -31,10 +33,26 @@ public class ParticleCity : MonoBehaviour
 
     void Update()
     {
+        if (destroyRequested)
+        {
+            return;
+        }
+
         InputManager.Instance.CenterCamera.clearFlags = CameraClearFlags.Color;
-        InputManager.Instance.CenterCamera.backgroundColor = SolidClearColor;
+        InputManager.Instance.CenterCamera.backgroundColor = Color.Lerp(InputManager.Instance.CenterCamera.backgroundColor, SolidClearColor, 0.1f);
     }
 
+    public void DestroyWithFadeOut()
+    {
+        destroyRequested = true;
+        Animator.FadeOut(true);
+
+        ParticleMotionBase[] motions = GetComponents<ParticleMotionBase>();
+        for (int i = 0; i < motions.Length; i++)
+        {
+            Destroy(motions[i]);
+        }
+    }
 
     public void AddActiveGameObject(GameObject gameObject)
     {

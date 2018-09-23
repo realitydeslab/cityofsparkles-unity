@@ -15,6 +15,7 @@ public class ParticleCityAnimator : MonoBehaviour
 
     public float IntensityFadeOnStart = -1;
     public float IntensityLerpRatioOnStart = -1;
+    public float IntensityLerpRatioOnFadeOut = 0.01f;
 
     public float Size = 2;
     private float oldSize = -1;
@@ -24,6 +25,8 @@ public class ParticleCityAnimator : MonoBehaviour
 
     private float? targetIntensity;
     private float intensityLerpRatio;
+
+    private bool destroyRequired = false;
 
     void Awake()
     {
@@ -52,7 +55,7 @@ public class ParticleCityAnimator : MonoBehaviour
     {
         if (targetIntensity.HasValue)
         {
-            GlobalIntensity = Mathf.Lerp(GlobalIntensity, targetIntensity.Value, intensityLerpRatio);
+            GlobalIntensity = Mathf.Lerp(GlobalIntensity, targetIntensity.Value, intensityLerpRatio / 0.016f * Time.deltaTime);
         }
 
         if (!Mathf.Approximately(GlobalIntensity, oldGlobalIntensity))
@@ -72,12 +75,27 @@ public class ParticleCityAnimator : MonoBehaviour
             SetMaterialsFloat4("_NoiseTex_ST", NoiseST);
             oldNoiseST = NoiseST;
         }
+
+        if (destroyRequired && GlobalIntensity < 0.01f)
+        {
+            Destroy(gameObject);
+        }
+
 	}
 
     public void LerpToIntensity(float targetIntensity, float ratio)
     {
         this.targetIntensity = targetIntensity;
         intensityLerpRatio = ratio;
+    }
+
+    public void FadeOut(bool destroyOnFinished)
+    {
+        LerpToIntensity(0, IntensityLerpRatioOnFadeOut);
+        if (destroyOnFinished)
+        {
+            destroyRequired = true;
+        }
     }
 
     public void SetMaterialsFloat(string propertyName, float value)

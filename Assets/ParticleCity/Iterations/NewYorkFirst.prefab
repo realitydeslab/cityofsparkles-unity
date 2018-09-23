@@ -3748,9 +3748,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd30324a6f18ef4da11abd46f43f327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalIntensity: 0.6
-  IntensityFadeOnStart: -1
-  IntensityLerpRatioOnStart: -1
+  GlobalIntensity: 0
+  IntensityFadeOnStart: 0.6
+  IntensityLerpRatioOnStart: 0.01
+  IntensityLerpRatioOnFadeOut: 1
   Size: 2
   NoiseST: {x: 1, y: 1, z: 0, w: 0}
 --- !u!114 &114761582497104718
