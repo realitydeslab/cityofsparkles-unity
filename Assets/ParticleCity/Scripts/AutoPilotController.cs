@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ParticleCities;
 using UnityEngine;
 
+[RequireComponent(typeof(ParticleCityPlayerController))]
 public class AutoPilotController : MonoBehaviour
 {
     private static AutoPilotController instance;
@@ -18,11 +20,19 @@ public class AutoPilotController : MonoBehaviour
         }
     }
 
+    [Header("Flying")] 
+    public float MaxSpeed = 50;
+    public float SlowDownRadius = 100;
+    public float SlowDownRatio = 0.2f;
+    public float Accelleration = 10; 
+
+    [Header("Auto Targeting")]
     public Transform StoryRoot;
 
     [Header("Debug")]
     public StoryNode Target = null;
     public bool StoryFinished = false;
+    public float Speed = 0;
 
     public bool IsAutoPilotTargetValid
     {
@@ -38,6 +48,19 @@ public class AutoPilotController : MonoBehaviour
 	    {
             findAutoPilotTarget();
 	    }
+
+	    Vector3 offset = Target.transform.position - InputManager.Instance.PlayerTransform.position;
+	    if (offset.sqrMagnitude > SlowDownRadius * SlowDownRadius)
+	    {
+	        Speed = Mathf.Min(MaxSpeed, Speed + Accelleration * Time.deltaTime);
+	    }
+	    else
+	    {
+	        float deceleration = Speed * Speed / offset.magnitude / 2;
+	        Speed = Mathf.Max(0, Speed - deceleration * Time.deltaTime);
+	    }
+
+	    InputManager.Instance.PlayerTransform.position += offset.normalized * Speed * Time.deltaTime;
 	}
 
     private void findAutoPilotTarget()
