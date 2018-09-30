@@ -18,13 +18,14 @@ public class AkAudioListenerInspector : UnityEditor.Editor
 
 	public override void OnInspectorGUI()
 	{
-		using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
+		UnityEngine.GUILayout.BeginVertical("Box");
 		{
 			UnityEditor.EditorGUI.BeginChangeCheck();
 			UnityEditor.EditorGUILayout.PropertyField(m_isDefaultListener);
 			if (UnityEditor.EditorGUI.EndChangeCheck())
 				serializedObject.ApplyModifiedProperties();
 		}
+		UnityEngine.GUILayout.EndVertical();
 	}
 }
 #endif

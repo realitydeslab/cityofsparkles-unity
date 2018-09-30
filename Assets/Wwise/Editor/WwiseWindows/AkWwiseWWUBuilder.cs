@@ -54,10 +54,17 @@ public class AkWwiseWWUBuilder
 
 	public static bool AutoPopulate()
 	{
-		var fullPath = AkUtilities.GetFullPath(UnityEngine.Application.dataPath, WwiseSetupWizard.Settings.WwiseProjectPath);
-		AkUtilities.IsWwiseProjectAvailable = System.IO.File.Exists(fullPath);
-		if (!AkUtilities.IsWwiseProjectAvailable || UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode || 
-			string.IsNullOrEmpty(s_wwiseProjectPath) || UnityEditor.EditorApplication.isCompiling)
+		if (!System.IO.File.Exists(AkUtilities.GetFullPath(UnityEngine.Application.dataPath,
+			WwiseSetupWizard.Settings.WwiseProjectPath)))
+		{
+			AkWwisePicker.WwiseProjectFound = false;
+			return false;
+		}
+
+		AkWwisePicker.WwiseProjectFound = true;
+
+		if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode || string.IsNullOrEmpty(s_wwiseProjectPath) ||
+		    UnityEditor.EditorApplication.isCompiling)
 			return false;
 
 		AkPluginActivator.Update();
@@ -83,12 +90,20 @@ public class AkWwiseWWUBuilder
 				return false;
 			}
 
-			var fullPath = AkUtilities.GetFullPath(UnityEngine.Application.dataPath, WwiseSetupWizard.Settings.WwiseProjectPath);
-			s_wwiseProjectPath = System.IO.Path.GetDirectoryName(fullPath);
+			s_wwiseProjectPath = System.IO.Path.GetDirectoryName(AkUtilities.GetFullPath(UnityEngine.Application.dataPath,
+				WwiseSetupWizard.Settings.WwiseProjectPath));
 
-			AkUtilities.IsWwiseProjectAvailable = System.IO.File.Exists(fullPath);
-			if (!AkUtilities.IsWwiseProjectAvailable || UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode ||
-				string.IsNullOrEmpty(s_wwiseProjectPath) || UnityEditor.EditorApplication.isCompiling)
+			if (!System.IO.File.Exists(AkUtilities.GetFullPath(UnityEngine.Application.dataPath,
+				WwiseSetupWizard.Settings.WwiseProjectPath)))
+			{
+				AkWwisePicker.WwiseProjectFound = false;
+				return false;
+			}
+
+			AkWwisePicker.WwiseProjectFound = true;
+
+			if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode || string.IsNullOrEmpty(s_wwiseProjectPath) ||
+			    UnityEditor.EditorApplication.isCompiling)
 				return false;
 
 			AkPluginActivator.Update();
@@ -106,7 +121,7 @@ public class AkWwiseWWUBuilder
 			UnityEditor.EditorUtility.ClearProgressBar();
 		}
 
-		return true;
+		return true; //There was an error, assume that we need to refresh.
 	}
 
 	private int RecurseWorkUnit(AssetType in_type, System.IO.FileInfo in_workUnit, string in_currentPathInProj,

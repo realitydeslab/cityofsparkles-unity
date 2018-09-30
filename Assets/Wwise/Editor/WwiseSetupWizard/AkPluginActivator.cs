@@ -143,9 +143,6 @@ public class AkPluginActivator
 #endif
 				return "Mac";
 
-			case (UnityEditor.BuildTarget)39: // UnityEditor.BuildTarget.Lumin
-				return "Lumin";
-
 			case UnityEditor.BuildTarget.PS4:
 				return "PS4";
 
@@ -257,8 +254,7 @@ public class AkPluginActivator
 				case "tvOS":
 				case "PS4":
 				case "XboxOne":
-                case "Lumin":
-                    pluginConfig = splitPath[5];
+					pluginConfig = splitPath[5];
 					break;
 
 				case "Android":
@@ -587,10 +583,10 @@ public class AkPluginActivator
 		var projectPath = System.IO.Path.GetDirectoryName(AkUtilities.GetFullPath(UnityEngine.Application.dataPath,
 			WwiseSettings.LoadSettings().WwiseProjectPath));
 
-		AkWwiseInitializationSettings.UpdatePlatforms();
+		var pfMap = AkUtilities.GetPlatformMapping();
 
 		//Go through all BasePlatforms 
-		foreach (var pairPF in AkUtilities.PlatformMapping)
+		foreach (var pairPF in pfMap)
 		{
 			//Go through all custom platforms related to that base platform and check if any of the bank files were updated.
 			var bParse = forceUpdate;

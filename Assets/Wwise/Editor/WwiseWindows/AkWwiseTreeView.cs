@@ -74,10 +74,8 @@ public class AkWwiseTreeView : AK.Wwise.TreeView.TreeViewControl
 			if (childItem == null)
 			{
 				if (i != AkInfo.PathAndIcons.Count - 1)
-				{
 					childItem = parentItem.AddItem(PathElem.ElementName,
 						new AkTreeInfo(0, System.Guid.Empty.ToByteArray(), PathElem.ObjectType), GetExpansionStatus(path));
-				}
 				else
 				{
 					var isDraggable = !(PathElem.ObjectType == AkWwiseProjectData.WwiseObjectType.STATEGROUP ||
@@ -113,7 +111,9 @@ public class AkWwiseTreeView : AK.Wwise.TreeView.TreeViewControl
 		foreach (var wwu in workUnits)
 		{
 			foreach (var akInfo in wwu.List)
+			{
 				AddHandlerEvents(AddPathToTreeItem(attachPoint, akInfo));
+			}
 		}
 
 		AddHandlerEvents(attachPoint);
@@ -312,7 +312,6 @@ public class AkWwiseTreeView : AK.Wwise.TreeView.TreeViewControl
 	///     Wwise logos
 	/// </summary>
 	private UnityEngine.Texture2D m_textureWwiseAuxBusIcon;
-
 	private UnityEngine.Texture2D m_textureWwiseBusIcon;
 	private UnityEngine.Texture2D m_textureWwiseEventIcon;
 	private UnityEngine.Texture2D m_textureWwiseFolderIcon;
@@ -370,7 +369,7 @@ public class AkWwiseTreeView : AK.Wwise.TreeView.TreeViewControl
 
 	public override void DisplayTreeView(DisplayTypes displayType)
 	{
-		if (AkUtilities.IsWwiseProjectAvailable)
+		if (AkWwisePicker.WwiseProjectFound)
 		{
 			var filterString = m_filterString;
 
@@ -384,12 +383,13 @@ public class AkWwiseTreeView : AK.Wwise.TreeView.TreeViewControl
 					.FindStyle("SearchCancelButton");
 			}
 
-			using (new UnityEngine.GUILayout.HorizontalScope("box"))
+			UnityEngine.GUILayout.BeginHorizontal("Box");
 			{
 				m_filterString = UnityEngine.GUILayout.TextField(m_filterString, m_filterBoxStyle);
 				if (UnityEngine.GUILayout.Button("", m_filterBoxCancelButtonStyle))
 					m_filterString = "";
 			}
+			UnityEngine.GUILayout.EndHorizontal();
 
 			if (!m_filterString.Equals(filterString))
 			{
@@ -444,7 +444,7 @@ public class AkWwiseTreeView : AK.Wwise.TreeView.TreeViewControl
 
 	public void SaveExpansionStatus()
 	{
-		if (AkUtilities.IsWwiseProjectAvailable)
+		if (AkWwisePicker.WwiseProjectFound)
 		{
 			if (RootItem.Header == "Root item")
 			{
@@ -455,7 +455,7 @@ public class AkWwiseTreeView : AK.Wwise.TreeView.TreeViewControl
 
 			if (AkWwiseProjectInfo.GetData() != null)
 			{
-                var PreviousExpandedItems = AkWwiseProjectInfo.GetData().ExpandedItems;
+				var PreviousExpandedItems = AkWwiseProjectInfo.GetData().ExpandedItems;
 				AkWwiseProjectInfo.GetData().ExpandedItems.Clear();
 
 				var path = string.Empty;
@@ -465,8 +465,8 @@ public class AkWwiseTreeView : AK.Wwise.TreeView.TreeViewControl
 
 				AkWwiseProjectInfo.GetData().ExpandedItems.Sort();
 
-                if (System.Linq.Enumerable.Count(System.Linq.Enumerable.Except(AkWwiseProjectInfo.GetData().ExpandedItems, PreviousExpandedItems)) > 0)
-                    UnityEditor.EditorUtility.SetDirty(AkWwiseProjectInfo.GetData());
+				if (System.Linq.Enumerable.Count(System.Linq.Enumerable.Except(AkWwiseProjectInfo.GetData().ExpandedItems, PreviousExpandedItems)) > 0)
+				UnityEditor.EditorUtility.SetDirty(AkWwiseProjectInfo.GetData());
 			}
 		}
 	}

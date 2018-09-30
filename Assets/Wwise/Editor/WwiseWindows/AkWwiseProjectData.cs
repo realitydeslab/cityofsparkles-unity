@@ -21,15 +21,6 @@ public class AkWwiseProjectData : UnityEngine.ScriptableObject
 		ACOUSTICTEXTURE
 	}
 
-	public bool autoPopulateEnabled = true;
-	public string CurrentPluginConfig;
-
-	[UnityEngine.SerializeField]
-	private int m_lastPopulateTimePart2;
-
-	[UnityEngine.SerializeField]
-	private int m_lastPopulateTimePsrt1;
-
 	//An IComparer that enables us to sort work units by their physical path 
 	public static WorkUnit_CompareByPhysicalPath s_compareByPhysicalPath = new WorkUnit_CompareByPhysicalPath();
 
@@ -39,23 +30,43 @@ public class AkWwiseProjectData : UnityEngine.ScriptableObject
 	public System.Collections.Generic.List<AkInfoWorkUnit> AcousticTextureWwu =
 		new System.Collections.Generic.List<AkInfoWorkUnit>();
 
+	public bool autoPopulateEnabled = true;
+
 	public System.Collections.Generic.List<AkInfoWorkUnit> AuxBusWwu =
 		new System.Collections.Generic.List<AkInfoWorkUnit>();
 
-	public System.Collections.Generic.List<AkInfoWorkUnit> BankWwu
-		= new System.Collections.Generic.List<AkInfoWorkUnit>();
+	public System.Collections.Generic.List<AkInfoWorkUnit> BankWwu = new System.Collections.Generic.List<AkInfoWorkUnit>();
 
-	public System.Collections.Generic.List<EventWorkUnit> EventWwu
-		= new System.Collections.Generic.List<EventWorkUnit>();
+	//This data is a copy of the AkInitializer parameters.  
+	//We need it to reapply the same values to copies of the object in different scenes
+	//It sits in this object so it is serialized in the same "asset" file
+	public string basePath = AkSoundEngineController.s_DefaultBasePath;
+	public int callbackManagerBufferSize = AkSoundEngineController.s_CallbackManagerBufferSize;
 
-	public System.Collections.Generic.List<string> ExpandedItems
-		= new System.Collections.Generic.List<string>();
+	public string CurrentPluginConfig;
+	public int defaultPoolSize = AkSoundEngineController.s_DefaultPoolSize;
 
-	public System.Collections.Generic.List<AkInfoWorkUnit> RtpcWwu
-		= new System.Collections.Generic.List<AkInfoWorkUnit>();
+	//Can't use a list of WorkUnit and cast it when needed because unity will serialize it as 
+	//Workunit and all the child class's fields will be deleted
+	public System.Collections.Generic.List<EventWorkUnit> EventWwu = new System.Collections.Generic.List<EventWorkUnit>();
+
+	//Contains the path of all items that are expanded in the Wwise picker
+	public System.Collections.Generic.List<string> ExpandedItems = new System.Collections.Generic.List<string>();
+	public string language = AkSoundEngineController.s_Language;
+	public int lowerPoolSize = AkSoundEngineController.s_LowerPoolSize;
+	[UnityEngine.SerializeField] private int m_lastPopulateTimePart2;
+
+	//DateTime Objects are not serializable, so we have to use its binary format (64 bit long).
+	//But apparently long isn't serializable neither, so we split it into two int
+	[UnityEngine.SerializeField] private int m_lastPopulateTimePsrt1;
+	public float memoryCutoffThreshold = AkSoundEngineController.s_MemoryCutoffThreshold;
+	public int preparePoolSize = AkSoundEngineController.s_PreparePoolSize;
+	public System.Collections.Generic.List<AkInfoWorkUnit> RtpcWwu = new System.Collections.Generic.List<AkInfoWorkUnit>();
 
 	public System.Collections.Generic.List<GroupValWorkUnit> StateWwu =
 		new System.Collections.Generic.List<GroupValWorkUnit>();
+
+	public int streamingPoolSize = AkSoundEngineController.s_StreamingPoolSize;
 
 	public System.Collections.Generic.List<GroupValWorkUnit> SwitchWwu =
 		new System.Collections.Generic.List<GroupValWorkUnit>();
@@ -100,6 +111,156 @@ public class AkWwiseProjectData : UnityEngine.ScriptableObject
 			return new AkInfoWorkUnit();
 
 		return null;
+	}
+
+	public bool IsSupportedWwuType(string in_wwuType)
+	{
+		if (string.Equals(in_wwuType, "Events", System.StringComparison.OrdinalIgnoreCase))
+			return true;
+		if (string.Equals(in_wwuType, "States", System.StringComparison.OrdinalIgnoreCase))
+			return true;
+		if (string.Equals(in_wwuType, "Switches", System.StringComparison.OrdinalIgnoreCase))
+			return true;
+		if (string.Equals(in_wwuType, "Master-Mixer Hierarchy", System.StringComparison.OrdinalIgnoreCase))
+			return true;
+		if (string.Equals(in_wwuType, "SoundBanks", System.StringComparison.OrdinalIgnoreCase))
+			return true;
+		if (string.Equals(in_wwuType, "Game Parameters", System.StringComparison.OrdinalIgnoreCase))
+			return true;
+		if (string.Equals(in_wwuType, "Triggers", System.StringComparison.OrdinalIgnoreCase))
+			return true;
+		if (string.Equals(in_wwuType, "Virtual Acoustics", System.StringComparison.OrdinalIgnoreCase))
+			return true;
+
+		return false;
+	}
+
+	public byte[] GetEventGuidById(int in_ID)
+	{
+		for (var i = 0; i < AkWwiseProjectInfo.GetData().EventWwu.Count; i++)
+		{
+			var e = AkWwiseProjectInfo.GetData().EventWwu[i].List.Find(x => x.ID == in_ID);
+			if (e != null)
+				return e.Guid;
+		}
+
+		return null;
+	}
+
+	public byte[] GetBankGuidByName(string in_name)
+	{
+		for (var i = 0; i < AkWwiseProjectInfo.GetData().BankWwu.Count; i++)
+		{
+			var bank = AkWwiseProjectInfo.GetData().BankWwu[i].List.Find(x => x.Name.Equals(in_name));
+			if (bank != null)
+				return bank.Guid;
+		}
+
+		return null;
+	}
+
+	public byte[] GetEnvironmentGuidByName(string in_name)
+	{
+		for (var i = 0; i < AkWwiseProjectInfo.GetData().AuxBusWwu.Count; i++)
+		{
+			var auxBus = AkWwiseProjectInfo.GetData().AuxBusWwu[i].List.Find(x => x.Name.Equals(in_name));
+			if (auxBus != null)
+				return auxBus.Guid;
+		}
+
+		return null;
+	}
+
+	public byte[][] GetStateGuidByName(string in_groupName, string in_valueName)
+	{
+		for (var i = 0; i < AkWwiseProjectInfo.GetData().StateWwu.Count; i++)
+		{
+			var stateGroup = AkWwiseProjectInfo.GetData().StateWwu[i].List.Find(x => x.Name.Equals(in_groupName));
+			if (stateGroup == null)
+				continue;
+
+			var index = stateGroup.values.FindIndex(x => x == in_valueName);
+			return new[] { stateGroup.Guid, stateGroup.ValueGuids[index].bytes };
+		}
+
+		return null;
+	}
+
+	public byte[][] GetSwitchGuidByName(string in_groupName, string in_valueName)
+	{
+		for (var i = 0; i < AkWwiseProjectInfo.GetData().SwitchWwu.Count; i++)
+		{
+			var switchGroup = AkWwiseProjectInfo.GetData().SwitchWwu[i].List.Find(x => x.Name.Equals(in_groupName));
+			if (switchGroup == null)
+				continue;
+
+			var index = switchGroup.values.FindIndex(x => x == in_valueName);
+			return new[] { switchGroup.Guid, switchGroup.ValueGuids[index].bytes };
+		}
+
+		return null;
+	}
+
+	public void SetLastPopulateTime(System.DateTime in_time)
+	{
+		var timeBin = in_time.ToBinary();
+
+		m_lastPopulateTimePsrt1 = (int) timeBin;
+		m_lastPopulateTimePart2 = (int) (timeBin >> 32);
+	}
+
+	public System.DateTime GetLastPopulateTime()
+	{
+		var timeBin = (long) m_lastPopulateTimePart2;
+		timeBin <<= 32;
+		timeBin |= (uint) m_lastPopulateTimePsrt1;
+
+		return System.DateTime.FromBinary(timeBin);
+	}
+
+	public void SaveInitSettings(AkInitializer in_AkInit)
+	{
+		if (!AkWwisePicker.WwiseProjectFound)
+			return;
+		if (!CompareInitSettings(in_AkInit))
+		{
+			UnityEditor.Undo.RecordObject(this, "Save Init Settings");
+
+			basePath = in_AkInit.basePath;
+			language = in_AkInit.language;
+			defaultPoolSize = in_AkInit.defaultPoolSize;
+			lowerPoolSize = in_AkInit.lowerPoolSize;
+			streamingPoolSize = in_AkInit.streamingPoolSize;
+			preparePoolSize = in_AkInit.preparePoolSize;
+			memoryCutoffThreshold = in_AkInit.memoryCutoffThreshold;
+			callbackManagerBufferSize = in_AkInit.callbackManagerBufferSize;
+		}
+	}
+
+	public void CopyInitSettings(AkInitializer in_AkInit)
+	{
+		if (!CompareInitSettings(in_AkInit))
+		{
+			UnityEditor.Undo.RecordObject(in_AkInit, "Copy Init Settings");
+
+			in_AkInit.basePath = basePath;
+			in_AkInit.language = language;
+			in_AkInit.defaultPoolSize = defaultPoolSize;
+			in_AkInit.lowerPoolSize = lowerPoolSize;
+			in_AkInit.streamingPoolSize = streamingPoolSize;
+			in_AkInit.preparePoolSize = preparePoolSize;
+			in_AkInit.memoryCutoffThreshold = memoryCutoffThreshold;
+			in_AkInit.callbackManagerBufferSize = callbackManagerBufferSize;
+		}
+	}
+
+	private bool CompareInitSettings(AkInitializer in_AkInit)
+	{
+		return basePath == in_AkInit.basePath && language == in_AkInit.language &&
+		       defaultPoolSize == in_AkInit.defaultPoolSize && lowerPoolSize == in_AkInit.lowerPoolSize &&
+		       streamingPoolSize == in_AkInit.streamingPoolSize && preparePoolSize == in_AkInit.preparePoolSize &&
+		       memoryCutoffThreshold == in_AkInit.memoryCutoffThreshold &&
+		       callbackManagerBufferSize == in_AkInit.callbackManagerBufferSize;
 	}
 
 	public float GetEventMaxAttenuation(int in_eventID)

@@ -27,8 +27,11 @@
 			m_objectType = AkWwiseProjectData.WwiseObjectType.GAMEPARAMETER;
 			m_typeName = "GameParameter";
 
-			m_IDProperty = new[] { property.FindPropertyRelative("ID") };
-			m_guidProperty = new[] { property.FindPropertyRelative("valueGuid.Array") };
+			m_IDProperty = new UnityEditor.SerializedProperty[1];
+			m_IDProperty[0] = property.FindPropertyRelative("ID");
+
+			m_guidProperty = new UnityEditor.SerializedProperty[1];
+			m_guidProperty[0] = property.FindPropertyRelative("valueGuid.Array");
 		}
 	}
 }

@@ -338,13 +338,17 @@ public class WwiseSetupWizard
 	{
 		// Look for a game object which has the initializer component
 		var AkInitializers = UnityEngine.Object.FindObjectsOfType<AkInitializer>();
+		UnityEngine.GameObject WwiseGlobalGameObject = null;
 		if (AkInitializers.Length > 0)
 			UnityEditor.Undo.DestroyObjectImmediate(AkInitializers[0].gameObject);
 
-		var WwiseGlobalGameObject = new UnityEngine.GameObject("WwiseGlobal");
+		WwiseGlobalGameObject = new UnityEngine.GameObject("WwiseGlobal");
 
 		// attach initializer component
-		UnityEditor.Undo.AddComponent<AkInitializer>(WwiseGlobalGameObject);
+		var AkInit = UnityEditor.Undo.AddComponent<AkInitializer>(WwiseGlobalGameObject);
+
+		// Set the soundbank path property on the initializer
+		AkInit.basePath = Settings.SoundbankPath;
 
 		// Set focus on WwiseGlobal
 		UnityEditor.Selection.activeGameObject = WwiseGlobalGameObject;

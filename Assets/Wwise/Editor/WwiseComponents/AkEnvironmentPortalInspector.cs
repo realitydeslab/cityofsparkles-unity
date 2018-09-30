@@ -8,8 +8,8 @@
 [UnityEditor.CustomEditor(typeof(AkEnvironmentPortal))]
 public class AkEnvironmentPortalInspector : UnityEditor.Editor
 {
-	private readonly int[] m_selectedIndex = new int[2];
 	private AkEnvironmentPortal m_envPortal;
+	private readonly int[] m_selectedIndex = new int[2];
 
 	[UnityEditor.MenuItem("GameObject/Wwise/Environment Portal", false, 1)]
 	public static void CreatePortal()
@@ -35,7 +35,7 @@ public class AkEnvironmentPortalInspector : UnityEditor.Editor
 
 	public override void OnInspectorGUI()
 	{
-		using (new UnityEngine.GUILayout.VerticalScope("box"))
+		UnityEngine.GUILayout.BeginVertical("Box");
 		{
 			for (var i = 0; i < 2; i++)
 			{
@@ -44,10 +44,8 @@ public class AkEnvironmentPortalInspector : UnityEditor.Editor
 				for (var j = 0; j < labels.Length; j++)
 				{
 					if (m_envPortal.envList[i].list[j] != null)
-					{
 						labels[j] = j + 1 + ". " + GetEnvironmentName(m_envPortal.envList[i].list[j]) + " (" +
 						            m_envPortal.envList[i].list[j].name + ")";
-					}
 					else
 						m_envPortal.envList[i].list.RemoveAt(j);
 				}
@@ -59,10 +57,11 @@ public class AkEnvironmentPortalInspector : UnityEditor.Editor
 					: m_envPortal.envList[i].list[m_selectedIndex[i]];
 			}
 		}
+		UnityEngine.GUILayout.EndVertical();
 
 		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
-		using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
+		UnityEngine.GUILayout.BeginVertical("Box");
 		{
 			string[] axisLabels = { "X", "Y", "Z" };
 
@@ -88,6 +87,7 @@ public class AkEnvironmentPortalInspector : UnityEditor.Editor
 				FindOverlappingEnvironments();
 			}
 		}
+		UnityEngine.GUILayout.EndVertical();
 
 		AkGameObjectInspector.RigidbodyCheck(m_envPortal.gameObject);
 	}
@@ -97,10 +97,8 @@ public class AkEnvironmentPortalInspector : UnityEditor.Editor
 		for (var i = 0; i < AkWwiseProjectInfo.GetData().AuxBusWwu.Count; i++)
 		{
 			for (var j = 0; j < AkWwiseProjectInfo.GetData().AuxBusWwu[i].List.Count; j++)
-			{
 				if (in_env.GetAuxBusID() == (uint) AkWwiseProjectInfo.GetData().AuxBusWwu[i].List[j].ID)
 					return AkWwiseProjectInfo.GetData().AuxBusWwu[i].List[j].Name;
-			}
 		}
 
 		return string.Empty;

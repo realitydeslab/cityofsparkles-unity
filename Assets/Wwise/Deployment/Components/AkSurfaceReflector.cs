@@ -6,105 +6,57 @@
 [UnityEngine.RequireComponent(typeof(UnityEngine.MeshFilter))]
 public class AkSurfaceReflector : UnityEngine.MonoBehaviour
 {
-	[UnityEngine.Tooltip("All triangles of the component's mesh will be applied with this texture. The texture will change the filter parameters of the sound reflected from this component.")]
 	/// All triangles of the component's mesh will be applied with this texture. The texture will change the filter parameters of the sound reflected from this component.
 	public AK.Wwise.AcousticTexture AcousticTexture;
 
-	[UnityEngine.Header("Geometric Diffraction (Experimental)")]
-	[UnityEngine.Tooltip("Enable or disable geometric diffraction for this mesh.")]
-	/// Switch to enable or disable geometric diffraction for this mesh.
-	public bool EnableDiffraction = false;
-
-	[UnityEngine.Tooltip("Enable or disable geometric diffraction on boundary edges for this mesh.  Boundary edges are edges that are connected to only one triangle.")]
-	/// Switch to enable or disable geometric diffraction on boundary edges for this mesh.  Boundary edges are edges that are connected to only one triangle.
-	public bool EnableDiffractionOnBoundaryEdges = false;
-
 	private UnityEngine.MeshFilter MeshFilter;
-
-	public static ulong GetAkGeometrySetID(UnityEngine.MeshFilter meshFilter)
-	{
-		return (ulong)meshFilter.GetInstanceID();
-	}
 
 	/// <summary>
 	///     Sends the mesh filter's triangles and their acoustic texture to Spatial Audio
 	/// </summary>
 	/// <param name="acousticTexture"></param>
 	/// <param name="meshFilter"></param>
-	public static void AddGeometrySet(AK.Wwise.AcousticTexture acousticTexture, UnityEngine.MeshFilter meshFilter, bool enableDiffraction, bool enableDiffractionOnBoundaryEdges)
+	public static void AddGeometrySet(AK.Wwise.AcousticTexture acousticTexture, UnityEngine.MeshFilter meshFilter)
 	{
-		if (!AkSoundEngine.IsInitialized())
-			return;
-
 		if (meshFilter == null)
-			UnityEngine.Debug.Log("AddGeometrySet(): No mesh found!");
+			UnityEngine.Debug.Log(meshFilter.name + ": No mesh found!");
 		else
 		{
 			var mesh = meshFilter.sharedMesh;
 			var vertices = mesh.vertices;
 			var triangles = mesh.triangles;
 
-			// Remove duplicate vertices
-			var vertRemap = new int[vertices.Length];
-			var uniqueVerts = new System.Collections.Generic.List<UnityEngine.Vector3>();
-			var vertDict = new System.Collections.Generic.Dictionary<UnityEngine.Vector3, int>();
-
-			for (var v = 0; v < vertices.Length; ++v)
+			var count = mesh.triangles.Length / 3;
+			using (var triangleArray = new AkTriangleArray(count))
 			{
-				int vertIdx = 0;
-				if (!vertDict.TryGetValue(vertices[v], out vertIdx))
+				for (var i = 0; i < count; ++i)
 				{
-					vertIdx = uniqueVerts.Count;
-					uniqueVerts.Add(vertices[v]);
-					vertDict.Add(vertices[v], vertIdx);
-					vertRemap[v] = vertIdx;
-				}
-				else
-				{
-					vertRemap[v] = vertIdx;
-				}
-			}
-
-			int vertexCount = uniqueVerts.Count;
-
-			using (var surfaceArray = new AkAcousticSurfaceArray(1))
-			{
-				var surface = surfaceArray[0];
-				surface.textureID = (uint)acousticTexture.ID;
-				surface.reflectorChannelMask = unchecked((uint)-1);
-				surface.strName = meshFilter.gameObject.name;
-
-				using (var vertexArray = new AkVertexArray(vertexCount))
-				{
-					for (var v = 0; v < vertexCount; ++v)
+					using (var triangle = triangleArray.GetTriangle(i))
 					{
-						var point = meshFilter.transform.TransformPoint(uniqueVerts[v]);
-						using (var akVert = vertexArray[v])
-						{
-							akVert.X = point.x;
-							akVert.Y = point.y;
-							akVert.Z = point.z;
-						}
-					}
-					
-					var numTriangles = mesh.triangles.Length / 3;
-					using (var triangleArray = new AkTriangleArray(numTriangles))
-					{
-						for (var i = 0; i < numTriangles; ++i)
-						{
-							using (var triangle = triangleArray[i])
-							{
-								triangle.point0 = (ushort)vertRemap[triangles[3 * i + 0]];
-								triangle.point1 = (ushort)vertRemap[triangles[3 * i + 1]];
-								triangle.point2 = (ushort)vertRemap[triangles[3 * i + 2]];
-								triangle.surface = (ushort)0;
-							}
-						}
+						var point0 = meshFilter.transform.TransformPoint(vertices[triangles[3 * i + 0]]);
+						var point1 = meshFilter.transform.TransformPoint(vertices[triangles[3 * i + 1]]);
+						var point2 = meshFilter.transform.TransformPoint(vertices[triangles[3 * i + 2]]);
 
-					   
-						AkSoundEngine.SetGeometry(GetAkGeometrySetID(meshFilter), triangleArray, (uint)triangleArray.Count(), vertexArray, (uint)vertexArray.Count(), surfaceArray, (uint)surfaceArray.Count(), enableDiffraction, enableDiffractionOnBoundaryEdges);
+						triangle.point0.X = point0.x;
+						triangle.point0.Y = point0.y;
+						triangle.point0.Z = point0.z;
+
+						triangle.point1.X = point1.x;
+						triangle.point1.Y = point1.y;
+						triangle.point1.Z = point1.z;
+
+						triangle.point2.X = point2.x;
+						triangle.point2.Y = point2.y;
+						triangle.point2.Z = point2.z;
+
+						triangle.textureID = (uint) acousticTexture.ID;
+						triangle.reflectorChannelMask = unchecked((uint) -1);
+
+						triangle.strName = meshFilter.gameObject.name + "_" + i;
 					}
 				}
+
+				AkSoundEngine.SetGeometry((ulong) meshFilter.GetInstanceID(), triangleArray, (uint) count);
 			}
 		}
 	}
@@ -116,7 +68,7 @@ public class AkSurfaceReflector : UnityEngine.MonoBehaviour
 	public static void RemoveGeometrySet(UnityEngine.MeshFilter meshFilter)
 	{
 		if (meshFilter != null)
-			AkSoundEngine.RemoveGeometry(GetAkGeometrySetID(meshFilter));
+			AkSoundEngine.RemoveGeometry((ulong) meshFilter.GetInstanceID());
 	}
 
 	private void Awake()
@@ -126,45 +78,12 @@ public class AkSurfaceReflector : UnityEngine.MonoBehaviour
 
 	private void OnEnable()
 	{
-		AddGeometrySet(AcousticTexture, MeshFilter, EnableDiffraction, EnableDiffractionOnBoundaryEdges);
+		AddGeometrySet(AcousticTexture, MeshFilter);
 	}
 
 	private void OnDisable()
 	{
 		RemoveGeometrySet(MeshFilter);
 	}
-
-
-#if UNITY_EDITOR
-	[UnityEditor.CustomEditor(typeof(AkSurfaceReflector))]
-	[UnityEditor.CanEditMultipleObjects]
-	private class Editor : UnityEditor.Editor
-	{
-		private UnityEditor.SerializedProperty AcousticTexture;
-		private UnityEditor.SerializedProperty EnableDiffraction;
-		private UnityEditor.SerializedProperty EnableDiffractionOnBoundaryEdges;
-
-		public void OnEnable()
-		{
-			AcousticTexture = serializedObject.FindProperty("AcousticTexture");
-			EnableDiffraction = serializedObject.FindProperty("EnableDiffraction");
-			EnableDiffractionOnBoundaryEdges = serializedObject.FindProperty("EnableDiffractionOnBoundaryEdges");
-		}
-
-		public override void OnInspectorGUI()
-		{
-			serializedObject.Update();
-
-			UnityEditor.EditorGUILayout.PropertyField(AcousticTexture);
-
-			UnityEditor.EditorGUILayout.PropertyField(EnableDiffraction);
-			if (EnableDiffraction.boolValue)
-				UnityEditor.EditorGUILayout.PropertyField(EnableDiffractionOnBoundaryEdges);
-
-			serializedObject.ApplyModifiedProperties();
-		}
-	}
-#endif
-
 }
 #endif // #if ! (UNITY_DASHBOARD_WIDGET || UNITY_WEBPLAYER || UNITY_WII || UNITY_WIIU || UNITY_NACL || UNITY_FLASH || UNITY_BLACKBERRY) // Disable under unsupported platforms.

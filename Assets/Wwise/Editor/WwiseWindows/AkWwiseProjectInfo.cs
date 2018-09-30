@@ -45,17 +45,19 @@ public static class AkWwiseProjectInfo
 		return m_Data;
 	}
 
+
 	public static bool Populate()
 	{
-		var wwuBuilderChanged = AkWwiseWWUBuilder.Populate();
-		var xmlBuilderChanged = AkWwiseXMLBuilder.Populate();
-		if (wwuBuilderChanged || xmlBuilderChanged)
+		var bDirty = false;
+		if (AkWwisePicker.WwiseProjectFound)
 		{
-			UnityEditor.EditorUtility.SetDirty(GetData());
-			return true;
+			bDirty = AkWwiseWWUBuilder.Populate();
+			bDirty |= AkWwiseXMLBuilder.Populate();
+			if (bDirty)
+				UnityEditor.EditorUtility.SetDirty(GetData());
 		}
 
-		return false;
+		return bDirty;
 	}
 }
 #endif

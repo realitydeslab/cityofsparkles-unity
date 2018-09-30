@@ -25,8 +25,7 @@ public class AkEnvironmentInspector : AkBaseInspector
 		m_isDefault = serializedObject.FindProperty("isDefault");
 		m_excludeOthers = serializedObject.FindProperty("excludeOthers");
 
-		m_guidProperty = new UnityEditor.SerializedProperty[1];
-		m_guidProperty[0] = serializedObject.FindProperty("valueGuid.Array");
+		m_guidProperty = new[] { serializedObject.FindProperty("valueGuid.Array") };
 
 		//Needed by the base class to know which type of component its working with
 		m_typeName = "AuxBus";
@@ -42,7 +41,7 @@ public class AkEnvironmentInspector : AkBaseInspector
 
 		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
-		using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
+		UnityEditor.EditorGUILayout.BeginVertical("Box");
 		{
 			m_priority.intValue = UnityEditor.EditorGUILayout.IntField("Priority: ", m_priority.intValue);
 
@@ -58,6 +57,7 @@ public class AkEnvironmentInspector : AkBaseInspector
 			if (m_excludeOthers.boolValue)
 				m_isDefault.boolValue = false;
 		}
+		UnityEngine.GUILayout.EndVertical();
 
 		AkGameObjectInspector.RigidbodyCheck(m_AkEnvironment.gameObject);
 

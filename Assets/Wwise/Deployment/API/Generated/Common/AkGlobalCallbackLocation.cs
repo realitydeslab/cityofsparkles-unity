@@ -20,7 +20,6 @@ public enum AkGlobalCallbackLocation {
   AkGlobalCallbackLocation_End = (1 << 6),
   AkGlobalCallbackLocation_Term = (1 << 7),
   AkGlobalCallbackLocation_Monitor = (1 << 8),
-  AkGlobalCallbackLocation_MonitorRecap = (1 << 9),
-  AkGlobalCallbackLocation_Num = 10
+  AkGlobalCallbackLocation_Num = 9
 }
 #endif // #if ! (UNITY_DASHBOARD_WIDGET || UNITY_WEBPLAYER || UNITY_WII || UNITY_WIIU || UNITY_NACL || UNITY_FLASH || UNITY_BLACKBERRY) // Disable under unsupported platforms.

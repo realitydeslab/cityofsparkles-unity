@@ -1,4 +1,5 @@
 ﻿#if UNITY_2017_1_OR_NEWER
+
 [UnityEditor.CustomEditor(typeof(AkRTPCTrack))]
 public class AkRTPCTrackInspector : UnityEditor.Editor
 {
@@ -13,12 +14,13 @@ public class AkRTPCTrackInspector : UnityEditor.Editor
 	{
 		serializedObject.Update();
 
-		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
+		UnityEngine.GUILayout.Space(2);
 
-		using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
+		UnityEngine.GUILayout.BeginVertical("Box");
 		{
 			UnityEditor.EditorGUILayout.PropertyField(Parameter, new UnityEngine.GUIContent("Parameter: "));
 		}
+		UnityEngine.GUILayout.EndVertical();
 
 		serializedObject.ApplyModifiedProperties();
 	}

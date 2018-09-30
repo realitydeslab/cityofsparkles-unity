@@ -2,17 +2,24 @@ namespace AK.Wwise.Editor
 {
 	public abstract class BaseTypeDrawer : UnityEditor.PropertyDrawer
 	{
-		/// All components have 1 guid except switches and states which have 2. Index zero is value guid and index 1 is group guid
-		protected UnityEditor.SerializedProperty[] m_guidProperty;
+		private bool m_buttonWasPressed;
 
-		/// All components have 1 ID except switches and states which have 2. Index zero is ID and index 1 is groupID
-		protected UnityEditor.SerializedProperty[] m_IDProperty;
+		protected UnityEditor.SerializedProperty[]
+			m_guidProperty; //all components have 1 guid except switches and states which have 2. Index zero is value guid and index 1 is group guid
+
+		protected UnityEditor.SerializedProperty[]
+			m_IDProperty; //all components have 1 ID except switches and states which have 2. Index zero is ID and index 1 is groupID
 
 		protected AkWwiseProjectData.WwiseObjectType m_objectType;
+
+		private UnityEngine.Rect m_pickerPos;
+		private UnityEngine.Rect m_pressedPosition;
+		private UnityEditor.SerializedObject m_serializedObject;
 		protected string m_typeName;
 
 		public abstract string UpdateIds(System.Guid[] in_guid);
 		public abstract void SetupSerializedProperties(UnityEditor.SerializedProperty property);
+
 
 		private AkDragDropData GetAkDragDropData()
 		{
@@ -20,10 +27,8 @@ namespace AK.Wwise.Editor
 			return DDData != null && DDData.typeName.Equals(m_typeName) ? DDData : null;
 		}
 
-		private void HandleDragAndDrop(UnityEngine.Rect dropArea)
+		private void HandleDragAndDrop(UnityEngine.Event currentEvent, UnityEngine.Rect dropArea)
 		{
-			var currentEvent = UnityEngine.Event.current;
-
 			if (currentEvent.type == UnityEngine.EventType.DragExited)
 				UnityEditor.DragAndDrop.PrepareStartDrag();
 			else if (currentEvent.type == UnityEngine.EventType.DragUpdated ||
@@ -53,12 +58,11 @@ namespace AK.Wwise.Editor
 							{
 								if (m_guidProperty.Length > 1)
 									AkUtilities.SetByteArrayProperty(m_guidProperty[1], DDGroupData.groupGuid.ToByteArray());
-
 								if (m_IDProperty.Length > 1)
 									m_IDProperty[1].intValue = DDGroupData.groupID;
 							}
 
-							// needed for the undo operation to work
+							//needed for the undo operation to work
 							UnityEngine.GUIUtility.hotControl = 0;
 						}
 					}
@@ -87,6 +91,7 @@ namespace AK.Wwise.Editor
 			position = UnityEditor.EditorGUI.PrefixLabel(position,
 				UnityEngine.GUIUtility.GetControlID(UnityEngine.FocusType.Passive), label);
 
+			/************************************************Update Properties**************************************************/
 			var componentGuid = new System.Guid[m_guidProperty.Length];
 			for (var i = 0; i < componentGuid.Length; i++)
 			{
@@ -95,6 +100,9 @@ namespace AK.Wwise.Editor
 			}
 
 			var componentName = UpdateIds(componentGuid);
+			/*******************************************************************************************************************/
+
+			/********************************************Draw GUI***************************************************************/
 			var style = new UnityEngine.GUIStyle(UnityEngine.GUI.skin.button);
 			style.alignment = UnityEngine.TextAnchor.MiddleLeft;
 			style.fontStyle = UnityEngine.FontStyle.Normal;
@@ -104,21 +112,33 @@ namespace AK.Wwise.Editor
 
 			if (UnityEngine.GUI.Button(position, componentName, style))
 			{
-				new AkWwiseComponentPicker.PickerCreator
-				{
-					objectType = m_objectType,
-					guidProperty = m_guidProperty,
-					idProperty = m_IDProperty,
-					pickerPosition = AkUtilities.GetLastRectAbsolute(position),
-					serializedObject = property.serializedObject
-				};
+				m_pressedPosition = position;
+				m_buttonWasPressed = true;
 
-				AkWwiseComponentPicker.LastFocusedWindow = UnityEditor.EditorWindow.focusedWindow;
+				// We don't want to set object as dirty only because we clicked the button.
+				// It will be set as dirty if the wwise object has been changed by the tree view.
+				UnityEngine.GUI.changed = false;
 			}
 
-			HandleDragAndDrop(position);
+			var currentEvent = UnityEngine.Event.current;
+
+			if (currentEvent.type == UnityEngine.EventType.Repaint && m_buttonWasPressed && m_pressedPosition.Equals(position))
+			{
+				m_serializedObject = property.serializedObject;
+				m_pickerPos = AkUtilities.GetLastRectAbsolute(false);
+
+				UnityEditor.EditorApplication.delayCall += DelayCreateCall;
+				m_buttonWasPressed = false;
+			}
+
+			HandleDragAndDrop(currentEvent, position);
 
 			UnityEditor.EditorGUI.EndProperty();
+		}
+
+		private void DelayCreateCall()
+		{
+			AkWwiseComponentPicker.Create(m_objectType, m_guidProperty, m_IDProperty, m_serializedObject, m_pickerPos);
 		}
 	}
 }

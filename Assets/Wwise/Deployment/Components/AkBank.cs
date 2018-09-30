@@ -56,9 +56,6 @@ public class AkBank : AkUnityEventHandler
 	/// Loads the SoundBank
 	public override void HandleEvent(UnityEngine.GameObject in_gameObject)
 	{
-		if (string.IsNullOrEmpty(bankName))
-			return;
-
 		if (!loadAsynchronous)
 			AkBankManager.LoadBank(bankName, decodeBank, saveDecodedBank);
 		else
@@ -68,9 +65,6 @@ public class AkBank : AkUnityEventHandler
 	/// Unloads a SoundBank
 	public void UnloadBank(UnityEngine.GameObject in_gameObject)
 	{
-		if (string.IsNullOrEmpty(bankName))
-			return;
-
 		AkBankManager.UnloadBank(bankName);
 	}
 
@@ -86,6 +80,7 @@ public class AkBank : AkUnityEventHandler
 #endif
 
 		if (unloadTriggerList.Contains(DESTROY_TRIGGER_ID))
+
 			UnloadBank(null);
 	}
 }

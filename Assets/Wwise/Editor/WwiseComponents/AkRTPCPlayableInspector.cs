@@ -1,4 +1,6 @@
-﻿#if UNITY_EDITOR && UNITY_2017_1_OR_NEWER
+﻿#if UNITY_EDITOR
+
+#if UNITY_2017_1_OR_NEWER
 
 //////////////////////////////////////////////////////////////////////
 //
@@ -35,9 +37,9 @@ public class AkRTPCPlayableInspector : UnityEditor.Editor
 	{
 		serializedObject.Update();
 
-		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
+		UnityEngine.GUILayout.Space(2);
 
-		using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
+		UnityEngine.GUILayout.BeginVertical("Box");
 		{
 			if (setRTPCGlobally != null)
 			{
@@ -58,9 +60,9 @@ public class AkRTPCPlayableInspector : UnityEditor.Editor
 			}
 		}
 
+		UnityEngine.GUILayout.EndVertical();
 		if (Behaviour != null)
 			UnityEditor.EditorGUILayout.PropertyField(Behaviour, new UnityEngine.GUIContent("Animated Value: "), true);
-
 		if (playable != null && playable.OwningClip != null)
 		{
 			var componentName = GetRTPCName(new System.Guid(playable.Parameter.valueGuid));
@@ -85,4 +87,6 @@ public class AkRTPCPlayableInspector : UnityEditor.Editor
 	}
 }
 
-#endif //#if UNITY_EDITOR && UNITY_2017_1_OR_NEWER
+#endif //UNITY_2017_1_OR_NEWER
+
+#endif // #if UNITY_EDITOR

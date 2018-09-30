@@ -52,58 +52,56 @@ public class AkGameObjectInspector : UnityEditor.Editor
 		// Unity tries to construct a AkGameObjPositionOffsetData all the time. Need this ugly workaround
 		// to prevent it from doing this.
 		if (m_AkGameObject.m_positionOffsetData != null)
-		{
 			if (!m_AkGameObject.m_positionOffsetData.KeepMe)
 				m_AkGameObject.m_positionOffsetData = null;
-		}
 
 		var positionOffsetData = m_AkGameObject.m_positionOffsetData;
 		var positionOffset = UnityEngine.Vector3.zero;
 
 		UnityEditor.EditorGUI.BeginChangeCheck();
 
-		using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
+		UnityEngine.GUILayout.BeginVertical("Box");
+
+		var applyPosOffset = UnityEditor.EditorGUILayout.Toggle("Apply Position Offset:", positionOffsetData != null);
+
+		if (applyPosOffset != (positionOffsetData != null))
+			positionOffsetData = applyPosOffset ? new AkGameObjPositionOffsetData(true) : null;
+
+		if (positionOffsetData != null)
 		{
-			var applyPosOffset = UnityEditor.EditorGUILayout.Toggle("Apply Position Offset:", positionOffsetData != null);
+			positionOffset = UnityEditor.EditorGUILayout.Vector3Field("Position Offset", positionOffsetData.positionOffset);
 
-			if (applyPosOffset != (positionOffsetData != null))
-				positionOffsetData = applyPosOffset ? new AkGameObjPositionOffsetData(true) : null;
+			UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
-			if (positionOffsetData != null)
+			if (hideDefaultHandle)
 			{
-				positionOffset = UnityEditor.EditorGUILayout.Vector3Field("Position Offset", positionOffsetData.positionOffset);
-
-				UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
-
-				if (hideDefaultHandle)
+				if (UnityEngine.GUILayout.Button("Show Main Transform"))
 				{
-					if (UnityEngine.GUILayout.Button("Show Main Transform"))
-					{
-						hideDefaultHandle = false;
-						DefaultHandles.Hidden = hideDefaultHandle;
-					}
-				}
-				else if (UnityEngine.GUILayout.Button("Hide Main Transform"))
-				{
-					hideDefaultHandle = true;
+					hideDefaultHandle = false;
 					DefaultHandles.Hidden = hideDefaultHandle;
 				}
 			}
-			else if (hideDefaultHandle)
+			else if (UnityEngine.GUILayout.Button("Hide Main Transform"))
 			{
-				hideDefaultHandle = false;
+				hideDefaultHandle = true;
 				DefaultHandles.Hidden = hideDefaultHandle;
 			}
 		}
+		else if (hideDefaultHandle)
+		{
+			hideDefaultHandle = false;
+			DefaultHandles.Hidden = hideDefaultHandle;
+		}
+
+		UnityEngine.GUILayout.EndVertical();
 
 		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
-		var isEnvironmentAware = m_AkGameObject.isEnvironmentAware;
+		UnityEngine.GUILayout.BeginVertical("Box");
 
-		using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
-		{
-			isEnvironmentAware = UnityEditor.EditorGUILayout.Toggle("Environment Aware:", isEnvironmentAware);
-		}
+		var isEnvironmentAware = UnityEditor.EditorGUILayout.Toggle("Environment Aware:", m_AkGameObject.isEnvironmentAware);
+
+		UnityEngine.GUILayout.EndVertical();
 
 		if (UnityEditor.EditorGUI.EndChangeCheck())
 		{
@@ -122,13 +120,14 @@ public class AkGameObjectInspector : UnityEditor.Editor
 
 		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
-		using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
+		UnityEngine.GUILayout.BeginVertical("Box");
 		{
 			UnityEditor.EditorGUI.BeginChangeCheck();
 			UnityEditor.EditorGUILayout.PropertyField(listeners);
 			if (UnityEditor.EditorGUI.EndChangeCheck())
 				serializedObject.ApplyModifiedProperties();
 		}
+		UnityEngine.GUILayout.EndVertical();
 	}
 
 	public static void RigidbodyCheck(UnityEngine.GameObject gameObject)
@@ -137,19 +136,22 @@ public class AkGameObjectInspector : UnityEditor.Editor
 		{
 			UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
-			using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
-			{
-				UnityEditor.EditorGUILayout.HelpBox(
-					"Interactions between AkGameObj and AkEnvironment or AkRoom require a Rigidbody component on the object or the environment/room.",
-					UnityEditor.MessageType.Warning);
+			UnityEngine.GUILayout.BeginVertical("Box");
 
-				if (UnityEngine.GUILayout.Button("Add Rigidbody"))
-				{
-					var rb = UnityEditor.Undo.AddComponent<UnityEngine.Rigidbody>(gameObject);
-					rb.useGravity = false;
-					rb.isKinematic = true;
-				}
+			var style = new UnityEngine.GUIStyle();
+			style.normal.textColor = UnityEngine.Color.red;
+			style.wordWrap = true;
+			UnityEngine.GUILayout.Label(
+				"Interactions between AkGameObj and AkEnvironment or AkRoom require a Rigidbody component on the object or the environment/room.",
+				style);
+			if (UnityEngine.GUILayout.Button("Add Rigidbody"))
+			{
+				var rb = UnityEditor.Undo.AddComponent<UnityEngine.Rigidbody>(gameObject);
+				rb.useGravity = false;
+				rb.isKinematic = true;
 			}
+
+			UnityEngine.GUILayout.EndVertical();
 		}
 	}
 

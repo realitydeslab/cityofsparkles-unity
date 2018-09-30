@@ -40,9 +40,13 @@ namespace AK.Wwise.Editor
 			m_objectType = AkWwiseProjectData.WwiseObjectType.SWITCH;
 			m_typeName = "Switch";
 
-			m_IDProperty = new[] { property.FindPropertyRelative("ID"), property.FindPropertyRelative("groupID") };
-			m_guidProperty = new[]
-				{ property.FindPropertyRelative("valueGuid.Array"), property.FindPropertyRelative("groupGuid.Array") };
+			m_IDProperty = new UnityEditor.SerializedProperty[2];
+			m_IDProperty[0] = property.FindPropertyRelative("ID");
+			m_IDProperty[1] = property.FindPropertyRelative("groupID");
+
+			m_guidProperty = new UnityEditor.SerializedProperty[2];
+			m_guidProperty[0] = property.FindPropertyRelative("valueGuid.Array");
+			m_guidProperty[1] = property.FindPropertyRelative("groupGuid.Array");
 		}
 	}
 }
