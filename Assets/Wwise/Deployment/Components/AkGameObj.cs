@@ -48,13 +48,11 @@ public class AkGameObj : UnityEngine.MonoBehaviour
 
 	private bool isRegistered = false;
 
-	// If AkGameObj.AddListener() was used, consider using AkAudioListener.StartListeningToEmitter() instead.
 	internal void AddListener(AkAudioListener listener)
 	{
 		m_listeners.Add(listener);
 	}
 
-	// If AkGameObj.RemoveListener() was used, consider using AkAudioListener.StopListeningToEmitter() instead.
 	internal void RemoveListener(AkAudioListener listener)
 	{
 		m_listeners.Remove(listener);

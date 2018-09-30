@@ -47,7 +47,7 @@ public class AkMemBankLoader : UnityEngine.MonoBehaviour
 	public void LoadLocalizedBank(string in_bankFilename)
 	{
 		var bankPath = "file://" + System.IO.Path.Combine(
-			               System.IO.Path.Combine(AkBasePathGetter.GetPlatformBasePath(), AkInitializer.GetCurrentLanguage()),
+			               System.IO.Path.Combine(AkBasePathGetter.GetPlatformBasePath(), AkSoundEngine.GetCurrentLanguage()),
 			               in_bankFilename);
 		DoLoadBank(bankPath);
 	}

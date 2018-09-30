@@ -60,18 +60,17 @@ public class AkAmbientInspector : AkEventInspector
 	{
 		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
-		UnityEngine.GUILayout.BeginHorizontal();
-
-		if (UnityEngine.GUILayout.Button("Add Point"))
-			m_AkAmbient.multiPositionArray.Add(m_AkAmbient.transform.InverseTransformPoint(m_AkAmbient.transform.position));
-
-		if (curPointIndex >= 0 && UnityEngine.GUILayout.Button("Delete Point"))
+		using (new UnityEngine.GUILayout.HorizontalScope())
 		{
-			m_AkAmbient.multiPositionArray.RemoveAt(curPointIndex);
-			curPointIndex = m_AkAmbient.multiPositionArray.Count - 1;
-		}
+			if (UnityEngine.GUILayout.Button("Add Point"))
+				m_AkAmbient.multiPositionArray.Add(m_AkAmbient.transform.InverseTransformPoint(m_AkAmbient.transform.position));
 
-		UnityEngine.GUILayout.EndHorizontal();
+			if (curPointIndex >= 0 && UnityEngine.GUILayout.Button("Delete Point"))
+			{
+				m_AkAmbient.multiPositionArray.RemoveAt(curPointIndex);
+				curPointIndex = m_AkAmbient.multiPositionArray.Count - 1;
+			}
+		}
 
 		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
@@ -92,7 +91,7 @@ public class AkAmbientInspector : AkEventInspector
 
 	public override void OnChildInspectorGUI()
 	{
-		//Save trigger mask to know when it chages
+		//Save trigger mask to know when it changes
 		triggerList = m_AkAmbient.triggerList;
 
 		base.OnChildInspectorGUI();
@@ -101,18 +100,17 @@ public class AkAmbientInspector : AkEventInspector
 
 		serializedObject.Update();
 
-		UnityEngine.GUILayout.BeginVertical("Box");
-
 		var type = m_AkAmbient.multiPositionTypeLabel;
 
-		UnityEditor.EditorGUILayout.PropertyField(multiPositionType, new UnityEngine.GUIContent("Position Type: "));
+		using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
+		{
+			UnityEditor.EditorGUILayout.PropertyField(multiPositionType, new UnityEngine.GUIContent("Position Type: "));
 
-		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
+			UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
-		currentAttSphereOp =
-			(AttenuationSphereOptions) UnityEditor.EditorGUILayout.EnumPopup("Show Attenuation Sphere: ", currentAttSphereOp);
-
-		UnityEngine.GUILayout.EndVertical();
+			currentAttSphereOp =
+				(AttenuationSphereOptions) UnityEditor.EditorGUILayout.EnumPopup("Show Attenuation Sphere: ", currentAttSphereOp);
+		}
 
 		//Save multi-position type to know if it has changed
 		var multiPosType = m_AkAmbient.multiPositionTypeLabel;
@@ -120,23 +118,13 @@ public class AkAmbientInspector : AkEventInspector
 		serializedObject.ApplyModifiedProperties();
 
 		if (m_AkAmbient.multiPositionTypeLabel == MultiPositionTypeLabel.MultiPosition_Mode)
-		{
-			//Here we make sure all AkAmbients that are in multi-position mode and that have the same event also have the same trigger
 			UpdateTriggers(multiPosType);
-		}
 
 		if (UnityEngine.GUI.changed)
 		{
-			if (type != m_AkAmbient.multiPositionTypeLabel)
-			{
-				if (m_AkAmbient.multiPositionTypeLabel != MultiPositionTypeLabel.Large_Mode)
-				{
-					m_AkAmbient.multiPositionArray.Clear();
-
-					// TODO: I need a good method to update the array in edit mode
-					//m_AkAmbient.BuildMultiDirectionArray();
-				}
-			}
+			if (type != m_AkAmbient.multiPositionTypeLabel &&
+			    m_AkAmbient.multiPositionTypeLabel != MultiPositionTypeLabel.Large_Mode)
+				m_AkAmbient.multiPositionArray.Clear();
 		}
 	}
 
@@ -188,9 +176,11 @@ public class AkAmbientInspector : AkEventInspector
 	private void SetMultiPosTrigger(AkAmbient[] akAmbients)
 	{
 		for (var i = 0; i < akAmbients.Length; i++)
+		{
 			if (akAmbients[i].multiPositionTypeLabel == MultiPositionTypeLabel.MultiPosition_Mode &&
 			    akAmbients[i].eventID == m_AkAmbient.eventID)
 				akAmbients[i].triggerList = m_AkAmbient.triggerList;
+		}
 	}
 
 	private void OnSceneGUI()
@@ -321,19 +311,18 @@ public class AkAmbientInspector : AkEventInspector
 #endif
 		}
 		else
-		{
 			DrawDiscs(UnityEngine.Vector3.up, UnityEngine.Vector3.down, 6, in_position, in_radius);
-		}
 	}
 
 	private void DrawDiscs(UnityEngine.Vector3 in_startNormal, UnityEngine.Vector3 in_endNormal, uint in_nbDiscs,
 		UnityEngine.Vector3 in_position, float in_radius)
 	{
 		var f = 1.0f / in_nbDiscs;
-
 		for (var i = 0; i < in_nbDiscs; i++)
+		{
 			UnityEditor.Handles.DrawWireDisc(in_position, UnityEngine.Vector3.Slerp(in_startNormal, in_endNormal, f * i),
 				in_radius);
+		}
 	}
 
 	public static void PopulateMaxAttenuation()
@@ -342,7 +331,6 @@ public class AkAmbientInspector : AkEventInspector
 		{
 			AkWwiseXMLBuilder.Populate();
 			populateSoundBank = false;
-
 			UnityEditor.SceneView.RepaintAll();
 		}
 	}

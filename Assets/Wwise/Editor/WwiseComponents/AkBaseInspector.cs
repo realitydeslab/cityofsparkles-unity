@@ -15,7 +15,6 @@ public abstract class AkBaseInspector : UnityEditor.Editor
 
 	protected bool m_isInDropArea = false; //is the mouse on top of the drop area(the button)	
 	protected AkWwiseProjectData.WwiseObjectType m_objectType;
-	private UnityEngine.Rect m_pickerPos;
 	protected string m_typeName;
 
 	public abstract void OnChildInspectorGUI();
@@ -29,26 +28,26 @@ public abstract class AkBaseInspector : UnityEditor.Editor
 
 	private void HandleDragAndDrop(UnityEngine.Event currentEvent, UnityEngine.Rect dropArea)
 	{
-		if (currentEvent.type == UnityEngine.EventType.DragExited)
+		switch (currentEvent.type)
 		{
-			// clear dragged data
-			UnityEditor.DragAndDrop.PrepareStartDrag();
-		}
-		else if (currentEvent.type == UnityEngine.EventType.DragUpdated ||
-		         currentEvent.type == UnityEngine.EventType.DragPerform)
-		{
-			if (dropArea.Contains(currentEvent.mousePosition))
-			{
-				var DDData = GetAkDragDropData();
-
-				if (currentEvent.type == UnityEngine.EventType.DragUpdated)
+			case UnityEngine.EventType.DragUpdated:
+				if (dropArea.Contains(currentEvent.mousePosition))
+				{
+					var DDData = GetAkDragDropData();
 					UnityEditor.DragAndDrop.visualMode = DDData != null
 						? UnityEditor.DragAndDropVisualMode.Link
 						: UnityEditor.DragAndDropVisualMode.Rejected;
-				else
-				{
-					UnityEditor.DragAndDrop.AcceptDrag();
+					currentEvent.Use();
+				}
 
+				break;
+
+			case UnityEngine.EventType.DragPerform:
+				if (dropArea.Contains(currentEvent.mousePosition))
+				{
+					var DDData = GetAkDragDropData();
+
+					UnityEditor.DragAndDrop.AcceptDrag();
 					if (DDData != null)
 					{
 						AkUtilities.SetByteArrayProperty(m_guidProperty[0], DDData.guid.ToByteArray());
@@ -60,10 +59,16 @@ public abstract class AkBaseInspector : UnityEditor.Editor
 						//needed for the undo operation to work
 						UnityEngine.GUIUtility.hotControl = 0;
 					}
+
+					currentEvent.Use();
 				}
 
-				currentEvent.Use();
-			}
+				break;
+
+			case UnityEngine.EventType.DragExited:
+				// clear dragged data
+				UnityEditor.DragAndDrop.PrepareStartDrag();
+				break;
 		}
 	}
 
@@ -80,21 +85,30 @@ public abstract class AkBaseInspector : UnityEditor.Editor
 		HandleDragAndDrop(currentEvent, m_dropAreaRelativePos);
 
 		/************************************************Update Properties**************************************************/
-		var componentGuid = new System.Guid[m_guidProperty.Length];
-		for (var i = 0; i < componentGuid.Length; i++)
+		string componentName = "---";
+
+		var hasMultipleDifferentValues = false;
+		for (var i = 0; i < m_guidProperty.Length; i++)
+			hasMultipleDifferentValues = hasMultipleDifferentValues || m_guidProperty[i].hasMultipleDifferentValues;
+
+		if (!hasMultipleDifferentValues)
 		{
-			var guidBytes = AkUtilities.GetByteArrayProperty(m_guidProperty[i]);
-			componentGuid[i] = guidBytes == null ? System.Guid.Empty : new System.Guid(guidBytes);
+			var componentGuid = new System.Guid[m_guidProperty.Length];
+			for (var i = 0; i < componentGuid.Length; i++)
+			{
+				var guidBytes = AkUtilities.GetByteArrayProperty(m_guidProperty[i]);
+				componentGuid[i] = guidBytes == null ? System.Guid.Empty : new System.Guid(guidBytes);
+			}
+			componentName = UpdateIds(componentGuid);
 		}
 
-		var componentName = UpdateIds(componentGuid);
 		/*******************************************************************************************************************/
 
 		/********************************************Draw GUI***************************************************************/
 
 		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
-		UnityEngine.GUILayout.BeginHorizontal("box");
+		using (new UnityEngine.GUILayout.HorizontalScope("box"))
 		{
 			float inspectorWidth = UnityEngine.Screen.width - UnityEngine.GUI.skin.box.margin.left -
 			                       UnityEngine.GUI.skin.box.margin.right - 19;
@@ -108,7 +122,7 @@ public abstract class AkBaseInspector : UnityEditor.Editor
 				style.normal.textColor = UnityEngine.Color.red;
 			}
 
-			if (UnityEngine.GUILayout.Button(componentName, style,
+			if (UnityEngine.GUILayout.Button(new UnityEngine.GUIContent(componentName, hasMultipleDifferentValues ? "Mixed Values" : ""), style,
 				UnityEngine.GUILayout.MaxWidth(inspectorWidth * 0.6f - UnityEngine.GUI.skin.box.margin.right)))
 			{
 				m_buttonWasPressed = true;
@@ -125,23 +139,24 @@ public abstract class AkBaseInspector : UnityEditor.Editor
 
 				if (m_buttonWasPressed)
 				{
-					m_pickerPos = AkUtilities.GetLastRectAbsolute();
-					UnityEditor.EditorApplication.delayCall += DelayCreateCall;
 					m_buttonWasPressed = false;
+
+					new AkWwiseComponentPicker.PickerCreator
+					{
+						objectType = m_objectType,
+						guidProperty = m_guidProperty,
+						idProperty = null,
+						pickerPosition = AkUtilities.GetLastRectAbsolute(UnityEngine.GUILayoutUtility.GetLastRect()),
+						serializedObject = serializedObject
+					};
 				}
 			}
 		}
-		UnityEngine.GUILayout.EndHorizontal();
 
 		/***********************************************************************************************************************/
 
 		if (UnityEngine.GUI.changed)
 			UnityEditor.EditorUtility.SetDirty(serializedObject.targetObject);
-	}
-
-	private void DelayCreateCall()
-	{
-		AkWwiseComponentPicker.Create(m_objectType, m_guidProperty, null, serializedObject, m_pickerPos);
 	}
 }
 

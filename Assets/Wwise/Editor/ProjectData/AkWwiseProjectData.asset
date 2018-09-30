@@ -3,24 +3,29 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62ecbc158d37a754e8050495c0858c71, type: 3}
   m_Name: AkWwiseProjectData
   m_EditorClassIdentifier: 
+  autoPopulateEnabled: 1
+  CurrentPluginConfig: 
+  m_lastPopulateTimePart2: 0
+  m_lastPopulateTimePsrt1: 0
   AcousticTextureWwu:
   - Guid: '{2D8B2DBA-226C-4ABA-8574-18ECFBABF366}'
-    m_lastTimePart2: -1999263725
-    m_lastTimePsrt1: 1012181440
+    m_lastTimePart2: -1999231378
+    m_lastTimePsrt1: -525221330
     ParentPhysicalPath: 
     PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
     List: []
   - Guid: '{463D666B-3CA8-4FA5-8B4A-5FEF12B883F6}'
-    m_lastTimePart2: -1999262127
-    m_lastTimePsrt1: 236977945
+    m_lastTimePart2: -1999231378
+    m_lastTimePsrt1: -525171474
     ParentPhysicalPath: 
     PhysicalPath: Virtual Acoustics\Factory Reflect Acoustic Textures.wwu
     List:
@@ -178,24 +183,23 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: Wood_Deep
         ObjectType: 15
-  autoPopulateEnabled: 1
   AuxBusWwu:
   - Guid: '{C9596F7C-12C3-41BF-A2ED-F59F837E23EA}'
-    m_lastTimePart2: -1999263725
-    m_lastTimePsrt1: 1011571050
+    m_lastTimePart2: -1999231304
+    m_lastTimePsrt1: -1692840479
     ParentPhysicalPath: 
     PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     List: []
   BankWwu:
   - Guid: '{07814327-4FFD-4BEB-A7E1-408FAC7E3EFD}'
-    m_lastTimePart2: -1999263725
-    m_lastTimePsrt1: 1013751092
+    m_lastTimePart2: -1999231378
+    m_lastTimePsrt1: -526061122
     ParentPhysicalPath: 
     PhysicalPath: SoundBanks\Default Work Unit.wwu
     List: []
   - Guid: '{09551D7C-159F-4201-9959-DCF42C4BFF86}'
-    m_lastTimePart2: -1999263725
-    m_lastTimePsrt1: 1013786410
+    m_lastTimePart2: -1999231378
+    m_lastTimePsrt1: -526521495
     ParentPhysicalPath: 
     PhysicalPath: SoundBanks\Test Work  Unit.wwu
     List:
@@ -208,14 +212,10 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: TestSoundBank
         ObjectType: 7
-  basePath: Audio\GeneratedSoundBanks
-  callbackManagerBufferSize: 4
-  CurrentPluginConfig: 
-  defaultPoolSize: 4096
   EventWwu:
   - Guid: '{FFFCA8D8-975B-4702-9422-7C96AED5C353}'
-    m_lastTimePart2: -1999263705
-    m_lastTimePsrt1: -1721864710
+    m_lastTimePart2: -1999231378
+    m_lastTimePsrt1: -526261497
     ParentPhysicalPath: 
     PhysicalPath: Events\Default Work Unit.wwu
     List:
@@ -267,6 +267,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - Guid: 77261627ae2dde43a797d2977f6e27c0
+      ID: -1818914931
+      Name: Play_TweetRevealCommon
+      Path: Default Work Unit\Play_TweetRevealCommon
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Play_TweetRevealCommon
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - Guid: 60efd113c264d54c9bb3bf9710984147
       ID: 914952687
       Name: Play_TwitterBgm
@@ -279,9 +291,21 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - Guid: 8d64e3687e6df0448acfff30b721099d
+      ID: -1134344142
+      Name: Silent
+      Path: Default Work Unit\Silent
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Silent
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
   - Guid: '{4D783F1E-0522-43AE-BC17-5DDAE5328E64}'
-    m_lastTimePart2: -1999262126
-    m_lastTimePsrt1: -135371759
+    m_lastTimePart2: -1999231378
+    m_lastTimePsrt1: -526431190
     ParentPhysicalPath: 
     PhysicalPath: Events\Test Work Unit.wwu
     List:
@@ -321,6 +345,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - Guid: fd421f8d5f96b14b9fbfd95f087865c4
+      ID: 973706497
+      Name: Play_StoryBGM
+      Path: Test Work Unit\Play_StoryBGM
+      PathAndIcons:
+      - ElementName: Test Work Unit
+        ObjectType: 12
+      - ElementName: Play_StoryBGM
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - Guid: 4f585536c74d1e45a8ce87d4f4985e86
       ID: 1993745496
       Name: Play_Twist_BGM
@@ -347,24 +383,40 @@ MonoBehaviour:
       minDuration: 0
   ExpandedItems:
   - /ParticleCityWwise
-  - /ParticleCityWwise/Events
-  - /ParticleCityWwise/Events/Default Work Unit
-  - /ParticleCityWwise/Events/Test Work Unit
-  - /ParticleCityWwise/SoundBanks
-  - /ParticleCityWwise/SoundBanks/Test Work  Unit
-  language: English(US)
-  lowerPoolSize: 2048
-  m_lastPopulateTimePart2: 0
-  m_lastPopulateTimePsrt1: 0
-  memoryCutoffThreshold: 0.95
-  preparePoolSize: 0
   RtpcWwu:
   - Guid: '{2AAED00D-10BE-4038-B5CE-D538015A257E}'
-    m_lastTimePart2: -1999262127
-    m_lastTimePsrt1: 236662946
+    m_lastTimePart2: -1999231378
+    m_lastTimePsrt1: -526371265
     ParentPhysicalPath: 
     PhysicalPath: Game Parameters\Default Work Unit.wwu
     List:
+    - Guid: 6a2765008404c2449c1d5f8313c9c2e9
+      ID: 2095365754
+      Name: AccumulatedForce
+      Path: Default Work Unit\AccumulatedForce
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: AccumulatedForce
+        ObjectType: 13
+    - Guid: a91079e2b69ad84a8ae1aaa6ae248133
+      ID: 1551159691
+      Name: Density
+      Path: Default Work Unit\Density
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Density
+        ObjectType: 13
+    - Guid: 49792fd89c6e1c429d2b7afd4668b8f9
+      ID: 749878685
+      Name: DistanceToPOI
+      Path: Default Work Unit\DistanceToPOI
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: DistanceToPOI
+        ObjectType: 13
     - Guid: 204c8a3d1fe14b4482df76f828d51a65
       ID: -1376955947
       Name: MasterVolume
@@ -373,6 +425,15 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
       - ElementName: MasterVolume
+        ObjectType: 13
+    - Guid: 2733208813d5d74e9e4f6ae5c2a79b06
+      ID: -821376635
+      Name: MixInRatio
+      Path: Default Work Unit\MixInRatio
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MixInRatio
         ObjectType: 13
     - Guid: 30cc7b9ef0df7345b33b7e236ec439db
       ID: 1059072165
@@ -383,10 +444,28 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: SentimentRatio
         ObjectType: 13
+    - Guid: 305a2eb10034f841948e05984ea2a58a
+      ID: 171889219
+      Name: TweetSentiment
+      Path: Default Work Unit\TweetSentiment
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TweetSentiment
+        ObjectType: 13
+    - Guid: 9fe3df6af0cc7649b9399d5d210d742d
+      ID: 946993767
+      Name: TweetWordsLength
+      Path: Default Work Unit\TweetWordsLength
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TweetWordsLength
+        ObjectType: 13
   StateWwu:
   - Guid: '{39AEC1A8-1711-456F-A34E-CE5BB56A5C1B}'
-    m_lastTimePart2: -1999263725
-    m_lastTimePsrt1: 1014299453
+    m_lastTimePart2: -1999231378
+    m_lastTimePsrt1: -526911504
     ParentPhysicalPath: 
     PhysicalPath: States\Default Work Unit.wwu
     List:
@@ -415,9 +494,50 @@ MonoBehaviour:
       - Negative
       - None
       - Positive
+    - Guid: 23e5a9e0a159a541ad4ab15973d126e1
+      ID: 1063701865
+      Name: Stage
+      Path: Default Work Unit\Stage
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Stage
+        ObjectType: 9
+      ValueGuids:
+      - bytes: 40ef9d5029f92b4188b85e30c9371f7e
+      - bytes: 2604bc3ae62394409053e08ef24b296b
+      - bytes: c0d77b9fdf69c64aab3685161726b5ad
+      - bytes: eb8616345030be4d9ad5a51eb177e52a
+      - bytes: 45b315f9c341fb4faea9cee1ddcf8a87
+      - bytes: 05a7db6ba81e98449f1bcd86d05e5f43
+      - bytes: dcce96a9a150ea4aac4025bf7cbb7c83
+      ValueIcons:
+      - ElementName: FinalSpawn
+        ObjectType: 8
+      - ElementName: First
+        ObjectType: 8
+      - ElementName: InitialDark
+        ObjectType: 8
+      - ElementName: Intro
+        ObjectType: 8
+      - ElementName: Last
+        ObjectType: 8
+      - ElementName: None
+        ObjectType: 8
+      - ElementName: Twist
+        ObjectType: 8
+      valueIDs: 4833195b79da833bbfe44ac329c71543e554341ddb3ba32c82b0ef1a
+      values:
+      - FinalSpawn
+      - First
+      - InitialDark
+      - Intro
+      - Last
+      - None
+      - Twist
   - Guid: '{9AB6FDDF-DE70-4485-853B-C78B05B013E4}'
-    m_lastTimePart2: -1999263725
-    m_lastTimePsrt1: 1014186248
+    m_lastTimePart2: -1999231378
+    m_lastTimePsrt1: -525721512
     ParentPhysicalPath: 
     PhysicalPath: States\Test Work Unit.wwu
     List:
@@ -454,18 +574,322 @@ MonoBehaviour:
       - None
       - Sad
       - Wish
-  streamingPoolSize: 1024
   SwitchWwu:
   - Guid: '{B6A29A65-8FB6-4DDE-B4BC-BA3979138E98}'
-    m_lastTimePart2: -1999263725
-    m_lastTimePsrt1: 1013221405
+    m_lastTimePart2: -1999231378
+    m_lastTimePsrt1: -526861471
     ParentPhysicalPath: 
     PhysicalPath: Switches\Default Work Unit.wwu
-    List: []
+    List:
+    - Guid: 068adfff9a4afe48b256fb77c0a460ca
+      ID: 627876232
+      Name: TR1
+      Path: Default Work Unit\TrackRandomizer\TR1
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TrackRandomizer
+        ObjectType: 4
+      - ElementName: TR1
+        ObjectType: 11
+      ValueGuids:
+      - bytes: 9a31deb7de37594ab83dd69d669d7f67
+      - bytes: ce85181454d775409d8e1fa7b553c307
+      ValueIcons:
+      - ElementName: Disabled
+        ObjectType: 10
+      - ElementName: Enabled
+        ObjectType: 10
+      valueIDs: 5538a0c14cbfcbf8
+      values:
+      - Disabled
+      - Enabled
+    - Guid: 2e567b0bcecf064cb19fdd9a255ae322
+      ID: 1912752424
+      Name: TR10
+      Path: Default Work Unit\TrackRandomizer\TR10
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TrackRandomizer
+        ObjectType: 4
+      - ElementName: TR10
+        ObjectType: 11
+      ValueGuids:
+      - bytes: f7ab27e1ce8f0d4aa46ea9c174f323ee
+      - bytes: 37428860374219409ce301006877e871
+      ValueIcons:
+      - ElementName: Disabled
+        ObjectType: 10
+      - ElementName: Enabled
+        ObjectType: 10
+      valueIDs: 5538a0c14cbfcbf8
+      values:
+      - Disabled
+      - Enabled
+    - Guid: 46db634e6852194a8ea5b0a12f57c9f4
+      ID: 1912752425
+      Name: TR11
+      Path: Default Work Unit\TrackRandomizer\TR11
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TrackRandomizer
+        ObjectType: 4
+      - ElementName: TR11
+        ObjectType: 11
+      ValueGuids:
+      - bytes: 34dfdd1b2b94994ba1ddaf87de14c9cc
+      - bytes: 8ed447d89f900840af39887807fe06c7
+      ValueIcons:
+      - ElementName: Disabled
+        ObjectType: 10
+      - ElementName: Enabled
+        ObjectType: 10
+      valueIDs: 5538a0c14cbfcbf8
+      values:
+      - Disabled
+      - Enabled
+    - Guid: 4d0dd003af50024bb18bbbaa3d4d37ea
+      ID: 1912752426
+      Name: TR12
+      Path: Default Work Unit\TrackRandomizer\TR12
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TrackRandomizer
+        ObjectType: 4
+      - ElementName: TR12
+        ObjectType: 11
+      ValueGuids:
+      - bytes: 31de0ace051fe14cbfc7c76d48a23255
+      - bytes: da5f50c9160c964d93dd00ecfd12d13c
+      ValueIcons:
+      - ElementName: Disabled
+        ObjectType: 10
+      - ElementName: Enabled
+        ObjectType: 10
+      valueIDs: 5538a0c14cbfcbf8
+      values:
+      - Disabled
+      - Enabled
+    - Guid: 0bea3adb3dd25d48959bf5fc77eda4f8
+      ID: 627876235
+      Name: TR2
+      Path: Default Work Unit\TrackRandomizer\TR2
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TrackRandomizer
+        ObjectType: 4
+      - ElementName: TR2
+        ObjectType: 11
+      ValueGuids:
+      - bytes: ec07a990c98ead4abf269c1cb1100eaa
+      - bytes: 45f6cbf1c72cee41879640cd1e243ed0
+      ValueIcons:
+      - ElementName: Disabled
+        ObjectType: 10
+      - ElementName: Enabled
+        ObjectType: 10
+      valueIDs: 5538a0c14cbfcbf8
+      values:
+      - Disabled
+      - Enabled
+    - Guid: 64214f34691c9d46afc7af772c16aabe
+      ID: 627876234
+      Name: TR3
+      Path: Default Work Unit\TrackRandomizer\TR3
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TrackRandomizer
+        ObjectType: 4
+      - ElementName: TR3
+        ObjectType: 11
+      ValueGuids:
+      - bytes: 0b4471338dab19418bbccf63e7280aee
+      - bytes: c8ed44cf3d9b4049b6125250ded2a2ec
+      ValueIcons:
+      - ElementName: Disabled
+        ObjectType: 10
+      - ElementName: Enabled
+        ObjectType: 10
+      valueIDs: 5538a0c14cbfcbf8
+      values:
+      - Disabled
+      - Enabled
+    - Guid: 4cfdbf8ebf2edc4481bcb270371f7587
+      ID: 627876237
+      Name: TR4
+      Path: Default Work Unit\TrackRandomizer\TR4
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TrackRandomizer
+        ObjectType: 4
+      - ElementName: TR4
+        ObjectType: 11
+      ValueGuids:
+      - bytes: 4be7025b38516741b87a10eefbb7e7cd
+      - bytes: 0a3d99e3d1a6b8438336291540ffead7
+      ValueIcons:
+      - ElementName: Disabled
+        ObjectType: 10
+      - ElementName: Enabled
+        ObjectType: 10
+      valueIDs: 5538a0c14cbfcbf8
+      values:
+      - Disabled
+      - Enabled
+    - Guid: 2cf16a87b2689c45b6e133842a7f08af
+      ID: 627876236
+      Name: TR5
+      Path: Default Work Unit\TrackRandomizer\TR5
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TrackRandomizer
+        ObjectType: 4
+      - ElementName: TR5
+        ObjectType: 11
+      ValueGuids:
+      - bytes: 84c8e4bdb61def4b9b2f92fbe6287537
+      - bytes: cfae1ba4328e4f4db7e895fbe7af93e9
+      ValueIcons:
+      - ElementName: Disabled
+        ObjectType: 10
+      - ElementName: Enabled
+        ObjectType: 10
+      valueIDs: 5538a0c14cbfcbf8
+      values:
+      - Disabled
+      - Enabled
+    - Guid: 3f1620f3fd472f4fa7dfdc2c4dfd3775
+      ID: 627876239
+      Name: TR6
+      Path: Default Work Unit\TrackRandomizer\TR6
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TrackRandomizer
+        ObjectType: 4
+      - ElementName: TR6
+        ObjectType: 11
+      ValueGuids:
+      - bytes: eecda5436a03bf45b3135c7d5a49c295
+      - bytes: 30641d70f0f7bf46a700ba9ae7a40b14
+      ValueIcons:
+      - ElementName: Disabled
+        ObjectType: 10
+      - ElementName: Enabled
+        ObjectType: 10
+      valueIDs: 5538a0c14cbfcbf8
+      values:
+      - Disabled
+      - Enabled
+    - Guid: cf81d2bb2ee2cd409e6c76d19ec7ec85
+      ID: 627876238
+      Name: TR7
+      Path: Default Work Unit\TrackRandomizer\TR7
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TrackRandomizer
+        ObjectType: 4
+      - ElementName: TR7
+        ObjectType: 11
+      ValueGuids:
+      - bytes: 9e4d979b5c9fc243bb599c3d0a11e04e
+      - bytes: 5a2e044e358ef340b1a624b7307f5fea
+      ValueIcons:
+      - ElementName: Disabled
+        ObjectType: 10
+      - ElementName: Enabled
+        ObjectType: 10
+      valueIDs: 5538a0c14cbfcbf8
+      values:
+      - Disabled
+      - Enabled
+    - Guid: c5d669efbe2efa4bb05114e051b45715
+      ID: 627876225
+      Name: TR8
+      Path: Default Work Unit\TrackRandomizer\TR8
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TrackRandomizer
+        ObjectType: 4
+      - ElementName: TR8
+        ObjectType: 11
+      ValueGuids:
+      - bytes: f127956d11853148b840e43269af7788
+      - bytes: 85a8a8fab100144f8eebfcf97c99719b
+      ValueIcons:
+      - ElementName: Disabled
+        ObjectType: 10
+      - ElementName: Enabled
+        ObjectType: 10
+      valueIDs: 5538a0c14cbfcbf8
+      values:
+      - Disabled
+      - Enabled
+    - Guid: 48e270943a5be74f8ee54ca993f11640
+      ID: 627876224
+      Name: TR9
+      Path: Default Work Unit\TrackRandomizer\TR9
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TrackRandomizer
+        ObjectType: 4
+      - ElementName: TR9
+        ObjectType: 11
+      ValueGuids:
+      - bytes: 5dac116b78ccff48b84e2d6a5b9a6b1d
+      - bytes: 7d92decb93ada449887130fe2b6b88e5
+      ValueIcons:
+      - ElementName: Disabled
+        ObjectType: 10
+      - ElementName: Enabled
+        ObjectType: 10
+      valueIDs: 5538a0c14cbfcbf8
+      values:
+      - Disabled
+      - Enabled
+    - Guid: 5c73d8e9e7f5964cbe0725eba32881ad
+      ID: 697194084
+      Name: TweetWordsLengthGroup
+      Path: Default Work Unit\TweetWordsLengthGroup
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TweetWordsLengthGroup
+        ObjectType: 11
+      ValueGuids:
+      - bytes: 963f2d54b5679d4c981033a8f947e8c6
+      - bytes: a0bbdb902b76e248a45277dc011d645e
+      - bytes: b0ea6c98cdd1634c9af2f7c5ad06dc08
+      - bytes: 0fda9966d5369a43a5567c62f8684a47
+      ValueIcons:
+      - ElementName: Long
+        ObjectType: 10
+      - ElementName: Medium
+        ObjectType: 10
+      - ElementName: MediumLong
+        ObjectType: 10
+      - ElementName: Short
+        ObjectType: 10
+      valueIDs: d3e82f28b08bd2a99ac34f5bcd31179a
+      values:
+      - Long
+      - Medium
+      - MediumLong
+      - Short
   TriggerWwu:
   - Guid: '{A101AEE8-05FE-47FB-85B4-FD7C0505870C}'
-    m_lastTimePart2: -1999263725
-    m_lastTimePsrt1: 1012671060
+    m_lastTimePart2: -1999231378
+    m_lastTimePsrt1: -526581511
     ParentPhysicalPath: 
     PhysicalPath: Triggers\Default Work Unit.wwu
     List: []

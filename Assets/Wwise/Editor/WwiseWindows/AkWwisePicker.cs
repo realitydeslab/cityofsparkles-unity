@@ -7,8 +7,6 @@
 
 public class AkWwisePicker : UnityEditor.EditorWindow
 {
-	public static bool WwiseProjectFound = true;
-
 	public static AkWwiseTreeView treeView = new AkWwiseTreeView();
 
 	[UnityEditor.MenuItem("Window/Wwise Picker", false, (int) AkWwiseWindowOrder.WwisePicker)]
@@ -36,7 +34,7 @@ public class AkWwisePicker : UnityEditor.EditorWindow
 			AkWwiseProjectInfo.GetData().autoPopulateEnabled =
 				UnityEngine.GUILayout.Toggle(AkWwiseProjectInfo.GetData().autoPopulateEnabled, "Auto populate");
 
-			if (AkWwiseProjectInfo.GetData().autoPopulateEnabled && WwiseProjectFound)
+			if (AkWwiseProjectInfo.GetData().autoPopulateEnabled && AkUtilities.IsWwiseProjectAvailable)
 				AkWwiseWWUBuilder.StartWWUWatcher();
 			else
 				AkWwiseWWUBuilder.StopWWUWatcher();
@@ -73,7 +71,7 @@ public class AkWwisePicker : UnityEditor.EditorWindow
 
 		treeView.DisplayTreeView(AK.Wwise.TreeView.TreeViewControl.DisplayTypes.USE_SCROLL_VIEW);
 
-		if (UnityEngine.GUI.changed && WwiseProjectFound)
+		if (UnityEngine.GUI.changed && AkUtilities.IsWwiseProjectAvailable)
 			UnityEditor.EditorUtility.SetDirty(AkWwiseProjectInfo.GetData());
 		// TODO: RTP Parameters List
 	}
