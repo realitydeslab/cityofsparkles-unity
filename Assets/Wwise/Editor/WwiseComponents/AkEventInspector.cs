@@ -9,16 +9,13 @@
 [UnityEditor.CustomEditor(typeof(AkEvent))]
 public class AkEventInspector : AkBaseInspector
 {
+	private readonly AkUnityEventHandlerInspector m_UnityEventHandlerInspector = new AkUnityEventHandlerInspector();
 	private UnityEditor.SerializedProperty actionOnEventType;
 	private UnityEditor.SerializedProperty callbackData;
 	private UnityEditor.SerializedProperty curveInterpolation;
-
-	private UnityEngine.GameObject emitterObject;
 	private UnityEditor.SerializedProperty enableActionOnEvent;
 
 	private UnityEditor.SerializedProperty eventID;
-
-	private readonly AkUnityEventHandlerInspector m_UnityEventHandlerInspector = new AkUnityEventHandlerInspector();
 	private UnityEditor.SerializedProperty transitionDuration;
 
 	public void OnEnable()
@@ -33,7 +30,8 @@ public class AkEventInspector : AkBaseInspector
 
 		callbackData = serializedObject.FindProperty("m_callbackData");
 
-		m_guidProperty = new[] { serializedObject.FindProperty("valueGuid.Array") };
+		m_guidProperty = new UnityEditor.SerializedProperty[1];
+		m_guidProperty[0] = serializedObject.FindProperty("valueGuid.Array");
 
 		//Needed by the base class to know which type of component its working with
 		m_typeName = "Event";
@@ -48,7 +46,7 @@ public class AkEventInspector : AkBaseInspector
 
 		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
-		UnityEngine.GUILayout.BeginVertical("Box");
+		using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
 		{
 			UnityEditor.EditorGUILayout.PropertyField(enableActionOnEvent, new UnityEngine.GUIContent("Action On Event: "));
 
@@ -60,22 +58,20 @@ public class AkEventInspector : AkBaseInspector
 					new UnityEngine.GUIContent("Fade Time (secs): "));
 			}
 		}
-		UnityEngine.GUILayout.EndVertical();
 
 		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
-		UnityEngine.GUILayout.BeginVertical("Box");
+		using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
 		{
 			UnityEditor.EditorGUI.BeginChangeCheck();
 			UnityEditor.EditorGUILayout.PropertyField(callbackData);
 			if (UnityEditor.EditorGUI.EndChangeCheck())
 				serializedObject.ApplyModifiedProperties();
 		}
-		UnityEngine.GUILayout.EndVertical();
 
 		serializedObject.ApplyModifiedProperties();
 
-		UnityEngine.GUILayout.BeginVertical("Box");
+		using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
 		{
 			var style = new UnityEngine.GUIStyle(UnityEngine.GUI.skin.button);
 			float inspectorWidth = UnityEngine.Screen.width - UnityEngine.GUI.skin.box.margin.left -
@@ -115,14 +111,20 @@ public class AkEventInspector : AkBaseInspector
 							playingEventsSelected = true;
 						else
 							stoppedEventsSelected = true;
+
 						if (playingEventsSelected && stoppedEventsSelected)
 							break;
 					}
 				}
 
-				if (stoppedEventsSelected &&
-				    UnityEngine.GUILayout.Button("Play Multiple", style, UnityEngine.GUILayout.MaxWidth(inspectorWidth)))
+				var guiEnabled = UnityEngine.GUI.enabled;
+
+				if (!stoppedEventsSelected)
+					UnityEngine.GUI.enabled = false;
+
+				if (UnityEngine.GUILayout.Button("Play Multiple", style, UnityEngine.GUILayout.MaxWidth(inspectorWidth)))
 				{
+					UnityEngine.GUIUtility.hotControl = 0;
 					for (var i = 0; i < targets.Length; ++i)
 					{
 						var akEventTarget = targets[i] as AkEvent;
@@ -131,9 +133,15 @@ public class AkEventInspector : AkBaseInspector
 					}
 				}
 
-				if (playingEventsSelected &&
-				    UnityEngine.GUILayout.Button("Stop Multiple", style, UnityEngine.GUILayout.MaxWidth(inspectorWidth)))
+				if (!stoppedEventsSelected)
+					UnityEngine.GUI.enabled = guiEnabled;
+
+				if (!playingEventsSelected)
+					UnityEngine.GUI.enabled = false;
+
+				if (UnityEngine.GUILayout.Button("Stop Multiple", style, UnityEngine.GUILayout.MaxWidth(inspectorWidth)))
 				{
+					UnityEngine.GUIUtility.hotControl = 0;
 					for (var i = 0; i < targets.Length; ++i)
 					{
 						var akEventTarget = targets[i] as AkEvent;
@@ -141,6 +149,9 @@ public class AkEventInspector : AkBaseInspector
 							AkEditorEventPlayer.Instance.StopEvent(akEventTarget);
 					}
 				}
+
+				if (!playingEventsSelected)
+					UnityEngine.GUI.enabled = guiEnabled;
 			}
 
 			if (UnityEngine.GUILayout.Button("Stop All", style, UnityEngine.GUILayout.MaxWidth(inspectorWidth)))
@@ -149,8 +160,6 @@ public class AkEventInspector : AkBaseInspector
 				AkEditorEventPlayer.Instance.StopAll();
 			}
 		}
-
-		UnityEngine.GUILayout.EndVertical();
 	}
 
 	public override string UpdateIds(System.Guid[] in_guid)
@@ -190,13 +199,20 @@ public class AkEventInspector : AkBaseInspector
 		private void CallbackHandler(object in_cookie, AkCallbackType in_type, object in_info)
 		{
 			if (in_type == AkCallbackType.AK_EndOfEvent)
-				RemoveAkEvent(in_cookie as AkEvent);
+			{
+				var akEvent = in_cookie as AkEvent;
+				UnityEngine.Debug.Log("RemoveAkEvent(): " + akEvent.gameObject.name);
+				RemoveAkEvent(akEvent);
+				AkUtilities.RepaintInspector();
+			}
 		}
 
 		public void PlayEvent(AkEvent akEvent)
 		{
 			if (IsEventPlaying(akEvent))
 				return;
+
+			UnityEngine.Debug.Log("PlayEvent(" + akEvent.eventID + "): " + akEvent.gameObject.name + " " + akEvent.transform.position);
 
 			var playingID = AkSoundEngine.PostEvent((uint) akEvent.eventID, akEvent.gameObject,
 				(uint) AkCallbackType.AK_EndOfEvent, CallbackHandler, akEvent);
@@ -209,17 +225,23 @@ public class AkEventInspector : AkBaseInspector
 			if (!IsEventPlaying(akEvent))
 				return;
 
+			UnityEngine.Debug.Log("StopEvent(): " + akEvent.gameObject.name);
+
 			var result = AkSoundEngine.ExecuteActionOnEvent((uint) akEvent.eventID, AkActionOnEventType.AkActionOnEventType_Stop,
 				akEvent.gameObject, 0);
 			if (result == AKRESULT.AK_Success)
 				RemoveAkEvent(akEvent);
 			else
+			{
 				UnityEngine.Debug.LogWarning("WwiseUnity: AkEditorEventPlayer: Failed to stop event: " + akEvent.name + "(id: " +
 				                             akEvent.eventID + ")!");
+			}
 		}
 
 		private void AddAkEvent(AkEvent akEvent)
 		{
+			UnityEngine.Debug.Log("AddAkEvent(): " + akEvent.gameObject.name);
+
 			akEvents.Add(akEvent);
 
 			// In the case where objects are being placed in edit mode and then previewed, their positions won't yet be updated so we ensure they're updated here.

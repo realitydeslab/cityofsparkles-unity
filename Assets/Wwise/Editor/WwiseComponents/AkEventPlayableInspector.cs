@@ -1,6 +1,4 @@
-﻿#if UNITY_EDITOR
-
-#if UNITY_2017_1_OR_NEWER
+﻿#if UNITY_EDITOR && UNITY_2017_1_OR_NEWER
 
 //////////////////////////////////////////////////////////////////////
 //
@@ -16,7 +14,6 @@ public class AkEventPlayableInspector : UnityEditor.Editor
 	private UnityEditor.SerializedProperty[] m_guidProperty;
 	private UnityEditor.SerializedProperty[] m_IDProperty;
 
-	private UnityEngine.Rect m_pickerPos;
 	private UnityEditor.SerializedProperty overrideTrackEmitterObject;
 	private UnityEditor.SerializedProperty retriggerEvent;
 
@@ -28,13 +25,8 @@ public class AkEventPlayableInspector : UnityEditor.Editor
 		emitterObjectRef = serializedObject.FindProperty("emitterObjectRef");
 		retriggerEvent = serializedObject.FindProperty("retriggerEvent");
 
-		m_IDProperty = new UnityEditor.SerializedProperty[1];
-		m_IDProperty[0] = akEvent.FindPropertyRelative("ID");
-		m_guidProperty = new UnityEditor.SerializedProperty[1];
-		m_guidProperty[0] = akEvent.FindPropertyRelative("valueGuid.Array");
-
-		if (m_IDProperty[0].intValue == AkSoundEngine.AK_INVALID_UNIQUE_ID)
-			UnityEditor.EditorApplication.delayCall += DelayCreateCall;
+		m_IDProperty = new[] { akEvent.FindPropertyRelative("ID") };
+		m_guidProperty = new[] { akEvent.FindPropertyRelative("valueGuid.Array") };
 	}
 
 	public override void OnInspectorGUI()
@@ -43,9 +35,9 @@ public class AkEventPlayableInspector : UnityEditor.Editor
 			m_AkEventPlayable.OwningClip.displayName = name;
 		serializedObject.Update();
 
-		UnityEngine.GUILayout.Space(2);
+		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
-		UnityEngine.GUILayout.BeginVertical("Box");
+		using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
 		{
 			UnityEditor.EditorGUILayout.PropertyField(overrideTrackEmitterObject,
 				new UnityEngine.GUIContent("Override Track Object: "));
@@ -57,40 +49,50 @@ public class AkEventPlayableInspector : UnityEditor.Editor
 
 		if (m_AkEventPlayable != null && m_AkEventPlayable.OwningClip != null)
 		{
-			var componentName = GetEventName(new System.Guid(m_AkEventPlayable.akEvent.valueGuid));
+			var componentName = GetEventName(m_AkEventPlayable.akEvent.valueGuid);
 			m_AkEventPlayable.OwningClip.displayName = componentName;
 		}
 
-		UnityEngine.GUILayout.EndVertical();
-
 		serializedObject.ApplyModifiedProperties();
 
-		var currentEvent = UnityEngine.Event.current;
-		if (currentEvent.type == UnityEngine.EventType.Repaint)
-			m_pickerPos = AkUtilities.GetLastRectAbsolute(false);
+		if (!m_AkEventPlayable.akEvent.IsValid())
+		{
+			new AkWwiseComponentPicker.PickerCreator
+			{
+				objectType = AkWwiseProjectData.WwiseObjectType.EVENT,
+				guidProperty = m_guidProperty,
+				idProperty = m_IDProperty,
+				pickerPosition = AkUtilities.GetLastRectAbsolute(UnityEngine.GUILayoutUtility.GetLastRect()),
+				serializedObject = akEvent.serializedObject
+			};
+		}
 	}
 
-	public string GetEventName(System.Guid in_guid)
+	bool EqualGuids(byte[] first, byte[] second)
+	{
+		if (first.Length != second.Length)
+			return false;
+
+		for (var i = 0; i < first.Length; ++i)
+			if (first[i] != second[i])
+				return false;
+
+		return true;
+	}
+
+	public string GetEventName(byte[] in_guid)
 	{
 		var list = AkWwiseProjectInfo.GetData().EventWwu;
 
 		for (var i = 0; i < list.Count; i++)
 		{
-			var element = list[i].List.Find(x => new System.Guid(x.Guid).Equals(in_guid));
+			var element = list[i].List.Find(x => EqualGuids(x.Guid, in_guid));
 			if (element != null)
 				return element.Name;
 		}
 
 		return string.Empty;
 	}
-
-	protected void DelayCreateCall()
-	{
-		AkWwiseComponentPicker.Create(AkWwiseProjectData.WwiseObjectType.EVENT, m_guidProperty, m_IDProperty,
-			akEvent.serializedObject, m_pickerPos);
-	}
 }
 
-#endif //UNITY_2017_1_OR_NEWER
-
-#endif //UNITY_EDITOR
+#endif //#if UNITY_EDITOR && UNITY_2017_1_OR_NEWER

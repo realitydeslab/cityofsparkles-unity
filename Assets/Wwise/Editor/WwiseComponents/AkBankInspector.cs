@@ -9,12 +9,11 @@
 [UnityEditor.CustomEditor(typeof(AkBank))]
 public class AkBankInspector : AkBaseInspector
 {
+	private readonly AkUnityEventHandlerInspector m_LoadBankEventHandlerInspector = new AkUnityEventHandlerInspector();
+	private readonly AkUnityEventHandlerInspector m_UnloadBankEventHandlerInspector = new AkUnityEventHandlerInspector();
 	private UnityEditor.SerializedProperty bankName;
 	private UnityEditor.SerializedProperty decode;
 	private UnityEditor.SerializedProperty loadAsync;
-
-	private readonly AkUnityEventHandlerInspector m_LoadBankEventHandlerInspector = new AkUnityEventHandlerInspector();
-	private readonly AkUnityEventHandlerInspector m_UnloadBankEventHandlerInspector = new AkUnityEventHandlerInspector();
 	private UnityEditor.SerializedProperty saveDecoded;
 
 	private void OnEnable()
@@ -27,7 +26,8 @@ public class AkBankInspector : AkBaseInspector
 		decode = serializedObject.FindProperty("decodeBank");
 		saveDecoded = serializedObject.FindProperty("saveDecodedBank");
 
-		m_guidProperty = new[] { serializedObject.FindProperty("valueGuid.Array") };
+		m_guidProperty = new UnityEditor.SerializedProperty[1];
+		m_guidProperty[0] = serializedObject.FindProperty("valueGuid.Array");
 
 		//Needed by the base class to know which type of component its working with
 		m_typeName = "Bank";
@@ -43,7 +43,7 @@ public class AkBankInspector : AkBaseInspector
 
 		UnityEngine.GUILayout.Space(UnityEditor.EditorGUIUtility.standardVerticalSpacing);
 
-		UnityEngine.GUILayout.BeginVertical("Box");
+		using (new UnityEditor.EditorGUILayout.VerticalScope("box"))
 		{
 			var oldDecodeValue = decode.boolValue;
 			var oldSaveDecodedValue = saveDecoded.boolValue;
@@ -52,11 +52,14 @@ public class AkBankInspector : AkBaseInspector
 
 			if (decode.boolValue)
 			{
-				if (decode.boolValue != oldDecodeValue && AkWwiseProjectInfo.GetData().preparePoolSize == 0)
+				if (decode.boolValue != oldDecodeValue && AkWwiseInitializationSettings.ActivePlatformSettings.AkInitializationSettings.preparePoolSize == 0)
+				{
 					UnityEditor.EditorUtility.DisplayDialog("Warning",
-						"You will need to define a prepare pool size in the AkInitializer component options.", "Ok");
+						"You will need to define a prepare pool size in the Wwise Initialization Settings.", "Ok");
+				}
+
 				UnityEditor.EditorGUILayout.PropertyField(saveDecoded, new UnityEngine.GUIContent("Save decoded bank:"));
-				if (oldSaveDecodedValue && !saveDecoded.boolValue)
+				if (oldSaveDecodedValue && saveDecoded.boolValue == false)
 				{
 					var decodedBankPath =
 						System.IO.Path.Combine(AkSoundEngineController.GetDecodedBankFullPath(), bankName.stringValue + ".bnk");
@@ -71,7 +74,6 @@ public class AkBankInspector : AkBaseInspector
 				}
 			}
 		}
-		UnityEngine.GUILayout.EndVertical();
 
 		serializedObject.ApplyModifiedProperties();
 	}

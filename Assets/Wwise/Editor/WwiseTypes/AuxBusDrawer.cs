@@ -27,11 +27,8 @@ namespace AK.Wwise.Editor
 			m_objectType = AkWwiseProjectData.WwiseObjectType.AUXBUS;
 			m_typeName = "AuxBus";
 
-			m_IDProperty = new UnityEditor.SerializedProperty[1];
-			m_IDProperty[0] = property.FindPropertyRelative("ID");
-
-			m_guidProperty = new UnityEditor.SerializedProperty[1];
-			m_guidProperty[0] = property.FindPropertyRelative("valueGuid.Array");
+			m_IDProperty = new[] { property.FindPropertyRelative("ID") };
+			m_guidProperty = new[] { property.FindPropertyRelative("valueGuid.Array") };
 		}
 	}
 }

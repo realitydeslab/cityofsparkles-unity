@@ -163,18 +163,18 @@ public class AkWwiseSettingsWindow : UnityEditor.EditorWindow
 			description = "Enable copying of soundbanks at pre-Build step";
 			tooltip =
 				"Copies the soundbanks in the appropriate location for building and deployment. It is recommended to leave this box checked.";
+			WwiseSetupWizard.Settings.CopySoundBanksAsPreBuildStep = UnityEngine.GUILayout.Toggle(
+				WwiseSetupWizard.Settings.CopySoundBanksAsPreBuildStep, new UnityEngine.GUIContent(description, tooltip));
 
-			using (var toggle = new UnityEditor.EditorGUILayout.ToggleGroupScope(
-				new UnityEngine.GUIContent(description, tooltip), WwiseSetupWizard.Settings.CopySoundBanksAsPreBuildStep))
-			{
-				WwiseSetupWizard.Settings.CopySoundBanksAsPreBuildStep = toggle.enabled;
+			UnityEngine.GUI.enabled = WwiseSetupWizard.Settings.CopySoundBanksAsPreBuildStep;
 
-				description = "Enable soundbank generation at pre-Build step";
-				tooltip =
-					"Generates the soundbanks before copying them during pre-Build step. It is recommended to leave this box unchecked if soundbanks are generated on a specific build machine.";
-				WwiseSetupWizard.Settings.GenerateSoundBanksAsPreBuildStep = UnityEngine.GUILayout.Toggle(
-					WwiseSetupWizard.Settings.GenerateSoundBanksAsPreBuildStep, new UnityEngine.GUIContent(description, tooltip));
-			}
+			description = "Enable soundbank generation at pre-Build step";
+			tooltip =
+				"Generates the soundbanks before copying them during pre-Build step. It is recommended to leave this box unchecked if soundbanks are generated on a specific build machine.";
+			WwiseSetupWizard.Settings.GenerateSoundBanksAsPreBuildStep = UnityEngine.GUILayout.Toggle(
+				WwiseSetupWizard.Settings.GenerateSoundBanksAsPreBuildStep, new UnityEngine.GUIContent(description, tooltip));
+
+			UnityEngine.GUI.enabled = true;
 #endif
 
 			description = "Create WwiseGlobal GameObject";
@@ -277,9 +277,7 @@ public class AkWwiseSettingsWindow : UnityEditor.EditorWindow
 								//in the wrong order.
 								var objWwise = new UnityEngine.GameObject("WwiseGlobal");
 
-								//Attach initializer and terminator components
-								var init = UnityEditor.Undo.AddComponent<AkInitializer>(objWwise);
-								AkWwiseProjectInfo.GetData().CopyInitSettings(init);
+								UnityEditor.Undo.AddComponent<AkInitializer>(objWwise);
 							}
 						}
 						else if (AkInitializers.Length != 0 && AkInitializers[0].gameObject.name == "WwiseGlobal")
@@ -309,7 +307,7 @@ public class AkWwiseSettingsWindow : UnityEditor.EditorWindow
 						//Clear the data, the project path changed.
 						AkWwiseProjectInfo.GetData().Reset();
 						ApplyNewProject = false;
-						AkWwisePicker.WwiseProjectFound = true;
+						AkUtilities.IsWwiseProjectAvailable = true;
 					}
 
 					AkWwiseProjectInfo.Populate();

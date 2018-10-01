@@ -41,7 +41,7 @@ public class AkEvent : AkUnityEventHandler
 	public bool enableActionOnEvent = false;
 
 	/// ID of the Event as found in the WwiseID.cs file
-	public int eventID = 0;
+	public int eventID = (int)AkSoundEngine.AK_INVALID_UNIQUE_ID;
 
 	//
 	public AkEventCallbackData m_callbackData = null;
@@ -74,8 +74,10 @@ public class AkEvent : AkUnityEventHandler
 
 	public override void HandleEvent(UnityEngine.GameObject in_gameObject)
 	{
-		var gameObj = useOtherObject && in_gameObject != null ? in_gameObject : gameObject;
+		if (eventID == (int)AkSoundEngine.AK_INVALID_UNIQUE_ID)
+			return;
 
+		var gameObj = useOtherObject && in_gameObject != null ? in_gameObject : gameObject;
 		soundEmitterObject = gameObj;
 
 		if (enableActionOnEvent)
@@ -100,10 +102,17 @@ public class AkEvent : AkUnityEventHandler
 		}
 	}
 
-	public void Stop(int _transitionDuration,
-		AkCurveInterpolation _curveInterpolation = AkCurveInterpolation.AkCurveInterpolation_Linear)
+	public void Stop(int _transitionDuration)
 	{
-		AkSoundEngine.ExecuteActionOnEvent((uint) eventID, AkActionOnEventType.AkActionOnEventType_Stop, soundEmitterObject,
+		Stop(_transitionDuration, AkCurveInterpolation.AkCurveInterpolation_Linear);
+	}
+
+	public void Stop(int _transitionDuration, AkCurveInterpolation _curveInterpolation)
+	{
+		if (eventID == (int)AkSoundEngine.AK_INVALID_UNIQUE_ID)
+			return;
+
+		AkSoundEngine.ExecuteActionOnEvent((uint)eventID, AkActionOnEventType.AkActionOnEventType_Stop, soundEmitterObject,
 			_transitionDuration, _curveInterpolation);
 	}
 }
