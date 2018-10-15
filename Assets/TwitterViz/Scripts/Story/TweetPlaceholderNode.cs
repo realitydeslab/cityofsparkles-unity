@@ -24,7 +24,8 @@ public class TweetPlaceholderNode : SpawnSourceNode
 
     [Header("Animation")] 
     public bool Trigger;
-    private TweetComponent spawnedTweet;
+
+    public TweetComponent SpawnedTweet { get; private set; }
 
     private TwitterDatabase.DBTweet tweet;
     private bool spawned;
@@ -79,9 +80,9 @@ public class TweetPlaceholderNode : SpawnSourceNode
             if (Trigger)
             {
                 Trigger = false;
-                if (spawnedTweet != null)
+                if (SpawnedTweet != null)
                 {
-                    spawnedTweet.Trigger = true;
+                    SpawnedTweet.Trigger = true;
                 }
             }
         }
@@ -90,7 +91,7 @@ public class TweetPlaceholderNode : SpawnSourceNode
     public override void OnTweetSpawned(TweetComponent tweet)
     {
         base.OnTweetSpawned(tweet);
-        spawnedTweet = tweet;
+        SpawnedTweet = tweet;
 
         if (!string.IsNullOrEmpty(AkEventOnSpawn))
         {
@@ -150,5 +151,13 @@ public class TweetPlaceholderNode : SpawnSourceNode
     public override Vector3? GetPosition(TwitterDatabase.DBTweet data)
     {
         return transform.position;
+    }
+
+    public override bool IsTriggered
+    {
+        get
+        {
+            return SpawnedTweet != null && SpawnedTweet.IsTriggered;
+        }
     }
 }

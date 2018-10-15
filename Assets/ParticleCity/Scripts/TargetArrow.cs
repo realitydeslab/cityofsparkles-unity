@@ -12,15 +12,30 @@ public class TargetArrow : MonoBehaviour
     public float MinAngle = 90;
 
     private SpriteRenderer spriteRenderer;
+    private TweetPlaceholderNode placeholder;
 
     void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        placeholder = Target.GetComponentInChildren<TweetPlaceholderNode>();
     }
     
     void Update()
     {
         float targetAlpha = 0;
+
+        // HACK HACK: Target on actual tweet instead of placeholder        
+        if (placeholder != null)
+        {
+            if (placeholder.IsTriggered)
+            {
+                Target = null;
+            }
+            else if (placeholder.SpawnedTweet != null)
+            {
+                Target = placeholder.SpawnedTweet.guidingLight.transform;
+            }
+        }
 
         if (Target != null)
         {

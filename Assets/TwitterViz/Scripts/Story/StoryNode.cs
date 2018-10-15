@@ -111,6 +111,11 @@ public class StoryNode : MonoBehaviour
 
         return false;
     }
+
+    public virtual bool IsTriggered
+    {
+        get { return false; }
+    }
 }
 
 public abstract class SpawnSourceNode : StoryNode

@@ -5000,6 +5000,9 @@ MonoBehaviour:
   CircularFadeOutDuration: 5
   CircularSpaceWidth: 1.5
   AkEventOnReveal: Play_TweetRevealCommon
+  SpawnTweetTutorialLeftPrefab: {fileID: 250613338465016354, guid: 16eb4122cb4383a48ba3b2fc9ab2f161, type: 3}
+  SpawnTweetTutorialRightPrefab: {fileID: 6701053577586082267, guid: d0bfb54c7aa4018478851a5e68621388, type: 3}
+  SpawnTweetWaitTimeBeforeTutorial: 10
   GrabPlayer: 0
   State: 0
   Text: 

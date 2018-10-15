@@ -100,6 +100,15 @@ public class TweetComponent : MonoBehaviour
     [Header("Sound")]
     public string AkEventOnReveal = "Play_TweetRevealCommon";
 
+    [Header("Tutorials")] 
+    public GameObject SpawnTweetTutorialLeftPrefab;
+    public GameObject SpawnTweetTutorialRightPrefab;
+    public float SpawnTweetWaitTimeBeforeTutorial = 5;
+    private GameObject spawnTweetTutorial;
+    private float spawnTweetWaitedTime = 0;
+    // HACK HACK: Tutorial manager or somehting
+    private static bool spawnTweetTutorialShowOnce = false;
+
     [Header("Debug")]
     public bool GrabPlayer;
     public TweetState State;
@@ -121,7 +130,7 @@ public class TweetComponent : MonoBehaviour
     private Transform approachingTarget;
     private float stateChangeTime;
     private float speedLimit;
-    private GuidingLight guidingLight;
+    public GuidingLight guidingLight { get; private set; }
     private WindZone windZone;
 
     private bool addedToActiveList = false;
@@ -249,6 +258,23 @@ public class TweetComponent : MonoBehaviour
     public void Finish()
     {
         setState(TweetState.Finished);
+    }
+
+    public bool IsTriggered
+    {
+        get
+        {
+            switch (State)
+            {
+                case TweetComponent.TweetState.Idle:
+                case TweetComponent.TweetState.TakingOff:
+                case TweetComponent.TweetState.Approaching:
+                    return false;
+
+                default:
+                    return true;
+            }
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -624,8 +650,22 @@ public class TweetComponent : MonoBehaviour
         if ((guidingLight.RenderPart.position - approachingTarget.position).sqrMagnitude < LightUpDistanceThreshold * LightUpDistanceThreshold)
         {
             HandType handType = InputManager.Instance.GetHandType(approachingTarget);
+            spawnTweetWaitedTime += Time.deltaTime;
+
+            if ((!spawnTweetTutorialShowOnce || spawnTweetWaitedTime > SpawnTweetWaitTimeBeforeTutorial) && spawnTweetTutorial == null && handType != HandType.Unknown)
+            {
+                GameObject prefab = (handType == HandType.Left) ? SpawnTweetTutorialLeftPrefab : SpawnTweetTutorialRightPrefab;
+                spawnTweetTutorial = Instantiate(prefab);
+                spawnTweetTutorialShowOnce = true;
+            }
+
             if (handType != HandType.Unknown && (InputManager.Instance.GetGrabUp(handType)) || (InputManager.Instance.GetButtonDown(Button.Confirm)))
             {
+                if (spawnTweetTutorial != null)
+                {
+                    Destroy(spawnTweetTutorial);
+                    spawnTweetWaitedTime = 0;
+                }
                 setState(TweetState.LightingUp);
             }
             // setState(TweetState.LightingUp);
