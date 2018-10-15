@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Star Yellow
+  m_Shader: {fileID: 4800000, guid: 1b42a503c213c4fc0bd5d1dcaebd66a2, type: 3}
+  m_ShaderKeywords: _ALPHABLEND_ON _CONTOUR2_ON _EMISSION _SMOOTHINGMODE_MIXED
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AlbedoMap2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 240d30e881b9c4061863e64be838ad1e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Bevel: 0
+    - _BevelHigh: 1
+    - _BevelHigh2: 0
+    - _BevelLow: 0.5
+    - _BevelLow2: 0
+    - _BevelScale: 0.025
+    - _BumpScale: 1
+    - _Contour: 0.6
+    - _Contour2: 0.25
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 10
+    - _EmissionScale2UI: 2
+    - _EmissionScaleUI: 1
+    - _Glossiness: 0.5
+    - _Glossiness2: 0.5
+    - _HasContour2: 1
+    - _Metallic: 0
+    - _Metallic2: 0
+    - _Mode: 1
+    - _NormalScale: 1
+    - _NormalScale2: 1
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SemitransparentShadows: 0
+    - _Smoothing: 0.1
+    - _Smoothing2: 0.1
+    - _SmoothingMode: 2
+    - _SrcBlend: 5
+    - _Supersample: 0
+    - _UVSec: 0
+    - _UVSet: 0
+    - _UVSet2: 0
+    - _VertexColor: 0
+    - _VertexColor2: 0
+    - _ZWrite: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 0.2, a: 0.42745098}
+    - _Color2: {r: 1, g: 1, b: 0.2, a: 1}
+    - _EmissionColor: {r: 0.71323913, g: 0.71323913, b: 0, a: 1}
+    - _EmissionColor2: {r: 2, g: 2, b: 0, a: 2}
+    - _EmissionColor2UI: {r: 1, g: 1, b: 0, a: 1}
+    - _EmissionColorUI: {r: 0.71323526, g: 0.71323526, b: 0, a: 1}
