@@ -624,11 +624,11 @@ public class TweetComponent : MonoBehaviour
         if ((guidingLight.RenderPart.position - approachingTarget.position).sqrMagnitude < LightUpDistanceThreshold * LightUpDistanceThreshold)
         {
             HandType handType = InputManager.Instance.GetHandType(approachingTarget);
-            // if (handType != HandType.Unknown && InputManager.Instance.GetGrabUp(handType))
-            // {
-            //     setState(TweetState.LightingUp);
-            // }
-            setState(TweetState.LightingUp);
+            if (handType != HandType.Unknown && (InputManager.Instance.GetGrabUp(handType)) || (InputManager.Instance.GetButtonDown(Button.Confirm)))
+            {
+                setState(TweetState.LightingUp);
+            }
+            // setState(TweetState.LightingUp);
 
             // if (Tweet.Words.Length > 0)
             // {

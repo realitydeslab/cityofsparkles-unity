@@ -16,7 +16,9 @@ namespace ParticleCities
     {
         Unknown = 0,
         A,
-        B
+        B,
+        Confirm,
+        TouchPad
     }
 
     public abstract class InputManager : MonoBehaviour

@@ -688,7 +688,7 @@ Transform:
   m_LocalScale: {x: 20.000011, y: 20, z: 20.000011}
   m_Children: []
   m_Father: {fileID: 895009782}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 119.21001, z: 0}
 --- !u!20 &180805134
 Camera:
@@ -4440,7 +4440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &895009781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4453,7 +4453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601abd6c757a4b1489815e3ca9f08f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerStartingPoint: {fileID: 1439352582}
+  PlayerStartingPoint: {fileID: 1152477214}
   FlyFullSpeed: 50
   TrailingParticle: 1
 --- !u!4 &895009782
@@ -4467,6 +4467,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1152477214}
   - {fileID: 1439352582}
   - {fileID: 2113364632}
   - {fileID: 2007827421}
@@ -4996,7 +4997,7 @@ Transform:
   m_LocalScale: {x: 20.000008, y: 20, z: 20.000008}
   m_Children: []
   m_Father: {fileID: 895009782}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 12.849001, z: 0}
 --- !u!20 &1103283046
 Camera:
@@ -5069,7 +5070,7 @@ Transform:
   m_LocalScale: {x: 19.999996, y: 20, z: 19.999996}
   m_Children: []
   m_Father: {fileID: 895009782}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -88.84801, z: 0}
 --- !u!20 &1133480054
 Camera:
@@ -5174,6 +5175,79 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+--- !u!1 &1152477213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1152477214}
+  - component: {fileID: 1152477215}
+  m_Layer: 0
+  m_Name: StartPointCloseBy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1152477214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152477213}
+  m_LocalRotation: {x: 0.017981902, y: -0.50702196, z: 0.01058074, w: 0.8616806}
+  m_LocalPosition: {x: 2936.5, y: 109.5, z: -169.5}
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_Children: []
+  m_Father: {fileID: 895009782}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 2.391, y: -60.946003, z: 0}
+--- !u!20 &1152477215
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152477213}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_GateFitMode: 2
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 15000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &1160525529
 GameObject:
   m_ObjectHideFlags: 0
@@ -6147,7 +6221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &1439352581
 Camera:
   m_ObjectHideFlags: 0
@@ -6202,7 +6276,7 @@ Transform:
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 895009782}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 2.391, y: -60.946003, z: 0}
 --- !u!1 &1453102788
 GameObject:
@@ -7996,7 +8070,7 @@ Transform:
   m_LocalScale: {x: 19.999996, y: 20, z: 19.999996}
   m_Children: []
   m_Father: {fileID: 895009782}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -42.463, z: 0}
 --- !u!20 &2007827422
 Camera:
@@ -8439,7 +8513,7 @@ Transform:
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 895009782}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 8.63, y: -84.14101, z: 0}
 --- !u!20 &2113364633
 Camera:

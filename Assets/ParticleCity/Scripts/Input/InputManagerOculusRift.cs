@@ -117,6 +117,7 @@ namespace ParticleCities
             switch (button)
             {
                 case Button.A:
+                case Button.Confirm:
                     rawButton = OVRInput.RawButton.A;
                     break;
 

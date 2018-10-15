@@ -14,6 +14,9 @@ public class GuidingLight : MonoBehaviour
 
     [Range(0.0f, 5.0f)]
     public float MaxIntensity;
+    [Range(0.0f, 1.0f)]
+    public float MinIntensity;
+
     public bool Trigger;
     public float EaseInDuration;
     public float SustainDuration;
@@ -160,11 +163,11 @@ public class GuidingLight : MonoBehaviour
             float intensity = MaxIntensity;
             if (t < EaseInDuration)
             {
-                intensity = Mathf.Pow(t / EaseInDuration, 2) * MaxIntensity;
+                intensity = MinIntensity + Mathf.Pow(t / EaseInDuration, 2) * (MaxIntensity - MinIntensity);
             }
             else if (t >= EaseInDuration + SustainDuration)
             {
-                intensity = Mathf.Pow(1 - (t - EaseInDuration - SustainDuration) / EaseOutDuration, 2) * MaxIntensity;
+                intensity = MinIntensity + Mathf.Pow(1 - (t - EaseInDuration - SustainDuration) / EaseOutDuration, 2) * (MaxIntensity - MinIntensity);
             }
 
             setIntensity(intensity);
@@ -173,7 +176,7 @@ public class GuidingLight : MonoBehaviour
             yield return null;
         }
 
-        setIntensity(0);
+        setIntensity(MinIntensity);
         smoothLightCoroutine = null;
 
         if (onFinished != null)

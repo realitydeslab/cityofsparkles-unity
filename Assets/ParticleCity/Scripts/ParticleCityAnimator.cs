@@ -28,6 +28,8 @@ public class ParticleCityAnimator : MonoBehaviour
 
     private bool destroyRequired = false;
 
+    private bool lerpToIntensityCalledOnce = false;
+
     void Awake()
     {
         if (Application.isPlaying)
@@ -45,7 +47,8 @@ public class ParticleCityAnimator : MonoBehaviour
 	{
         SetMaterialsFloat("_GlobalIntensity", GlobalIntensity);
 
-	    if (Application.isPlaying && IntensityFadeOnStart >= 0)
+        // !lerpToIntensityCalledOnce: Do not override if lerpToIntensity already set
+	    if (Application.isPlaying && IntensityFadeOnStart >= 0 && !lerpToIntensityCalledOnce)
 	    {
             LerpToIntensity(IntensityFadeOnStart, IntensityLerpRatioOnStart);    
 	    }
@@ -85,6 +88,7 @@ public class ParticleCityAnimator : MonoBehaviour
 
     public void LerpToIntensity(float targetIntensity, float ratio)
     {
+        lerpToIntensityCalledOnce = true;
         this.targetIntensity = targetIntensity;
         intensityLerpRatio = ratio;
     }

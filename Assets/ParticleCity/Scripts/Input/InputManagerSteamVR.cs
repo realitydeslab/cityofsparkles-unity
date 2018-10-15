@@ -159,8 +159,37 @@ namespace ParticleCities
 
         public override bool GetButtonDown(Button button)
         {
-            // TODO
-            return false;
+            switch (button)
+            {
+                case Button.Confirm:
+                case Button.TouchPad:
+                    bool isPressed = false;
+
+                    SteamVR_Controller.Device device = getDevice(HandType.Right);
+                    if (device != null)
+                    {
+                        isPressed = device.GetPress(EVRButtonId.k_EButton_SteamVR_Touchpad);
+                        if (isPressed)
+                        {
+                            return true;
+                        }
+                    }
+
+                    device = getDevice(HandType.Left);
+                    if (device != null)
+                    {
+                        isPressed = device.GetPress(EVRButtonId.k_EButton_SteamVR_Touchpad);
+                        if (isPressed)
+                        {
+                            return true;
+                        }
+                    }
+
+                    return false;
+
+                default:
+                    return false;
+            }
         }
 
         private SteamVR_Controller.Device getDevice(HandType handType)
