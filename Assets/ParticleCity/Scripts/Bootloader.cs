@@ -6,6 +6,8 @@ public class Bootloader : MonoBehaviour
 {
     private AsyncOperation citySceneLoadOp;
 
+    public static string SceneToLoad = "new_york_opening";
+
 	void Start () {
         Debug.Log("Loaded XR Device: " + XRSettings.loadedDeviceName);
 
@@ -18,7 +20,7 @@ public class Bootloader : MonoBehaviour
             SceneManager.LoadScene("steam_vr_components");
 	    }
 
-	    citySceneLoadOp = SceneManager.LoadSceneAsync("new_york_scene", LoadSceneMode.Additive);
+	    citySceneLoadOp = SceneManager.LoadSceneAsync(SceneToLoad, LoadSceneMode.Additive);
 	    citySceneLoadOp.allowSceneActivation = true;
 	}
 	

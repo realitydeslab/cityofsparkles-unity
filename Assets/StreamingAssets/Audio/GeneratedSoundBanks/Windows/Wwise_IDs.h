@@ -14,6 +14,7 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID PLAY_HEARTHEWINDWHISPER = 3656440737U;
+        static const AkUniqueID PLAY_OPENINGAMBISONIC = 4029987953U;
         static const AkUniqueID PLAY_PARTICLECITY_IMPROV_BGM = 2470127684U;
         static const AkUniqueID PLAY_SENTIMENTBGMTEST = 2937301117U;
         static const AkUniqueID PLAY_STORYBGM = 973706497U;
@@ -235,15 +236,22 @@ namespace AK
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
+        static const AkUniqueID OPENINGSOUNDBANK = 2080821102U;
         static const AkUniqueID TESTSOUNDBANK = 1831431028U;
     } // namespace BANKS
 
     namespace BUSSES
     {
-        static const AkUniqueID _3D = 511093792U;
+        static const AkUniqueID AMBISONICS_BUS = 208187537U;
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
         static const AkUniqueID MASTER_SECONDARY_BUS = 805203703U;
+        static const AkUniqueID ROOM_EFFECTS_BUS = 297412052U;
     } // namespace BUSSES
+
+    namespace AUX_BUSSES
+    {
+        static const AkUniqueID AMBISONICS_AUX_MIX = 1861374343U;
+    } // namespace AUX_BUSSES
 
     namespace AUDIO_DEVICES
     {

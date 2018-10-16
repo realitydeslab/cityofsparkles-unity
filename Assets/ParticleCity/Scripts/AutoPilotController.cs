@@ -20,6 +20,12 @@ public class AutoPilotController : MonoBehaviour
         }
     }
 
+    [Header("Features")] 
+    public bool AutoFly = false;
+
+    public bool AutoRecoverStoryNode = true;
+    public KeyCode KeycodeToJumpToNext = KeyCode.J;
+
     [Header("Flying")] 
     public float MaxSpeed = 50;
     public float SlowDownRadius = 100;
@@ -60,6 +66,11 @@ public class AutoPilotController : MonoBehaviour
 	}
 	
 	void Update () {
+	    if (!AutoFly && KeycodeToJumpToNext == KeyCode.None)
+	    {
+            return;
+	    }
+
 	    if (playerController == null)
 	    {
 	        playerController = GetComponent<ParticleCityPlayerController>();
@@ -70,6 +81,26 @@ public class AutoPilotController : MonoBehaviour
             findAutoPilotTarget();
 	    }
 
+	    if (KeycodeToJumpToNext != KeyCode.None)
+	    {
+            updateJumpByKeyboard();
+	    }
+	}
+
+    private void updateJumpByKeyboard()
+    {
+        if (Input.GetKeyDown(KeycodeToJumpToNext))
+        {
+            TweetPlaceholderNode placeholderNode = Target as TweetPlaceholderNode;
+            if (placeholderNode != null && placeholderNode.SpawnedTweet != null)
+            {
+                placeholderNode.SpawnedTweet.GrabPlayer = true;
+            }
+        }
+    }
+
+    private void updateAutoFly()
+    {
         // Stop auto-pilot when there is any action
 	    if ( !Target || (Time.time - playerController.LastActionTime < IdleTimeOut) && (Time.time - lastTriggeredTime < StoryNodeTriggerIdleTimeOut) )
 	    {
@@ -122,7 +153,7 @@ public class AutoPilotController : MonoBehaviour
 	    {
             Target.GotoNext();
 	    }
-	}
+    }
 
     private void findAutoPilotTarget()
     {
@@ -150,7 +181,7 @@ public class AutoPilotController : MonoBehaviour
             Target = availableNodes[rand];
         }
 
-        if (Target == null)
+        if (Target == null && AutoRecoverStoryNode)
         {
             NullTargetAccumulatedTime += Time.deltaTime;
             if (NullTargetAccumulatedTime > TargetLostTimeout)

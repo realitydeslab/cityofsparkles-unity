@@ -4,6 +4,7 @@ using ParticleCities;
 using TMPro;
 using TwitterViz.DataModels;
 using UnityEngine;
+using WanderUtils;
 using Debug = UnityEngine.Debug;
 
 public class TweetComponent : MonoBehaviour
@@ -213,8 +214,9 @@ public class TweetComponent : MonoBehaviour
 	    {
 	        GrabPlayer = false;
 	        Transform player = InputManager.Instance.PlayerTransform;
-	        player.position = transform.position - (player.forward) * 100;
-	        player.forward = (transform.position - player.position);
+	        Transform head = InputManager.Instance.CenterCamera.transform;
+	        Vector3 headMove = transform.position - head.forward * 100 - head.position;
+	        player.position += headMove;
 	    }
 
 	    // if (Trigger)

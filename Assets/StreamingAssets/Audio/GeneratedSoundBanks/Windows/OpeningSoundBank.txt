@@ -1,0 +1,19 @@
+Event	ID	Name			Wwise Object Path	Notes
+	4029987953	Play_OpeningAmbisonic			\OpeningUnit\Play_OpeningAmbisonic	
+
+Audio Bus	ID	Name			Wwise Object Path	Notes
+	208187537	Ambisonics Bus			\Default Work Unit\Master Audio Bus\Ambisonics Bus	
+	297412052	Room Effects Bus			\Default Work Unit\Master Audio Bus\Room Effects Bus	
+	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+
+Auxiliary Bus	ID	Name			Wwise Object Path	Notes
+	1861374343	Ambisonics_Aux_Mix			\Default Work Unit\Master Audio Bus\Ambisonics Bus\Ambisonics_Aux_Mix	
+
+Effect plug-ins	ID	Name	Type				Notes
+	33894468	MasterVolumeMeter	Wwise Meter			
+	324026953	Resonance Audio Room Effects (Custom)	Resonance Audio Room Effects			
+	999129609	Resonance Audio Renderer (Custom)	Resonance Audio Renderer			
+
+Streamed Audio	ID	Name	Audio source file	Generated audio file	Wwise Object Path	Notes
+	966422221	OpeningAmbisonic	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\NYC AMB Long Island City 01 B-Format_B044E411.wem	966422221.wem	\Actor-Mixer Hierarchy\OpeningUnit\OpeningAmbisonic	
+

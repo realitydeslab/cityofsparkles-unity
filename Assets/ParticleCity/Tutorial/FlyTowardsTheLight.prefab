@@ -242,6 +242,7 @@ GameObject:
   - component: {fileID: 636902950231654541}
   - component: {fileID: 636902950231654540}
   - component: {fileID: 636902950231654539}
+  - component: {fileID: 7045228642930817189}
   m_Layer: 5
   m_Name: FlyTowardsTheLight
   m_TagString: Untagged
@@ -314,6 +315,22 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &7045228642930817189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636902950231654538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd2231d4ac9a2345852c7507339f11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DistanceToCamera: 63
+  CameraLerpRatio: 1
+  MinDistance: 40
+  CameraTransform: {fileID: 0}
 --- !u!1 &6075584098307676833
 GameObject:
   m_ObjectHideFlags: 0

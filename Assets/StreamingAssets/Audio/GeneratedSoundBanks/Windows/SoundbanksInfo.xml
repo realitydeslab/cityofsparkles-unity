@@ -8,7 +8,12 @@
 		<ExternalSourcesOutputRoot>E:\ParticleCity\ParticleCityWwise\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
-	<StreamedFiles/>
+	<StreamedFiles>
+		<File Id="966422221" Language="SFX">
+			<ShortName>NYC AMB Long Island City 01 B-Format.wav</ShortName>
+			<Path>SFX\NYC AMB Long Island City 01 B-Format_B044E411.wem</Path>
+		</File>
+	</StreamedFiles>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
 		<SoundBank Id="1355168291" Language="SFX">
@@ -161,6 +166,17 @@
 					<Path>SFX\Tweet-03 - Twist - a haunted spaces_F26CE7B0.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="2080821102" Language="SFX">
+			<ObjectPath>\SoundBanks\OpeningUnit\OpeningSoundBank</ObjectPath>
+			<ShortName>OpeningSoundBank</ShortName>
+			<Path>OpeningSoundBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="4029987953" Name="Play_OpeningAmbisonic" ObjectPath="\Events\OpeningUnit\Play_OpeningAmbisonic" MaxAttenuation="200.000000"/>
+			</IncludedEvents>
+			<ReferencedStreamedFiles>
+				<File Id="966422221"/>
+			</ReferencedStreamedFiles>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

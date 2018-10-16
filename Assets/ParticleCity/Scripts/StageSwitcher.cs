@@ -70,6 +70,13 @@ namespace ParticleCities
         {
             if (KeyboardSwitch)
             {
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    Bootloader.SceneToLoad = "new_york_opening";
+                    SceneManager.LoadScene("bootloader");
+                    return;
+                }
+
                 int keyNum = Math.Min(9, ParticleCityPrefabs.Length - 1);
                 for (int i = 0; i <= keyNum; i++)
                 {

@@ -18,14 +18,14 @@ MonoBehaviour:
   m_lastPopulateTimePsrt1: 0
   AcousticTextureWwu:
   - Guid: '{2D8B2DBA-226C-4ABA-8574-18ECFBABF366}'
-    m_lastTimePart2: -1999231378
-    m_lastTimePsrt1: -525221330
+    m_lastTimePart2: -1999231131
+    m_lastTimePsrt1: -1630921371
     ParentPhysicalPath: 
     PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
     List: []
   - Guid: '{463D666B-3CA8-4FA5-8B4A-5FEF12B883F6}'
-    m_lastTimePart2: -1999231378
-    m_lastTimePsrt1: -525171474
+    m_lastTimePart2: -1999231131
+    m_lastTimePsrt1: -1630841411
     ParentPhysicalPath: 
     PhysicalPath: Virtual Acoustics\Factory Reflect Acoustic Textures.wwu
     List:
@@ -185,21 +185,49 @@ MonoBehaviour:
         ObjectType: 15
   AuxBusWwu:
   - Guid: '{C9596F7C-12C3-41BF-A2ED-F59F837E23EA}'
-    m_lastTimePart2: -1999231304
-    m_lastTimePsrt1: -1692840479
+    m_lastTimePart2: -1999228099
+    m_lastTimePsrt1: -1101532414
     ParentPhysicalPath: 
     PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
-    List: []
+    List:
+    - Guid: d4b3d7619ed6da43a937d54080e72833
+      ID: 1861374343
+      Name: Ambisonics_Aux_Mix
+      Path: Default Work Unit\Master Audio Bus\Ambisonics Bus\Ambisonics_Aux_Mix
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      - ElementName: Ambisonics Bus
+        ObjectType: 2
+      - ElementName: Ambisonics_Aux_Mix
+        ObjectType: 1
   BankWwu:
   - Guid: '{07814327-4FFD-4BEB-A7E1-408FAC7E3EFD}'
-    m_lastTimePart2: -1999231378
-    m_lastTimePsrt1: -526061122
+    m_lastTimePart2: -1999231131
+    m_lastTimePsrt1: -1631441262
     ParentPhysicalPath: 
     PhysicalPath: SoundBanks\Default Work Unit.wwu
     List: []
+  - Guid: '{43958F0E-B2C1-47EC-A90D-1402878DFC8B}'
+    m_lastTimePart2: -1999228099
+    m_lastTimePsrt1: -1101064213
+    ParentPhysicalPath: 
+    PhysicalPath: SoundBanks\OpeningUnit.wwu
+    List:
+    - Guid: 4b4fafd363502942aefa033445595629
+      ID: 2080821102
+      Name: OpeningSoundBank
+      Path: OpeningUnit\OpeningSoundBank
+      PathAndIcons:
+      - ElementName: OpeningUnit
+        ObjectType: 12
+      - ElementName: OpeningSoundBank
+        ObjectType: 7
   - Guid: '{09551D7C-159F-4201-9959-DCF42C4BFF86}'
-    m_lastTimePart2: -1999231378
-    m_lastTimePsrt1: -526521495
+    m_lastTimePart2: -1999228099
+    m_lastTimePsrt1: -1101372312
     ParentPhysicalPath: 
     PhysicalPath: SoundBanks\Test Work  Unit.wwu
     List:
@@ -214,8 +242,8 @@ MonoBehaviour:
         ObjectType: 7
   EventWwu:
   - Guid: '{FFFCA8D8-975B-4702-9422-7C96AED5C353}'
-    m_lastTimePart2: -1999231378
-    m_lastTimePsrt1: -526261497
+    m_lastTimePart2: -1999228111
+    m_lastTimePsrt1: 2052557390
     ParentPhysicalPath: 
     PhysicalPath: Events\Default Work Unit.wwu
     List:
@@ -303,9 +331,27 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+  - Guid: '{B11BB00E-5D47-4DF6-94FF-3715D6AA7968}'
+    m_lastTimePart2: -1999228100
+    m_lastTimePsrt1: 240796251
+    ParentPhysicalPath: 
+    PhysicalPath: Events\OpeningUnit.wwu
+    List:
+    - Guid: 2ce9b0c007017547bddb059efffbc0ea
+      ID: -264979343
+      Name: Play_OpeningAmbisonic
+      Path: OpeningUnit\Play_OpeningAmbisonic
+      PathAndIcons:
+      - ElementName: OpeningUnit
+        ObjectType: 12
+      - ElementName: Play_OpeningAmbisonic
+        ObjectType: 3
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
   - Guid: '{4D783F1E-0522-43AE-BC17-5DDAE5328E64}'
-    m_lastTimePart2: -1999231378
-    m_lastTimePsrt1: -526431190
+    m_lastTimePart2: -1999231131
+    m_lastTimePsrt1: -1658258142
     ParentPhysicalPath: 
     PhysicalPath: Events\Test Work Unit.wwu
     List:
@@ -383,10 +429,12 @@ MonoBehaviour:
       minDuration: 0
   ExpandedItems:
   - /ParticleCityWwise
+  - /ParticleCityWwise/Events
+  - /ParticleCityWwise/Events/OpeningUnit
   RtpcWwu:
   - Guid: '{2AAED00D-10BE-4038-B5CE-D538015A257E}'
-    m_lastTimePart2: -1999231378
-    m_lastTimePsrt1: -526371265
+    m_lastTimePart2: -1999231131
+    m_lastTimePsrt1: -1658188065
     ParentPhysicalPath: 
     PhysicalPath: Game Parameters\Default Work Unit.wwu
     List:
@@ -464,8 +512,8 @@ MonoBehaviour:
         ObjectType: 13
   StateWwu:
   - Guid: '{39AEC1A8-1711-456F-A34E-CE5BB56A5C1B}'
-    m_lastTimePart2: -1999231378
-    m_lastTimePsrt1: -526911504
+    m_lastTimePart2: -1999231131
+    m_lastTimePsrt1: -1631231435
     ParentPhysicalPath: 
     PhysicalPath: States\Default Work Unit.wwu
     List:
@@ -536,8 +584,8 @@ MonoBehaviour:
       - None
       - Twist
   - Guid: '{9AB6FDDF-DE70-4485-853B-C78B05B013E4}'
-    m_lastTimePart2: -1999231378
-    m_lastTimePsrt1: -525721512
+    m_lastTimePart2: -1999231131
+    m_lastTimePsrt1: -1631151419
     ParentPhysicalPath: 
     PhysicalPath: States\Test Work Unit.wwu
     List:
@@ -576,8 +624,8 @@ MonoBehaviour:
       - Wish
   SwitchWwu:
   - Guid: '{B6A29A65-8FB6-4DDE-B4BC-BA3979138E98}'
-    m_lastTimePart2: -1999231378
-    m_lastTimePsrt1: -526861471
+    m_lastTimePart2: -1999231131
+    m_lastTimePsrt1: -1631071463
     ParentPhysicalPath: 
     PhysicalPath: Switches\Default Work Unit.wwu
     List:
@@ -888,8 +936,8 @@ MonoBehaviour:
       - Short
   TriggerWwu:
   - Guid: '{A101AEE8-05FE-47FB-85B4-FD7C0505870C}'
-    m_lastTimePart2: -1999231378
-    m_lastTimePsrt1: -526581511
+    m_lastTimePart2: -1999231131
+    m_lastTimePsrt1: -1631001441
     ParentPhysicalPath: 
     PhysicalPath: Triggers\Default Work Unit.wwu
     List: []

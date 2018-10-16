@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/bootloader.unity
     guid: b03ac27ce5b223a44ae789854ccc8f08
   - enabled: 1
+    path: Assets/Scenes/new_york_opening.unity
+    guid: a9aa75cab1d9d0b4cb6994eb09dbb7ed
+  - enabled: 1
     path: Assets/Scenes/new_york_scene.unity
     guid: a864be0ed66745846ac76d6b40801ac8
   - enabled: 1

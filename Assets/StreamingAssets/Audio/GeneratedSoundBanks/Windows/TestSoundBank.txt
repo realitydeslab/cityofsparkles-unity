@@ -23,8 +23,18 @@ Modulator Envelope	ID	Name			Wwise Object Path	Notes
 	93863261	TestEnvelope			\Default Work Unit\TestEnvelope	
 	966494366	Modulator Envelope (Custom)				
 
+Audio Bus	ID	Name			Wwise Object Path	Notes
+	208187537	Ambisonics Bus			\Default Work Unit\Master Audio Bus\Ambisonics Bus	
+	297412052	Room Effects Bus			\Default Work Unit\Master Audio Bus\Room Effects Bus	
+	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+
+Auxiliary Bus	ID	Name			Wwise Object Path	Notes
+	1861374343	Ambisonics_Aux_Mix			\Default Work Unit\Master Audio Bus\Ambisonics Bus\Ambisonics_Aux_Mix	
+
 Effect plug-ins	ID	Name	Type				Notes
-	484093240	Oculus Spatializer (Attached)	AttachableMixerInput			
+	33894468	MasterVolumeMeter	Wwise Meter			
+	324026953	Resonance Audio Room Effects (Custom)	Resonance Audio Room Effects			
+	999129609	Resonance Audio Renderer (Custom)	Resonance Audio Renderer			
 
 Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 	288150129	Wwise Synth One	Wwise Synth One		\Actor-Mixer Hierarchy\Test Work Unit\ParticleCityMIDI\Wwise Synth One	
