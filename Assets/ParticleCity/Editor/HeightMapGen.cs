@@ -22,6 +22,24 @@ namespace ParticleCity.Editor
             EditorWindow.GetWindow<HeightMapGen>("HeightMapGen");
         }
 
+        // [MenuItem("ParticleCity/Extract Height Map")]
+        // static void ExtractHeightMapFromScriptableObject()
+        // {
+        //     HeightMapData heightMapData = Selection.activeObject as HeightMapData;
+        //     if (heightMapData == null)
+        //     {
+        //         Debug.LogError("Selected object is not a HeightMapData");
+        //     }
+
+        //     string path = AssetDatabase.GetAssetPath(heightMapData);
+        //     string folder = Path.GetDirectoryName(path);
+        //     string name = Path.GetFileNameWithoutExtension(path);
+
+        //     AssetDatabase.RemoveObjectFromAsset(heightMapData.HeightMapTexture);
+        //     AssetDatabase.CreateAsset(heightMapData.HeightMapTexture, Path.Combine(folder, name + "_tex.asset"));
+        //     AssetDatabase.SaveAssets();
+        // }
+
         void OnGUI()
         {
             EditorGUILayout.BeginVertical();
@@ -81,15 +99,18 @@ namespace ParticleCity.Editor
             }
             tex.Apply();
 
-            HeightMapData data = ScriptableObject.CreateInstance<HeightMapData>();
-            data.HeightMapTexture = tex;
-            EditorUtility.SetDirty(data);
+            // HeightMapData data = ScriptableObject.CreateInstance<HeightMapData>();
+            // data.HeightMapTexture = tex;
+            // EditorUtility.SetDirty(data);
 
-            AssetDatabase.CreateAsset(data, Path.Combine(target, "HeightMapData.asset"));
-            AssetDatabase.AddObjectToAsset(tex, data);
+            // AssetDatabase.CreateAsset(data, Path.Combine(target, "HeightMapData.asset"));
+            // AssetDatabase.AddObjectToAsset(tex, data);
+            // AssetDatabase.SaveAssets();
+
+            AssetDatabase.CreateAsset(tex, Path.Combine(target, "HeightMap.asset"));
             AssetDatabase.SaveAssets();
 
-            heightMapObj.Data = data;
+            heightMapObj.HeightMapTex = tex;
 
             EditorUtility.ClearProgressBar();
         }

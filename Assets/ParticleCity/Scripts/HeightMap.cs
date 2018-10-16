@@ -13,7 +13,7 @@ namespace ParticleCities
     {
         public static int DEBUG_POINT = 16384;
 
-        public HeightMapData Data;
+        public Texture2D HeightMapTex;
         public bool DebugGizmo;
 
         [Header("Internal")] 
@@ -47,7 +47,7 @@ namespace ParticleCities
             }
 
             Profiler.BeginSample("GetPixel");
-            Color c = Data.HeightMapTexture.GetPixel((int) (u * Data.HeightMapTexture.width + 0.5f), (int) (v * Data.HeightMapTexture.height + 0.5f));
+            Color c = HeightMapTex.GetPixel((int) (u * HeightMapTex.width + 0.5f), (int) (v * HeightMapTex.height + 0.5f));
             Profiler.EndSample();
 
             if ((int)c.b >= 0)
@@ -75,19 +75,19 @@ namespace ParticleCities
             if (DebugGizmo)
             {
                 int limit = (int)Math.Sqrt(DEBUG_POINT);
-                int xStep = Math.Max(1, Data.HeightMapTexture.width / limit);
-                int yStep = Math.Max(1, Data.HeightMapTexture.height / limit);
+                int xStep = Math.Max(1, HeightMapTex.width / limit);
+                int yStep = Math.Max(1, HeightMapTex.height / limit);
 
-                for (int y = 0; y < Data.HeightMapTexture.height; y += yStep)
+                for (int y = 0; y < HeightMapTex.height; y += yStep)
                 {
-                    float v = (float) y / Data.HeightMapTexture.height;
-                    for (int x = 0; x < Data.HeightMapTexture.width; x += xStep)
+                    float v = (float) y / HeightMapTex.height;
+                    for (int x = 0; x < HeightMapTex.width; x += xStep)
                     {
-                        float u = (float) x / Data.HeightMapTexture.width;
+                        float u = (float) x / HeightMapTex.width;
                         float posX = Mathf.Lerp(b.min.x, b.max.x, u);
                         float posZ = Mathf.Lerp(b.min.z, b.max.z, v);
 
-                        Color px = Data.HeightMapTexture.GetPixel(x, y);
+                        Color px = HeightMapTex.GetPixel(x, y);
                         int layer = (int) px.b;
                         float bottom = Mathf.Lerp(b.min.y, b.max.y, px.r);
                         float top = Mathf.Lerp(b.min.y, b.max.y, px.g);

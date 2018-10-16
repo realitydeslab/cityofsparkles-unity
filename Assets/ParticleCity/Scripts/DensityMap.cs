@@ -9,6 +9,7 @@ public class DensityMap : MonoBehaviour
     public static int DEBUG_POINT = 16384;
 
     public DensityMapData Data;
+    public Texture3D Texture;
 
     [Header("Internal")]
     public Bounds Bounds;
@@ -53,14 +54,14 @@ public class DensityMap : MonoBehaviour
 
     public float GetDensity(Vector3 pos)
     {
-        if (Data == null || Data.DensityMapTexture == null)
+        if (Data == null || Texture == null)
         {
             return 0;
         }
 
         if (pixelsCache == null)
         {
-            pixelsCache = Data.DensityMapTexture.GetPixels32();
+            pixelsCache = Texture.GetPixels32();
         }
 
         Vector3 offsetPos = (pos - Bounds.min);
@@ -79,9 +80,9 @@ public class DensityMap : MonoBehaviour
 
         int x0, x1, y0, y1, z0, z1;
         float xd, yd, zd;
-        coordClamp(densityPosNorm.x, Data.DensityMapTexture.width, out x0, out x1, out xd);
-        coordClamp(densityPosNorm.y, Data.DensityMapTexture.height, out y0, out y1, out yd);
-        coordClamp(densityPosNorm.z, Data.DensityMapTexture.depth, out z0, out z1, out zd);
+        coordClamp(densityPosNorm.x, Texture.width, out x0, out x1, out xd);
+        coordClamp(densityPosNorm.y, Texture.height, out y0, out y1, out yd);
+        coordClamp(densityPosNorm.z, Texture.depth, out z0, out z1, out zd);
 
         Color c000 = getPixel(pixelsCache, x0, y0, z0);
         Color c001 = getPixel(pixelsCache, x0, y0, z1);
@@ -113,7 +114,7 @@ public class DensityMap : MonoBehaviour
 
     private Color getPixel(Color32[] pixels, int x, int y, int z)
     {
-        int index = z * Data.DensityMapTexture.width * Data.DensityMapTexture.height + y * Data.DensityMapTexture.width + x;
+        int index = z * Texture.width * Texture.height + y * Texture.width + x;
         Color32 c = pixels[index];
         return new Color(
             c.r / 256.0f,
@@ -138,25 +139,25 @@ public class DensityMap : MonoBehaviour
         if (DebugGizmo && Data)
         {
             Bounds b = GetComponent<BoxCollider>().bounds;
-            Color32[] pixels = Data.DensityMapTexture.GetPixels32(0);
+            Color32[] pixels = Texture.GetPixels32(0);
 
-            int step = (int) Math.Pow(Data.DensityMapTexture.width * Data.DensityMapTexture.height * Data.DensityMapTexture.depth / (double)DEBUG_POINT, 1.0/3.0);
+            int step = (int) Math.Pow(Texture.width * Texture.height * Texture.depth / (double)DEBUG_POINT, 1.0/3.0);
 
-            for (int z = 0; z < Data.DensityMapTexture.depth; z += step)
+            for (int z = 0; z < Texture.depth; z += step)
             {
-                for (int y = 0; y < Data.DensityMapTexture.height; y += step)
+                for (int y = 0; y < Texture.height; y += step)
                 {
-                    for (int x = 0; x < Data.DensityMapTexture.width; x += step)
+                    for (int x = 0; x < Texture.width; x += step)
                     {
-                        int index = z * (Data.DensityMapTexture.height * Data.DensityMapTexture.width) + 
-                                    y * (Data.DensityMapTexture.width) +
+                        int index = z * (Texture.height * Texture.width) + 
+                                    y * (Texture.width) +
                                     x;
 
                         Color32 pixel = pixels[index];
                         Vector3 pos = new Vector3(
-                            Mathf.Lerp(b.min.x, b.max.x, (float)x / Data.DensityMapTexture.width),
-                            Mathf.Lerp(b.min.y, b.max.y, (float)y / Data.DensityMapTexture.height),
-                            Mathf.Lerp(b.min.z, b.max.z, (float)z / Data.DensityMapTexture.depth)
+                            Mathf.Lerp(b.min.x, b.max.x, (float)x / Texture.width),
+                            Mathf.Lerp(b.min.y, b.max.y, (float)y / Texture.height),
+                            Mathf.Lerp(b.min.z, b.max.z, (float)z / Texture.depth)
                         );
 
                         if (pixel.r > 0)
