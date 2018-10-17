@@ -9,6 +9,8 @@ public class Bootloader : MonoBehaviour
     public static string SceneToLoad = "new_york_opening";
 
 	void Start () {
+        AkSoundEngine.StopAll();
+
         Debug.Log("Loaded XR Device: " + XRSettings.loadedDeviceName);
 
 	    if (XRSettings.loadedDeviceName == "Oculus")

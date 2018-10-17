@@ -6438,7 +6438,6 @@ GameObject:
   - component: {fileID: 1453102793}
   - component: {fileID: 1453102792}
   - component: {fileID: 1453102791}
-  - component: {fileID: 1453102790}
   m_Layer: 0
   m_Name: TextMeshPro
   m_TagString: Untagged
@@ -6465,18 +6464,6 @@ RectTransform:
   m_AnchoredPosition: {x: -836.9856, y: 605.86475}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1453102790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1453102788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -806885394, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &1453102791
 CanvasRenderer:
   m_ObjectHideFlags: 2
@@ -7030,7 +7017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b922057d6a912b447829104a439ab3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: 04cb21bdec3734548b031211413532a0, type: 2}
+  Data: {fileID: 0}
   Texture: {fileID: 11700000, guid: a2f8c7592c19b984b9654246532537d1, type: 2}
   Bounds:
     m_Center: {x: 337.31152, y: 302.66025, z: 409.00293}

@@ -185,8 +185,8 @@ MonoBehaviour:
         ObjectType: 15
   AuxBusWwu:
   - Guid: '{C9596F7C-12C3-41BF-A2ED-F59F837E23EA}'
-    m_lastTimePart2: -1999228099
-    m_lastTimePsrt1: -1101532414
+    m_lastTimePart2: -1999228092
+    m_lastTimePsrt1: -1850630312
     ParentPhysicalPath: 
     PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     List:
@@ -211,8 +211,8 @@ MonoBehaviour:
     PhysicalPath: SoundBanks\Default Work Unit.wwu
     List: []
   - Guid: '{43958F0E-B2C1-47EC-A90D-1402878DFC8B}'
-    m_lastTimePart2: -1999228099
-    m_lastTimePsrt1: -1101064213
+    m_lastTimePart2: -1999228092
+    m_lastTimePsrt1: -1850380889
     ParentPhysicalPath: 
     PhysicalPath: SoundBanks\OpeningUnit.wwu
     List:
@@ -332,8 +332,8 @@ MonoBehaviour:
       maxDuration: 0
       minDuration: 0
   - Guid: '{B11BB00E-5D47-4DF6-94FF-3715D6AA7968}'
-    m_lastTimePart2: -1999228100
-    m_lastTimePsrt1: 240796251
+    m_lastTimePart2: -1999228092
+    m_lastTimePsrt1: -1850220943
     ParentPhysicalPath: 
     PhysicalPath: Events\OpeningUnit.wwu
     List:
@@ -346,7 +346,7 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Play_OpeningAmbisonic
         ObjectType: 3
-      maxAttenuation: 0
+      maxAttenuation: 200
       maxDuration: 0
       minDuration: 0
   - Guid: '{4D783F1E-0522-43AE-BC17-5DDAE5328E64}'
