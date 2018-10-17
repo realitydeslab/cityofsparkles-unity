@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class TitleNode : StoryNode
 {
-    private bool triggered = false; 
-
     public override void Awake()
     {
         base.Awake();

@@ -81,7 +81,6 @@ namespace AmberGarage.Trajen
         {
             // Converts ECEF coordinate position into local-tangent-plane NED.
             // Coordinates relative to given ECEF coordinate frame.
-            double ref_latitude_rad = deg2Rad(ref_latitude);
             double ref_longitude_rad = deg2Rad(ref_longitude);
             double ref_ecef_x, ref_ecef_y, ref_ecef_z;
             geodetic_to_ecef(ref_latitude, ref_longitude, ref_altitude, out ref_ecef_x, out ref_ecef_y, out ref_ecef_z);

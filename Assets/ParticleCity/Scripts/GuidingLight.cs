@@ -33,7 +33,6 @@ public class GuidingLight : MonoBehaviour
     private Renderer lightRenderer;
     private Coroutine smoothLightCoroutine;
     private FadeType currentFadeType;
-    private AkAmbient akAmbient;
 
     private float timeSinceLastTrigger = float.MaxValue;
     // private ParticleSystem particleSystem;
@@ -46,7 +45,6 @@ public class GuidingLight : MonoBehaviour
 
     void Start ()
 	{
-	    akAmbient = GetComponent<AkAmbient>();
 	    lightRenderer = GetComponentInChildren<Renderer>();
 
         // TODO: Pooling

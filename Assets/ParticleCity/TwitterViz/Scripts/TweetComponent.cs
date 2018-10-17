@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using ParticleCities;
 using TMPro;
 using TwitterViz.DataModels;
 using UnityEngine;
 using WanderUtils;
 using Debug = UnityEngine.Debug;
 
-// abcde
+// abcdefg
 
 public class TweetComponent : MonoBehaviour
 {
@@ -124,11 +123,8 @@ public class TweetComponent : MonoBehaviour
     public SpawnSourceNode SpawnSource;
     public object SpawnSourceUserData;
 
-    private Vector3 originalPosition;
-    private bool isPlaying;
     private AkGameObj akGameObj;
     private bool everTriggered;
-    private TwitterManager manager;
 
     private Transform approachingTarget;
     private float stateChangeTime;
@@ -145,11 +141,8 @@ public class TweetComponent : MonoBehaviour
 
 	void Start ()
 	{
-	    manager = GetComponentInParent<TwitterManager>();
 	    guidingLight = GetComponentInChildren<GuidingLight>();
 	    windZone = GetComponentInChildren<WindZone>(true);
-
-	    originalPosition = transform.position;
 
 	    GameObject captureGameObject = GameObject.FindWithTag("Capture");
 	    if (captureGameObject != null)
@@ -316,8 +309,6 @@ public class TweetComponent : MonoBehaviour
 
     private IEnumerator wordAnimation()
     {
-        isPlaying = true;
-
         for (int i = 0; i < Tweet.Words.Length; i++)
         {
             TMP_Text tmpText = Instantiate(WordPrefab, transform, false);
@@ -358,8 +349,6 @@ public class TweetComponent : MonoBehaviour
             }
             StartCoroutine(wordFadeOut(tmpText, FadeOutDuration, i == 0, i == Tweet.Words.Length - 1));
         }
-
-        isPlaying = false;
     }
 
     private void updateRenderPart(Vector3 pos, Vector3 velocity)
@@ -371,8 +360,6 @@ public class TweetComponent : MonoBehaviour
 
     private IEnumerator wordAnimationCircular()
     {
-        isPlaying = true;
-
         List<TMP_Text> textObjects = new List<TMP_Text>();
         for (int i = 0; i < Tweet.Words.Length; i++)
         {
@@ -474,14 +461,10 @@ public class TweetComponent : MonoBehaviour
             updateRenderPart(pos, lightVelocity);
             yield return null;
         }
-
-        isPlaying = false;
     }
 
     private IEnumerator wordAnimationOneSpot()
     {
-        isPlaying = true;
-
         List<TMP_Text> textObjects = new List<TMP_Text>();
         for (int i = 0; i < Tweet.Words.Length; i++)
         {
@@ -540,8 +523,6 @@ public class TweetComponent : MonoBehaviour
         }
 
         setState(TweetState.FadingOut);
-
-        isPlaying = false;
     }
 
     private IEnumerator circularWordFadeIn(TMP_Text text, bool isFirst, bool isLast, Vector3 originLocal, Vector3 targetLocal)

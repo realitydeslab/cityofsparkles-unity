@@ -19,14 +19,16 @@ public class FlyTowardsLightTutorialNode : StoryNode
     private TMP_Text text;
     private SpriteRenderer redDot;
 
-    void Start()
+    public override void Start()
     {
+        base.Start();
+
         image = GetComponentInChildren<Image>();
         text = GetComponentInChildren<TMP_Text>();
         redDot = GetComponentInChildren<SpriteRenderer>();
     }
 
-    void Update()
+    public override void Update()
     {
         if (Target == null || Target.IsTriggered)
         {
