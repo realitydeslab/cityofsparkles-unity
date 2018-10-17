@@ -7031,6 +7031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 04cb21bdec3734548b031211413532a0, type: 2}
+  Texture: {fileID: 11700000, guid: a2f8c7592c19b984b9654246532537d1, type: 2}
   Bounds:
     m_Center: {x: 337.31152, y: 302.66025, z: 409.00293}
     m_Extent: {x: 4201.1494, y: 247.20743, z: 6488.9062}
@@ -7375,7 +7376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54fa47ceaed9de74aa557f2e5df32423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 11400000, guid: 6c055658739db044597285bc87aa172f, type: 2}
+  HeightMapTex: {fileID: 2800000, guid: fda1c0a120d53ae4cbdce9ae54f5071f, type: 2}
   DebugGizmo: 1
   Bounds:
     m_Center: {x: 337.31152, y: 302.66025, z: 409.00293}

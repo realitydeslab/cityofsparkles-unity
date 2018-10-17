@@ -206,7 +206,6 @@ namespace ParticleCity.Editor
             AssetDatabase.CreateAsset(tex, Path.Combine(target, "DensityMap.asset"));
 
             DensityMapData data = ScriptableObject.CreateInstance<DensityMapData>();
-            data.DensityMapTexture = tex;
             data.GaussianBlurRadius = gaussianBlurRadius;
 
             EditorUtility.SetDirty(data);
