@@ -1,0 +1,17 @@
+{
+    "name": "WanderUtils.VRInputManager.OculusRift",
+    "references": [
+        "OculusAvatar",
+        "OculusPlatform",
+        "OculusVR",
+        "WanderUtils"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

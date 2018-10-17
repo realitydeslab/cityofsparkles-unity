@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading;
 using ParticleCities;
 using UnityEngine;
+using WanderUtils;
 using Debug = UnityEngine.Debug;
 
 [RequireComponent(typeof(AkAmbient))]

@@ -4,6 +4,7 @@ using ParticleCities;
 using UnityEngine;
 using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
+using WanderUtils;
 
 public class OpeningStart : MonoBehaviour
 {

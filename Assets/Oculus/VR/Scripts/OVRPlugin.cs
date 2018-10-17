@@ -29,7 +29,7 @@ using UnityEngine;
 
 // Internal C# wrapper for OVRPlugin.
 
-internal static class OVRPlugin
+public static class OVRPlugin
 {
 #if OVRPLUGIN_UNSUPPORTED_PLATFORM
 	public const bool isSupportedPlatform = false;

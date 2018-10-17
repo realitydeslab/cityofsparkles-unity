@@ -1,12 +1,8 @@
-using System;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
-using ParticleCity.Editor;
-using Random = UnityEngine.Random;
 
 public class ParticleCityGen : EditorWindow
 {
@@ -397,7 +393,8 @@ public class ParticleCityGen : EditorWindow
             meshObject.GetComponent<MeshRenderer>().material = AssetDatabase.LoadAssetAtPath<Material>(getPath("ParticleCity.mat"));
         }
 
-        PrefabUtility.CreatePrefab(getPath("ParticleCityPrefab.prefab"), particleCity);
+        // PrefabUtility.CreatePrefab(getPath("ParticleCityPrefab.prefab"), particleCity);
+        PrefabUtility.SaveAsPrefabAsset(particleCity, getPath("ParticleCityPrefab.prefab"));
 
         Debug.Log("Prefab saved to " + getPath("ParticleCityPrefab.prefab"));
     }

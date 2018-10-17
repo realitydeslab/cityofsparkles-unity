@@ -1,5 +1,6 @@
 using ParticleCities;
 using UnityEngine;
+using WanderUtils;
 
 public class SimpleFlowMotion : ParticleMotionBase {
     

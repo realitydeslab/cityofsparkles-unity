@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ParticleCities;
 using UnityEngine;
+using WanderUtils;
 
 [RequireComponent(typeof(ParticleCityPlayerController))]
 public class AutoPilotController : MonoBehaviour

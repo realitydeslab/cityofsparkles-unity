@@ -1,6 +1,7 @@
 ﻿using System;
 using ParticleCities;
 using UnityEngine;
+using WanderUtils;
 
 [ExecuteInEditMode]
 [RequireComponent(typeof(BoxCollider))]

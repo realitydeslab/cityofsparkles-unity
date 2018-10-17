@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ParticleCities;
 using UnityEngine;
+using WanderUtils;
 
 public class FlyingMotion : ParticleMotionBase {
     

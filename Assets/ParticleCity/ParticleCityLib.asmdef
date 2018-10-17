@@ -1,0 +1,19 @@
+{
+    "name": "ParticleCityLib",
+    "references": [
+        "WanderUtils",
+        "SQLite",
+        "Wwise",
+        "Unity.TextMeshPro",
+        "WwiseResonanceAudio",
+        "PostProcessing"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

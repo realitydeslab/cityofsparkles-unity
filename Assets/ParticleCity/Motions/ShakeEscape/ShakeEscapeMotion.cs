@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using ParticleCities;
 using UnityEngine.Rendering;
+using WanderUtils;
 
 public class ShakeEscapeMotion : ParticleMotionBase
 {
