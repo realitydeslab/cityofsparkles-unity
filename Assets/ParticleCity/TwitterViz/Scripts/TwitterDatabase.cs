@@ -148,6 +148,26 @@ public class TwitterDatabase : MonoBehaviour {
         return dbConnection.Query<DBTweetPoint>(query);
     }
 
+    public DBTweet QueryForPointCloudQueryResult(IList<FlannPointCloud.QueryResult> points, float accessTimeCooldown)
+    {
+        string[] ids = new string[points.Count];
+        for (int i = 0; i < points.Count; i++)
+        {
+            ids[i] = points[i].DbId.ToString();
+        }
+
+        DateTime maxLastAccessTime = DateTime.UtcNow.Subtract(TimeSpan.FromSeconds(accessTimeCooldown));
+
+        string query =
+            string.Format(
+                "SELECT * FROM tweets_random WHERE id IN ({0}) AND last_access IS NULL OR last_access < ? ORDER BY last_access LIMIT 1",
+                string.Join(", ", ids));
+        List<DBTweet> results = dbConnection.Query<DBTweet>(query, maxLastAccessTime);
+        DBTweet result = results.Count > 0 ? results[0] : null;
+        RecordLastAccessTimeInRandom(result);
+
+        return result;
+    }
 
     public void RecordLastAccessTime(string[] ids)
     {
@@ -155,6 +175,19 @@ public class TwitterDatabase : MonoBehaviour {
 
         string query = string.Format("UPDATE tweets SET last_access = ? WHERE id IN ({0})", string.Join(", ", ids));
         dbConnection.Execute(query, DateTime.UtcNow);
+    }
+
+    public void RecordLastAccessTimeInRandom(DBTweet tweet)
+    {
+        if (tweet == null)
+        {
+            return;
+        }
+
+        checkConnection();
+
+        string query = string.Format("UPDATE tweets_random SET last_access = ? WHERE id = ?");
+        dbConnection.Execute(query, DateTime.UtcNow, tweet.id);
     }
 
     public void RecordLastAccessTime(IList<DBTweet> tweets)

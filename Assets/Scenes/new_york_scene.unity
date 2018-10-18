@@ -8863,8 +8863,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc401df27e013e43b02297f14723c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LimitPerQuery: 10
+  RandomTweetPrefab: {fileID: 114547852909917368, guid: 7dee4c6eaa38bb6488262dfc606e9e3f, type: 3}
+  LimitPerQuery: 5
   Radius: 200
+  Cooldown: 15
+  AccessTimeCooldown: 30
+  MinMoveDistance: 100
+  HeightTolerance: 20
   TwitterDatabase: {fileID: 0}
   MapModel: {fileID: 0}
   HeightMap: {fileID: 0}

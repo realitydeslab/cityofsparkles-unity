@@ -4,13 +4,21 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using AmberGarage.Trajen;
 using ParticleCities;
+using TwitterViz.DataModels;
 using UnityEngine;
+using UnityEngine.Profiling;
 using WanderUtils;
 
 public class TwitterPointCloud : MonoBehaviour
 {
+    public TweetComponent RandomTweetPrefab;
+
     public int LimitPerQuery = 10;
     public float Radius = 100;
+    public float Cooldown = 5;
+    public float AccessTimeCooldown = 30;
+    public float MinMoveDistance = 100;
+    public float HeightTolerance = 10;
 
     [Header("Internal")]
     public TwitterDatabase TwitterDatabase;
@@ -19,6 +27,8 @@ public class TwitterPointCloud : MonoBehaviour
 
     private Dictionary<SentimentSpawnNode.Sentiment, FlannPointCloud> flann = new Dictionary<SentimentSpawnNode.Sentiment, FlannPointCloud>();
     private List<FlannPointCloud.QueryResult> nearbyPoints = new List<FlannPointCloud.QueryResult>();
+    private float lastSpawnTime = 0;
+    private Vector3 lastPlayerPosition;
 
     void Start()
     {
@@ -40,7 +50,26 @@ public class TwitterPointCloud : MonoBehaviour
             buildForSentiment(currentSentiment);
         }
 
-        updateNearbyPoints(currentSentiment);
+        if ((Time.time - lastSpawnTime > Cooldown) && 
+            (InputManager.Instance.PlayerTransform.position - lastPlayerPosition).sqrMagnitude > MinMoveDistance * MinMoveDistance )
+        {
+
+            Vector3 camPos = InputManager.Instance.CenterCamera.transform.position;
+            float minHeight, maxHeight;
+            if (HeightMap.GetHeightRange(camPos, out minHeight, out maxHeight) &&
+                (camPos.y > minHeight - HeightTolerance) && (camPos.y < maxHeight + HeightTolerance)
+            )
+            {
+                updateNearbyPoints(currentSentiment);
+
+                if (spawnTweet())
+                {
+                    lastSpawnTime = Time.time;
+                    lastPlayerPosition = InputManager.Instance.PlayerTransform.position;
+                }
+            }
+        }
+
     }
 
     void OnDestroy()
@@ -81,8 +110,37 @@ public class TwitterPointCloud : MonoBehaviour
     {
         Vector3 center = InputManager.Instance.CenterCamera.transform.position;
         nearbyPoints.Capacity = LimitPerQuery;
+        Profiler.BeginSample("Flann Query");
         flann[sentiment].Query(center.GroundProjection2d(), Radius, LimitPerQuery, nearbyPoints);
-        Debug.Log("Nearby points: " + nearbyPoints.Count);
+        Profiler.EndSample();
+    }
+
+    private bool spawnTweet()
+    {
+        if (nearbyPoints.Count == 0)
+        {
+            return false;
+        }
+
+        Profiler.BeginSample("DB Query");
+        TwitterDatabase.DBTweet dbTweet = TwitterDatabase.QueryForPointCloudQueryResult(nearbyPoints, AccessTimeCooldown);
+        Profiler.EndSample();
+        if (dbTweet == null)
+        {
+            return false;
+        }
+
+        Vector3 position = MapModel.EarthToUnityWorld(dbTweet.latitude, dbTweet.longitude, 0);
+        position = HeightMap.PointWithRandomHeight(position.x, position.z);
+
+        Tweet tweet = new Tweet(dbTweet);
+        TweetComponent tweetObj = Instantiate(RandomTweetPrefab, position, Quaternion.identity, transform);
+        tweetObj.name = string.Format("Tweet_{0:F1}", tweet.Sentiment.Polarity);
+        tweetObj.Tweet = tweet;
+        tweetObj.Text = tweet.Text;
+        tweetObj.Sentiment = tweet.Sentiment.Polarity;
+        tweetObj.Trigger = true;
+        return true;
     }
 }
 
