@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using SQLite4Unity3d;
 using TwitterViz.DataModels;
+using Unity.Collections;
+using Unity.Jobs;
 using UnityEngine;
 using Sentiment = SentimentSpawnNode.Sentiment;
 
@@ -169,14 +171,6 @@ public class TwitterDatabase : MonoBehaviour {
         return result;
     }
 
-    public void RecordLastAccessTime(string[] ids)
-    {
-        checkConnection();
-
-        string query = string.Format("UPDATE tweets SET last_access = ? WHERE id IN ({0})", string.Join(", ", ids));
-        dbConnection.Execute(query, DateTime.UtcNow);
-    }
-
     public void RecordLastAccessTimeInRandom(DBTweet tweet)
     {
         if (tweet == null)
@@ -188,6 +182,14 @@ public class TwitterDatabase : MonoBehaviour {
 
         string query = string.Format("UPDATE tweets_random SET last_access = ? WHERE id = ?");
         dbConnection.Execute(query, DateTime.UtcNow, tweet.id);
+    }
+
+    public void RecordLastAccessTime(string[] ids)
+    {
+        checkConnection();
+
+        string query = string.Format("UPDATE tweets SET last_access = ? WHERE id IN ({0})", string.Join(", ", ids));
+        dbConnection.Execute(query, DateTime.UtcNow);
     }
 
     public void RecordLastAccessTime(IList<DBTweet> tweets)

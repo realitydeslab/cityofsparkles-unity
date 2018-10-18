@@ -8845,7 +8845,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133479297}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1057bf88dab82ce4eb72bf4cf8dc1e0a, type: 3}
   m_Name: 
@@ -8865,7 +8865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RandomTweetPrefab: {fileID: 114547852909917368, guid: 7dee4c6eaa38bb6488262dfc606e9e3f, type: 3}
   LimitPerQuery: 5
-  Radius: 200
+  Radius: 100
   Cooldown: 15
   AccessTimeCooldown: 30
   MinMoveDistance: 100

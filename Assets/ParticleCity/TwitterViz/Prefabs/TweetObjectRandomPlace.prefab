@@ -69,6 +69,8 @@ MonoBehaviour:
   CircularWordInterval: 0.2
   CircularFadeOutDuration: 5
   CircularSpaceWidth: 1.5
+  HoldingTimeOnGaze: 2
+  HoldingTimeNoGaze: 10
   AkEventOnReveal: Play_TweetRevealCommon
   SpawnTweetTutorialLeftPrefab: {fileID: 0}
   SpawnTweetTutorialRightPrefab: {fileID: 0}

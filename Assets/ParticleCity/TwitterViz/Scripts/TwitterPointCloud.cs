@@ -109,7 +109,6 @@ public class TwitterPointCloud : MonoBehaviour
     private void updateNearbyPoints(SentimentSpawnNode.Sentiment sentiment)
     {
         Vector3 center = InputManager.Instance.CenterCamera.transform.position;
-        nearbyPoints.Capacity = LimitPerQuery;
         Profiler.BeginSample("Flann Query");
         flann[sentiment].Query(center.GroundProjection2d(), Radius, LimitPerQuery, nearbyPoints);
         Profiler.EndSample();
@@ -131,7 +130,7 @@ public class TwitterPointCloud : MonoBehaviour
         }
 
         Vector3 position = MapModel.EarthToUnityWorld(dbTweet.latitude, dbTweet.longitude, 0);
-        position = HeightMap.PointWithRandomHeight(position.x, position.z);
+        position.y = InputManager.Instance.CenterCamera.transform.position.y;
 
         Tweet tweet = new Tweet(dbTweet);
         TweetComponent tweetObj = Instantiate(RandomTweetPrefab, position, Quaternion.identity, transform);
@@ -182,12 +181,13 @@ public class FlannPointCloud : IDisposable
         flann = CreateFlannPointCloud(rawData, rawData.Length);
     }
 
-    public void Query(Vector2 center, float radius, int limit, IList<QueryResult> queryResult)
+    public void Query(Vector2 center, float radius, int limit, List<QueryResult> queryResult)
     {
         if (indices.Length != limit)
         {
             indices = new int[limit];
         }
+        queryResult.Capacity = limit;
         queryResult.Clear();
 
         int count = QueryFlannPointCloud(flann, center.x, center.y, radius, limit, indices);

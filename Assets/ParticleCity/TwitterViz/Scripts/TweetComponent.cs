@@ -6,8 +6,6 @@ using UnityEngine;
 using WanderUtils;
 using Debug = UnityEngine.Debug;
 
-// abcdefg
-
 public class TweetComponent : MonoBehaviour
 {
     public enum SpawnAnimation
@@ -35,6 +33,8 @@ public class TweetComponent : MonoBehaviour
         /// Triggered, flying towards the first word
         /// </summary>
         LightingUp,
+
+        Holding,
 
         /// <summary>
         /// Spawning words
@@ -98,6 +98,10 @@ public class TweetComponent : MonoBehaviour
     public float CircularFadeOutDuration = 2.0f;
     public float CircularSpaceWidth = 5;
     // public float CircularMaxDegree = 90;
+
+    [Header("Word holding for random tweets")]
+    public float HoldingTimeOnGaze = 2;
+    public float HoldingTimeNoGaze = 5;
 
     [Header("Sound")]
     public string AkEventOnReveal = "Play_TweetRevealCommon";
@@ -517,15 +521,56 @@ public class TweetComponent : MonoBehaviour
 
             Vector3 originLocal = Vector3.zero;
             Vector3 targetLocal = textObjects[i].transform.localPosition + new Vector3(0, CircularSpawnOffset + CircularRisingOffset, 0);
-            StartCoroutine(circularWordFadeIn(text, isFirst, isLast, originLocal, targetLocal));
+            StartCoroutine(circularWordFadeIn(text, isFirst, isLast, originLocal, targetLocal, false));
 
             yield return new WaitForSeconds(CircularWordInterval);
         }
 
-        setState(TweetState.FadingOut);
+        setState(TweetState.Holding);
+
+        float holdingTime = 0;
+        float gazeTime = 0;
+        while (State == TweetState.Holding)
+        {
+            holdingTime += Time.deltaTime;
+            if (holdingTime > HoldingTimeNoGaze)
+            {
+                setState(TweetState.FadingOut);
+            }
+            else
+            {
+                float angle = Vector3.Angle(InputManager.Instance.CenterCamera.transform.forward, cameraToPointDir);
+                if (angle < 45)
+                {
+                    gazeTime += Time.deltaTime;
+                }
+                else
+                {
+                    gazeTime = 0;
+                }
+
+                if (gazeTime > HoldingTimeOnGaze)
+                {
+                    setState(TweetState.FadingOut);
+                }
+            }
+            yield return null;
+        }
+
+        for (int i = 0; i < textObjects.Count; i++)
+        {
+            bool isFirst = (i == 0);
+            bool isLast = (i == textObjects.Count - 1);
+            TMP_Text text = textObjects[i];
+
+            StartCoroutine(wordFadeOut(text, CircularFadeOutDuration, isFirst, isLast));
+            ParticleCity.Current.RemoveActiveGameObject(text.gameObject, 1);
+
+            yield return new WaitForSeconds(CircularWordInterval);
+        }
     }
 
-    private IEnumerator circularWordFadeIn(TMP_Text text, bool isFirst, bool isLast, Vector3 originLocal, Vector3 targetLocal)
+    private IEnumerator circularWordFadeIn(TMP_Text text, bool isFirst, bool isLast, Vector3 originLocal, Vector3 targetLocal, bool fadeOut = true)
     {
         ParticleCity.Current.AddActiveGameObject(text.gameObject);
 
@@ -566,8 +611,11 @@ public class TweetComponent : MonoBehaviour
 
         text.transform.localPosition = targetLocal;
 
-        StartCoroutine(wordFadeOut(text, CircularFadeOutDuration, isFirst, isLast));
-        ParticleCity.Current.RemoveActiveGameObject(text.gameObject, 1);
+        if (fadeOut)
+        {
+            StartCoroutine(wordFadeOut(text, CircularFadeOutDuration, isFirst, isLast));
+            ParticleCity.Current.RemoveActiveGameObject(text.gameObject, 1);
+        }
     }
 
     private IEnumerator storyTriggerAnimation()

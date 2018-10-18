@@ -10,7 +10,7 @@ public class RandomTweetSpanwer : MonoBehaviour
     public TweetComponent RandomTweetPrefab;
 
 	void Update () {
-	    if (InputManager.Instance.GetButtonDown(Button.B))
+	    if (InputManager.Instance.GetButtonDown(Button.Confirm))
 	    {
 	        TweetComponent tweetObj = Instantiate(RandomTweetPrefab, InputManager.Instance.GetHand(HandType.Right).transform.position, Quaternion.identity, transform);
 

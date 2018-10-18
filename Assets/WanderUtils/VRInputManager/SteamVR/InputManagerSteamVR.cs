@@ -169,7 +169,7 @@ namespace ParticleCities
                     SteamVR_Controller.Device device = getDevice(HandType.Right);
                     if (device != null)
                     {
-                        isPressed = device.GetPress(EVRButtonId.k_EButton_SteamVR_Touchpad);
+                        isPressed = device.GetPressDown(EVRButtonId.k_EButton_SteamVR_Touchpad);
                         if (isPressed)
                         {
                             return true;
@@ -179,7 +179,7 @@ namespace ParticleCities
                     device = getDevice(HandType.Left);
                     if (device != null)
                     {
-                        isPressed = device.GetPress(EVRButtonId.k_EButton_SteamVR_Touchpad);
+                        isPressed = device.GetPressDown(EVRButtonId.k_EButton_SteamVR_Touchpad);
                         if (isPressed)
                         {
                             return true;
