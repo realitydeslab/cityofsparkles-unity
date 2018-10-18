@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Profiling;
+using Random = UnityEngine.Random;
 
 namespace ParticleCities
 {
@@ -58,6 +59,21 @@ namespace ParticleCities
             }
 
             return false;
+        }
+
+        public Vector3 PointWithRandomHeight(float x, float z)
+        {
+            float top, bottom, y;
+            if (GetHeightRange(new Vector3(x, 0, z), out bottom, out top))
+            {
+                y = Random.Range(bottom, top);
+            }
+            else
+            {
+                y = Random.Range(Bounds.min.y, Bounds.max.y);
+            }
+
+            return new Vector3(x, y, z);
         }
 
         void OnDrawGizmosSelected()

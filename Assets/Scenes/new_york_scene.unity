@@ -183,7 +183,6 @@ GameObject:
   m_Component:
   - component: {fileID: 13489169}
   - component: {fileID: 13489168}
-  - component: {fileID: 13489167}
   m_Layer: 0
   m_Name: WwiseGlobal
   m_TagString: Untagged
@@ -191,33 +190,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &13489167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 13489166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 277cb2cd1ac6f7c4ebf190dd9f26d6d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitializationSettings: {fileID: 11400000, guid: b43bad62279a4b8498f3d3dbd6d6a5cb, type: 2}
-  basePath: Audio\GeneratedSoundBanks
-  language: English(US)
-  defaultPoolSize: 4096
-  lowerPoolSize: 2048
-  streamingPoolSize: 1024
-  preparePoolSize: 0
-  memoryCutoffThreshold: 0.95
-  monitorPoolSize: 128
-  monitorQueuePoolSize: 64
-  callbackManagerBufferSize: 4
-  spatialAudioPoolSize: 4096
-  maxSoundPropagationDepth: 8
-  diffractionFlags: 11
-  engineLogging: 1
 --- !u!114 &13489168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,7 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433ef5878b211184e8207383ce2c5e79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Database: twitter_nyc_tags3.db
+  Database: twitter_nyc_tags3_random.db
 --- !u!1 &180669085
 GameObject:
   m_ObjectHideFlags: 0
@@ -8844,6 +8816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2133479298}
   - component: {fileID: 2133479299}
+  - component: {fileID: 2133479300}
   m_Layer: 0
   m_Name: RandomTweets
   m_TagString: Untagged
@@ -8872,12 +8845,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133479297}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1057bf88dab82ce4eb72bf4cf8dc1e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   RandomTweetPrefab: {fileID: 114547852909917368, guid: 7dee4c6eaa38bb6488262dfc606e9e3f, type: 3}
+--- !u!114 &2133479300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133479297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc401df27e013e43b02297f14723c5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LimitPerQuery: 10
+  Radius: 200
+  TwitterDatabase: {fileID: 0}
+  MapModel: {fileID: 0}
+  HeightMap: {fileID: 0}
 --- !u!1 &2136466807
 GameObject:
   m_ObjectHideFlags: 0

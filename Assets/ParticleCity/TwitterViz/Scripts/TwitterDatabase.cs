@@ -8,6 +8,15 @@ using Sentiment = SentimentSpawnNode.Sentiment;
 
 public class TwitterDatabase : MonoBehaviour {
 
+    public class DBTweetPoint
+    {
+        [PrimaryKey, AutoIncrement]
+        public int id { get; set; }
+
+        public double latitude { get; set; }
+        public double longitude { get; set; }
+    }
+
     public class DBTweet
     {
         [PrimaryKey, AutoIncrement]
@@ -108,6 +117,38 @@ public class TwitterDatabase : MonoBehaviour {
         return result;
     }
 
+    
+    public IList<DBTweetPoint> QueryForPointCloud(Sentiment sentiment)
+    {
+        checkConnection();
+        string query;
+        switch (sentiment)
+        {
+            case Sentiment.Neutral:
+            default:
+                query = "SELECT id, latitude, longitude FROM tweets_random WHERE " +
+                                                 "(sentiment_polarity < 0.5 AND sentiment_polarity > -0.5) OR " +
+                                                 "(sentiment_positive < 0.5 AND sentiment_negative < 0.5)";
+                break;
+
+            case Sentiment.Happy:
+            case Sentiment.Wish:
+                query = "SELECT id, latitude, longitude FROM tweets_random WHERE " +
+                                                 "sentiment_polarity > 0.8 OR " +
+                                                 "sentiment_positive > 0.8";
+                break;
+
+            case Sentiment.Sad:
+                query = "SELECT id, latitude, longitude FROM tweets_random WHERE " +
+                                                 "sentiment_polarity < -0.5 OR " +
+                                                 "sentiment_negative > 0.5";
+                break;
+        }
+
+        return dbConnection.Query<DBTweetPoint>(query);
+    }
+
+
     public void RecordLastAccessTime(string[] ids)
     {
         checkConnection();
@@ -126,7 +167,7 @@ public class TwitterDatabase : MonoBehaviour {
 
         RecordLastAccessTime(ids);
     }
-
+    
     void Awake()
     {
         checkConnection();
