@@ -23,6 +23,7 @@ namespace AK
         static const AkUniqueID PLAY_TWEET_MED_LONG = 3560716643U;
         static const AkUniqueID PLAY_TWEET_SHORT = 241412554U;
         static const AkUniqueID PLAY_TWEETREVEALCOMMON = 2476052365U;
+        static const AkUniqueID PLAY_TWEETREVEALRANDOM = 3907276059U;
         static const AkUniqueID PLAY_TWIST_BGM = 1993745496U;
         static const AkUniqueID PLAY_TWISTNOISYPART = 3980605832U;
         static const AkUniqueID PLAY_TWITTERBGM = 914952687U;

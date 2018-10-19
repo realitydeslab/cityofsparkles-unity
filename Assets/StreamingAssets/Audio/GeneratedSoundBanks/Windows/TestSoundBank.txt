@@ -11,6 +11,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3160623154	Silent			\Default Work Unit\Silent	
 	3560716643	Play_Tweet_Med_Long			\Default Work Unit\Play_Tweet_Med_Long	
 	3656440737	Play_HearTheWindWhisper			\Test Work Unit\Play_HearTheWindWhisper	
+	3907276059	Play_TweetRevealRandom			\Default Work Unit\Play_TweetRevealRandom	
 	3980605832	Play_TwistNoisyPart			\Test Work Unit\Play_TwistNoisyPart	
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
@@ -42,33 +43,36 @@ Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	30958087	PCBGM-atmosphere	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\PCBGM-atmosphere_6730AB98.wem		\Interactive Music Hierarchy\Default Work Unit\BGM\BGM_atmosphere\PCBGM-atmosphere		1061981
 	34834793	03 - Twist - e Twist	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-03 - Twist - e Twist_F26CE7B0.wem		\Interactive Music Hierarchy\Test Work Unit\StoryBGM\Twist\20180519 BGM\03 - Twist - e Twist		14547776
-	42020522	Tweet-Long_03	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Long_03_C8E069E3.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Long\Tweet-Long_03\Tweet-Long_03		2052682
+	42020522	Tweet-Long_03	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Long_03_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Long\Tweet-Long_03\Tweet-Long_03		4105236
 	46944213	PCBGM-atmosphere	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\PCBGM-atmosphere_F26CE7B0.wem		\Interactive Music Hierarchy\Test Work Unit\SentimentBGMTest\Neutral\BGM_atmosphere\PCBGM-atmosphere		24607864
-	91450912	Tweet-Short_01	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Short_01_C8E069E3.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Short\Tweet-Short_01\Tweet-Short_01		494386
+	91450912	Tweet-Short_01	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Short_01_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Short\Tweet-Short_01\Tweet-Short_01		988644
 	94051576	E3-009-044	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\E3-009-044_F26CE7B0.wem		\Interactive Music Hierarchy\Test Work Unit\SentimentBGMTest\Wish\E3-009-044\E3-009-044		23658420
-	122761794	Tweet-Short_02	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Short_02_C8E069E3.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Short\Tweet-Short_02\Tweet-Short_02		633468
-	138061797	Tweet-Med_01	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med_01_C8E069E3.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Med\Tweet-Med_01\Tweet-Med_01		718068
+	122761794	Tweet-Short_02	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Short_02_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Short\Tweet-Short_02\Tweet-Short_02		1266808
+	138061797	Tweet-Med_01	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med_01_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Med\Tweet-Med_01\Tweet-Med_01		1436008
 	297268359	ParticleCity Improv	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\ParticleCity Improv_6730AB98.wem		\Interactive Music Hierarchy\Test Work Unit\ParticleCity Improv BGM\ParticleCity Improv		1291792
+	307493468	Tweet-Short_02	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Short_02_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealRandom\Tweet-Short_02\Tweet-Short_02		1266808
 	325562668	02 - First - b Aurora Pluck(Density)	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-02 - First - b Aurora Pluck(Density)_F26CE7B0.wem		\Interactive Music Hierarchy\Test Work Unit\StoryBGM\First\First\02 - First - b Aurora Pluck(Density)		18654032
-	376149469	Tweet-Med-Long_01	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med-Long_01_C8E069E3.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Med-Long\Tweet-Med-Long_01\Tweet-Med-Long_01		938946
+	376149469	Tweet-Med-Long_01	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med-Long_01_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Med-Long\Tweet-Med-Long_01\Tweet-Med-Long_01		1877764
 	378625576	TwistNoisyPart	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\TwistNoisyPart_6730AB98.wem		\Interactive Music Hierarchy\Test Work Unit\TwistNoisyPart\TwistNoisyPart		1838188
 	383937372	03 - Twist - c Evo 2	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-03 - Twist - c Evo 2_F26CE7B0.wem		\Interactive Music Hierarchy\Test Work Unit\StoryBGM\Twist\20180519 BGM\03 - Twist - c Evo 2		8820064
 	407719945	HearTheWindWhisper	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\HearTheWindWhisper_6730AB98.wem		\Interactive Music Hierarchy\Test Work Unit\HearTheWindWhisper\HearTheWindWhisper		1409627
-	408862344	Tweet-Short_03	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Short_03_C8E069E3.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Short\Tweet-Short_03\Tweet-Short_03		876590
-	420134523	Tweet-Med-Long_02	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med-Long_02_C8E069E3.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Med-Long\Tweet-Med-Long_02\Tweet-Med-Long_02		850748
+	408862344	Tweet-Short_03	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Short_03_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Short\Tweet-Short_03\Tweet-Short_03		1753052
+	420134523	Tweet-Med-Long_02	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med-Long_02_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Med-Long\Tweet-Med-Long_02\Tweet-Med-Long_02		1701368
 	438016900	01 - Intro - Starting Loop	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-01 - Intro - Starting Loop_F26CE7B0.wem		\Interactive Music Hierarchy\Test Work Unit\StoryBGM\InitialDark\Starting Loop\01 - Intro - Starting Loop		1220320
 	443307163	Blue Piano	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\blue piano - Copy_F26CE7B0.wem		\Interactive Music Hierarchy\Test Work Unit\StoryBGM\Last\Last\Blue Piano		16934464
-	483971353	Tweet-Med-Long_03	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med-Long_03_C8E069E3.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Med-Long\Tweet-Med-Long_03\Tweet-Med-Long_03		1030726
-	600856261	Tweet-Long_02	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Long_02_C8E069E3.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Long\Tweet-Long_02\Tweet-Long_02		1517252
+	483971353	Tweet-Med-Long_03	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med-Long_03_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Med-Long\Tweet-Med-Long_03\Tweet-Med-Long_03		2061324
+	600856261	Tweet-Long_02	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Long_02_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Long\Tweet-Long_02\Tweet-Long_02		3034376
 	633447123	03 - Twist - b Evo 1	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-03 - Twist - b Evo 1_F26CE7B0.wem		\Interactive Music Hierarchy\Test Work Unit\StoryBGM\Twist\20180519 BGM\03 - Twist - b Evo 1		8820064
-	694171849	Tweet-Long_01	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Long_01_C8E069E3.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Long\Tweet-Long_01\Tweet-Long_01		1553532
+	694171849	Tweet-Long_01	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Long_01_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Long\Tweet-Long_01\Tweet-Long_01		3106936
+	732945533	Tweet-Short_03	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Short_03_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealRandom\Tweet-Short_03\Tweet-Short_03		1753052
 	802538555	03 - Twist - d Evo 3	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-03 - Twist - d Evo 3_F26CE7B0.wem		\Interactive Music Hierarchy\Test Work Unit\StoryBGM\Twist\20180519 BGM\03 - Twist - d Evo 3		8820064
 	810202103	duet	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\duet_F26CE7B0.wem		\Interactive Music Hierarchy\Test Work Unit\SentimentBGMTest\Happy\duet\duet		5799112
 	810328542	Twist	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Twist_6D9C44FA.wem		\Interactive Music Hierarchy\Test Work Unit\Twist BGM\Twist		19846216
+	817025925	Tweet-Short_01	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Short_01_F26CE7B0.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealRandom\Tweet-Short_01\Tweet-Short_01		988644
 	831186808	02 - First - a Astral Organ	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-02 - First - a Astral Organ_F26CE7B0.wem		\Interactive Music Hierarchy\Test Work Unit\StoryBGM\First\First\02 - First - a Astral Organ		18653952
-	922462996	Tweet-Med_02	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med_02_C8E069E3.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Med\Tweet-Med_02\Tweet-Med_02		908348
-	995012014	Tweet-Med_03	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med_03_C8E069E3.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Med\Tweet-Med_03\Tweet-Med_03		944920
+	922462996	Tweet-Med_02	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med_02_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Med\Tweet-Med_02\Tweet-Med_02		1816568
+	995012014	Tweet-Med_03	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med_03_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Med\Tweet-Med_03\Tweet-Med_03		1889712
 	1043598777	ParticleCityCommands	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\ParticleCityCommands_00000000.wem		\Interactive Music Hierarchy\Test Work Unit\ParticleCity Improv BGM\ParticleCityCommands		4777
-	1049042582	Tweet-Med_04	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med_04_C8E069E3.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Med\Tweet-Med_04\Tweet-Med_04		1026570
+	1049042582	Tweet-Med_04	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-Med_04_8956FC97.wem		\Interactive Music Hierarchy\Default Work Unit\TweetRevealCommon\Tweet-Med\Tweet-Med_04\Tweet-Med_04		2053012
 	1066262541	03 - Twist - a haunted spaces	E:\ParticleCity\ParticleCityWwise\.cache\Windows\SFX\Tweet-03 - Twist - a haunted spaces_F26CE7B0.wem		\Interactive Music Hierarchy\Test Work Unit\StoryBGM\Twist\20180519 BGM\03 - Twist - a haunted spaces		8820064
 

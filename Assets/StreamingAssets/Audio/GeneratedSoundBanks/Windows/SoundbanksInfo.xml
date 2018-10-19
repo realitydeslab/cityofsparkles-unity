@@ -35,6 +35,7 @@
 				<Event Id="3560716643" Name="Play_Tweet_Med_Long" ObjectPath="\Events\Default Work Unit\Play_Tweet_Med_Long"/>
 				<Event Id="241412554" Name="Play_Tweet_Short" ObjectPath="\Events\Default Work Unit\Play_Tweet_Short"/>
 				<Event Id="2476052365" Name="Play_TweetRevealCommon" ObjectPath="\Events\Default Work Unit\Play_TweetRevealCommon"/>
+				<Event Id="3907276059" Name="Play_TweetRevealRandom" ObjectPath="\Events\Default Work Unit\Play_TweetRevealRandom" MaxAttenuation="1000.000000"/>
 				<Event Id="1993745496" Name="Play_Twist_BGM" ObjectPath="\Events\Test Work Unit\Play_Twist_BGM"/>
 				<Event Id="3980605832" Name="Play_TwistNoisyPart" ObjectPath="\Events\Test Work Unit\Play_TwistNoisyPart"/>
 				<Event Id="914952687" Name="Play_TwitterBgm" ObjectPath="\Events\Default Work Unit\Play_TwitterBgm"/>
@@ -51,7 +52,7 @@
 				</File>
 				<File Id="42020522" Language="SFX">
 					<ShortName>Tweet-Long_03.wav</ShortName>
-					<Path>SFX\Tweet-Long_03_C8E069E3.wem</Path>
+					<Path>SFX\Tweet-Long_03_8956FC97.wem</Path>
 				</File>
 				<File Id="46944213" Language="SFX">
 					<ShortName>PCBGM-atmosphere.wav</ShortName>
@@ -59,7 +60,7 @@
 				</File>
 				<File Id="91450912" Language="SFX">
 					<ShortName>Tweet-Short_01.wav</ShortName>
-					<Path>SFX\Tweet-Short_01_C8E069E3.wem</Path>
+					<Path>SFX\Tweet-Short_01_8956FC97.wem</Path>
 				</File>
 				<File Id="94051576" Language="SFX">
 					<ShortName>E3-009-044.wav</ShortName>
@@ -67,15 +68,19 @@
 				</File>
 				<File Id="122761794" Language="SFX">
 					<ShortName>Tweet-Short_02.wav</ShortName>
-					<Path>SFX\Tweet-Short_02_C8E069E3.wem</Path>
+					<Path>SFX\Tweet-Short_02_8956FC97.wem</Path>
 				</File>
 				<File Id="138061797" Language="SFX">
 					<ShortName>Tweet-Med_01.wav</ShortName>
-					<Path>SFX\Tweet-Med_01_C8E069E3.wem</Path>
+					<Path>SFX\Tweet-Med_01_8956FC97.wem</Path>
 				</File>
 				<File Id="297268359" Language="SFX">
 					<ShortName>ParticleCity Improv.wav</ShortName>
 					<Path>SFX\ParticleCity Improv_6730AB98.wem</Path>
+				</File>
+				<File Id="307493468" Language="SFX">
+					<ShortName>Tweet-Short_02.wav</ShortName>
+					<Path>SFX\Tweet-Short_02_F26CE7B0.wem</Path>
 				</File>
 				<File Id="325562668" Language="SFX">
 					<ShortName>Tweet-02 - First - b Aurora Pluck(Density).wav</ShortName>
@@ -83,7 +88,7 @@
 				</File>
 				<File Id="376149469" Language="SFX">
 					<ShortName>Tweet-Med-Long_01.wav</ShortName>
-					<Path>SFX\Tweet-Med-Long_01_C8E069E3.wem</Path>
+					<Path>SFX\Tweet-Med-Long_01_8956FC97.wem</Path>
 				</File>
 				<File Id="378625576" Language="SFX">
 					<ShortName>TwistNoisyPart.wav</ShortName>
@@ -99,11 +104,11 @@
 				</File>
 				<File Id="408862344" Language="SFX">
 					<ShortName>Tweet-Short_03.wav</ShortName>
-					<Path>SFX\Tweet-Short_03_C8E069E3.wem</Path>
+					<Path>SFX\Tweet-Short_03_8956FC97.wem</Path>
 				</File>
 				<File Id="420134523" Language="SFX">
 					<ShortName>Tweet-Med-Long_02.wav</ShortName>
-					<Path>SFX\Tweet-Med-Long_02_C8E069E3.wem</Path>
+					<Path>SFX\Tweet-Med-Long_02_8956FC97.wem</Path>
 				</File>
 				<File Id="438016900" Language="SFX">
 					<ShortName>Tweet-01 - Intro - Starting Loop.wav</ShortName>
@@ -115,11 +120,11 @@
 				</File>
 				<File Id="483971353" Language="SFX">
 					<ShortName>Tweet-Med-Long_03.wav</ShortName>
-					<Path>SFX\Tweet-Med-Long_03_C8E069E3.wem</Path>
+					<Path>SFX\Tweet-Med-Long_03_8956FC97.wem</Path>
 				</File>
 				<File Id="600856261" Language="SFX">
 					<ShortName>Tweet-Long_02.wav</ShortName>
-					<Path>SFX\Tweet-Long_02_C8E069E3.wem</Path>
+					<Path>SFX\Tweet-Long_02_8956FC97.wem</Path>
 				</File>
 				<File Id="633447123" Language="SFX">
 					<ShortName>Tweet-03 - Twist - b Evo 1.wav</ShortName>
@@ -127,7 +132,11 @@
 				</File>
 				<File Id="694171849" Language="SFX">
 					<ShortName>Tweet-Long_01.wav</ShortName>
-					<Path>SFX\Tweet-Long_01_C8E069E3.wem</Path>
+					<Path>SFX\Tweet-Long_01_8956FC97.wem</Path>
+				</File>
+				<File Id="732945533" Language="SFX">
+					<ShortName>Tweet-Short_03.wav</ShortName>
+					<Path>SFX\Tweet-Short_03_F26CE7B0.wem</Path>
 				</File>
 				<File Id="802538555" Language="SFX">
 					<ShortName>Tweet-03 - Twist - d Evo 3.wav</ShortName>
@@ -141,17 +150,21 @@
 					<ShortName>Twist.wav</ShortName>
 					<Path>SFX\Twist_6D9C44FA.wem</Path>
 				</File>
+				<File Id="817025925" Language="SFX">
+					<ShortName>Tweet-Short_01.wav</ShortName>
+					<Path>SFX\Tweet-Short_01_F26CE7B0.wem</Path>
+				</File>
 				<File Id="831186808" Language="SFX">
 					<ShortName>Tweet-02 - First - a Astral Organ.wav</ShortName>
 					<Path>SFX\Tweet-02 - First - a Astral Organ_F26CE7B0.wem</Path>
 				</File>
 				<File Id="922462996" Language="SFX">
 					<ShortName>Tweet-Med_02.wav</ShortName>
-					<Path>SFX\Tweet-Med_02_C8E069E3.wem</Path>
+					<Path>SFX\Tweet-Med_02_8956FC97.wem</Path>
 				</File>
 				<File Id="995012014" Language="SFX">
 					<ShortName>Tweet-Med_03.wav</ShortName>
-					<Path>SFX\Tweet-Med_03_C8E069E3.wem</Path>
+					<Path>SFX\Tweet-Med_03_8956FC97.wem</Path>
 				</File>
 				<File Id="1043598777" Language="SFX">
 					<ShortName>ParticleCityCommands.mid</ShortName>
@@ -159,7 +172,7 @@
 				</File>
 				<File Id="1049042582" Language="SFX">
 					<ShortName>Tweet-Med_04.wav</ShortName>
-					<Path>SFX\Tweet-Med_04_C8E069E3.wem</Path>
+					<Path>SFX\Tweet-Med_04_8956FC97.wem</Path>
 				</File>
 				<File Id="1066262541" Language="SFX">
 					<ShortName>Tweet-03 - Twist - a haunted spaces.wav</ShortName>

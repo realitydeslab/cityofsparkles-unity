@@ -5,7 +5,9 @@ using System.Text.RegularExpressions;
 using TMPro;
 using TwitterViz.DataModels;
 using UnityEngine;
+using WanderUtils;
 
+[RequireComponent(typeof(Animator))]
 public class TweetCanvas : MonoBehaviour
 {
     public TwitterDatabase.DBTweet Tweet;
@@ -17,8 +19,20 @@ public class TweetCanvas : MonoBehaviour
     public TextMeshProUGUI DateUI;
     public GameObject[] MotionEffectors; 
 
+    [Header("Word holding for random tweets")]
+    public float HoldingTimeOnGaze = 2;
+    public float HoldingTimeNoGaze = 5;
+
+    private float holdingTime;
+    private float gazeTime;
+    private bool fadeInFinished;
+
+    private Animator animator;
+
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         DisplayNameUI.text = strip(Tweet.full_username);
         UserNameUI.text = "@" + Tweet.username;
         ContentUI.text = strip(Tweet.full_text);
@@ -30,11 +44,38 @@ public class TweetCanvas : MonoBehaviour
         {
             ParticleCity.Current.AddActiveGameObject(MotionEffectors[i]);
         }
+
     }
 
     void Update()
     {
-        
+        if (!fadeInFinished)
+        {
+            return;
+        }
+
+        holdingTime += Time.deltaTime;
+        if (holdingTime > HoldingTimeNoGaze)
+        {
+            animator.SetTrigger("FadeOut");
+        }
+        else
+        {
+            float angle = Vector3.Angle(InputManager.Instance.CenterCamera.transform.forward, transform.position - InputManager.Instance.CenterCamera.transform.position);
+            if (angle < 45)
+            {
+                gazeTime += Time.deltaTime;
+            }
+            else
+            {
+                gazeTime = 0;
+            }
+
+            if (gazeTime > HoldingTimeOnGaze)
+            {
+                animator.SetTrigger("FadeOut");
+            }
+        }
     }
 
     public void OnDestroy()
@@ -43,6 +84,7 @@ public class TweetCanvas : MonoBehaviour
 
     public void OnFadeInFinished()
     {
+        fadeInFinished = true;
         for (int i = 0; i < MotionEffectors.Length; i++)
         {
             ParticleCity.Current.RemoveActiveGameObject(MotionEffectors[i]);

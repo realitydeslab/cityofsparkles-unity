@@ -7113,7 +7113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b922057d6a912b447829104a439ab3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 0}
+  Data: {fileID: 11400000, guid: 04cb21bdec3734548b031211413532a0, type: 2}
   Texture: {fileID: 11700000, guid: a2f8c7592c19b984b9654246532537d1, type: 2}
   Bounds:
     m_Center: {x: 337.31152, y: 302.66025, z: 409.00293}
@@ -8969,7 +8969,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133479297}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1057bf88dab82ce4eb72bf4cf8dc1e0a, type: 3}
   m_Name: 

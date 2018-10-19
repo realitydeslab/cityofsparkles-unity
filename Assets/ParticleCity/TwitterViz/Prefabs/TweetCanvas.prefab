@@ -518,6 +518,8 @@ GameObject:
   - component: {fileID: 7204263757174434438}
   - component: {fileID: 7204263757174434436}
   - component: {fileID: 7204263757174434439}
+  - component: {fileID: 8801300271989609688}
+  - component: {fileID: 4537823880786262418}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -586,6 +588,54 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &8801300271989609688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7204263757174434441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fea5b56bc3884c7448fe04753af7417d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
+--- !u!114 &4537823880786262418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7204263757174434441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca9b7dce0271fcd4c9a632a128478dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  actionOnEventType: 0
+  curveInterpolation: 4
+  enableActionOnEvent: 0
+  eventID: -387691237
+  m_callbackData: {fileID: 0}
+  playingId: 0
+  soundEmitterObject: {fileID: 0}
+  transitionDuration: 0
+  valueGuid: edb2847b73cf2b4ead96cd40cf7d2f9c
+  multiPositionArray: []
+  MultiPositionType: 1
+  multiPositionTypeLabel: 0
 --- !u!1 &7204263757331937940
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,6 +905,8 @@ MonoBehaviour:
   - {fileID: 6580346295013837611}
   - {fileID: 8960029227821529935}
   - {fileID: 3091639553047161340}
+  HoldingTimeOnGaze: 2
+  HoldingTimeNoGaze: 5
 --- !u!95 &1071317333317825847
 Animator:
   serializedVersion: 3
