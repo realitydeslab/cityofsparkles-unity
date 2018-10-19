@@ -140,5 +140,10 @@ namespace ParticleCities
                 return false;
             }
         }
+
+        public override bool IsDeviceIdle()
+        {
+            return !OVRPlugin.userPresent;
+        }
     }
 }

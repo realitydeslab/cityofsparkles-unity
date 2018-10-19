@@ -41,6 +41,8 @@ namespace WanderUtils
 
         public abstract bool GetButtonDown(Button button);
 
+        public abstract bool IsDeviceIdle();
+
         private static InputManager instance = null;
 
         public static InputManager Instance

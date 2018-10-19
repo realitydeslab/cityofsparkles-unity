@@ -26,6 +26,10 @@ namespace ParticleCities
         void Start()
         {
         }
+
+        void Update()
+        {
+        }
         
         public override Transform GetHand(HandType handType)
         {
@@ -221,6 +225,12 @@ namespace ParticleCities
             {
                 return null;
             }
+        }
+
+        public override bool IsDeviceIdle()
+        {
+            // Seems not working, always interaction
+            return OpenVR.System.GetTrackedDeviceActivityLevel(0) != EDeviceActivityLevel.k_EDeviceActivityLevel_UserInteraction;
         }
     }
 }

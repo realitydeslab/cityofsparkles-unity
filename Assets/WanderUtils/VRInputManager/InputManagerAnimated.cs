@@ -126,6 +126,11 @@ namespace ParticleCities
             return false;
         }
 
+        public override bool IsDeviceIdle()
+        {
+            return false;
+        }
+
         private void OnDrawGizmos()
         {
             if (RightHand != null)
