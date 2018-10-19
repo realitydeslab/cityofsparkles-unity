@@ -11,7 +11,8 @@ using WanderUtils;
 
 public class TwitterPointCloud : MonoBehaviour
 {
-    public TweetComponent RandomTweetPrefab;
+    // public TweetComponent RandomTweetPrefab;
+    public TweetCanvas RandomTweetPrefab;
 
     public int LimitPerQuery = 10;
     public float Radius = 100;
@@ -130,15 +131,27 @@ public class TwitterPointCloud : MonoBehaviour
         }
 
         Vector3 position = MapModel.EarthToUnityWorld(dbTweet.latitude, dbTweet.longitude, 0);
+
+        if ( (InputManager.Instance.CenterCamera.transform.position.GroundProjection2d() - position.GroundProjection2d()).sqrMagnitude > Radius * Radius )
+        {
+            // Debug.LogWarning("Unexpected far away point queried from Flann point cloud. ");
+            return false;
+        }
+
         position.y = InputManager.Instance.CenterCamera.transform.position.y;
 
-        Tweet tweet = new Tweet(dbTweet);
-        TweetComponent tweetObj = Instantiate(RandomTweetPrefab, position, Quaternion.identity, transform);
-        tweetObj.name = string.Format("Tweet_{0:F1}", tweet.Sentiment.Polarity);
-        tweetObj.Tweet = tweet;
-        tweetObj.Text = tweet.Text;
-        tweetObj.Sentiment = tweet.Sentiment.Polarity;
-        tweetObj.Trigger = true;
+        Quaternion rotation = Quaternion.LookRotation( position - InputManager.Instance.CenterCamera.transform.position, Vector3.up );
+
+        TweetCanvas tweetObj = Instantiate(RandomTweetPrefab, position, rotation, transform);
+        tweetObj.Tweet = dbTweet;
+
+        // Tweet tweet = new Tweet(dbTweet);
+        // TweetComponent tweetObj = Instantiate(RandomTweetPrefab, position, Quaternion.identity, transform);
+        // tweetObj.name = string.Format("Tweet_{0:F1}", tweet.Sentiment.Polarity);
+        // tweetObj.Tweet = tweet;
+        // tweetObj.Text = tweet.Text;
+        // tweetObj.Sentiment = tweet.Sentiment.Polarity;
+        // tweetObj.Trigger = true;
         return true;
     }
 }

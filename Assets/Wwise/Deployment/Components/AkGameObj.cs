@@ -179,6 +179,11 @@ public class AkGameObj : UnityEngine.MonoBehaviour
 		if (isStaticObject)
 			return;
 
+	    if (m_posData == null)
+	    {
+            m_posData = new AkGameObjPositionData();
+	    }
+
 		// Get custom position and orientation.
 		var position = GetPosition();
 		var forward = GetForward();

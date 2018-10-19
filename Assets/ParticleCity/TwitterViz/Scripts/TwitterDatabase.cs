@@ -25,6 +25,7 @@ public class TwitterDatabase : MonoBehaviour {
         public int id { get; set; }
         
         public string clean_text { get; set; }
+        public string full_text { get; set; }
 
         public double latitude { get; set; }
         public double longitude { get; set; }
@@ -37,6 +38,7 @@ public class TwitterDatabase : MonoBehaviour {
         public DateTime last_access { get; set; }
 
         public string username { get; set; }
+        public string full_username { get; set; }
         public string created_at { get; set; }
 
         public override string ToString()
@@ -150,6 +152,12 @@ public class TwitterDatabase : MonoBehaviour {
         return dbConnection.Query<DBTweetPoint>(query);
     }
 
+    public DBTweet QueryForRandomTweet()
+    {
+        string query = "SELECT username, full_username, full_text, created_at, latitude, longitude FROM tweets_random ORDER BY RANDOM() LIMIT 1";
+        return dbConnection.Query<DBTweet>(query)[0];
+    }
+
     public DBTweet QueryForPointCloudQueryResult(IList<FlannPointCloud.QueryResult> points, float accessTimeCooldown)
     {
         string[] ids = new string[points.Count];
@@ -162,7 +170,7 @@ public class TwitterDatabase : MonoBehaviour {
 
         string query =
             string.Format(
-                "SELECT * FROM tweets_random WHERE id IN ({0}) AND last_access IS NULL OR last_access < ? ORDER BY last_access LIMIT 1",
+                "SELECT username, full_username, full_text, created_at, latitude, longitude FROM tweets_random WHERE id IN ({0}) AND last_access IS NULL OR last_access < ? ORDER BY last_access LIMIT 1",
                 string.Join(", ", ids));
         List<DBTweet> results = dbConnection.Query<DBTweet>(query, maxLastAccessTime);
         DBTweet result = results.Count > 0 ? results[0] : null;
