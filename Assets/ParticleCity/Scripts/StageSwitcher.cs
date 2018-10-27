@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using WanderUtils;
 
 namespace ParticleCities
 {
@@ -17,7 +18,13 @@ namespace ParticleCities
 
     public class StageSwitcher : MonoBehaviour
     {
+        public float IdleTimeToReset = 10;
+        public float ForceInitialSceneSwitchTime = 5;
+        public float ForceSceneSwitchTime = 10;
+
         private static StageSwitcher instance;
+        private float idleTime;
+        private float lastSwitchTime;
 
         public static StageSwitcher Instance
         {
@@ -68,6 +75,38 @@ namespace ParticleCities
 
         void Update()
         {
+            if (InputManager.Instance.IsDeviceIdle())
+            {
+                idleTime += Time.deltaTime;
+            }
+            else
+            {
+                idleTime = 0;
+            }
+
+            if (idleTime > IdleTimeToReset)
+            {
+                Bootloader.SceneToLoad = "new_york_opening";
+                SceneManager.LoadScene("bootloader");
+                return;
+            }
+
+            if (CurrentStage == Stage.InitialDark || CurrentStage == Stage.Intro)
+            {
+                if (Time.time - lastSwitchTime > ForceInitialSceneSwitchTime)
+                {
+                    ManualSwitchToStage(1);
+                }
+            }
+            else if (CurrentStage == Stage.First || CurrentStage == Stage.Twist || CurrentStage == Stage.Last)
+            {
+                if (Time.time - lastSwitchTime > ForceSceneSwitchTime)
+                {
+                    ManualSwitchToStage((int)CurrentStage - 1 + 1);
+                }
+            }
+            
+
             if (KeyboardSwitch)
             {
                 if (Input.GetKeyDown(KeyCode.R))
@@ -83,20 +122,25 @@ namespace ParticleCities
                     KeyCode key = (KeyCode) ((int) KeyCode.Alpha0 + i);
                     if (Input.GetKeyDown(key))
                     {
-                        SwitchToStage(i);
+                        ManualSwitchToStage(i);
+                    }
+                }
+            }
+        }
 
-                        if (i < StoryGroupOnManualSwitch.Length && !StoryGroupOnManualSwitch[i].Equals(null))
-                        {
-                            StoryGroupOnManualSwitch[i].gameObject.SetActive(true); 
-                            for (int j = 0; j < StoryGroupOnManualSwitch[i].childCount; j++)
-                            {
-                                Transform child = StoryGroupOnManualSwitch[i].GetChild(j);
-                                if (!child.Equals(null))
-                                {
-                                    child.gameObject.SetActive(true);
-                                }
-                            }
-                        }
+        public void ManualSwitchToStage(int i)
+        {
+            SwitchToStage(i);
+
+            if (i < StoryGroupOnManualSwitch.Length && !StoryGroupOnManualSwitch[i].Equals(null))
+            {
+                StoryGroupOnManualSwitch[i].gameObject.SetActive(true); 
+                for (int j = 0; j < StoryGroupOnManualSwitch[i].childCount; j++)
+                {
+                    Transform child = StoryGroupOnManualSwitch[i].GetChild(j);
+                    if (!child.Equals(null))
+                    {
+                        child.gameObject.SetActive(true);
                     }
                 }
             }
@@ -104,6 +148,7 @@ namespace ParticleCities
 
         public void SwitchToStage(int index)
         {
+            lastSwitchTime = Time.time;
             cleanup();
             instantiateParticleCity(ParticleCityPrefabs[index]);
             CurrentStage = (Stage)(index + 1);

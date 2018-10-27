@@ -5103,6 +5103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b1b04539abf2c4aac640296ea2bea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IdleTimeToReset: 300
+  ForceInitialSceneSwitchTime: 60
+  ForceSceneSwitchTime: 180
   InitialStage: 6
   ParticleCityPrefabs:
   - {fileID: 114335009429023242, guid: 392e5d8642041f0458f17660a6c5904a, type: 3}

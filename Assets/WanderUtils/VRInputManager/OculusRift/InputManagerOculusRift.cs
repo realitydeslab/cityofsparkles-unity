@@ -119,7 +119,7 @@ namespace ParticleCities
             {
                 case Button.A:
                 case Button.Confirm:
-                    rawButton = OVRInput.RawButton.A;
+                    rawButton = OVRInput.RawButton.A | OVRInput.RawButton.X;
                     break;
 
                 case Button.B:
