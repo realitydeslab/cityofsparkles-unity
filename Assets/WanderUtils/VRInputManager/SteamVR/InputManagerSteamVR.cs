@@ -230,7 +230,18 @@ namespace ParticleCities
         public override bool IsDeviceIdle()
         {
             // Seems not working, always interaction
+            // TODO
             return OpenVR.System.GetTrackedDeviceActivityLevel(0) != EDeviceActivityLevel.k_EDeviceActivityLevel_UserInteraction;
+        }
+
+        public override bool IsActiveHand(Collider collider)
+        {
+            return true;
+        }
+
+        public override void SetControllerVisible(bool visible)
+        {
+            // No-op
         }
     }
 }

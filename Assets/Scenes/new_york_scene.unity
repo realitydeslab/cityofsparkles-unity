@@ -5084,6 +5084,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1036309889}
   - component: {fileID: 1036309888}
+  - component: {fileID: 1036309890}
   m_Layer: 0
   m_Name: StageSwitcher
   m_TagString: Untagged
@@ -5138,6 +5139,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1036309890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036309887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf097bca4db90624f8336662d5158b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  State: 0
 --- !u!1 &1062943534
 GameObject:
   m_ObjectHideFlags: 0
@@ -5447,7 +5461,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152477213}
   m_LocalRotation: {x: 0.017981902, y: -0.50702196, z: 0.01058074, w: 0.8616806}
-  m_LocalPosition: {x: 2936.5, y: 109.5, z: -169.5}
+  m_LocalPosition: {x: 2934.7, y: 160, z: -168.5}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children: []
   m_Father: {fileID: 895009782}

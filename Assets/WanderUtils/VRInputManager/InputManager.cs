@@ -43,6 +43,15 @@ namespace WanderUtils
 
         public abstract bool IsDeviceIdle();
 
+        public abstract bool IsActiveHand(Collider collider);
+
+        /// <summary>
+        /// Only for Oculus Touch
+        /// </summary>
+        /// <param name="visible"></param>
+        /// <returns></returns>
+        public abstract void SetControllerVisible(bool visible);
+
         private static InputManager instance = null;
 
         public static InputManager Instance

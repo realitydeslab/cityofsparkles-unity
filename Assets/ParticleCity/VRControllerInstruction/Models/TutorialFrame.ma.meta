@@ -1,0 +1,207 @@
+fileFormatVersion: 2
+guid: dce63e5bf85b6dd458b4f073244602e9
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: bezier1
+    100002: bezier3
+    100004: bezier4
+    100006: bezier5
+    100008: //RootNode
+    100010: vr_controller_vive_1_5:polySurface1
+    100012: pSphere1
+    100014: pSphere10
+    100016: pSphere11
+    100018: pSphere12
+    100020: pSphere13
+    100022: pSphere2
+    100024: pSphere3
+    100026: pSphere4
+    100028: pSphere5
+    100030: pSphere6
+    100032: pSphere7
+    100034: pSphere8
+    100036: pSphere9
+    100038: pSphere14
+    100040: pSphere15
+    100042: pSphere16
+    100044: pSphere17
+    100046: pSphere18
+    400000: bezier1
+    400002: bezier3
+    400004: bezier4
+    400006: bezier5
+    400008: //RootNode
+    400010: vr_controller_vive_1_5:polySurface1
+    400012: pSphere1
+    400014: pSphere10
+    400016: pSphere11
+    400018: pSphere12
+    400020: pSphere13
+    400022: pSphere2
+    400024: pSphere3
+    400026: pSphere4
+    400028: pSphere5
+    400030: pSphere6
+    400032: pSphere7
+    400034: pSphere8
+    400036: pSphere9
+    400038: pSphere14
+    400040: pSphere15
+    400042: pSphere16
+    400044: pSphere17
+    400046: pSphere18
+    2300000: vr_controller_vive_1_5:polySurface1
+    2300002: pSphere1
+    2300004: pSphere10
+    2300006: pSphere11
+    2300008: pSphere12
+    2300010: pSphere13
+    2300012: pSphere2
+    2300014: pSphere3
+    2300016: pSphere4
+    2300018: pSphere5
+    2300020: pSphere6
+    2300022: pSphere7
+    2300024: pSphere8
+    2300026: pSphere9
+    2300028: pSphere14
+    2300030: pSphere15
+    2300032: pSphere16
+    2300034: pSphere17
+    2300036: pSphere18
+    3300000: vr_controller_vive_1_5:polySurface1
+    3300002: pSphere1
+    3300004: pSphere10
+    3300006: pSphere11
+    3300008: pSphere12
+    3300010: pSphere13
+    3300012: pSphere2
+    3300014: pSphere3
+    3300016: pSphere4
+    3300018: pSphere5
+    3300020: pSphere6
+    3300022: pSphere7
+    3300024: pSphere8
+    3300026: pSphere9
+    3300028: pSphere14
+    3300030: pSphere15
+    3300032: pSphere16
+    3300034: pSphere17
+    3300036: pSphere18
+    4300000: vr_controller_vive_1_5:polySurface1
+    4300002: pSphere1
+    4300004: pSphere2
+    4300006: pSphere3
+    4300008: pSphere4
+    4300010: pSphere5
+    4300012: pSphere6
+    4300014: pSphere7
+    4300016: pSphere8
+    4300018: pSphere9
+    4300020: pSphere10
+    4300022: pSphere11
+    4300024: pSphere12
+    4300026: pSphere13
+    4300028: pSphere14
+    4300030: pSphere15
+    4300032: pSphere16
+    4300034: pSphere17
+    4300036: pSphere18
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 71950b981bb1a6c439806950ff4ddf95, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: surfaceShader1
+    second: {fileID: 2100000, guid: b38f70ee73544074ebca1e21fe73b396, type: 2}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

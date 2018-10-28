@@ -150,5 +150,16 @@ namespace ParticleCities
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(transform.position, 20);
         }
+
+        public override bool IsActiveHand(Collider collider)
+        {
+            // TODO
+            return true;
+        }
+
+        public override void SetControllerVisible(bool visible)
+        {
+            // No-op
+        }
     }
 }

@@ -43,8 +43,10 @@ public class AutoPilotController : MonoBehaviour
     public float TargetDistance = 10;
     public float TargetLostTimeout = 10;
 
-    [Header("Debug")]
+    [Header("Auto")]
     public StoryNode Target = null;
+
+    [Header("Debug")]
     public float Speed = 0;
     public float StoppedTime;
     public float NullTargetAccumulatedTime = 0;

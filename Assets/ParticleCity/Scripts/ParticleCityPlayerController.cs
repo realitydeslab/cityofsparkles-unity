@@ -24,10 +24,12 @@ namespace ParticleCities
         private ParticleSystem leftParticle;
         private ParticleSystem rightParticle;
         private float particleFullRate;
-        
+        private AutoPilotController autoPilot;
 
         void Start()
         {
+            autoPilot = GetComponent<AutoPilotController>();
+
             LastActionTime = Time.time;
 
             Transform playerTransform = InputManager.Instance.PlayerTransform;
@@ -89,7 +91,7 @@ namespace ParticleCities
                 activeTrigger = leftTrigger;
                 rightTrigger = 0;
             }
-            else if (rightTrigger > leftTrigger && rightTrigger > 0.01f)
+            else if (rightTrigger >= leftTrigger && rightTrigger > 0.01f)
             {
                 activeHand = InputManager.Instance.GetHand(HandType.Right);
                 activeTrigger = rightTrigger;
@@ -103,7 +105,30 @@ namespace ParticleCities
 
             if (activeHand != null)
             {
-                Vector3 movement = activeHand.forward * FlyFullSpeed * activeTrigger * Time.deltaTime;
+                Vector3 forward = activeHand.forward;
+
+                // Tutorial Control
+                if ((TutorialStateManager.Instance.State == TutorialState.InitialRedDot ||
+                    TutorialStateManager.Instance.State == TutorialState.InitialRedDotMissed ||
+                     TutorialStateManager.Instance.State == TutorialState.ReachOutHand || 
+                     TutorialStateManager.Instance.State == TutorialState.TriggerByGrab
+                     ) &&
+                    autoPilot != null && autoPilot.IsAutoPilotTargetValid)
+                {
+                    Vector3 direction = (autoPilot.Target.transform.position - InputManager.Instance.CenterCamera.transform.position).normalized;
+                    if (Vector3.Dot(direction, InputManager.Instance.CenterCamera.transform.forward) >= 0)
+                    {
+                        forward = direction;
+                    }
+                    else
+                    {
+                        TutorialStateManager.Instance.InitialRedDotMissed();
+                        forward = -direction;
+                        StartCoroutine(resetPositionWithDelay(2));
+                    }
+                }
+
+                Vector3 movement = forward * FlyFullSpeed * activeTrigger * Time.deltaTime;
                 InputManager.Instance.PlayerTransform.transform.position += movement;
                 LastActionTime = Time.time;
             }
@@ -114,6 +139,18 @@ namespace ParticleCities
             ParticleSystem.EmissionModule rightEmission = rightParticle.emission;
             rightEmission.rateOverTimeMultiplier = particleFullRate * rightTrigger;
 
+        }
+
+        private IEnumerator resetPositionWithDelay(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            if (PlayerStartingPoint != null)
+            {
+                InputManager.Instance.PlayerTransform.transform.position = PlayerStartingPoint.position;
+                InputManager.Instance.PlayerTransform.transform.rotation = PlayerStartingPoint.rotation;
+                InputManager.Instance.PlayerTransform.transform.localScale = PlayerStartingPoint.localScale;
+            }
         }
     }
 }

@@ -112,8 +112,6 @@ public class TweetComponent : MonoBehaviour
     public float SpawnTweetWaitTimeBeforeTutorial = 5;
     private GameObject spawnTweetTutorial;
     private float spawnTweetWaitedTime = 0;
-    // HACK HACK: Tutorial manager or somehting
-    private static bool spawnTweetTutorialShowOnce = false;
 
     [Header("Debug")]
     public bool GrabPlayer;
@@ -280,10 +278,16 @@ public class TweetComponent : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (State == TweetState.Idle)
+        if (State == TweetState.Idle && InputManager.Instance.IsActiveHand(other))
         {
             Trigger = true;
             approachingTarget = other.transform;
+        }
+
+        if (TutorialStateManager.Instance.State == TutorialState.InitialRedDot &&
+            InputManager.Instance.IsActiveHand(other))
+        {
+            TutorialStateManager.Instance.InitialRedDotCloseEnough();
         }
     }
 
@@ -685,15 +689,17 @@ public class TweetComponent : MonoBehaviour
             HandType handType = InputManager.Instance.GetHandType(approachingTarget);
             spawnTweetWaitedTime += Time.deltaTime;
 
-            if ((!spawnTweetTutorialShowOnce || spawnTweetWaitedTime > SpawnTweetWaitTimeBeforeTutorial) && spawnTweetTutorial == null && handType != HandType.Unknown)
+            if ((TutorialStateManager.Instance.IsInInitialDarkSteps || spawnTweetWaitedTime > SpawnTweetWaitTimeBeforeTutorial) && spawnTweetTutorial == null && handType != HandType.Unknown)
             {
-                GameObject prefab = (handType == HandType.Left) ? SpawnTweetTutorialLeftPrefab : SpawnTweetTutorialRightPrefab;
-                spawnTweetTutorial = Instantiate(prefab);
-                spawnTweetTutorialShowOnce = true;
+                // GameObject prefab = (handType == HandType.Left) ? SpawnTweetTutorialLeftPrefab : SpawnTweetTutorialRightPrefab;
+                // spawnTweetTutorial = Instantiate(prefab);
+                // spawnTweetTutorialShowOnce = true;
+                TutorialStateManager.Instance.RedDotReached();
             }
 
-            if (handType != HandType.Unknown && (InputManager.Instance.GetGrabUp(handType)) || (InputManager.Instance.GetButtonDown(Button.Confirm)))
+            if (handType != HandType.Unknown && (InputManager.Instance.GetGrabDown(handType)) || (InputManager.Instance.GetButtonDown(Button.Confirm)))
             {
+                TutorialStateManager.Instance.TwitterTriggered();
                 if (spawnTweetTutorial != null)
                 {
                     Destroy(spawnTweetTutorial);

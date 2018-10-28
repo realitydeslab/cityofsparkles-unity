@@ -145,5 +145,22 @@ namespace ParticleCities
         {
             return !OVRPlugin.userPresent;
         }
+
+        public override bool IsActiveHand(Collider collider)
+        {
+            OvrAvatarHand hand = collider.GetComponentInParent<OvrAvatarHand>();
+            if (hand == null)
+            {
+                return false;
+            }
+
+            Renderer handRenderer = hand.GetComponentInChildren<SkinnedMeshRenderer>();
+            return handRenderer != null;
+        }
+
+        public override void SetControllerVisible(bool visible)
+        {
+            avatar.ShowControllers(visible);
+        }
     }
 }
