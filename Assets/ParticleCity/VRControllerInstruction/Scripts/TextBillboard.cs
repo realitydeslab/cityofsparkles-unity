@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using WanderUtils;
 
 public class TextBillboard : MonoBehaviour {
 
@@ -6,7 +7,7 @@ public class TextBillboard : MonoBehaviour {
 	
 	}
 
-    void Update() {
-        transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up);
+    void LateUpdate() {
+        transform.rotation = Quaternion.LookRotation(InputManager.Instance.CenterCamera.transform.forward, InputManager.Instance.CenterCamera.transform.up);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using ParticleCities;
 using UnityEngine;
 
@@ -19,8 +20,13 @@ public class TutorialStateManager : MonoBehaviour
         }
     }
 
-    [Header("Debug")] 
+    [Header("Auto")] 
     public TutorialState State;
+
+    public bool FixedDirectionFlyPassed = false;
+
+    [CanBeNull] public StoryNode Source;
+    public float MaxAngleToSource = 10;
 
     void Start()
     {
@@ -33,11 +39,7 @@ public class TutorialStateManager : MonoBehaviour
         {
             case TutorialState.InitialRedDot:
             case TutorialState.TriggerByGrab:
-                if (StageSwitcher.Instance.CurrentStage == Stage.Intro)
-                {
-                    State = TutorialState.FlyWithRotate;
-                }
-                else if (StageSwitcher.Instance.CurrentStage != Stage.InitialDark)
+                if (StageSwitcher.Instance.CurrentStage != Stage.InitialDark && StageSwitcher.Instance.CurrentStage != Stage.Intro)
                 {
                     State = TutorialState.Idle;
                 }
@@ -55,6 +57,12 @@ public class TutorialStateManager : MonoBehaviour
         }
     }
 
+    public void SetStateByStoryNode(TutorialState state, StoryNode source)
+    {
+        State = state;
+        Source = source;
+    }
+
     public void InitialRedDotCloseEnough()
     {
         State = TutorialState.ReachOutHand;
@@ -62,18 +70,13 @@ public class TutorialStateManager : MonoBehaviour
 
     public void RedDotReached()
     {
-        State = IsInInitialDarkSteps ? TutorialState.TriggerByGrab : TutorialState.TriggerByGrabLaterHint;
+        State = IsInInitialTutorialSteps ? TutorialState.TriggerByGrab : TutorialState.TriggerByGrabLaterHint;
     }
 
     public void InitialRedDotMissed()
     {
         State = TutorialState.InitialRedDotMissed;
-        StartCoroutine(SwitchToStateWithDelay(TutorialState.InitialRedDot, 4));
-    }
-
-    public void InitialRedDotTriggered()
-    {
-        State = TutorialState.FlyWithRotate;
+        StartCoroutine(SwitchToStateWithDelay(FixedDirectionFlyPassed ? TutorialState.FlyWithRotate : TutorialState.InitialRedDot, 4));
     }
 
     public void SecondRedDotReached()
@@ -84,16 +87,18 @@ public class TutorialStateManager : MonoBehaviour
     public void TwitterTriggered()
     {
         State = TutorialState.Idle;
+        FixedDirectionFlyPassed = true;
     }
 
-    public bool IsInInitialDarkSteps
+    public bool IsInInitialTutorialSteps
     {
         get
         {
             return State == TutorialState.InitialRedDot ||
                    State == TutorialState.InitialRedDotMissed ||
                    State == TutorialState.ReachOutHand ||
-                   State == TutorialState.TriggerByGrab;
+                   State == TutorialState.TriggerByGrab ||
+                   State == TutorialState.FlyWithRotate;
         }
     }
 
@@ -110,7 +115,8 @@ public class TutorialStateManager : MonoBehaviour
 
 public enum TutorialState
 {
-    Idle = 0,
+    Invalid = 0,
+    Idle,
     InitialRedDot,
     ReachOutHand,
     TriggerByGrab,

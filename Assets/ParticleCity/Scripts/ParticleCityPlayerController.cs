@@ -108,6 +108,7 @@ namespace ParticleCities
                 Vector3 forward = activeHand.forward;
 
                 // Tutorial Control
+                bool flyAllowed = true;
                 if ((TutorialStateManager.Instance.State == TutorialState.InitialRedDot ||
                     TutorialStateManager.Instance.State == TutorialState.InitialRedDotMissed ||
                      TutorialStateManager.Instance.State == TutorialState.ReachOutHand || 
@@ -127,10 +128,23 @@ namespace ParticleCities
                         StartCoroutine(resetPositionWithDelay(2));
                     }
                 }
+                else if (TutorialStateManager.Instance.State == TutorialState.FlyWithRotate && TutorialStateManager.Instance.Source != null)
+                {
+                    Vector3 expectedDirection = TutorialStateManager.Instance.Source.transform.position - activeHand.position;
+                    float angle = Vector3.Angle(expectedDirection, activeHand.forward);
+                    if (Mathf.Abs(angle) > TutorialStateManager.Instance.MaxAngleToSource)
+                    {
+                        // Stop flying
+                        flyAllowed = false;
+                    }
+                }
 
-                Vector3 movement = forward * FlyFullSpeed * activeTrigger * Time.deltaTime;
-                InputManager.Instance.PlayerTransform.transform.position += movement;
-                LastActionTime = Time.time;
+                if (flyAllowed)
+                {
+                    Vector3 movement = forward * FlyFullSpeed * activeTrigger * Time.deltaTime;
+                    InputManager.Instance.PlayerTransform.transform.position += movement;
+                    LastActionTime = Time.time;
+                }
             }
 
             ParticleSystem.EmissionModule leftEmission = leftParticle.emission;

@@ -25,6 +25,9 @@ public class TweetPlaceholderNode : SpawnSourceNode
     [Header("Animation")] 
     public bool Trigger;
 
+    [Header("Tutorial")] 
+    public TutorialState TutorialStateOnSpawn;
+
     public TweetComponent SpawnedTweet { get; private set; }
 
     private TwitterDatabase.DBTweet tweet;
@@ -107,6 +110,11 @@ public class TweetPlaceholderNode : SpawnSourceNode
         if (!string.IsNullOrEmpty(AkEventOnReveal))
         {
             tweet.AkEventOnReveal = AkEventOnReveal;
+        }
+
+        if (TutorialStateOnSpawn != TutorialState.Invalid)
+        {
+            TutorialStateManager.Instance.SetStateByStoryNode(TutorialStateOnSpawn, this);
         }
     }
 

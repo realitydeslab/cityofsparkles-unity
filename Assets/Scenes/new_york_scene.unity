@@ -173,6 +173,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &13489166
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +343,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 650990239}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &16162382
 MonoBehaviour:
@@ -370,6 +371,7 @@ MonoBehaviour:
   IsStoryTrigger: 1
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &43138414
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +428,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &80106557
 GameObject:
@@ -948,6 +950,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &200943831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,6 +1008,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &233093218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,6 +1070,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &238095096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,6 +1205,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &274089780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,6 +1263,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &314591116
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,6 +1398,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &326561276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1452,6 +1460,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &344615292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,6 +1825,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &412375719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,6 +1996,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1001 &424531728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2116,6 +2127,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &437142185
 GameObject:
   m_ObjectHideFlags: 0
@@ -2250,6 +2262,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &456760449
 GameObject:
   m_ObjectHideFlags: 0
@@ -2380,6 +2393,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &465032426
 GameObject:
   m_ObjectHideFlags: 1
@@ -2475,38 +2489,6 @@ Transform:
   - {fileID: 810800616}
   m_Father: {fileID: 522203963}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &513548416
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 513548417}
-  m_Layer: 0
-  m_Name: DollyTracks
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &513548417
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513548416}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1192977601}
-  - {fileID: 2054343326}
-  m_Father: {fileID: 1232247283}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &518048268
 GameObject:
@@ -2649,7 +2631,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 650990239}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -12.661, z: 0}
 --- !u!114 &535977730
 MonoBehaviour:
@@ -2908,6 +2890,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &574022397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3152,6 +3135,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &645273789
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,7 +3275,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1922137173}
   - {fileID: 1314853616}
   - {fileID: 1878613024}
   - {fileID: 1863752272}
@@ -3461,6 +3444,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &661986983
 GameObject:
   m_ObjectHideFlags: 0
@@ -3625,6 +3609,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &701764992
 GameObject:
   m_ObjectHideFlags: 0
@@ -3657,7 +3642,7 @@ Transform:
   m_Children:
   - {fileID: 437142186}
   m_Father: {fileID: 650990239}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -0.13000001, y: 9.066, z: 1.1340001}
 --- !u!135 &701764994
 SphereCollider:
@@ -3820,6 +3805,7 @@ MonoBehaviour:
   IsStoryTrigger: 1
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &761371851
 GameObject:
   m_ObjectHideFlags: 0
@@ -3849,7 +3835,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 650990239}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &761371853
 MonoBehaviour:
@@ -3877,6 +3863,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &795104396
 GameObject:
   m_ObjectHideFlags: 0
@@ -3936,6 +3923,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &799479974
 GameObject:
   m_ObjectHideFlags: 0
@@ -3993,6 +3981,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &805475397
 GameObject:
   m_ObjectHideFlags: 0
@@ -4292,6 +4281,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &861858267
 GameObject:
   m_ObjectHideFlags: 0
@@ -4460,6 +4450,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &869894947
 GameObject:
   m_ObjectHideFlags: 0
@@ -4521,6 +4512,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &876904610
 GameObject:
   m_ObjectHideFlags: 0
@@ -4779,6 +4771,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &929274425
 GameObject:
   m_ObjectHideFlags: 0
@@ -4840,6 +4833,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &935643092
 GameObject:
   m_ObjectHideFlags: 0
@@ -5011,7 +5005,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1026036915
 GameObject:
@@ -5074,6 +5068,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1036309887
 GameObject:
   m_ObjectHideFlags: 0
@@ -5105,7 +5100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IdleTimeToReset: 300
-  ForceInitialSceneSwitchTime: 60
+  ForceInitialSceneSwitchTime: 120
   ForceSceneSwitchTime: 180
   InitialStage: 6
   ParticleCityPrefabs:
@@ -5152,6 +5147,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
+  FixedDirectionFlyPassed: 0
+  Source: {fileID: 0}
+  MaxAngleToSource: 10
 --- !u!1 &1062943534
 GameObject:
   m_ObjectHideFlags: 0
@@ -5436,6 +5434,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1152477213
 GameObject:
   m_ObjectHideFlags: 0
@@ -5588,66 +5587,6 @@ Transform:
   m_Father: {fileID: 465032427}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1192977599
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1192977601}
-  - component: {fileID: 1192977600}
-  m_Layer: 0
-  m_Name: DollyTrack1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1192977600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192977599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a200b19ca1a9685429ed7e043c28e904, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Resolution: 20
-  m_Appearance:
-    pathColor: {r: 0, g: 1, b: 0, a: 1}
-    inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    width: 0.2
-  m_Looped: 0
-  m_Waypoints:
-  - position: {x: 3132, y: 119, z: -279}
-    roll: 0
-  - position: {x: 2774, y: 159, z: -82}
-    roll: 0
-  - position: {x: 1879, y: 406, z: 421}
-    roll: 0
-  - position: {x: 1591, y: 328, z: 585}
-    roll: 0
-  - position: {x: 1270, y: 159, z: 775}
-    roll: 0
---- !u!4 &1192977601
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192977599}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 513548417}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1199234348
 GameObject:
   m_ObjectHideFlags: 0
@@ -5709,6 +5648,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1209614201
 GameObject:
   m_ObjectHideFlags: 0
@@ -5766,6 +5706,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1216693917
 GameObject:
   m_ObjectHideFlags: 0
@@ -5800,8 +5741,9 @@ Transform:
   - {fileID: 2039908696}
   - {fileID: 574022398}
   - {fileID: 2063061249}
+  - {fileID: 1922137173}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1219764101
 GameObject:
@@ -5864,37 +5806,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
---- !u!1 &1232247282
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1232247283}
-  m_Layer: 0
-  m_Name: AutoPilot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1232247283
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1232247282}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 513548417}
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  TutorialStateOnSpawn: 0
 --- !u!1 &1268465018
 GameObject:
   m_ObjectHideFlags: 0
@@ -6033,7 +5945,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 650990239}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1314853617
 MonoBehaviour:
@@ -6061,6 +5973,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 1
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1323121327
 GameObject:
   m_ObjectHideFlags: 0
@@ -6122,6 +6035,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1336725410
 GameObject:
   m_ObjectHideFlags: 0
@@ -6183,6 +6097,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1359020484
 GameObject:
   m_ObjectHideFlags: 0
@@ -6813,7 +6728,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 650990239}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1537637259
 MonoBehaviour:
@@ -6841,6 +6756,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1548457110
 GameObject:
   m_ObjectHideFlags: 0
@@ -6870,7 +6786,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 650990239}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1548457112
 MonoBehaviour:
@@ -6898,6 +6814,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1588189356
 GameObject:
   m_ObjectHideFlags: 0
@@ -6955,6 +6872,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1594020367
 GameObject:
   m_ObjectHideFlags: 0
@@ -7285,6 +7203,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1667687664
 GameObject:
   m_ObjectHideFlags: 0
@@ -7342,6 +7261,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1683403682
 GameObject:
   m_ObjectHideFlags: 0
@@ -7689,6 +7609,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1802288285
 GameObject:
   m_ObjectHideFlags: 0
@@ -7750,6 +7671,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1831152224
 GameObject:
   m_ObjectHideFlags: 0
@@ -7807,6 +7729,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1860684493
 GameObject:
   m_ObjectHideFlags: 0
@@ -7864,6 +7787,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1863752271
 GameObject:
   m_ObjectHideFlags: 0
@@ -7893,7 +7817,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 650990239}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1863752273
 MonoBehaviour:
@@ -7921,6 +7845,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &1863771394
 GameObject:
   m_ObjectHideFlags: 0
@@ -8104,7 +8029,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 650990239}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1878613025
 MonoBehaviour:
@@ -8134,6 +8059,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 7
 --- !u!1 &1913785322
 GameObject:
   m_ObjectHideFlags: 0
@@ -8258,7 +8184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a59c5b99ddaf76449be04e9016303eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnabledOnStart: 1
+  EnabledOnStart: 0
   Next: []
   SwitchToStage: 0
   AutoPilotSkip: 1
@@ -8503,54 +8429,6 @@ MonoBehaviour:
   - {fileID: 233093220}
   SwitchToStage: 2
   AutoPilotSkip: 0
---- !u!1 &2054343325
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2054343326}
-  - component: {fileID: 2054343327}
-  m_Layer: 0
-  m_Name: DollyCart1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2054343326
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2054343325}
-  m_LocalRotation: {x: 0.08440209, y: -0.51252836, z: 0.05071297, w: 0.853006}
-  m_LocalPosition: {x: 3132, y: 119, z: -279}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 513548417}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2054343327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2054343325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99a9c787e5d1bbf48a389834c4a9641c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Path: {fileID: 1192977600}
-  m_UpdateMethod: 0
-  m_PositionUnits: 1
-  m_Speed: 0
-  m_Position: 0
 --- !u!1 &2055267998
 GameObject:
   m_ObjectHideFlags: 0
@@ -8580,7 +8458,7 @@ Transform:
   m_Children:
   - {fileID: 108605566}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2063061248
 GameObject:
@@ -8675,6 +8553,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &2098172484
 GameObject:
   m_ObjectHideFlags: 0
@@ -8947,6 +8826,7 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1 &2133479297
 GameObject:
   m_ObjectHideFlags: 0
@@ -9156,12 +9036,13 @@ MonoBehaviour:
   IsStoryTrigger: 0
   musicSync: 0
   Trigger: 0
+  TutorialStateOnSpawn: 0
 --- !u!1001 &636902949450530008
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 650990239}
+    m_TransformParent: {fileID: 1216693918}
     m_Modifications:
     - target: {fileID: 636902950231654538, guid: e6ee8f36d0844414d93d168daa6bcf0e, type: 3}
       propertyPath: m_Name
@@ -9185,7 +9066,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 636902950231654541, guid: e6ee8f36d0844414d93d168daa6bcf0e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4755.8
+      value: -912.2002
       objectReference: {fileID: 0}
     - target: {fileID: 636902950231654541, guid: e6ee8f36d0844414d93d168daa6bcf0e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -9205,7 +9086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 636902950231654541, guid: e6ee8f36d0844414d93d168daa6bcf0e, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 636902950231654541, guid: e6ee8f36d0844414d93d168daa6bcf0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9221,11 +9102,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 636902950231654541, guid: e6ee8f36d0844414d93d168daa6bcf0e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5887
+      value: 1120
       objectReference: {fileID: 0}
     - target: {fileID: 636902950231654541, guid: e6ee8f36d0844414d93d168daa6bcf0e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -24.90001
+      value: -186.9
       objectReference: {fileID: 0}
     - target: {fileID: 636902950231654541, guid: e6ee8f36d0844414d93d168daa6bcf0e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -9265,7 +9146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 636902950231654541, guid: e6ee8f36d0844414d93d168daa6bcf0e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15482451
+      value: 0.15482454
       objectReference: {fileID: 0}
     - target: {fileID: 6075584098307676833, guid: e6ee8f36d0844414d93d168daa6bcf0e, type: 3}
       propertyPath: m_Name
@@ -9318,6 +9199,10 @@ PrefabInstance:
     - target: {fileID: 5359440261226521074, guid: e6ee8f36d0844414d93d168daa6bcf0e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.003483317
+      objectReference: {fileID: 0}
+    - target: {fileID: 636902950231654538, guid: e6ee8f36d0844414d93d168daa6bcf0e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6ee8f36d0844414d93d168daa6bcf0e, type: 3}

@@ -1,9 +1,15 @@
-﻿using UnityEngine;
+﻿using JetBrains.Annotations;
+using UnityEngine;
 using TMPro;
+using WanderUtils;
 
 public class InstructionController : MonoBehaviour
 {
     public bool TutorialEnabled = true;
+
+    [CanBeNull] public Transform ArrowTarget;
+    public AnimationCurve ArrowCurrentAlphaOverArrowAngle;
+    public AnimationCurve ArrowTargetAlphaOverArrowAngle;
 
     [SerializeField]
     private GameObject menu;
@@ -20,11 +26,21 @@ public class InstructionController : MonoBehaviour
     [SerializeField]
     private GameObject touchPan;
 
+    [SerializeField]
+    private GameObject arrowCurrent;
+
+    [SerializeField]
+    private GameObject arrowTarget;
+
+    [SerializeField]
+    private GameObject rotate;
+
     private TextMeshPro menuText;
     private TextMeshPro triggerText;
     private TextMeshPro gripLeftText;
     private TextMeshPro gripRightText;
     private TextMeshPro touchPanText;
+    private TextMeshPro rotateText;
 
     public void Awake() {
         menuText = menu.GetComponentInChildren<TextMeshPro>();
@@ -32,11 +48,13 @@ public class InstructionController : MonoBehaviour
         gripLeftText = gripLeft.GetComponentInChildren<TextMeshPro>();
         gripRightText = gripRight.GetComponentInChildren<TextMeshPro>();
         touchPanText = touchPan.GetComponentInChildren<TextMeshPro>();
+        rotateText = rotate.GetComponentInChildren<TextMeshPro>();
 
         MenuText = "";
         TriggerText = "Trigger";
         GripText = "Grip";
         TouchPanText = "";
+        RotateText = "";
     }
 
     public void Start() {
@@ -51,6 +69,8 @@ public class InstructionController : MonoBehaviour
         gripLeft.SetActive(tutorialEnabled && !string.IsNullOrEmpty(GripText));
         // gripRight.SetActive(tutorialEnabled && !string.IsNullOrEmpty(GripText));
         touchPan.SetActive(tutorialEnabled && !string.IsNullOrEmpty(TouchPanText));
+
+        updateArrows();
     }
 
     public string MenuText {
@@ -91,7 +111,7 @@ public class InstructionController : MonoBehaviour
                 return;
             }
             gripLeftText.text = value;
-            gripRightText.text = value;
+            // gripRightText.text = value;
             gripLeft.SetActive(TutorialEnabled && !string.IsNullOrEmpty(value));
             // gripRight.SetActive(TutorialEnabled && !string.IsNullOrEmpty(value));
         }
@@ -109,6 +129,41 @@ public class InstructionController : MonoBehaviour
 
             touchPanText.text = value;
             touchPan.SetActive(TutorialEnabled && !string.IsNullOrEmpty(value)); 
+        }
+    }
+
+    public string RotateText
+    {
+        get { return rotateText.text; }
+        set
+        {
+            if (RotateText == value)
+            {
+                return;
+            }
+
+            rotateText.text = value;
+            rotate.SetActive(TutorialEnabled && !string.IsNullOrEmpty(value));
+        }
+    }
+
+    private void updateArrows()
+    {
+        if (TutorialEnabled && ArrowTarget != null)
+        {
+            arrowCurrent.SetActive(true);
+            arrowTarget.SetActive(true);
+
+            arrowTarget.transform.forward = (ArrowTarget.transform.position - arrowTarget.transform.position).normalized;
+
+            float angle = Vector3.Angle(arrowCurrent.transform.forward, arrowTarget.transform.forward);
+            arrowCurrent.GetComponentInChildren<Renderer>().material.color = Color.white.ColorWithAlpha(ArrowCurrentAlphaOverArrowAngle.Evaluate(angle));
+            arrowTarget.GetComponentInChildren<Renderer>().material.color = Color.white.ColorWithAlpha(ArrowTargetAlphaOverArrowAngle.Evaluate(angle));
+        }
+        else
+        {
+            arrowCurrent.SetActive(false);
+            arrowTarget.SetActive(false);
         }
     }
 }

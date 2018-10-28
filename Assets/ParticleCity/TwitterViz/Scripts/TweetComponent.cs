@@ -689,7 +689,7 @@ public class TweetComponent : MonoBehaviour
             HandType handType = InputManager.Instance.GetHandType(approachingTarget);
             spawnTweetWaitedTime += Time.deltaTime;
 
-            if ((TutorialStateManager.Instance.IsInInitialDarkSteps || spawnTweetWaitedTime > SpawnTweetWaitTimeBeforeTutorial) && spawnTweetTutorial == null && handType != HandType.Unknown)
+            if ((TutorialStateManager.Instance.IsInInitialTutorialSteps || spawnTweetWaitedTime > SpawnTweetWaitTimeBeforeTutorial) && spawnTweetTutorial == null && handType != HandType.Unknown)
             {
                 // GameObject prefab = (handType == HandType.Left) ? SpawnTweetTutorialLeftPrefab : SpawnTweetTutorialRightPrefab;
                 // spawnTweetTutorial = Instantiate(prefab);
@@ -705,6 +705,7 @@ public class TweetComponent : MonoBehaviour
                     Destroy(spawnTweetTutorial);
                     spawnTweetWaitedTime = 0;
                 }
+
                 setState(TweetState.LightingUp);
             }
             // setState(TweetState.LightingUp);
