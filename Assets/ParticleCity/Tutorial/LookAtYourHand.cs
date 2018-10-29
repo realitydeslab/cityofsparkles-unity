@@ -24,7 +24,6 @@ public class LookAtYourHand : MonoBehaviour
 
     void Update()
     {
-        bool showText = false;
         if (TutorialStateManager.Instance.State != TutorialState.Idle &&
             TutorialStateManager.Instance.State != TutorialState.Invalid)
         {
@@ -45,6 +44,10 @@ public class LookAtYourHand : MonoBehaviour
                     ShouldShowText = true;
                 }
             }
+        }
+        else
+        {
+            ShouldShowText = false;
         }
 
         text.color = Color.Lerp(text.color, (ShouldShowText ? Color.white : Color.clear), FadeRatio * Time.deltaTime);

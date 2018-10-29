@@ -43,6 +43,7 @@ namespace ParticleCities
         public ParticleCity[] ParticleCityPrefabs;
         public bool KeyboardSwitch;
         public Transform[] StoryGroupOnManualSwitch;
+        public Transform StoryRoot;
 
         [Header("Auto")] 
         public ParticleCity CurrentParticleCity;
@@ -131,6 +132,13 @@ namespace ParticleCities
         public void ManualSwitchToStage(int i)
         {
             SwitchToStage(i);
+
+            TwitterManager.Instance.ClearAll();
+            StoryNode[] activeStoryNodes = StoryRoot.GetComponentsInChildren<StoryNode>();
+            for (int j = 0; j < activeStoryNodes.Length; j++)
+            {
+                Destroy(activeStoryNodes[j].gameObject);
+            }
 
             if (i < StoryGroupOnManualSwitch.Length && !StoryGroupOnManualSwitch[i].Equals(null))
             {

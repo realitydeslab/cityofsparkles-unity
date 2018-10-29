@@ -5072,7 +5072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IdleTimeToReset: 300
-  ForceInitialSceneSwitchTime: 120
+  ForceInitialSceneSwitchTime: 180
   ForceSceneSwitchTime: 180
   InitialStage: 6
   ParticleCityPrefabs:
