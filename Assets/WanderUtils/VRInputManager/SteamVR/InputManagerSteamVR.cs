@@ -234,7 +234,7 @@ namespace ParticleCities
             return OpenVR.System.GetTrackedDeviceActivityLevel(0) != EDeviceActivityLevel.k_EDeviceActivityLevel_UserInteraction;
         }
 
-        public override bool IsActiveHand(Collider collider)
+        public override bool IsActiveHand(GameObject collider)
         {
             return true;
         }
@@ -242,6 +242,12 @@ namespace ParticleCities
         public override void SetControllerVisible(bool visible)
         {
             // No-op
+        }
+
+        public override HandType GetLastActiveHand()
+        {
+            // TODO
+            return HandType.Unknown;
         }
     }
 }

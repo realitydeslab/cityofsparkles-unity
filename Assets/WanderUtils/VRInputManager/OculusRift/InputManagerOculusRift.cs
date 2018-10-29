@@ -11,6 +11,26 @@ namespace ParticleCities
         private OvrAvatar avatar;
         private OVRCameraRig cameraRig;
 
+        [Header("Debug")]
+        public HandType lastActiveHandType = HandType.Unknown;
+
+        public override void Update()
+        {
+            base.Update();
+
+            bool leftDown = OVRInput.GetDown(OVRInput.Button.Any, OVRInput.Controller.LTouch);
+            bool rightDown = OVRInput.GetDown(OVRInput.Button.Any, OVRInput.Controller.RTouch);
+
+            if (leftDown && !rightDown)
+            {
+                lastActiveHandType = HandType.Left;
+            }
+            else if (!leftDown && rightDown)
+            {
+                lastActiveHandType = HandType.Right;
+            }
+        }
+
         public override Transform GetHand(HandType handType)
         {
             if (avatar == null)
@@ -118,12 +138,15 @@ namespace ParticleCities
             switch (button)
             {
                 case Button.A:
-                case Button.Confirm:
-                    rawButton = OVRInput.RawButton.A | OVRInput.RawButton.X;
+                    rawButton = OVRInput.RawButton.A;
                     break;
 
                 case Button.B:
                     rawButton = OVRInput.RawButton.B;
+                    break;
+
+                case Button.Confirm:
+                    rawButton = OVRInput.RawButton.A | OVRInput.RawButton.B | OVRInput.RawButton.X | OVRInput.RawButton.Y;
                     break;
 
                 default:
@@ -146,9 +169,9 @@ namespace ParticleCities
             return !OVRPlugin.userPresent;
         }
 
-        public override bool IsActiveHand(Collider collider)
+        public override bool IsActiveHand(GameObject candidate)
         {
-            OvrAvatarHand hand = collider.GetComponentInParent<OvrAvatarHand>();
+            OvrAvatarHand hand = candidate.GetComponentInParent<OvrAvatarHand>();
             if (hand == null)
             {
                 return false;
@@ -161,6 +184,11 @@ namespace ParticleCities
         public override void SetControllerVisible(bool visible)
         {
             avatar.ShowControllers(visible);
+        }
+
+        public override HandType GetLastActiveHand()
+        {
+            return lastActiveHandType;
         }
     }
 }

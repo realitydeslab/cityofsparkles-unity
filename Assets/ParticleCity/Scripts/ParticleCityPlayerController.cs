@@ -125,7 +125,7 @@ namespace ParticleCities
                     {
                         TutorialStateManager.Instance.InitialRedDotMissed();
                         forward = -direction;
-                        StartCoroutine(resetPositionWithDelay(2));
+                        StartCoroutine(resetPositionWithDelay(TutorialState.InitialRedDotMissed, 2));
                     }
                 }
                 else if (TutorialStateManager.Instance.State == TutorialState.FlyWithRotate && TutorialStateManager.Instance.Source != null)
@@ -155,11 +155,11 @@ namespace ParticleCities
 
         }
 
-        private IEnumerator resetPositionWithDelay(float delay)
+        private IEnumerator resetPositionWithDelay(TutorialState requiredState, float delay)
         {
             yield return new WaitForSeconds(delay);
 
-            if (PlayerStartingPoint != null)
+            if (requiredState == TutorialStateManager.Instance.State && PlayerStartingPoint != null)
             {
                 InputManager.Instance.PlayerTransform.transform.position = PlayerStartingPoint.position;
                 InputManager.Instance.PlayerTransform.transform.rotation = PlayerStartingPoint.rotation;

@@ -151,7 +151,7 @@ namespace ParticleCities
             Gizmos.DrawWireSphere(transform.position, 20);
         }
 
-        public override bool IsActiveHand(Collider collider)
+        public override bool IsActiveHand(GameObject collider)
         {
             // TODO
             return true;
@@ -160,6 +160,12 @@ namespace ParticleCities
         public override void SetControllerVisible(bool visible)
         {
             // No-op
+        }
+
+        public override HandType GetLastActiveHand()
+        {
+            // TODO
+            return HandType.Unknown;
         }
     }
 }

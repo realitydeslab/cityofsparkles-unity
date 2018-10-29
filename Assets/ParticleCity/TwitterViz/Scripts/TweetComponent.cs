@@ -278,14 +278,14 @@ public class TweetComponent : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (State == TweetState.Idle && InputManager.Instance.IsActiveHand(other))
+        if (State == TweetState.Idle && InputManager.Instance.IsActiveHand(other.gameObject))
         {
             Trigger = true;
             approachingTarget = other.transform;
         }
 
         if (TutorialStateManager.Instance.State == TutorialState.InitialRedDot &&
-            InputManager.Instance.IsActiveHand(other))
+            InputManager.Instance.IsActiveHand(other.gameObject))
         {
             TutorialStateManager.Instance.InitialRedDotCloseEnough();
         }
@@ -697,7 +697,11 @@ public class TweetComponent : MonoBehaviour
                 TutorialStateManager.Instance.RedDotReached();
             }
 
-            if (handType != HandType.Unknown && (InputManager.Instance.GetGrabDown(handType)) || (InputManager.Instance.GetButtonDown(Button.Confirm)))
+            if (
+                handType != HandType.Unknown && (
+                InputManager.Instance.GetGrabDown(HandType.Left) ||
+                InputManager.Instance.GetGrabDown(HandType.Right) ||
+                InputManager.Instance.GetButtonDown(Button.Confirm) ))
             {
                 TutorialStateManager.Instance.TwitterTriggered();
                 if (spawnTweetTutorial != null)

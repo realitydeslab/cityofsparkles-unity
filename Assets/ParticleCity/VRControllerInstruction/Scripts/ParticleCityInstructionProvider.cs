@@ -7,11 +7,16 @@ using WanderUtils;
 [RequireComponent(typeof(InstructionController))]
 public class ParticleCityInstructionProvider : MonoBehaviour
 {
+    public GameObject handObject;
     private InstructionController controller;
+
+    [Header("Debug")]
+    public HandType handType;
 
     void Start()
     {
         controller = GetComponent<InstructionController>();
+        handType = InputManager.Instance.GetHandType(handObject.transform);
     }
 
     void Update()
@@ -20,6 +25,18 @@ public class ParticleCityInstructionProvider : MonoBehaviour
         controller.GripText = "";
         controller.RotateText = "";
         controller.ArrowTarget = null;
+
+        if (!InputManager.Instance.IsActiveHand(handObject))
+        {
+            return;
+        }
+
+        if (InputManager.Instance.GetLastActiveHand() != handType &&
+            InputManager.Instance.GetLastActiveHand() != HandType.Unknown)
+        {
+            return;
+        }
+
 
         switch (TutorialStateManager.Instance.State)
         {
