@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GuidingLight : MonoBehaviour
 {
-    private enum FadeType
+    public enum FadeType
     {
         FadeInOut = 0,
         FadeOut
@@ -32,7 +32,6 @@ public class GuidingLight : MonoBehaviour
 
     private Renderer lightRenderer;
     private Coroutine smoothLightCoroutine;
-    private FadeType currentFadeType;
 
     private float timeSinceLastTrigger = float.MaxValue;
     // private ParticleSystem particleSystem;
@@ -40,6 +39,7 @@ public class GuidingLight : MonoBehaviour
     [Header("Debug")]
     [Range(0, 1)]
     public float Intensity;
+    public FadeType currentFadeType;
 
     private TweetComponent tweetComponent;
 
@@ -118,7 +118,7 @@ public class GuidingLight : MonoBehaviour
                 break;
 
             case TweetComponent.TweetState.Spawning:
-                if (smoothLightCoroutine == null)
+                if (smoothLightCoroutine == null && Intensity > 0.1f)
                 {
                     smoothLightCoroutine = StartCoroutine(smoothLight(FadeType.FadeOut, null));
                 }
@@ -153,19 +153,22 @@ public class GuidingLight : MonoBehaviour
 
     IEnumerator smoothLight(FadeType fadeType, Action onFinished)
     {
+        // Debug.Log("Smooth light: " + fadeType + ", " + GetComponent<TweetComponent>().SpawnSource.gameObject.name);
+
         currentFadeType = fadeType;
         float t = fadeType == FadeType.FadeOut ? EaseInDuration + SustainDuration : 0;
+        float minIntensity = (fadeType == FadeType.FadeOut) ? 0 : MinIntensity;
 
         while (t <= EaseInDuration + SustainDuration + EaseOutDuration)
         {
             float intensity = MaxIntensity;
             if (t < EaseInDuration)
             {
-                intensity = MinIntensity + Mathf.Pow(t / EaseInDuration, 2) * (MaxIntensity - MinIntensity);
+                intensity = minIntensity + Mathf.Pow(t / EaseInDuration, 2) * (MaxIntensity - minIntensity);
             }
             else if (t >= EaseInDuration + SustainDuration)
             {
-                intensity = MinIntensity + Mathf.Pow(1 - (t - EaseInDuration - SustainDuration) / EaseOutDuration, 2) * (MaxIntensity - MinIntensity);
+                intensity = minIntensity + Mathf.Pow(1 - (t - EaseInDuration - SustainDuration) / EaseOutDuration, 2) * (MaxIntensity - minIntensity);
             }
 
             setIntensity(intensity);
@@ -174,7 +177,7 @@ public class GuidingLight : MonoBehaviour
             yield return null;
         }
 
-        setIntensity(MinIntensity);
+        setIntensity(minIntensity);
         smoothLightCoroutine = null;
 
         if (onFinished != null)
