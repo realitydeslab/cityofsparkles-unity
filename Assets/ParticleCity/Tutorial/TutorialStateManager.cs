@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using ParticleCities;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialStateManager : MonoBehaviour
 {
@@ -20,9 +21,9 @@ public class TutorialStateManager : MonoBehaviour
         }
     }
 
-    [Header("Auto")] 
     public TutorialState State;
 
+    [Header("Auto")] 
     public bool FixedDirectionFlyPassed = false;
 
     [CanBeNull] public StoryNode Source;
@@ -30,7 +31,6 @@ public class TutorialStateManager : MonoBehaviour
 
     void Start()
     {
-        State = TutorialState.InitialRedDot;
     }
 
     void Update()
@@ -117,6 +117,7 @@ public enum TutorialState
 {
     Invalid = 0,
     Idle,
+    OpenScene,
     InitialRedDot,
     ReachOutHand,
     TriggerByGrab,

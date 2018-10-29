@@ -37,9 +37,13 @@ public class ParticleCityInstructionProvider : MonoBehaviour
             return;
         }
 
-
         switch (TutorialStateManager.Instance.State)
         {
+            case TutorialState.OpenScene:
+                InputManager.Instance.SetControllerVisible(true);
+                controller.TriggerText = "Press Trigger to start. ";
+                break;
+
             case TutorialState.Idle:
                 InputManager.Instance.SetControllerVisible(false);
                 break;

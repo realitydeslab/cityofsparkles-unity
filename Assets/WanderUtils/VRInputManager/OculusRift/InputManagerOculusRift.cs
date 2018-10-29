@@ -183,6 +183,10 @@ namespace ParticleCities
 
         public override void SetControllerVisible(bool visible)
         {
+            if (avatar == null)
+            {
+                avatar = FindObjectOfType<OvrAvatar>();
+            }
             avatar.ShowControllers(visible);
         }
 

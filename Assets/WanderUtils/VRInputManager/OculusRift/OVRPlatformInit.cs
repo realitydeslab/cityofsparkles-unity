@@ -8,7 +8,7 @@ public class OVRPlatformInit : MonoBehaviour {
 
     public OvrAvatar myAvatar;
 
-    void Awake () {
+    void Start () {
         Oculus.Platform.Core.Initialize();
         Oculus.Platform.Users.GetLoggedInUser().OnComplete(GetLoggedInUserCallback);
         Oculus.Platform.Request.RunCallbacks();  //avoids race condition with OvrAvatar.cs Start().
@@ -19,6 +19,7 @@ public class OVRPlatformInit : MonoBehaviour {
         if (!message.IsError) {
             myAvatar = FindObjectOfType<OvrAvatar>();
             myAvatar.oculusUserID = message.Data.ID.ToString();
+            Debug.Log("Oculus logged-in user: " + message.Data.OculusID + " <" + message.Data.ID + ">");
         }
     }
 }
