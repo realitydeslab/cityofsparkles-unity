@@ -249,5 +249,10 @@ namespace ParticleCities
             // TODO
             return HandType.Unknown;
         }
+
+        public override Vector2 GetStickerValue(HandType handType)
+        {
+            return Vector2.zero;
+        }
     }
 }

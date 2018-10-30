@@ -18,6 +18,7 @@ namespace ParticleCities
         public bool TrailingParticle = true;
         
         public float LastActionTime { get; private set; }
+        public Vector3 CurrentVelocity { get; private set; }
 
         private CharacterController characterController;
 
@@ -81,32 +82,38 @@ namespace ParticleCities
         {
             float leftTrigger = InputManager.Instance.GetTriggerValue(HandType.Left);
             float rightTrigger = InputManager.Instance.GetTriggerValue(HandType.Right);
+            Vector2 leftSticker = InputManager.Instance.GetStickerValue(HandType.Left);
+            Vector2 rightSticker = InputManager.Instance.GetStickerValue(HandType.Right);
 
             Transform activeHand = null;
-            float activeTrigger = 0;
+            HandType activeHandType = HandType.Unknown;
+            Vector3 velocityRatio = Vector3.forward;
+            CurrentVelocity = Vector3.zero;
 
             if (leftTrigger > rightTrigger && leftTrigger > 0.01f)
             {
-                activeHand = InputManager.Instance.GetHand(HandType.Left);
-                activeTrigger = leftTrigger;
-                rightTrigger = 0;
+                activeHandType = HandType.Left;
+                velocityRatio *= leftTrigger;
             }
             else if (rightTrigger >= leftTrigger && rightTrigger > 0.01f)
             {
-                activeHand = InputManager.Instance.GetHand(HandType.Right);
-                activeTrigger = rightTrigger;
-                leftTrigger = 0;
+                activeHandType = HandType.Right;
+                velocityRatio *= rightTrigger;
             }
-            else
+            else if (leftSticker.sqrMagnitude > rightSticker.sqrMagnitude && leftSticker.sqrMagnitude > 0.0001f)
             {
-                leftTrigger = 0;
-                rightTrigger = 0;
+                activeHandType = HandType.Left;
+                velocityRatio = new Vector3(leftSticker.x * 0.3f, 0, leftSticker.y);
+            }
+            else if (rightSticker.sqrMagnitude >= leftSticker.sqrMagnitude && rightSticker.sqrMagnitude > 0.0001f)
+            {
+                activeHandType = HandType.Right;
+                velocityRatio = new Vector3(rightSticker.x * 0.3f, 0, rightSticker.y);
             }
 
+            activeHand = InputManager.Instance.GetHand(activeHandType);
             if (activeHand != null)
             {
-                Vector3 forward = activeHand.forward;
-
                 // Tutorial Control
                 bool flyAllowed = true;
                 if ((TutorialStateManager.Instance.State == TutorialState.InitialRedDot ||
@@ -119,12 +126,12 @@ namespace ParticleCities
                     Vector3 direction = (autoPilot.Target.transform.position - InputManager.Instance.CenterCamera.transform.position).normalized;
                     if (Vector3.Dot(direction, InputManager.Instance.CenterCamera.transform.forward) >= 0)
                     {
-                        forward = direction;
+                        velocityRatio = velocityRatio.magnitude * direction;
                     }
                     else
                     {
                         TutorialStateManager.Instance.InitialRedDotMissed();
-                        forward = -direction;
+                        velocityRatio = velocityRatio.magnitude * -direction;
                         StartCoroutine(resetPositionWithDelay(TutorialState.InitialRedDotMissed, 2));
                     }
                 }
@@ -136,23 +143,31 @@ namespace ParticleCities
                     {
                         // Stop flying
                         flyAllowed = false;
+                        velocityRatio = Vector3.zero;
                     }
+                    else
+                    {
+                        velocityRatio = velocityRatio.magnitude * activeHand.forward;
+                    }
+                }
+                else
+                {
+                    velocityRatio = activeHand.rotation * velocityRatio;
                 }
 
                 if (flyAllowed)
                 {
-                    Vector3 movement = forward * FlyFullSpeed * activeTrigger * Time.deltaTime;
-                    InputManager.Instance.PlayerTransform.transform.position += movement;
+                    CurrentVelocity = velocityRatio * FlyFullSpeed;
+                    InputManager.Instance.PlayerTransform.transform.position += CurrentVelocity * Time.deltaTime;
                     LastActionTime = Time.time;
                 }
             }
 
             ParticleSystem.EmissionModule leftEmission = leftParticle.emission;
-            leftEmission.rateOverTimeMultiplier = particleFullRate * leftTrigger;
+            leftEmission.rateOverTimeMultiplier = particleFullRate * (activeHandType == HandType.Left ? velocityRatio.magnitude : 0);
 
             ParticleSystem.EmissionModule rightEmission = rightParticle.emission;
-            rightEmission.rateOverTimeMultiplier = particleFullRate * rightTrigger;
-
+            rightEmission.rateOverTimeMultiplier = particleFullRate * (activeHandType == HandType.Right ? velocityRatio.magnitude : 0);
         }
 
         private IEnumerator resetPositionWithDelay(TutorialState requiredState, float delay)

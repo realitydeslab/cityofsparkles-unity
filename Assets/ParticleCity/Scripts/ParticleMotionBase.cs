@@ -95,13 +95,13 @@ public abstract class ParticleMotionBase : MonoBehaviour {
 
     private RenderTexture createRenderTexture()
     {
-        RenderTexture tex = new RenderTexture(BasePositionTexture.width, BasePositionTexture.height, 0, RenderTextureFormat.ARGBFloat)
+        RenderTexture tex = new RenderTexture(BasePositionTexture.width, BasePositionTexture.height, 0, RenderTextureFormat.ARGBFloat, RenderTextureReadWrite.Linear)
         {
             useMipMap = false,
             autoGenerateMips = false,
             filterMode = FilterMode.Point,
             anisoLevel = 0,
-            antiAliasing = 1
+            antiAliasing = 0,
         };
 
         return tex;

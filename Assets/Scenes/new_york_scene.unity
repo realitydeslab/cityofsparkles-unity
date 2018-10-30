@@ -5090,6 +5090,7 @@ MonoBehaviour:
   - {fileID: 1640307866}
   - {fileID: 1160525530}
   - {fileID: 0}
+  StoryRoot: {fileID: 522203963}
   CurrentParticleCity: {fileID: 0}
   CurrentStage: 0
 --- !u!4 &1036309889

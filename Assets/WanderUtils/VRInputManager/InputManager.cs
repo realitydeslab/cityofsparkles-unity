@@ -31,6 +31,7 @@ namespace WanderUtils
 
         public abstract float GetTriggerValue(HandType handType);
         public abstract float GetGrabValue(HandType handType);
+        public abstract Vector2 GetStickerValue(HandType handType);
         public abstract Vector2 GetTouchpadValue(HandType handType, out bool isPressed);
         public abstract bool GetGrabDown(HandType handType);
         public abstract bool GetGrabUp(HandType handType);

@@ -2,13 +2,27 @@ using ParticleCities;
 using UnityEngine;
 using WanderUtils;
 
-public class SimpleFlowMotion : ParticleMotionBase {
-    
+public class SimpleFlowMotion : ParticleMotionBase
+{
+    [Header("Debug")] 
+    public bool Visualize;
+
     private Vector4 shaderVector = new Vector4(0, 0, 0, 1);
 
     private ObjectTrailing leftHand;
     private ObjectTrailing rightHand;
     private ObjectTrailing activeObject;
+
+    private ParticleCityPlayerController playerController;
+
+    private static float FlyingPushRatio = 0.15f;
+
+    public override void Start()
+    {
+        base.Start();
+
+        playerController = FindObjectOfType<ParticleCityPlayerController>();
+    }
 
     protected override void UpdateInput()
     {
@@ -29,13 +43,15 @@ public class SimpleFlowMotion : ParticleMotionBase {
         //     }
         // }
 
+        Vector3 flyingPush = playerController.CurrentVelocity * FlyingPushRatio;
+
         for (int i = 0; i < ObjectTrailing.TrailLength; i++)
         {
             if (leftHand != null && leftHand.Frames != null)
             {
-                shaderVector.x = leftHand.Frames[i].Position.x;
-                shaderVector.y = leftHand.Frames[i].Position.y;
-                shaderVector.z = leftHand.Frames[i].Position.z;
+                shaderVector.x = leftHand.Frames[i].Position.x + flyingPush.x;
+                shaderVector.y = leftHand.Frames[i].Position.y + flyingPush.y;
+                shaderVector.z = leftHand.Frames[i].Position.z + flyingPush.z;
                 particleMotionBlitMaterial.SetVector("_LeftHandPos" + i, shaderVector);
 
                 shaderVector.x = leftHand.Frames[i].Velocity.x;
@@ -46,9 +62,9 @@ public class SimpleFlowMotion : ParticleMotionBase {
 
             if (rightHand != null && rightHand.Frames != null)
             {
-                shaderVector.x = rightHand.Frames[i].Position.x;
-                shaderVector.y = rightHand.Frames[i].Position.y;
-                shaderVector.z = rightHand.Frames[i].Position.z;
+                shaderVector.x = rightHand.Frames[i].Position.x + flyingPush.x;
+                shaderVector.y = rightHand.Frames[i].Position.y + flyingPush.y;
+                shaderVector.z = rightHand.Frames[i].Position.z + flyingPush.z;
                 particleMotionBlitMaterial.SetVector("_RightHandPos" + i, shaderVector);
 
                 shaderVector.x = rightHand.Frames[i].Velocity.x;
@@ -117,6 +133,55 @@ public class SimpleFlowMotion : ParticleMotionBase {
             shaderVector.y = 0;
             shaderVector.z = 0;
             particleMotionBlitMaterial.SetVector("_ActiveObjectVel" + objectIndex, shaderVector);
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        if (!Application.isPlaying || !Visualize)
+        {
+            return;
+        }
+
+        Vector3 flyingPush = playerController.CurrentVelocity * FlyingPushRatio;
+        Gizmos.color = Color.white;
+
+        for (int i = 0; i < ObjectTrailing.TrailLength; i++)
+        {
+            if (leftHand != null && leftHand.Frames != null)
+            {
+                Gizmos.DrawWireSphere(leftHand.Frames[i].Position + flyingPush, 0.2f);
+                Gizmos.DrawRay(leftHand.Frames[i].Position + flyingPush, -leftHand.Frames[i].Velocity / 50);
+            }
+
+            if (rightHand != null && rightHand.Frames != null)
+            {
+                Gizmos.DrawWireSphere(rightHand.Frames[i].Position + flyingPush, 0.2f);
+                Gizmos.DrawRay(rightHand.Frames[i].Position + flyingPush, -rightHand.Frames[i].Velocity / 50);
+            }
+        }
+
+        for (int i = 0; i < ParticleCity.Current.ActiveGameObjects.Count; i++)
+        {
+            if (ParticleCity.Current.ActiveGameObjects[i] == null)
+            {
+                continue;
+            }
+
+            int objectIndex = 0;
+            ObjectTrailing[] objectTrailings = ParticleCity.Current.ActiveGameObjects[i].GetComponents<ObjectTrailing>();
+            if (objectTrailings.Length > 0 && objectTrailings[0].Frames != null && objectTrailings[0].Frames.Length > 0)
+            {
+                ObjectTrailing.TrailFrame frame = objectTrailings[0].Frames[0];
+                Gizmos.DrawWireSphere(frame.Position, 0.2f);
+                Gizmos.DrawRay(frame.Position, -frame.Velocity / 50);
+
+                objectIndex++;
+                if (objectIndex >= ObjectTrailing.TrailLength)
+                {
+                    break;
+                }
+            }
         }
     }
 }

@@ -61,6 +61,11 @@ namespace ParticleCities
             get { return Camera.main; }
         }
 
+        public override Vector2 GetStickerValue(HandType handType)
+        {
+            return OVRInput.Get(handType == HandType.Left ? OVRInput.RawAxis2D.LThumbstick : OVRInput.RawAxis2D.RThumbstick);
+        }
+
         public override Transform PlayerTransform
         {
             get
