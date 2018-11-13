@@ -70,7 +70,6 @@ public class TwitterPointCloud : MonoBehaviour
                 }
             }
         }
-
     }
 
     void OnDestroy()
@@ -112,6 +111,7 @@ public class TwitterPointCloud : MonoBehaviour
         Vector3 center = InputManager.Instance.CenterCamera.transform.position;
         Profiler.BeginSample("Flann Query");
         flann[sentiment].Query(center.GroundProjection2d(), Radius, LimitPerQuery, nearbyPoints);
+        Debug.Log("Flann queried " + nearbyPoints.Count);
         Profiler.EndSample();
     }
 

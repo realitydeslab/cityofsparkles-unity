@@ -12,27 +12,45 @@ public class DensityMap : MonoBehaviour
     public DensityMapData Data;
     public Texture3D Texture;
 
-    [Header("Internal")]
-    public Bounds Bounds;
-
     private Color32[] pixelsCache;
 
     // Debug
     [Header("Debug")]
     public bool DebugGizmo;
     public bool DebugMask;
+    public bool ClearCache;
+
     [Range(0, 256)]
     public float DebugDensityNorm = 256.0f;
     private Texture2D debugTexture;
+    private BoxCollider boxCollider;
 
-    void Start () 
+    public Bounds Bounds
     {
-        Bounds = GetComponent<BoxCollider>().bounds;
-	}
+        get
+        {
+            if (boxCollider == null)
+            {
+                boxCollider = GetComponent<BoxCollider>();
+            }
+
+            return boxCollider.bounds;
+        }
+    }
+
+    void Start ()
+    {
+    }
 	
 	void Update () 
 	{
         transform.rotation = Quaternion.Euler(0, 0, 0);
+
+	    if (ClearCache)
+	    {
+	        pixelsCache = null;
+	        ClearCache = false;
+	    }
     }
 
     void OnGUI ()

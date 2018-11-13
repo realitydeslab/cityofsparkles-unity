@@ -1,12 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using ParticleCities;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.IO;
-using System.Linq;
-using UnityEditorInternal;
-using UnityEngine.Timeline;
 
 namespace ParticleCity.Editor
 {
@@ -84,6 +78,11 @@ namespace ParticleCity.Editor
             for (int i = 0; i < positionPixels.Length; i++)
             {
                 Vector3 pos = new Vector3(positionPixels[i].r, positionPixels[i].g, positionPixels[i].b);
+                if (!densityMapObj.Bounds.Contains(pos))
+                {
+                    continue;
+                }
+
                 Vector3 offsetPos = (pos - densityMapObj.Bounds.min);
                 Vector3 densityPos = new Vector3(
                     Mathf.Clamp01(offsetPos.x / densityMapObj.Bounds.size.x) * textureWidth,
@@ -91,9 +90,16 @@ namespace ParticleCity.Editor
                     Mathf.Clamp01(offsetPos.z / densityMapObj.Bounds.size.z) * textureDepth
                 );
 
-                int index = (int)(densityPos.z + 0.5f) * (textureWidth * textureHeight) +
-                            (int)(densityPos.y + 0.5f) * textureWidth +
-                            (int)(densityPos.x + 0.5f);
+                int index = (int)densityPos.z * (textureWidth * textureHeight) +
+                            (int)densityPos.y * textureWidth +
+                            (int)densityPos.x;
+
+                if (index < 0 || index >= textureWidth * textureHeight * textureDepth)
+                {
+                    Debug.LogError(string.Format("Index out of bound. Density pos ({0}, {1}, {2})", densityPos.x, densityPos.y, densityPos.z));
+                    EditorUtility.ClearProgressBar();
+                    return;
+                }
 
                 densityPixels[index].a += 32;
 
@@ -214,9 +220,9 @@ namespace ParticleCity.Editor
             AssetDatabase.SaveAssets();
 
             densityMapObj.Data = data;
+            densityMapObj.Texture = tex;
 
             EditorUtility.ClearProgressBar();
         }
-
     }
 }
