@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NewYorkFirst
+  m_Name: SFGround_ParticleCity
   m_Shader: {fileID: 4800000, guid: 80049cc3a78ed2048be43c24a713d62f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -68,7 +68,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PositionTex:
-        m_Texture: {fileID: 2800000, guid: 4d4177488f059f64f84f43f80bc27e34, type: 2}
+        m_Texture: {fileID: 2800000, guid: ed485e0b258a57e48aee3dd1b59b308b, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PositionTex2:
@@ -85,7 +85,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _GlobalIntensity: 0
+    - _GlobalIntensity: 1.78
     - _Glossiness: 0.5
     - _MaxHeight: 10000
     - _Metallic: 0
