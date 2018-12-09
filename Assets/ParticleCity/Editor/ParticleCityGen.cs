@@ -15,7 +15,7 @@ public class ParticleCityGen : EditorWindow
     private bool shouldGenTextures = true;
     private bool shouldGenMesh = true;
 
-    private const int MAX_MESH_VERTEX = 65000;
+    private const int MAX_POINT_PER_MESH = 16383;
 
     private List<Vector3> points;
     private GameObject debugParticles = null;
@@ -336,43 +336,72 @@ public class ParticleCityGen : EditorWindow
         Debug.Log("Creating grid mesh " + Nx + "x" + Ny + "...");
 
         // Create vertex arrays.
-        var vertexArray = new Vector3[Nx * Ny];
-        var uvArray = new Vector2[Nx * Ny];
+        var vertexArray = new Vector3[Nx * Ny * 4];
+        var uvArray = new Vector2[Nx * Ny * 4]; // uv on position texture
+        var uv2Array = new Vector2[MAX_POINT_PER_MESH * 4]; // uv on sprite texture
+        var indexArray = new int[MAX_POINT_PER_MESH * 6];
 
-        var index = 0;
-        for (var x = 0; x < Nx; x++) {
-            for (var y = 0; y < Ny; y++) {
-                vertexArray[index] = new Vector3(x, 0, y);
+        var p = 0;
+        for (var y = 0; y < Ny; y++) {
+            for (var x = 0; x < Nx; x++) {
+                vertexArray[p * 4] = new Vector3(x, 0, y);
+                vertexArray[p * 4 + 1] = new Vector3(x + 0.5f, 0, y);
+                vertexArray[p * 4 + 2] = new Vector3(x + 0.5f, 0.5f, y);
+                vertexArray[p * 4 + 3] = new Vector3(x, 0.5f, y);
 
                 var u = (float)x / genParams.TextureWidth;
                 var v = (float)y / genParams.TextureHeight;
-                uvArray[index] = new Vector2(u, v);
+                uvArray[p * 4] = new Vector2(u, v);
+                uvArray[p * 4 + 1] = new Vector2(u, v);
+                uvArray[p * 4 + 2] = new Vector2(u, v);
+                uvArray[p * 4 + 3] = new Vector2(u, v);
 
-                index += 1;
+                p++;
             }
         }
 
-        // Index array.
-        var indexArray = new int[vertexArray.Length];
-        for (index = 0; index < vertexArray.Length; index++) indexArray[index] = index;
+        for (var i = 0; i < MAX_POINT_PER_MESH; i++)
+        {
+            uv2Array[i * 4] = new Vector2(0, 0);
+            uv2Array[i * 4 + 1] = new Vector2(1, 0);
+            uv2Array[i * 4 + 2] = new Vector2(1, 1);
+            uv2Array[i * 4 + 3] = new Vector2(0, 1);
+        }
 
         // Create a mesh object.
-        int meshCount = ceiling(pointCount, MAX_MESH_VERTEX);
+        int meshCount = ceiling(pointCount, MAX_POINT_PER_MESH);
         var meshes = new Mesh[meshCount];
 
         for (var i = 0; i < meshCount; i++) {
-            int start = i * MAX_MESH_VERTEX;
+            int start = i * MAX_POINT_PER_MESH * 4;
+
+            Vector3[] vertices = vertexArray.Skip(start).Take(MAX_POINT_PER_MESH * 4).ToArray();
+            Vector2[] uv = uvArray.Skip(start).Take(MAX_POINT_PER_MESH * 4).ToArray();
+            Vector2[] uv2 = uv2Array.Take(vertices.Length).ToArray();
+
+            // Index array.
+            for (var j = 0; j < vertices.Length / 4; j ++)
+            {
+                indexArray[j * 6 + 0] = j * 4 + 0;
+                indexArray[j * 6 + 1] = j * 4 + 1;
+                indexArray[j * 6 + 2] = j * 4 + 2;
+                indexArray[j * 6 + 3] = j * 4 + 2;
+                indexArray[j * 6 + 4] = j * 4 + 3;
+                indexArray[j * 6 + 5] = j * 4 + 0;
+            }
 
             meshes[i] = new Mesh{
-                vertices = vertexArray.Skip(start).Take(MAX_MESH_VERTEX).ToArray(),
-                uv = uvArray.Skip(start).Take(MAX_MESH_VERTEX).ToArray()
+                vertices = vertices,
+                uv = uv,
+                uv2 = uv2,
             };
 
-            meshes[i].SetIndices(indexArray.Take(meshes[i].vertexCount).ToArray(), MeshTopology.Points, 0);
-			// MeshUtility.Optimize(meshes[i]);
+            meshes[i].SetIndices(indexArray.Take(vertices.Length / 4 * 6).ToArray(), MeshTopology.Triangles, 0, false);
 
             // Avoid being culled.
             meshes[i].bounds = new Bounds(Vector3.zero, Vector3.one * 100000);
+
+            MeshUtility.Optimize( meshes[i] );
 
             AssetDatabase.CreateAsset(meshes[i], getPath(string.Format("Mesh {0}.asset", i)));
         }
