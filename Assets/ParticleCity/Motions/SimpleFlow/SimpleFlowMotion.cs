@@ -43,7 +43,7 @@ public class SimpleFlowMotion : ParticleMotionBase
         //     }
         // }
 
-        Vector3 flyingPush = playerController.CurrentVelocity * FlyingPushRatio;
+        Vector3 flyingPush = playerController != null ? playerController.CurrentVelocity * FlyingPushRatio : Vector3.zero;
 
         for (int i = 0; i < ObjectTrailing.TrailLength; i++)
         {
