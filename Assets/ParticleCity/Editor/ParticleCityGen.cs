@@ -16,6 +16,7 @@ public class ParticleCityGen : EditorWindow
     private bool shouldGenMesh = true;
 
     private const int MAX_POINT_PER_MESH = 16383;
+    private const int MAX_MESH_VERTEX = 65532;
 
     private List<Vector3> points;
     private GameObject debugParticles = null;
@@ -67,6 +68,8 @@ public class ParticleCityGen : EditorWindow
             genParams.TriangleEdgeSamplePerUnit = EditorGUILayout.FloatField("Triangle Edge Sample Per Unit", genParams.TriangleEdgeSamplePerUnit);
         }
 
+        genParams.MeshFormat = (ParticleCityGenMeshFormat) EditorGUILayout.EnumPopup("Mesh Format", genParams.MeshFormat);
+
         shouldGenDebugParticles = EditorGUILayout.Toggle("Debug Particle", shouldGenDebugParticles);
         shouldGenTextures = EditorGUILayout.Toggle("Build Textures", shouldGenTextures);
         shouldGenMesh = EditorGUILayout.Toggle("Generate Mesh", shouldGenMesh);
@@ -96,60 +99,79 @@ public class ParticleCityGen : EditorWindow
     }
 
     private void generateParticles() {
-        loadGeneratedAssets();
-
-        if (genParams.SampleMethod == ParticleCityGenSampleMethod.Volume)
+        try
         {
-            var colliders = Selection.GetFiltered(typeof(Collider), SelectionMode.Deep).Select((obj) => (Collider)obj).ToArray();
+            loadGeneratedAssets();
 
-            if (colliders.Length == 0) {
-                Debug.LogError("Particle City Gen: No model selected");
-                return;
-            }
-
-            samplePoints(colliders);
-        }
-        else if (genParams.SampleMethod == ParticleCityGenSampleMethod.Surface)
-        {
-            MeshFilter[] meshFilters = Selection.GetFiltered<MeshFilter>(SelectionMode.Deep);
-            if (meshFilters.Length == 0)
+            if (genParams.SampleMethod == ParticleCityGenSampleMethod.Volume)
             {
-                Debug.LogError("Particle City Gen: No model selected");
-                return;
+                IList<Collider> colliders = new List<Collider>();
+                getComponentsInChildrenOrdered(Selection.transforms, colliders);
+
+                if (colliders.Count == 0)
+                {
+                    Debug.LogError("Particle City Gen: No model selected");
+                    return;
+                }
+
+                samplePoints(colliders);
             }
-            sampleTriangles(meshFilters);
-        }
+            else if (genParams.SampleMethod == ParticleCityGenSampleMethod.Surface)
+            {
+                IList<MeshFilter> meshFilters = new List<MeshFilter>();
+                getComponentsInChildrenOrdered(Selection.transforms, meshFilters);
+                if (meshFilters.Count == 0)
+                {
+                    Debug.LogError("Particle City Gen: No model selected");
+                    return;
+                }
 
-        if (shouldGenDebugParticles) {
-            genDebugParticles();
-        }
+                sampleTriangles(meshFilters);
+            }
 
-        if (shouldGenTextures || shouldGenMesh)
+            if (shouldGenDebugParticles)
+            {
+                genDebugParticles();
+            }
+
+            if (shouldGenTextures || shouldGenMesh)
+            {
+                AssetDatabase.CreateAsset(Instantiate(genParams), getPath("Params.asset"));
+            }
+
+            if (shouldGenTextures)
+            {
+                genPositionTexture();
+            }
+
+            if (shouldGenMesh)
+            {
+                if (genParams.MeshFormat == ParticleCityGenMeshFormat.NoGeometryShader)
+                {
+                    genMeshNoGeometryShader();
+                }
+                else if (genParams.MeshFormat == ParticleCityGenMeshFormat.WithGeometryShader)
+                {
+                    genMeshWithGeometryShader();
+                }
+            }
+
+            AssetDatabase.SaveAssets();
+
+            if (particleCity != null)
+            {
+                Selection.activeObject = particleCity;
+            }
+        }
+        finally
         {
-            AssetDatabase.CreateAsset(Instantiate(genParams), getPath("Params.asset"));     
-        }
-
-        if (shouldGenTextures) 
-        {
-            genPositionTexture();
-        }
-
-        if (shouldGenMesh) 
-        {
-            genMesh();
-        }
-
-        AssetDatabase.SaveAssets();
-
-        if (particleCity != null)
-        {
-            Selection.activeObject = particleCity;
+            EditorUtility.ClearProgressBar();
         }
     }
 
-    private void samplePoints(Collider[] colliders) {
+    private void samplePoints(IList<Collider> colliders) {
         Debug.Log("Particle City Gen: Samping particles");
-        Debug.Log("Found " + colliders.Length + " colliders");
+        Debug.Log("Found " + colliders.Count + " colliders");
 
         points = new List<Vector3>(genParams.TextureWidth * genParams.TextureHeight);
 
@@ -157,7 +179,7 @@ public class ParticleCityGen : EditorWindow
 
         bool cancel = false;
 
-        for (int i = 0; i < colliders.Length; i++) {
+        for (int i = 0; i < colliders.Count; i++) {
             if (cancel) {
                 break;
             }
@@ -185,7 +207,7 @@ public class ParticleCityGen : EditorWindow
                 }
             }
 
-            cancel = EditorUtility.DisplayCancelableProgressBar("Samping Particles", "Sampled Count " + totalSampleCount, (float)i / colliders.Length);
+            cancel = EditorUtility.DisplayCancelableProgressBar("Samping Particles", "Sampled Count " + totalSampleCount, (float)i / colliders.Count);
         }
 
         Debug.Log("Total sample count: " + totalSampleCount);
@@ -198,9 +220,9 @@ public class ParticleCityGen : EditorWindow
         EditorUtility.ClearProgressBar();
     }
 
-    private void sampleTriangles(MeshFilter[] meshFilters) {
+    private void sampleTriangles(IList<MeshFilter> meshFilters) {
         Debug.Log("Particle City Gen: Samping particles");
-        Debug.Log("Found " + meshFilters.Length + " mesh filters");
+        Debug.Log("Found " + meshFilters.Count + " mesh filters");
 
         points = new List<Vector3>(genParams.TextureWidth * genParams.TextureHeight);
 
@@ -208,7 +230,7 @@ public class ParticleCityGen : EditorWindow
 
         bool cancel = false;
 
-        for (int i = 0; i < meshFilters.Length; i++) {
+        for (int i = 0; i < meshFilters.Count; i++) {
             Mesh mesh = meshFilters[i].sharedMesh;
             Transform meshTransform = meshFilters[i].transform;
 
@@ -258,8 +280,8 @@ public class ParticleCityGen : EditorWindow
                 }
             }
 
-            int estimatedTotal = (i == 0) ? 0 : totalSampleCount / i * meshFilters.Length; 
-            cancel = EditorUtility.DisplayCancelableProgressBar("Samping Particles", "Sampled Count " + totalSampleCount + ", estimated total " + estimatedTotal, (float)i / meshFilters.Length);
+            int estimatedTotal = (i == 0) ? 0 : totalSampleCount / i * meshFilters.Count; 
+            cancel = EditorUtility.DisplayCancelableProgressBar("Samping Particles", "Sampled Count " + totalSampleCount + ", estimated total " + estimatedTotal, (float)i / meshFilters.Count);
         }
 
         Debug.Log("Total sample count: " + totalSampleCount);
@@ -300,9 +322,11 @@ public class ParticleCityGen : EditorWindow
             colors[i] = new Color(points[i].x, points[i].y, points[i].z);
         }
 
-        positionTexture = new Texture2D(genParams.TextureWidth, genParams.TextureHeight, TextureFormat.RGBAFloat, false, true);
-        positionTexture.anisoLevel = 1;
-        positionTexture.filterMode = FilterMode.Point;
+        positionTexture = new Texture2D(genParams.TextureWidth, genParams.TextureHeight, TextureFormat.RGBAFloat, false, true)
+        {
+            anisoLevel = 1,
+            filterMode = FilterMode.Point
+        };
         positionTexture.SetPixels(colors);
         positionTexture.Apply();
 
@@ -313,6 +337,14 @@ public class ParticleCityGen : EditorWindow
         string newCityMatPath = getPath("ParticleCity.mat");
         AssetDatabase.CopyAsset(templatePath, newCityMatPath);
         Material particleCityGenMat = AssetDatabase.LoadAssetAtPath<Material>(newCityMatPath);
+        if (genParams.MeshFormat == ParticleCityGenMeshFormat.WithGeometryShader)
+        {
+            particleCityGenMat.shader = AssetDatabase.LoadAssetAtPath<Shader>("Assets/ParticleCity/Shaders/ParticleCity.shader");
+        }
+        else
+        {
+            particleCityGenMat.shader = AssetDatabase.LoadAssetAtPath<Shader>("Assets/ParticleCity/Shaders/ParticleCityNoGS.shader");
+        }
         particleCityGenMat.SetTexture("_PositionTex", positionTexture);
 
         templatePath = AssetDatabase.GetAssetPath(motionBlitMatTemplate);
@@ -324,26 +356,26 @@ public class ParticleCityGen : EditorWindow
         Debug.Log("Positions texture saved to " + getPath("ParticlePositions.asset"));
     }
 
-    private void genMesh() {
+    private void genMeshNoGeometryShader() {
 
         int pointCount = points.Count;
 
         // https://github.com/keijiro/KvantStream/blob/master/Assets/Kvant/Stream/Stream.cs CreateMesh
 
-        int Nx = genParams.TextureWidth;
-        int Ny = ceiling(pointCount, genParams.TextureWidth); // int ceiling
+        int cols = genParams.TextureWidth;
+        int rows = ceiling(pointCount, genParams.TextureWidth); // int ceiling
 
-        Debug.Log("Creating grid mesh " + Nx + "x" + Ny + "...");
+        Debug.Log("Creating grid mesh " + rows + "x" + cols + "...");
 
         // Create vertex arrays.
-        var vertexArray = new Vector3[Nx * Ny * 4];
-        var uvArray = new Vector2[Nx * Ny * 4]; // uv on position texture
+        var vertexArray = new Vector3[rows * cols * 4];
+        var uvArray = new Vector2[rows * cols * 4]; // uv on position texture
         var uv2Array = new Vector2[MAX_POINT_PER_MESH * 4]; // uv on sprite texture
         var indexArray = new int[MAX_POINT_PER_MESH * 6];
 
         var p = 0;
-        for (var y = 0; y < Ny; y++) {
-            for (var x = 0; x < Nx; x++) {
+        for (var y = 0; y < rows; y++) {
+            for (var x = 0; x < cols; x++) {
                 vertexArray[p * 4] = new Vector3(x, 0, y);
                 vertexArray[p * 4 + 1] = new Vector3(x + 0.5f, 0, y);
                 vertexArray[p * 4 + 2] = new Vector3(x + 0.5f, 0.5f, y);
@@ -372,7 +404,15 @@ public class ParticleCityGen : EditorWindow
         int meshCount = ceiling(pointCount, MAX_POINT_PER_MESH);
         var meshes = new Mesh[meshCount];
 
-        for (var i = 0; i < meshCount; i++) {
+        bool cancel = false;
+        for (var i = 0; i < meshCount; i++)
+        {
+            if (EditorUtility.DisplayCancelableProgressBar("Generating Mesh", "Generating Mesh " + i + "/" + meshCount, (float) i / meshCount))
+            {
+                cancel = true;
+                break;
+            }
+
             int start = i * MAX_POINT_PER_MESH * 4;
 
             Vector3[] vertices = vertexArray.Skip(start).Take(MAX_POINT_PER_MESH * 4).ToArray();
@@ -397,11 +437,87 @@ public class ParticleCityGen : EditorWindow
             };
 
             meshes[i].SetIndices(indexArray.Take(vertices.Length / 4 * 6).ToArray(), MeshTopology.Triangles, 0, false);
+            meshes[i].bounds = getBounds(uv);
+
+            MeshUtility.Optimize( meshes[i] );
+            AssetDatabase.CreateAsset(meshes[i], getPath(string.Format("Mesh {0}.asset", i)));
+        }
+
+        EditorUtility.ClearProgressBar();
+
+        if (cancel)
+        {
+            return;
+        }
+
+        // Create Prefab
+        particleCity = new GameObject(genParams.GroupName + "_ParticleCity", typeof(ParticleMotion));
+        var particleMotion = particleCity.GetComponent<ParticleMotion>();
+        particleMotion.BasePositionTexture = positionTexture;
+        particleMotion.ParticleMotionBlitMaterialPrefab = AssetDatabase.LoadAssetAtPath<Material>(getPath("ParticleMotionBlit.mat"));
+
+        for (int i = 0; i < meshes.Length; i++) {
+            GameObject meshObject = new GameObject(genParams.GroupName + "_Mesh" + i, typeof(MeshFilter), typeof(MeshRenderer));
+            meshObject.transform.parent = particleCity.transform;
+
+            meshObject.GetComponent<MeshFilter>().mesh = meshes[i];
+            meshObject.GetComponent<MeshRenderer>().material = AssetDatabase.LoadAssetAtPath<Material>(getPath("ParticleCity.mat"));
+        }
+
+        PrefabUtility.SaveAsPrefabAsset(particleCity, getPath("ParticleCityPrefab.prefab"));
+
+        Debug.Log("Prefab saved to " + getPath("ParticleCityPrefab.prefab"));
+    }
+
+    private void genMeshWithGeometryShader()
+    {
+       int pointCount = points.Count;
+
+        // https://github.com/keijiro/KvantStream/blob/master/Assets/Kvant/Stream/Stream.cs CreateMesh
+
+        int Nx = genParams.TextureWidth;
+        int Ny = ceiling(pointCount, genParams.TextureWidth); // int ceiling
+
+        Debug.Log("Creating grid mesh " + Nx + "x" + Ny + "...");
+
+        // Create vertex arrays.
+        var vertexArray = new Vector3[Nx * Ny];
+        var uvArray = new Vector2[Nx * Ny];
+
+        var index = 0;
+        for (var x = 0; x < Nx; x++) {
+            for (var y = 0; y < Ny; y++) {
+                vertexArray[index] = new Vector3(x, 0, y);
+
+                var u = (float)x / genParams.TextureWidth;
+                var v = (float)y / genParams.TextureHeight;
+                uvArray[index] = new Vector2(u, v);
+
+                index += 1;
+            }
+        }
+
+        // Index array.
+        var indexArray = new int[vertexArray.Length];
+        for (index = 0; index < vertexArray.Length; index++) indexArray[index] = index;
+
+        // Create a mesh object.
+        int meshCount = ceiling(pointCount, MAX_MESH_VERTEX);
+        var meshes = new Mesh[meshCount];
+
+        for (var i = 0; i < meshCount; i++) {
+            int start = i * MAX_MESH_VERTEX;
+
+            meshes[i] = new Mesh{
+                vertices = vertexArray.Skip(start).Take(MAX_MESH_VERTEX).ToArray(),
+                uv = uvArray.Skip(start).Take(MAX_MESH_VERTEX).ToArray()
+            };
+
+            meshes[i].SetIndices(indexArray.Take(meshes[i].vertexCount).ToArray(), MeshTopology.Points, 0);
+			// MeshUtility.Optimize(meshes[i]);
 
             // Avoid being culled.
             meshes[i].bounds = new Bounds(Vector3.zero, Vector3.one * 100000);
-
-            MeshUtility.Optimize( meshes[i] );
 
             AssetDatabase.CreateAsset(meshes[i], getPath(string.Format("Mesh {0}.asset", i)));
         }
@@ -471,5 +587,56 @@ public class ParticleCityGen : EditorWindow
 
         string path = Path.Combine(dir, genParams.GroupName + "_" + assetName);
         return path.Replace('\\', '/');
+    }
+
+    private void getComponentsInChildrenOrdered<T>(Transform[] transforms, IList<T> result) where T:Component
+    {
+        for (int i = 0; i < transforms.Length; i++)
+        {
+            getComponentsInChildrenOrdered<T>(transforms[i], result);
+        }
+    }
+
+    private static void getComponentsInChildrenOrdered<T>(Transform root, IList<T> result) where T:Component
+    {
+        T component = root.GetComponent<T>();
+        if (component != null)
+        {
+            result.Add(component);
+        }
+
+        for (int i = 0; i < root.childCount; i++)
+        {
+            getComponentsInChildrenOrdered(root.GetChild(i), result);
+        }
+    }
+
+    private Bounds getBounds(Vector2[] uvPoints)
+    {
+        Bounds b = new Bounds(Vector3.zero, Vector3.one);
+
+        for (int i = 0; i < uvPoints.Length; i+=4)
+        {
+            int index = (int)(uvPoints[i].y * genParams.TextureHeight) * genParams.TextureWidth + (int)(uvPoints[i].x * genParams.TextureWidth);
+
+            // The last row may contain unused pixel
+            if (index >= points.Count) 
+            {
+                continue;
+            }
+
+            Vector3 pos = points[index];
+
+            if (i == 0)
+            {
+                b.center = pos;
+            }
+            else
+            {
+                b.Encapsulate(pos);
+            }
+        }
+
+        return b;
     }
 }

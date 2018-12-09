@@ -15,10 +15,17 @@ public class ParticleCityGenParams : ScriptableObject
     public int TextureHeight = 2048;
 
     public ParticleCityGenSampleMethod SampleMethod;
+    public ParticleCityGenMeshFormat MeshFormat;
 }
 
 public enum ParticleCityGenSampleMethod
 {
     Surface,
     Volume,
+}
+
+public enum ParticleCityGenMeshFormat
+{
+    WithGeometryShader,
+    NoGeometryShader,
 }
