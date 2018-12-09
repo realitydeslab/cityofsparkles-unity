@@ -43,9 +43,10 @@ Shader "Particle City/Particle City No GS"
             // color = src.a * src + 1 * dst
         
             CGPROGRAM
-                #pragma target 5.0
+                #pragma target 4.5
                 #pragma vertex VS_Main
                 #pragma fragment FS_Main
+                #pragma multi_compile_instancing
                 #include "UnityCG.cginc" 
 
                 // **************************************************************
