@@ -16,7 +16,7 @@ public class ParticleCityGen : EditorWindow
     private bool shouldGenMesh = true;
 
     private const int MAX_POINT_PER_MESH = 16383;
-    private const int MAX_MESH_VERTEX = 65532;
+    private const int MAX_MESH_VERTEX = 65535;
 
     private List<Vector3> points;
     private GameObject debugParticles = null;
@@ -134,11 +134,6 @@ public class ParticleCityGen : EditorWindow
                 genDebugParticles();
             }
 
-            if (shouldGenTextures || shouldGenMesh)
-            {
-                AssetDatabase.CreateAsset(Instantiate(genParams), getPath("Params.asset"));
-            }
-
             if (shouldGenTextures)
             {
                 genPositionTexture();
@@ -154,6 +149,15 @@ public class ParticleCityGen : EditorWindow
                 {
                     genMeshWithGeometryShader();
                 }
+                else if (genParams.MeshFormat == ParticleCityGenMeshFormat.GPUInstancing)
+                {
+                    genMeshGPUInstancing();
+                }
+            }
+
+            if (shouldGenTextures || shouldGenMesh)
+            {
+                AssetDatabase.CreateAsset(Instantiate(genParams), getPath("Params.asset"));
             }
 
             AssetDatabase.SaveAssets();
@@ -308,7 +312,7 @@ public class ParticleCityGen : EditorWindow
     }
 
     private void genPositionTexture() {
-        if (genParams.TextureWidth * genParams.TextureHeight < points.Count) {
+        if (genParams.TextureWidth * genParams.TextureHeight < points.Count + ( points.Count / ( MAX_POINT_PER_MESH + 1 ) ) ) {
             Debug.LogError("Texture is too small to hold " + points.Count + " points.");
         }
 
@@ -316,8 +320,19 @@ public class ParticleCityGen : EditorWindow
 
         // TODO Perf: Generate raw data
         Color[] colors = new Color[genParams.TextureWidth * genParams.TextureHeight];
+        int index = 0;
         for (var i = 0; i < points.Count; i++) {
-            colors[i] = new Color(points[i].x, points[i].y, points[i].z);
+            if (genParams.MeshFormat == ParticleCityGenMeshFormat.GPUInstancing)
+            {
+                if ((index + 1) % (MAX_POINT_PER_MESH + 1) == 0)
+                {
+                    colors[index] = new Color(0, 0, 0);
+                    index++;
+                }
+            }
+
+            colors[index] = new Color(points[i].x, points[i].y, points[i].z);
+            index++;
         }
 
         positionTexture = new Texture2D(genParams.TextureWidth, genParams.TextureHeight, TextureFormat.RGBAFloat, false, true)
@@ -540,6 +555,79 @@ public class ParticleCityGen : EditorWindow
         PrefabUtility.SaveAsPrefabAsset(particleCity, getPath("ParticleCityPrefab.prefab"));
 
         Debug.Log("Prefab saved to " + getPath("ParticleCityPrefab.prefab"));
+    }
+
+    private void genMeshGPUInstancing()
+    {
+        int cols = genParams.TextureWidth;
+        int rows = (MAX_POINT_PER_MESH + 1) / cols;
+        int instanceCount = ceiling(points.Count, MAX_POINT_PER_MESH);
+
+        Debug.Log("Creating grid mesh " + rows + "x" + cols + "...");
+
+        // Create vertex arrays.
+        var vertexArray = new Vector3[MAX_POINT_PER_MESH * 4];
+        var uvArray = new Vector2[MAX_POINT_PER_MESH * 4]; // uv on position texture
+        var uv2Array = new Vector2[MAX_POINT_PER_MESH * 4]; // uv on sprite texture
+        var indexArray = new int[MAX_POINT_PER_MESH * 6];
+
+        var p = 0;
+        for (var y = 0; y < rows; y++) {
+            for (var x = 0; x < cols; x++) {
+                if (p == MAX_POINT_PER_MESH)
+                {
+                    break;
+                }
+
+                vertexArray[p * 4] = new Vector3(x, 0, y);
+                vertexArray[p * 4 + 1] = new Vector3(x + 0.5f, 0, y);
+                vertexArray[p * 4 + 2] = new Vector3(x + 0.5f, 0.5f, y);
+                vertexArray[p * 4 + 3] = new Vector3(x, 0.5f, y);
+
+                var u = (float)x / genParams.TextureWidth;
+                var v = (float)y / genParams.TextureHeight;
+                uvArray[p * 4] = new Vector2(u, v);
+                uvArray[p * 4 + 1] = new Vector2(u, v);
+                uvArray[p * 4 + 2] = new Vector2(u, v);
+                uvArray[p * 4 + 3] = new Vector2(u, v);
+
+                p++;
+            }
+        }
+
+        for (var i = 0; i < MAX_POINT_PER_MESH; i++)
+        {
+            uv2Array[i * 4] = new Vector2(0, 0);
+            uv2Array[i * 4 + 1] = new Vector2(1, 0);
+            uv2Array[i * 4 + 2] = new Vector2(1, 1);
+            uv2Array[i * 4 + 3] = new Vector2(0, 1);
+        }
+
+        // Index array.
+        for (var j = 0; j < MAX_POINT_PER_MESH; j ++)
+        {
+            indexArray[j * 6 + 0] = j * 4 + 0;
+            indexArray[j * 6 + 1] = j * 4 + 1;
+            indexArray[j * 6 + 2] = j * 4 + 2;
+            indexArray[j * 6 + 3] = j * 4 + 2;
+            indexArray[j * 6 + 4] = j * 4 + 3;
+            indexArray[j * 6 + 5] = j * 4 + 0;
+        }
+
+        Mesh mesh = new Mesh{
+            vertices = vertexArray,
+            uv = uvArray,
+            uv2 = uv2Array,
+        };
+
+        mesh.SetIndices(indexArray.Take(vertexArray.Length / 4 * 6).ToArray(), MeshTopology.Triangles, 0, false);
+        mesh.bounds = new Bounds(Vector3.zero, 99999 * Vector3.one);
+
+        MeshUtility.Optimize( mesh );
+        AssetDatabase.CreateAsset(mesh, getPath("Mesh.asset"));
+
+        genParams.InstanceCount = instanceCount;
+        genParams.RowsPerInstance = rows;
     }
 
     private void clearParticles() 

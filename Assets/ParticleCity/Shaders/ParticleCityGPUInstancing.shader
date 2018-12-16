@@ -1,4 +1,4 @@
-Shader "Particle City/Particle City No GS" 
+Shader "Particle City/Particle City GPU Instancing" 
 {
     Properties 
     {
@@ -20,6 +20,7 @@ Shader "Particle City/Particle City No GS"
         _SizeOverHeightUpper("Size Over Height Upper", Float) = 500
         _MinHeight("MinHeight", Float) = -10000
         _MaxHeight("MaxHeight", Float) = 10000
+        _InstanceRowOffset("Instancing Row Offset", Float) = 0
     }
 
     SubShader 
@@ -46,6 +47,7 @@ Shader "Particle City/Particle City No GS"
                 #pragma target 4.5
                 #pragma vertex VS_Main
                 #pragma fragment FS_Main
+                #pragma multi_compile_instancing
                 #include "UnityCG.cginc" 
 
                 // **************************************************************
@@ -55,6 +57,7 @@ Shader "Particle City/Particle City No GS"
                     float4 vertex   : POSITION;
                     float2 uvPoint  : TEXCOORD0;
                     float2 uvSprite : TEXCOORD1;
+                    UNITY_VERTEX_INPUT_INSTANCE_ID
                 };
 
                 struct FS_INPUT
@@ -94,6 +97,10 @@ Shader "Particle City/Particle City No GS"
                 sampler2D _NoiseTex;
                 float4 _NoiseTex_ST;
                 sampler2D _ColorPalleteTex;
+
+                UNITY_INSTANCING_BUFFER_START(Props)
+                UNITY_DEFINE_INSTANCED_PROP(float, _InstancingRowOffset)
+                UNITY_INSTANCING_BUFFER_END(Props)
 
                 // **************************************************************
                 // Shader Programs                                                *
@@ -140,10 +147,13 @@ Shader "Particle City/Particle City No GS"
                 // Vertex Shader ------------------------------------------------
                 FS_INPUT VS_Main(VS_INPUT v)
                 {
+                    UNITY_SETUP_INSTANCE_ID(v);
+
                     FS_INPUT output = (FS_INPUT)0;
 
-                    float4 lodCoord = float4(v.uvPoint, 0, 0);
-
+                    float rowOffset = UNITY_ACCESS_INSTANCED_PROP(Props, _InstancingRowOffset);
+                    float4 lodCoord = float4(v.uvPoint.x, v.uvPoint.y + rowOffset, 0, 0);
+                    
                     float4 pos = tex2Dlod(_PositionTex, lodCoord);
                     // float4 pos2 = tex2Dlod(_PositionTex2, lodCoord);
                     // pos = lerp(pos, pos2, _PositionRatio);

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ParticleCityGenParams : ScriptableObject
 {
@@ -16,6 +14,9 @@ public class ParticleCityGenParams : ScriptableObject
 
     public ParticleCityGenSampleMethod SampleMethod;
     public ParticleCityGenMeshFormat MeshFormat;
+
+    public int InstanceCount;
+    public int RowsPerInstance;
 }
 
 public enum ParticleCityGenSampleMethod
@@ -28,4 +29,5 @@ public enum ParticleCityGenMeshFormat
 {
     WithGeometryShader,
     NoGeometryShader,
+    GPUInstancing
 }
