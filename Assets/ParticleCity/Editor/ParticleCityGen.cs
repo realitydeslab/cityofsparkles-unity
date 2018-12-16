@@ -241,9 +241,9 @@ public class ParticleCityGen : EditorWindow
 
             for (int j = 0; j < mesh.triangles.Length; j += 3)
             {
-                Vector3 p0 = mesh.vertices[mesh.triangles[j]];
-                Vector3 p1 = mesh.vertices[mesh.triangles[j + 1]];
-                Vector3 p2 = mesh.vertices[mesh.triangles[j + 2]];
+                Vector3 p0 = meshTransform.TransformPoint(mesh.vertices[mesh.triangles[j]]);
+                Vector3 p1 = meshTransform.TransformPoint(mesh.vertices[mesh.triangles[j + 1]]);
+                Vector3 p2 = meshTransform.TransformPoint(mesh.vertices[mesh.triangles[j + 2]]);
 
                 Vector3 v1 = p1 - p0;
                 Vector3 v2 = p2 - p0;
@@ -258,8 +258,7 @@ public class ParticleCityGen : EditorWindow
                     Vector3? p = GeometryUtils.SampleTriangle(p0, v1, v2);
                     if (p.HasValue)
                     {
-                        Vector3 globalPos = meshTransform.TransformPoint(p.Value);
-                        points.Add(globalPos);
+                        points.Add(p.Value);
                     }
                     else
                     {
@@ -275,8 +274,7 @@ public class ParticleCityGen : EditorWindow
                 for (int k = 0; k < edgeSampleCount; k++)
                 {
                     Vector3 p = GeometryUtils.SampleTriangleEdge(p0, v1, v2);
-                    Vector3 globalPos = meshTransform.TransformPoint(p);
-                    points.Add(globalPos);
+                    points.Add(p);
                 }
             }
 
