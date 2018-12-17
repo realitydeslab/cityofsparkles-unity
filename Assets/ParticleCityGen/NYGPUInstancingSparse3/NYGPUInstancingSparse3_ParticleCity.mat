@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NYGPUInstancing_ParticleCity
+  m_Name: NYGPUInstancingSparse3_ParticleCity
   m_Shader: {fileID: 4800000, guid: 8bfe8803d024ba545847aa4c7f0c3d87, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -68,7 +68,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PositionTex:
-        m_Texture: {fileID: 2800000, guid: 75363cb26c876894abd610a708d42ade, type: 2}
+        m_Texture: {fileID: 2800000, guid: 69c729854e48d9f4aa3e34d045b6f51f, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PositionTex2:
@@ -85,9 +85,10 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _GlobalIntensity: 0.57
+    - _GlobalIntensity: 0.68
     - _Glossiness: 0.5
     - _InstanceRowOffset: 0
+    - _InstancingStride: 0.125
     - _MaxHeight: 10000
     - _Metallic: 0
     - _MinHeight: -10000
@@ -97,9 +98,9 @@ Material:
     - _PlanarReflectionY: 0
     - _PositionRatio: 0
     - _Reflection: 0
-    - _Size: 1.5
-    - _SizeOverHeightLower: 200
-    - _SizeOverHeightUpper: 500
+    - _Size: 2
+    - _SizeOverHeightLower: 118.9
+    - _SizeOverHeightUpper: 278.6
     - _SrcBlend: 1
     - _UVSec: 0
     - _VolumeDeltaHeight: 0

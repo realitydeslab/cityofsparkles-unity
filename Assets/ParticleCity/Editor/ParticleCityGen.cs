@@ -354,6 +354,11 @@ public class ParticleCityGen : EditorWindow
         {
             particleCityGenMat.shader = AssetDatabase.LoadAssetAtPath<Shader>("Assets/ParticleCity/Shaders/ParticleCity.shader");
         }
+        else if (genParams.MeshFormat == ParticleCityGenMeshFormat.GPUInstancing)
+        {
+            particleCityGenMat.shader = AssetDatabase.LoadAssetAtPath<Shader>("Assets/ParticleCity/Shaders/ParticleCityGPUInstancing.shader");
+            particleCityGenMat.enableInstancing = true;
+        }
         else
         {
             particleCityGenMat.shader = AssetDatabase.LoadAssetAtPath<Shader>("Assets/ParticleCity/Shaders/ParticleCityNoGS.shader");
@@ -628,6 +633,16 @@ public class ParticleCityGen : EditorWindow
 
         genParams.InstanceCount = instanceCount;
         genParams.RowsPerInstance = rows;
+
+        // Create Prefab
+        particleCity = new GameObject(genParams.GroupName + "_ParticleCity");
+        var particleRenderer = particleCity.AddComponent<ParticleCityGPUInstancingRenderer>();
+        particleRenderer.GenParams = genParams;
+        particleRenderer.Material = AssetDatabase.LoadAssetAtPath<Material>(getPath("ParticleCity.mat"));
+        particleRenderer.PositionTexture = positionTexture;
+        particleRenderer.Mesh = mesh;
+        PrefabUtility.SaveAsPrefabAsset(particleCity, getPath("ParticleCityPrefab.prefab"));
+        Debug.Log("Prefab saved to " + getPath("ParticleCityPrefab.prefab"));
     }
 
     private void clearParticles() 

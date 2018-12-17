@@ -164,7 +164,7 @@ Shader "Particle City/Particle City GPU Instancing"
 
                     output.pos.y += _VolumeDeltaHeight * (max(0, pos.y - 80) / (250 - 80));
                     output.pos = mul(unity_ObjectToWorld, output.pos);
-                    output.pos = expandToQuad(output.pos, v.uvPoint, v.uvSprite);
+                    output.pos = expandToQuad(output.pos, lodCoord.xy, v.uvSprite);
                     output.uvSprite = v.uvSprite;
 
                     if (pos.y < _MinHeight || pos.y > _MaxHeight)
@@ -175,7 +175,7 @@ Shader "Particle City/Particle City GPU Instancing"
 
                     // Light effects
 
-                    float4 noiseCoord = float4(v.uvPoint * _NoiseTex_ST.xy + _NoiseTex_ST.zw, 0, 0);
+                    float4 noiseCoord = float4(lodCoord.xy * _NoiseTex_ST.xy + _NoiseTex_ST.zw, 0, 0);
                     float4 noise = tex2Dlod(_NoiseTex, noiseCoord);
                     float lightNoise = noise.r;
                     float phase = noise.g;
