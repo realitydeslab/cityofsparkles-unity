@@ -31,3 +31,10 @@ public enum ParticleCityGenMeshFormat
     NoGeometryShader,
     GPUInstancing
 }
+
+public enum ParticleCityGenTextureSize
+{
+    TextureSize1024 = 1024,
+    TextureSize2048 = 2048,
+    TextureSize4096 = 4096
+}

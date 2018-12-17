@@ -56,6 +56,9 @@ public class ParticleCityGen : EditorWindow
         cityMatTempalte = (Material)EditorGUILayout.ObjectField("City Material", cityMatTempalte, typeof(Material), false);
         motionBlitMatTemplate = (Material)EditorGUILayout.ObjectField("Motion Material", motionBlitMatTemplate, typeof(Material), false);
 
+        genParams.TextureWidth = (int)(ParticleCityGenTextureSize)EditorGUILayout.EnumPopup("Texture Width", (ParticleCityGenTextureSize) genParams.TextureWidth);
+        genParams.TextureHeight = (int)(ParticleCityGenTextureSize)EditorGUILayout.EnumPopup("Texture Height", (ParticleCityGenTextureSize) genParams.TextureHeight);
+
         genParams.SampleMethod = (ParticleCityGenSampleMethod)EditorGUILayout.EnumPopup("Sampler", genParams.SampleMethod);
 
         if (genParams.SampleMethod == ParticleCityGenSampleMethod.Volume)
