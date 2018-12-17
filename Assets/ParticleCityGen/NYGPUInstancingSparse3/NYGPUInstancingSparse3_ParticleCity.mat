@@ -4,9 +4,8 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_Name: NYGPUInstancingSparse3_ParticleCity
   m_Shader: {fileID: 4800000, guid: 8bfe8803d024ba545847aa4c7f0c3d87, type: 3}
   m_ShaderKeywords: 
@@ -91,7 +90,7 @@ Material:
     - _InstancingStride: 0.125
     - _MaxHeight: 10000
     - _Metallic: 0
-    - _MinHeight: -10000
+    - _MinHeight: 100
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02

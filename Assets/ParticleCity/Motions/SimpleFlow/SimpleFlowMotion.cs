@@ -49,27 +49,31 @@ public class SimpleFlowMotion : ParticleMotionBase
         {
             if (leftHand != null && leftHand.Frames != null)
             {
-                shaderVector.x = leftHand.Frames[i].Position.x + flyingPush.x;
-                shaderVector.y = leftHand.Frames[i].Position.y + flyingPush.y;
-                shaderVector.z = leftHand.Frames[i].Position.z + flyingPush.z;
+                Vector3 localPos = transform.InverseTransformPoint(leftHand.Frames[i].Position);
+                shaderVector.x = localPos.x + flyingPush.x;
+                shaderVector.y = localPos.y + flyingPush.y;
+                shaderVector.z = localPos.z + flyingPush.z;
                 particleMotionBlitMaterial.SetVector("_LeftHandPos" + i, shaderVector);
 
-                shaderVector.x = leftHand.Frames[i].Velocity.x;
-                shaderVector.y = leftHand.Frames[i].Velocity.y;
-                shaderVector.z = leftHand.Frames[i].Velocity.z;
+                Vector3 localVel = transform.InverseTransformVector(leftHand.Frames[i].Velocity);
+                shaderVector.x = localVel.x;
+                shaderVector.y = localVel.y;
+                shaderVector.z = localVel.z;
                 particleMotionBlitMaterial.SetVector("_LeftHandVel" + i, shaderVector);
             }
 
             if (rightHand != null && rightHand.Frames != null)
             {
-                shaderVector.x = rightHand.Frames[i].Position.x + flyingPush.x;
-                shaderVector.y = rightHand.Frames[i].Position.y + flyingPush.y;
-                shaderVector.z = rightHand.Frames[i].Position.z + flyingPush.z;
+                Vector3 localPos = transform.InverseTransformPoint(rightHand.Frames[i].Position);
+                shaderVector.x = localPos.x + flyingPush.x;
+                shaderVector.y = localPos.y + flyingPush.y;
+                shaderVector.z = localPos.z + flyingPush.z;
                 particleMotionBlitMaterial.SetVector("_RightHandPos" + i, shaderVector);
 
-                shaderVector.x = rightHand.Frames[i].Velocity.x;
-                shaderVector.y = rightHand.Frames[i].Velocity.y;
-                shaderVector.z = rightHand.Frames[i].Velocity.z;
+                Vector3 localVel = transform.InverseTransformVector(rightHand.Frames[i].Velocity);
+                shaderVector.x = localVel.x;
+                shaderVector.y = localVel.y;
+                shaderVector.z = localVel.z;
                 particleMotionBlitMaterial.SetVector("_RightHandVel" + i, shaderVector);
             }
 
@@ -104,14 +108,16 @@ public class SimpleFlowMotion : ParticleMotionBase
             if (objectTrailings.Length > 0 && objectTrailings[0].Frames != null && objectTrailings[0].Frames.Length > 0)
             {
                 ObjectTrailing.TrailFrame frame = objectTrailings[0].Frames[0];
-                shaderVector.x = frame.Position.x;
-                shaderVector.y = frame.Position.y;
-                shaderVector.z = frame.Position.z;
+                Vector3 localPos = transform.InverseTransformPoint(frame.Position);
+                shaderVector.x = localPos.x;
+                shaderVector.y = localPos.y;
+                shaderVector.z = localPos.z;
                 particleMotionBlitMaterial.SetVector("_ActiveObjectPos" + objectIndex, shaderVector);
 
-                shaderVector.x = frame.Velocity.x;
-                shaderVector.y = frame.Velocity.y;
-                shaderVector.z = frame.Velocity.z;
+                Vector3 localVel = transform.InverseTransformVector(frame.Velocity);
+                shaderVector.x = localVel.x;
+                shaderVector.y = localVel.y;
+                shaderVector.z = localVel.z;
                 particleMotionBlitMaterial.SetVector("_ActiveObjectVel" + objectIndex, shaderVector);
 
                 objectIndex++;

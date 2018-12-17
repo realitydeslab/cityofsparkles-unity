@@ -4,9 +4,8 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_Name: NewYorkLastMotion
   m_Shader: {fileID: 4800000, guid: 8a146c0dc1babea4ab928b42e10a8115, type: 3}
   m_ShaderKeywords: 
@@ -20,7 +19,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BasePositionTex:
-        m_Texture: {fileID: 2800000, guid: 1cbeef561bc821c46969d121250dbff1, type: 2}
+        m_Texture: {fileID: 2800000, guid: 69c729854e48d9f4aa3e34d045b6f51f, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -85,6 +84,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _VanR_0: 7.5
+    - _YScale: 0.5
     - _ZWrite: 1
     m_Colors:
     - _ActiveObjectPos: {r: 49.68235, g: 119.08413, b: 1342.7167, a: 1}

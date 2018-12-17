@@ -106,21 +106,22 @@ Shader "Particle City/Particle City GPU Instancing"
                 // Shader Programs                                                *
                 // **************************************************************
 
-                float4 expandToQuad(float4 pos, float2 uvPoint, float2 uvSprite)
+                float4 expandToQuad(float4 worldPos, float4 rawPos, float2 uvPoint, float2 uvSprite)
                 {
                     float4 noiseCoord = float4(uvPoint * _NoiseTex_ST.xy + _NoiseTex_ST.zw, 0, 0);
                     float4 noise = tex2Dlod(_NoiseTex, noiseCoord);
 
-                    float3 look = _WorldSpaceCameraPos - pos;
+                    float3 look = _WorldSpaceCameraPos - worldPos;
                     look = normalize(look);
                     float3 right = cross(look, float3(0, 1, 0));
                     right = normalize(right);
                     float3 up = cross(look, right);
                     up = normalize(up);
 
-                    float minScale = saturate((pos.y - _SizeOverHeightLower) / (_SizeOverHeightUpper - _SizeOverHeightLower)) * 0.7;
+                    float minScale = saturate((rawPos.y - _SizeOverHeightLower) / (_SizeOverHeightUpper - _SizeOverHeightLower)) * 0.7;
                     float scale = max(minScale, noise.b);
-                    float halfS = 0.5f * _Size * scale * 1;
+                    float modelScale = length(float3(unity_ObjectToWorld[0].x, unity_ObjectToWorld[1].x, unity_ObjectToWorld[2].x)); // scale x axis
+                    float halfS = 0.5f * _Size * scale * modelScale * 1;
 
                     //              0       1         2       3
                     // uvSprite: (0, 0)   (1, 0)   (1, 1)   (0, 1)
@@ -129,7 +130,7 @@ Shader "Particle City/Particle City GPU Instancing"
                     //       GS: (1, -1)  (1, 1)  (-1, -1)  (-1, 1)
                     float2 uvOffset = uvSprite * 2 - 1;
 
-                    float4 newPos = float4(pos + uvOffset.x * halfS * right + uvOffset.y * halfS * up, 1.0f);
+                    float4 newPos = float4(worldPos + uvOffset.x * halfS * right + uvOffset.y * halfS * up, 1.0f);
 
 
 #if UNITY_VERSION >= 560 
@@ -164,7 +165,7 @@ Shader "Particle City/Particle City GPU Instancing"
 
                     output.pos.y += _VolumeDeltaHeight * (max(0, pos.y - 80) / (250 - 80));
                     output.pos = mul(unity_ObjectToWorld, output.pos);
-                    output.pos = expandToQuad(output.pos, lodCoord.xy, v.uvSprite);
+                    output.pos = expandToQuad(output.pos, pos, lodCoord.xy, v.uvSprite);
                     output.uvSprite = v.uvSprite;
 
                     if (pos.y < _MinHeight || pos.y > _MaxHeight)
