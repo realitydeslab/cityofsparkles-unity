@@ -78,6 +78,10 @@ public class InteractiveMusicController : MonoBehaviour
 
     void Awake()
     {
+    }
+
+	void Start()
+	{
 	    akAmbient = GetComponent<AkAmbient>();
         akAmbient.m_callbackData = new AkEventCallbackData()
         {
@@ -91,10 +95,7 @@ public class InteractiveMusicController : MonoBehaviour
         {
             akAmbient.m_callbackData.uFlags |= akAmbient.m_callbackData.callbackFlags[i];
         }
-    }
-
-	void Start()
-	{
+        
         AkSoundEngine.SetState("RichSentimentTest", SentimentSpawnNode.Sentiment.Neutral.ToString());
         Debug.Log("Controller start, tid = " + Thread.CurrentThread.ManagedThreadId);
     }

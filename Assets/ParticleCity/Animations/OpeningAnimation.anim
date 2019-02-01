@@ -175,7 +175,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: GlobalIntensity
-    path: NewYorkYellowLight (1)
+    path: LightUp
     classID: 114
     script: {fileID: 11500000, guid: afd30324a6f18ef4da11abd46f43f327, type: 3}
   m_PPtrCurves: []
@@ -194,7 +194,7 @@ AnimationClip:
       customType: 4
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 4138621707
+      path: 546173681
       attribute: 438310881
       script: {fileID: 11500000, guid: afd30324a6f18ef4da11abd46f43f327, type: 3}
       typeID: 114
@@ -439,7 +439,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: GlobalIntensity
-    path: NewYorkYellowLight (1)
+    path: LightUp
     classID: 114
     script: {fileID: 11500000, guid: afd30324a6f18ef4da11abd46f43f327, type: 3}
   m_EulerEditorCurves:
