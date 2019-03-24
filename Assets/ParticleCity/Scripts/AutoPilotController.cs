@@ -168,6 +168,14 @@ public class AutoPilotController : MonoBehaviour
                 availableNodes.RemoveAt(i);
                 i--;
             }
+            else if (availableNodes[i] is TweetPlaceholderNode)
+            {
+	            if (((TweetPlaceholderNode)(availableNodes[i])).SpawnedTweet == null)
+	            {
+		            availableNodes.RemoveAt(i);
+		            i--;
+	            }
+            }
         }
 
         if (availableNodes.Count == 0)

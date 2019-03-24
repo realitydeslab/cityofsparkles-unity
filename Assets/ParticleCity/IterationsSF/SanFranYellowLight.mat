@@ -90,7 +90,7 @@ Material:
     - _Glossiness: 0.5
     - _MaxHeight: 10000
     - _Metallic: 0
-    - _MinHeight: 52.5
+    - _MinHeight: 75
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02

@@ -88,7 +88,7 @@ Material:
     - _DstBlend: 0
     - _GlobalIntensity: 2.19
     - _Glossiness: 0.5
-    - _MaxHeight: 100
+    - _MaxHeight: 75
     - _Metallic: 0
     - _MinHeight: -10000
     - _Mode: 0
@@ -109,4 +109,4 @@ Material:
     - _BoundsMin: {r: -693.7, g: -48.5, b: -179.6, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpriteColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
+    - _SpriteColor: {r: 0.4245283, g: 0.4025009, b: 0.4025009, a: 1}

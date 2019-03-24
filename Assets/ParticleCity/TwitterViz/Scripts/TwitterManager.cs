@@ -114,6 +114,7 @@ public class TwitterManager : MonoBehaviour
         {
             int index = tweetsToDelete.First();
             tweetsToDelete.Remove(index);
+            
             if (tweetsSpawned.ContainsKey(index))
             {
                 if (tweetsSpawned[index] != null && tweetsSpawned[index].State == TweetComponent.TweetState.Idle)
@@ -133,63 +134,67 @@ public class TwitterManager : MonoBehaviour
             int id = entry.Key;
             TwitterDatabase.DBTweet dbTweet = entry.Value.Data;
             tweetsToSpawn.Remove(entry.Key);
-
-            if (!tweetsSpawned.ContainsKey(id))
+            
+            tweetsToDelete.Remove(entry.Key);
+            if (tweetsSpawned.ContainsKey(id))
             {
-                Tweet tweet = new Tweet(dbTweet);
-
-                Vector3? position = entry.Value.Source == null ? null : entry.Value.Source.GetPosition(entry.Value.Data);
-                bool geoPos = false;
-
-                if (!position.HasValue && tweet.Coordinates != null)
-                {
-                    Vector3 candidatePos = mapModel.EarthToUnityWorld(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], 0);
-
-                    if (insideColliders(candidatePos, boundingColliders))
-                    {
-                        // Sample height
-                        candidatePos.y = sampleHeight(candidatePos);
-                        position = candidatePos;
-                        geoPos = true;
-                    }
-                }
-
-                if (!position.HasValue)
-                {
-                    position = sample();
-                }
-
-                TweetComponent tweetObj = Instantiate(TweetObjectPrefab, transform);
-                tweetObj.name = string.Format("Tweet_{0:F1}", tweet.Sentiment.Polarity);
-                tweetObj.Tweet = tweet;
-                tweetObj.Text = tweet.Text;
-                tweetObj.Sentiment = tweet.Sentiment.Polarity;
-                tweetObj.SpawnSource = entry.Value.Source;
-                if (tweetObj.SpawnSource != null)
-                {
-                    tweetObj.SpawnSource.OnTweetSpawned(tweetObj);
-                    tweetObj.GetComponent<GuidingLight>().MusicSync = tweetObj.SpawnSource.MusicSync;
-                }
-
-                // Spawn to actual geo location
-                if (geoPos)
-                {
-                    GeoObject geoObject = tweetObj.gameObject.AddComponent<GeoObject>();
-                    geoObject.SetWorldPosition(position.Value);
-
-                    // geoObject.SetGeoLocation(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], randomPosition.y);
-                }
-                else
-                {
-                    tweetObj.transform.position = position.Value;
-                }
-
-                tweetsSpawned.Add(id, tweetObj);
+                tweetsSpawned[entry.Key].Finish();
             }
+
+            Tweet tweet = new Tweet(dbTweet);
+
+            Vector3? position = entry.Value.Source == null ? null : entry.Value.Source.GetPosition(entry.Value.Data);
+            bool geoPos = false;
+
+            if (!position.HasValue && tweet.Coordinates != null)
+            {
+                Vector3 candidatePos = mapModel.EarthToUnityWorld(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], 0);
+
+                if (insideColliders(candidatePos, boundingColliders))
+                {
+                    // Sample height
+                    candidatePos.y = sampleHeight(candidatePos);
+                    position = candidatePos;
+                    geoPos = true;
+                }
+            }
+
+            if (!position.HasValue)
+            {
+                position = sample();
+            }
+
+            TweetComponent tweetObj = Instantiate(TweetObjectPrefab, transform);
+            tweetObj.name = string.Format("Tweet_{0:F1}", tweet.Sentiment.Polarity);
+            tweetObj.Tweet = tweet;
+            tweetObj.Text = tweet.Text;
+            tweetObj.Sentiment = tweet.Sentiment.Polarity;
+            tweetObj.SpawnSource = entry.Value.Source;
+            if (tweetObj.SpawnSource != null)
+            {
+                tweetObj.SpawnSource.OnTweetSpawned(tweetObj);
+                tweetObj.GetComponent<GuidingLight>().MusicSync = tweetObj.SpawnSource.MusicSync;
+            }
+
+            // Spawn to actual geo location
+            if (geoPos)
+            {
+                GeoObject geoObject = tweetObj.gameObject.AddComponent<GeoObject>();
+                geoObject.SetWorldPosition(position.Value);
+
+                // geoObject.SetGeoLocation(tweet.Coordinates.Data[1], tweet.Coordinates.Data[0], randomPosition.y);
+            }
+            else
+            {
+                tweetObj.transform.position = position.Value;
+            }
+
+            tweetsSpawned.Add(id, tweetObj);
         }
 
         // Update ratio
         // TODO: optimize
+        /*
         int positive = 0;
         int negative = 0;
         foreach (TweetComponent tweet in tweetsSpawned.Values)
@@ -213,6 +218,7 @@ public class TwitterManager : MonoBehaviour
         }
 
         AkSoundEngine.SetRTPCValue("SentimentRatio", PositiveRatio, BgmAkAmbient.gameObject);
+        */
     }
 
     private float sampleHeight(Vector3 position)
