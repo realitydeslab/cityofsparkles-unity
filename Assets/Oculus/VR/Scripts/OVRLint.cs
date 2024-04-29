@@ -537,130 +537,130 @@ public class OVRLint : EditorWindow
 
 	static void CheckStaticAndroidIssues()
 	{
-		AndroidSdkVersions recommendedAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel21;
-		if ((int)PlayerSettings.Android.minSdkVersion < (int)recommendedAndroidSdkVersion)
-		{
-			AddFix("Optimize Android API Level", "To avoid legacy workarounds, please require at least API level " + (int)recommendedAndroidSdkVersion, delegate (UnityEngine.Object obj, bool last, int selected)
-			{
-				PlayerSettings.Android.minSdkVersion = recommendedAndroidSdkVersion;
-			}, null, "Fix");
-		}
+		//AndroidSdkVersions recommendedAndroidSdkVersion = AndroidSdkVersions.AndroidApiLevel21;
+		//if ((int)PlayerSettings.Android.minSdkVersion < (int)recommendedAndroidSdkVersion)
+		//{
+		//	AddFix("Optimize Android API Level", "To avoid legacy workarounds, please require at least API level " + (int)recommendedAndroidSdkVersion, delegate (UnityEngine.Object obj, bool last, int selected)
+		//	{
+		//		PlayerSettings.Android.minSdkVersion = recommendedAndroidSdkVersion;
+		//	}, null, "Fix");
+		//}
 
-		if (!PlayerSettings.gpuSkinning)
-		{
-			AddFix("Optimize GPU Skinning", "If you are CPU-bound, consider using GPU skinning.", delegate (UnityEngine.Object obj, bool last, int selected)
-			{
-				PlayerSettings.gpuSkinning = true;
-			}, null, "Fix");
-		}
+		//if (!PlayerSettings.gpuSkinning)
+		//{
+		//	AddFix("Optimize GPU Skinning", "If you are CPU-bound, consider using GPU skinning.", delegate (UnityEngine.Object obj, bool last, int selected)
+		//	{
+		//		PlayerSettings.gpuSkinning = true;
+		//	}, null, "Fix");
+		//}
 
 
-		if (RenderSettings.skybox)
-		{
-			AddFix("Optimize Clearing", "For GPU performance, please don't use Unity's built-in Skybox.", delegate (UnityEngine.Object obj, bool last, int selected)
-			{
-				RenderSettings.skybox = null;
-			}, null, "Clear Skybox");
-		}
+		//if (RenderSettings.skybox)
+		//{
+		//	AddFix("Optimize Clearing", "For GPU performance, please don't use Unity's built-in Skybox.", delegate (UnityEngine.Object obj, bool last, int selected)
+		//	{
+		//		RenderSettings.skybox = null;
+		//	}, null, "Clear Skybox");
+		//}
 
-		var materials = Resources.FindObjectsOfTypeAll<Material>();
-		for (int i = 0; i < materials.Length; ++i)
-		{
-			if (materials[i].IsKeywordEnabled("_SPECGLOSSMAP") || materials[i].IsKeywordEnabled("_METALLICGLOSSMAP"))
-			{
-				AddFix("Optimize Specular Material", "For GPU performance, please don't use specular shader on materials.", delegate (UnityEngine.Object obj, bool last, int selected)
-				{
-					Material thisMaterial = (Material)obj;
-					thisMaterial.DisableKeyword("_SPECGLOSSMAP");
-					thisMaterial.DisableKeyword("_METALLICGLOSSMAP");
-				}, materials[i], "Fix");
-			}
+		//var materials = Resources.FindObjectsOfTypeAll<Material>();
+		//for (int i = 0; i < materials.Length; ++i)
+		//{
+		//	if (materials[i].IsKeywordEnabled("_SPECGLOSSMAP") || materials[i].IsKeywordEnabled("_METALLICGLOSSMAP"))
+		//	{
+		//		AddFix("Optimize Specular Material", "For GPU performance, please don't use specular shader on materials.", delegate (UnityEngine.Object obj, bool last, int selected)
+		//		{
+		//			Material thisMaterial = (Material)obj;
+		//			thisMaterial.DisableKeyword("_SPECGLOSSMAP");
+		//			thisMaterial.DisableKeyword("_METALLICGLOSSMAP");
+		//		}, materials[i], "Fix");
+		//	}
 
-			if (materials[i].passCount > 1)
-			{
-				AddFix("Material Passes", "Please use 2 or fewer passes in materials.", null, materials[i]);
-			}
-		}
+		//	if (materials[i].passCount > 1)
+		//	{
+		//		AddFix("Material Passes", "Please use 2 or fewer passes in materials.", null, materials[i]);
+		//	}
+		//}
 
-		ScriptingImplementation backend = PlayerSettings.GetScriptingBackend(UnityEditor.BuildTargetGroup.Android);
-		if (backend != UnityEditor.ScriptingImplementation.IL2CPP)
-		{
-			AddFix("Optimize Scripting Backend", "For CPU performance, please use IL2CPP.", delegate (UnityEngine.Object obj, bool last, int selected)
-			{
-				PlayerSettings.SetScriptingBackend(UnityEditor.BuildTargetGroup.Android, UnityEditor.ScriptingImplementation.IL2CPP);
-			}, null, "Fix");
-		}
+		//ScriptingImplementation backend = PlayerSettings.GetScriptingBackend(UnityEditor.BuildTargetGroup.Android);
+		//if (backend != UnityEditor.ScriptingImplementation.IL2CPP)
+		//{
+		//	AddFix("Optimize Scripting Backend", "For CPU performance, please use IL2CPP.", delegate (UnityEngine.Object obj, bool last, int selected)
+		//	{
+		//		PlayerSettings.SetScriptingBackend(UnityEditor.BuildTargetGroup.Android, UnityEditor.ScriptingImplementation.IL2CPP);
+		//	}, null, "Fix");
+		//}
 
-		var monoBehaviours = GameObject.FindObjectsOfType<MonoBehaviour>();
-		System.Type effectBaseType = System.Type.GetType("UnityStandardAssets.ImageEffects.PostEffectsBase");
-		if (effectBaseType != null)
-		{
-			for (int i = 0; i < monoBehaviours.Length; ++i)
-			{
-				if (monoBehaviours[i].GetType().IsSubclassOf(effectBaseType))
-				{
-					AddFix("Image Effects", "Please don't use image effects.", null, monoBehaviours[i]);
-				}
-			}
-		}
+		//var monoBehaviours = GameObject.FindObjectsOfType<MonoBehaviour>();
+		//System.Type effectBaseType = System.Type.GetType("UnityStandardAssets.ImageEffects.PostEffectsBase");
+		//if (effectBaseType != null)
+		//{
+		//	for (int i = 0; i < monoBehaviours.Length; ++i)
+		//	{
+		//		if (monoBehaviours[i].GetType().IsSubclassOf(effectBaseType))
+		//		{
+		//			AddFix("Image Effects", "Please don't use image effects.", null, monoBehaviours[i]);
+		//		}
+		//	}
+		//}
 
-		var textures = Resources.FindObjectsOfTypeAll<Texture2D>();
+		//var textures = Resources.FindObjectsOfTypeAll<Texture2D>();
 
-		int maxTextureSize = 1024 * (1 << QualitySettings.masterTextureLimit);
-		maxTextureSize = maxTextureSize * maxTextureSize;
+		//int maxTextureSize = 1024 * (1 << QualitySettings.globalTextureMipmapLimit);
+		//maxTextureSize = maxTextureSize * maxTextureSize;
 
-		for (int i = 0; i < textures.Length; ++i)
-		{
-			if (textures[i].filterMode == FilterMode.Trilinear && textures[i].mipmapCount == 1)
-			{
-				AddFix("Optimize Texture Filtering", "For GPU performance, please generate mipmaps or disable trilinear filtering for textures.", delegate (UnityEngine.Object obj, bool last, int selected)
-				{
-					Texture2D thisTexture = (Texture2D)obj;
-					if (selected == 0)
-					{
-						thisTexture.filterMode = FilterMode.Bilinear;
-					}
-					else
-					{
-						SetTextureUseMips(thisTexture, true, last);
-					}
-				}, textures[i], "Switch to Bilinear", "Generate Mipmaps");
-			}
-		}
+		//for (int i = 0; i < textures.Length; ++i)
+		//{
+		//	if (textures[i].filterMode == FilterMode.Trilinear && textures[i].mipmapCount == 1)
+		//	{
+		//		AddFix("Optimize Texture Filtering", "For GPU performance, please generate mipmaps or disable trilinear filtering for textures.", delegate (UnityEngine.Object obj, bool last, int selected)
+		//		{
+		//			Texture2D thisTexture = (Texture2D)obj;
+		//			if (selected == 0)
+		//			{
+		//				thisTexture.filterMode = FilterMode.Bilinear;
+		//			}
+		//			else
+		//			{
+		//				SetTextureUseMips(thisTexture, true, last);
+		//			}
+		//		}, textures[i], "Switch to Bilinear", "Generate Mipmaps");
+		//	}
+		//}
 
-		var projectors = GameObject.FindObjectsOfType<Projector>();
-		if (projectors.Length > 0)
-		{
-			AddFix("Optimize Projectors", "For GPU performance, please don't use projectors.", delegate (UnityEngine.Object obj, bool last, int selected)
-			{
-				Projector[] thisProjectors = GameObject.FindObjectsOfType<Projector>();
-				for (int i = 0; i < thisProjectors.Length; ++i)
-				{
-					thisProjectors[i].enabled = false;
-				}
-			}, null, "Disable Projectors");
-		}
+		//var projectors = GameObject.FindObjectsOfType<Projector>();
+		//if (projectors.Length > 0)
+		//{
+		//	AddFix("Optimize Projectors", "For GPU performance, please don't use projectors.", delegate (UnityEngine.Object obj, bool last, int selected)
+		//	{
+		//		Projector[] thisProjectors = GameObject.FindObjectsOfType<Projector>();
+		//		for (int i = 0; i < thisProjectors.Length; ++i)
+		//		{
+		//			thisProjectors[i].enabled = false;
+		//		}
+		//	}, null, "Disable Projectors");
+		//}
 
-		if (EditorUserBuildSettings.androidBuildSubtarget != MobileTextureSubtarget.ASTC)
-		{
-			AddFix("Optimize Texture Compression", "For GPU performance, please use ASTC.", delegate (UnityEngine.Object obj, bool last, int selected)
-			{
-				EditorUserBuildSettings.androidBuildSubtarget = MobileTextureSubtarget.ASTC;
-			}, null, "Fix");
-		}
+		//if (EditorUserBuildSettings.androidBuildSubtarget != MobileTextureSubtarget.ASTC)
+		//{
+		//	AddFix("Optimize Texture Compression", "For GPU performance, please use ASTC.", delegate (UnityEngine.Object obj, bool last, int selected)
+		//	{
+		//		EditorUserBuildSettings.androidBuildSubtarget = MobileTextureSubtarget.ASTC;
+		//	}, null, "Fix");
+		//}
 
-		var cameras = GameObject.FindObjectsOfType<Camera>();
-		int clearCount = 0;
-		for (int i = 0; i < cameras.Length; ++i)
-		{
-			if (cameras[i].clearFlags != CameraClearFlags.Nothing && cameras[i].clearFlags != CameraClearFlags.Depth)
-				++clearCount;
-		}
+		//var cameras = GameObject.FindObjectsOfType<Camera>();
+		//int clearCount = 0;
+		//for (int i = 0; i < cameras.Length; ++i)
+		//{
+		//	if (cameras[i].clearFlags != CameraClearFlags.Nothing && cameras[i].clearFlags != CameraClearFlags.Depth)
+		//		++clearCount;
+		//}
 
-		if (clearCount > 2)
-		{
-			AddFix("Camera Clears", "Please use 2 or fewer clears.", null, null);
-		}
+		//if (clearCount > 2)
+		//{
+		//	AddFix("Camera Clears", "Please use 2 or fewer clears.", null, null);
+		//}
 	}
 
 	static void CheckRuntimeAndroidIssues()
@@ -708,24 +708,24 @@ public class OVRLint : EditorWindow
 
 	static void SetAudioPreload(AudioClip clip, bool preload, bool refreshImmediately)
 	{
-		if (clip != null)
-		{
-			string assetPath = AssetDatabase.GetAssetPath(clip);
-			AudioImporter importer = AssetImporter.GetAtPath(assetPath) as AudioImporter;
-			if (importer != null)
-			{
-				if (preload != importer.preloadAudioData)
-				{
-					importer.preloadAudioData = preload;
+		//if (clip != null)
+		//{
+		//	string assetPath = AssetDatabase.GetAssetPath(clip);
+		//	AudioImporter importer = AssetImporter.GetAtPath(assetPath) as AudioImporter;
+		//	if (importer != null)
+		//	{
+		//		if (preload != importer.preloadAudioData)
+		//		{
+		//			importer.preloadAudioData = preload;
 
-					AssetDatabase.ImportAsset(assetPath);
-					if (refreshImmediately)
-					{
-						AssetDatabase.Refresh();
-					}
-				}
-			}
-		}
+		//			AssetDatabase.ImportAsset(assetPath);
+		//			if (refreshImmediately)
+		//			{
+		//				AssetDatabase.Refresh();
+		//			}
+		//		}
+		//	}
+		//}
 	}
 
 	static void SetAudioLoadType(AudioClip clip, AudioClipLoadType loadType, bool refreshImmediately)

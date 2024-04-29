@@ -90,7 +90,7 @@ public class OVRDebugHeadController : MonoBehaviour
 		}
 
 #if UNITY_2017_2_OR_NEWER
-		if ( !UnityEngine.XR.XRDevice.isPresent && ( AllowYawLook || AllowPitchLook ) )
+		if ( /*!UnityEngine.XR.XRDevice.isPresent*/ false && ( AllowYawLook || AllowPitchLook ) )
 #else
 		if ( !UnityEngine.VR.VRDevice.isPresent && ( AllowYawLook || AllowPitchLook ) )
 #endif

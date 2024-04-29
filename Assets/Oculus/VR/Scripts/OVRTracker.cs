@@ -22,7 +22,7 @@ limitations under the License.
 using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
-using VR = UnityEngine.VR;
+//using VR = UnityEngine.VR;
 
 /// <summary>
 /// An infrared camera that tracks the position of a head-mounted display.

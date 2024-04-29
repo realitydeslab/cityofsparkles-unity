@@ -20,7 +20,7 @@ limitations under the License.
 ************************************************************************************/
 
 using UnityEngine;
-using VR = UnityEngine.VR;
+//using VR = UnityEngine.VR;
 using System.Collections;
 using System.Collections.Generic;
 

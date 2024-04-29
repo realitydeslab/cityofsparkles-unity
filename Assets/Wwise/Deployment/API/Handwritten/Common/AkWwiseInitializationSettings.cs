@@ -284,7 +284,8 @@ public class AkWwiseInitializationSettings : AkCommonPlatformSettings
 	    if (XRSettings.loadedDeviceName == "Oculus")
 	    {
             string audioDevice = OVRManager.audioOutId;
-            uint audioOutId = AkSoundEngine.GetDeviceIDFromName(audioDevice);
+			//uint audioOutId = AkSoundEngine.GetDeviceIDFromName(audioDevice);
+			uint audioOutId = 0;
 	        initSettings.initSettings.settingsMainOutput.idDevice = audioOutId;
 	    }
 
