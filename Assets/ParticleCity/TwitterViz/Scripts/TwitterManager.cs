@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Channels;
+//using System.Runtime.Remoting.Channels;
 using Newtonsoft.Json;
 using ParticleCities;
 using SQLite4Unity3d;
@@ -32,7 +32,8 @@ public class TwitterManager : MonoBehaviour
     public int MaxTweets = 100;
     public TweetComponent TweetObjectPrefab;
     public float SpawnInterval = 1;
-    public AkAmbient BgmAkAmbient;
+    // TODO: Wwise
+    //public AkAmbient BgmAkAmbient;
     public float HeightRangeOnGround = 200;
     public float MinHeightAboveGround = 30;
 

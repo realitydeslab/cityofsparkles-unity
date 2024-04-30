@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo>
+	<Project Name="CityOfSparkles_WwiseProject" GUID="{3FD9A066-031B-4673-AA6F-B44668E77B08}" Generator="2023.1.3.8471"/>
+	<CacheRoot>../../../../CityOfSparkles_WwiseProject/.cache</CacheRoot>
+	<Platforms>
+		<Platform Name="iOS" GUID="{5C431F2A-EB39-40FF-8AE4-21FB1F856D9E}" BasePlatform="iOS" BasePlatformGUID="{ECE03DB4-F948-462D-B2BB-A9173012B1F8}" Path="../../../../CityOfSparkles_WwiseProject/GeneratedSoundBanks/iOS"/>
+		<Platform Name="Mac" GUID="{46A4EA5D-55A4-413F-8919-A2371C59A297}" BasePlatform="Mac" BasePlatformGUID="{9C6217D5-DD11-4795-87C1-6CE02853C540}" Path="../../../../CityOfSparkles_WwiseProject/GeneratedSoundBanks/Mac"/>
+		<Platform Name="Windows" GUID="{DC31D615-7136-450A-A62D-C8563942AEDE}" BasePlatform="Windows" BasePlatformGUID="{6E0CB257-C6C8-4C5C-8366-2740DFC441EB}" Path="../../../../CityOfSparkles_WwiseProject/GeneratedSoundBanks/Windows"/>
+	</Platforms>
+	<Languages>
+		<Language Name="English(US)" Id="684519430" GUID="{FAA89296-5703-4059-9846-E1C2809AAF84}" Default="true" UseAsStandIn="true"/>
+	</Languages>
+	<FileHash>{7E88B597-7FF4-8DA9-4C49-FD295F24FD21}</FileHash>
+</ProjectInfo>

@@ -86,8 +86,10 @@ half4 FragVelocitySetup(VaryingsDefault i) : SV_Target
     // Clamp the vector with the maximum blur radius.
     v /= max(1.0, length(v) * _RcpMaxBlurRadius);
 
+    // TODO: SHADER
     // Sample the depth of the pixel.
-    half d = LinearizeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv));
+    //half d = LinearizeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv));
+    half d = 0;
 
     // Pack into 10/10/10/2 format.
     return half4((v * _RcpMaxBlurRadius + 1.0) * 0.5, d, 0.0);

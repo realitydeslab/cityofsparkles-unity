@@ -18,95 +18,108 @@ using System.Collections;
 /// Resonance Audio room component that simulates environmental effects of a room with respect to
 /// the properties of the attached game object.
 [AddComponentMenu("ResonanceAudio/WwiseResonanceAudioRoom")]
-public class WwiseResonanceAudioRoom : MonoBehaviour, ISerializationCallbackReceiver {
-  /// Material type that determines the acoustic properties of a room surface.
-  public enum SurfaceMaterial {
-    Transparent = 0,              ///< Transparent
-    AcousticCeilingTiles = 1,     ///< Acoustic ceiling tiles
-    BrickBare = 2,                ///< Brick, bare
-    BrickPainted = 3,             ///< Brick, painted
-    ConcreteBlockCoarse = 4,      ///< Concrete block, coarse
-    ConcreteBlockPainted = 5,     ///< Concrete block, painted
-    CurtainHeavy = 6,             ///< Curtain, heavy
-    FiberglassInsulation = 7,     ///< Fiberglass insulation
-    GlassThin = 8,                ///< Glass, thin
-    GlassThick = 9,               ///< Glass, thick
-    Grass = 10,                   ///< Grass
-    LinoleumOnConcrete = 11,      ///< Linoleum on concrete
-    Marble = 12,                  ///< Marble
-    Metal = 13,                   ///< Galvanized sheet metal
-    ParquetOnConcrete = 14,       ///< Parquet on concrete
-    PlasterRough = 15,            ///< Plaster, rough
-    PlasterSmooth = 16,           ///< Plaster, smooth
-    PlywoodPanel = 17,            ///< Plywood panel
-    PolishedConcreteOrTile = 18,  ///< Polished concrete or tile
-    Sheetrock = 19,               ///< Sheetrock
-    WaterOrIceSurface = 20,       ///< Water or ice surface
-    WoodCeiling = 21,             ///< Wood ceiling
-    WoodPanel = 22                ///< Wood panel
-  }
+public class WwiseResonanceAudioRoom : MonoBehaviour, ISerializationCallbackReceiver
+{
+    /// Material type that determines the acoustic properties of a room surface.
+    public enum SurfaceMaterial
+    {
+        Transparent = 0,              ///< Transparent
+        AcousticCeilingTiles = 1,     ///< Acoustic ceiling tiles
+        BrickBare = 2,                ///< Brick, bare
+        BrickPainted = 3,             ///< Brick, painted
+        ConcreteBlockCoarse = 4,      ///< Concrete block, coarse
+        ConcreteBlockPainted = 5,     ///< Concrete block, painted
+        CurtainHeavy = 6,             ///< Curtain, heavy
+        FiberglassInsulation = 7,     ///< Fiberglass insulation
+        GlassThin = 8,                ///< Glass, thin
+        GlassThick = 9,               ///< Glass, thick
+        Grass = 10,                   ///< Grass
+        LinoleumOnConcrete = 11,      ///< Linoleum on concrete
+        Marble = 12,                  ///< Marble
+        Metal = 13,                   ///< Galvanized sheet metal
+        ParquetOnConcrete = 14,       ///< Parquet on concrete
+        PlasterRough = 15,            ///< Plaster, rough
+        PlasterSmooth = 16,           ///< Plaster, smooth
+        PlywoodPanel = 17,            ///< Plywood panel
+        PolishedConcreteOrTile = 18,  ///< Polished concrete or tile
+        Sheetrock = 19,               ///< Sheetrock
+        WaterOrIceSurface = 20,       ///< Water or ice surface
+        WoodCeiling = 21,             ///< Wood ceiling
+        WoodPanel = 22                ///< Wood panel
+    }
 
-  /// Room surface material in negative x direction.
-  public SurfaceMaterial leftWall = SurfaceMaterial.ConcreteBlockCoarse;
+    /// Room surface material in negative x direction.
+    public SurfaceMaterial leftWall = SurfaceMaterial.ConcreteBlockCoarse;
 
-  /// Room surface material in positive x direction.
-  public SurfaceMaterial rightWall = SurfaceMaterial.ConcreteBlockCoarse;
+    /// Room surface material in positive x direction.
+    public SurfaceMaterial rightWall = SurfaceMaterial.ConcreteBlockCoarse;
 
-  /// Room surface material in negative y direction.
-  public SurfaceMaterial floor = SurfaceMaterial.ParquetOnConcrete;
+    /// Room surface material in negative y direction.
+    public SurfaceMaterial floor = SurfaceMaterial.ParquetOnConcrete;
 
-  /// Room surface material in positive y direction.
-  public SurfaceMaterial ceiling = SurfaceMaterial.PlasterRough;
+    /// Room surface material in positive y direction.
+    public SurfaceMaterial ceiling = SurfaceMaterial.PlasterRough;
 
-  /// Room surface material in negative z direction.
-  public SurfaceMaterial backWall = SurfaceMaterial.ConcreteBlockCoarse;
+    /// Room surface material in negative z direction.
+    public SurfaceMaterial backWall = SurfaceMaterial.ConcreteBlockCoarse;
 
-  /// Room surface material in positive z direction.
-  public SurfaceMaterial frontWall = SurfaceMaterial.ConcreteBlockCoarse;
+    /// Room surface material in positive z direction.
+    public SurfaceMaterial frontWall = SurfaceMaterial.ConcreteBlockCoarse;
 
-  /// Reflectivity scalar for each surface of the room.
-  public float reflectivity = 1.0f;
+    /// Reflectivity scalar for each surface of the room.
+    public float reflectivity = 1.0f;
 
-  /// Reverb gain modifier in decibels.
-  public float reverbGainDb = 0.0f;
+    /// Reverb gain modifier in decibels.
+    public float reverbGainDb = 0.0f;
 
-  /// Reverb brightness modifier.
-  public float reverbBrightness = 0.0f;
+    /// Reverb brightness modifier.
+    public float reverbBrightness = 0.0f;
 
-  /// Reverb time modifier.
-  public float reverbTime = 1.0f;
+    /// Reverb time modifier.
+    public float reverbTime = 1.0f;
 
-  /// Size of the room (normalized with respect to scale of the game object).
-  public Vector3 size = Vector3.one;
+    /// Size of the room (normalized with respect to scale of the game object).
+    public Vector3 size = Vector3.one;
 
-  // Name of the Wwise Audio Bus where the Resonance Audio Room Effects plug-in is attached to.
-  [SerializeField]
-  private string roomEffectsBusName;
+    // Name of the Wwise Audio Bus where the Resonance Audio Room Effects plug-in is attached to.
+    [SerializeField]
+    private string roomEffectsBusName;
 
-  void OnEnable () {
-    WwiseResonanceAudio.UpdateAudioRoom(this, WwiseResonanceAudio.IsListenerInsideRoom(this));
-  }
+    void OnEnable()
+    {
+        // TODO: Wwise
+        //WwiseResonanceAudio.UpdateAudioRoom(this, WwiseResonanceAudio.IsListenerInsideRoom(this));
+    }
 
-  void OnDisable () {
-    WwiseResonanceAudio.UpdateAudioRoom(this, false);
-  }
+    void OnDisable()
+    {
+        // TODO: Wwise
+        //WwiseResonanceAudio.UpdateAudioRoom(this, false);
+    }
 
-  void Update () {
-    WwiseResonanceAudio.UpdateAudioRoom(this, WwiseResonanceAudio.IsListenerInsideRoom(this));
-  }
+    void Update()
+    {
+        // TODO: Wwise
+        //WwiseResonanceAudio.UpdateAudioRoom(this, WwiseResonanceAudio.IsListenerInsideRoom(this));
+    }
 
-  void OnDrawGizmosSelected () {
-    // Draw shoebox model wireframe of the room.
-    Gizmos.color = Color.yellow;
-    Gizmos.matrix = transform.localToWorldMatrix;
-    Gizmos.DrawWireCube(Vector3.zero, size);
-  }
+    void OnDrawGizmosSelected()
+    {
+        // Draw shoebox model wireframe of the room.
+        Gizmos.color = Color.yellow;
+        Gizmos.matrix = transform.localToWorldMatrix;
+        Gizmos.DrawWireCube(Vector3.zero, size);
+    }
 
-  public void OnBeforeSerialize () {
-    roomEffectsBusName = WwiseResonanceAudio.roomEffectsBusName;
-  }
+    public void OnBeforeSerialize()
+    {
+        // TODO: Wwise
+        //roomEffectsBusName = WwiseResonanceAudio.roomEffectsBusName;
+    }
 
-  public void OnAfterDeserialize () {
-    WwiseResonanceAudio.roomEffectsBusName = roomEffectsBusName;
-  }
+    public void OnAfterDeserialize()
+    {
+        // TODO: Wwise
+        //WwiseResonanceAudio.roomEffectsBusName = roomEffectsBusName;
+    }
 }

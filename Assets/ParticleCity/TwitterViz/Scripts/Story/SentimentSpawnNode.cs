@@ -26,7 +26,8 @@ public class SentimentSpawnNode : SpawnSourceNode {
     {
         base.OnEnable();
 
-        AkSoundEngine.SetState("RichSentimentTest", PreferredSentiment.ToString());
+        // TODO: Wwise
+        //AkSoundEngine.SetState("RichSentimentTest", PreferredSentiment.ToString());
 
         GotoNext(); 
     }
@@ -40,7 +41,8 @@ public class SentimentSpawnNode : SpawnSourceNode {
     {
         if ((Sentiment)obj.SpawnSourceUserData == PreferredSentiment)
         {
-            AkSoundEngine.SetState("RichSentimentTest", PreferredSentiment.ToString());
+            // TODO: Wwise
+            //AkSoundEngine.SetState("RichSentimentTest", PreferredSentiment.ToString());
         }
     }
 

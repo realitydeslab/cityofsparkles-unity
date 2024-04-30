@@ -125,7 +125,8 @@ public class TweetComponent : MonoBehaviour
     public SpawnSourceNode SpawnSource;
     public object SpawnSourceUserData;
 
-    private AkGameObj akGameObj;
+    // TODO: Wwise
+    //private AkGameObj akGameObj;
     private bool everTriggered;
 
     private Transform approachingTarget;
@@ -138,7 +139,8 @@ public class TweetComponent : MonoBehaviour
 
     void Awake()
     {
-        akGameObj = GetComponent<AkGameObj>();
+        // TODO: Wwise
+        //akGameObj = GetComponent<AkGameObj>();
     }
 
 	void Start ()
@@ -603,10 +605,11 @@ public class TweetComponent : MonoBehaviour
             }
             // text.transform.localPosition = offset;
 
-            akGameObj.m_positionOffsetData = new AkGameObjPositionOffsetData()
-            {
-                positionOffset = text.transform.localPosition
-            };
+            // TODO: Wwise
+            //akGameObj.m_positionOffsetData = new AkGameObjPositionOffsetData()
+            //{
+            //    positionOffset = text.transform.localPosition
+            //};
 
             time += Time.deltaTime;
 
@@ -788,10 +791,11 @@ public class TweetComponent : MonoBehaviour
 
     private void playMusic()
     {
-        int length = (Tweet == null || Tweet.Words == null) ? 0 : Tweet.Words.Length;
-        AkSoundEngine.SetRTPCValue("TweetWordsLength", length, gameObject);
-        AkSoundEngine.SetRTPCValue("TweetSentiment", (float)Sentiment, gameObject);
-        AkSoundEngine.PostEvent(AkEventOnReveal, gameObject);
+        // TODO: Wwise
+        //int length = (Tweet == null || Tweet.Words == null) ? 0 : Tweet.Words.Length;
+        //AkSoundEngine.SetRTPCValue("TweetWordsLength", length, gameObject);
+        //AkSoundEngine.SetRTPCValue("TweetSentiment", (float)Sentiment, gameObject);
+        //AkSoundEngine.PostEvent(AkEventOnReveal, gameObject);
     }
 
     private void setState(TweetState newState)

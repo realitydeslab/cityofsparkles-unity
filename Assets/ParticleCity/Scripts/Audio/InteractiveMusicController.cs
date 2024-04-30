@@ -8,7 +8,8 @@ using UnityEngine;
 using WanderUtils;
 using Debug = UnityEngine.Debug;
 
-[RequireComponent(typeof(AkAmbient))]
+// TODO: Wwise
+//[RequireComponent(typeof(AkAmbient))]
 public class InteractiveMusicController : MonoBehaviour
 {
     private static InteractiveMusicController instance;
@@ -41,16 +42,19 @@ public class InteractiveMusicController : MonoBehaviour
     public float Density;
     public float AccumulatedForce;
 
-    private AkAmbient akAmbient;
+    // TODO: Wwise
+    //private AkAmbient akAmbient;
     private List<GameObject> PointsOfInterest = new List<GameObject>();
     private float lastTrackRandomizeTime;
 
     public float GetVolumeMeter()
     {
-        float meter;
-        int type = (int)AkQueryRTPCValue.RTPCValue_GameObject; 
-        AkSoundEngine.GetRTPCValue("MasterVolume", gameObject, akAmbient.playingId, out meter, ref type);
-        return meter;
+        // TODO: Wwise
+        //float meter;
+        //int type = (int)AkQueryRTPCValue.RTPCValue_GameObject; 
+        //AkSoundEngine.GetRTPCValue("MasterVolume", gameObject, akAmbient.playingId, out meter, ref type);
+        //return meter;
+        return 0f;
     }
 
     public void AddPointOfInterest(GameObject poi)
@@ -82,7 +86,8 @@ public class InteractiveMusicController : MonoBehaviour
 
 	void Start()
 	{
-	    akAmbient = GetComponent<AkAmbient>();
+        // TODO: Wwise
+	    //akAmbient = GetComponent<AkAmbient>();
 	    
         /*
         akAmbient.m_callbackData = new AkEventCallbackData()
@@ -98,101 +103,105 @@ public class InteractiveMusicController : MonoBehaviour
             akAmbient.m_callbackData.uFlags |= akAmbient.m_callbackData.callbackFlags[i];
         }
         */
-        
-        AkSoundEngine.SetState("RichSentimentTest", SentimentSpawnNode.Sentiment.Neutral.ToString());
-        Debug.Log("Controller start, tid = " + Thread.CurrentThread.ManagedThreadId);
+
+        // TODO: Wwise
+        //AkSoundEngine.SetState("RichSentimentTest", SentimentSpawnNode.Sentiment.Neutral.ToString());
+        //Debug.Log("Controller start, tid = " + Thread.CurrentThread.ManagedThreadId);
     }
 
     void Update()
     {
-        Density = CityStructure.Instance.DensityMap.GetDensity(InputManager.Instance.PlayerTransform.position);
-        AkSoundEngine.SetRTPCValue("Density", Density);
+        // TODO: Wwise
+        //Density = CityStructure.Instance.DensityMap.GetDensity(InputManager.Instance.PlayerTransform.position);
+        //AkSoundEngine.SetRTPCValue("Density", Density);
 
-        if (PointsOfInterest.Count > 0)
-        {
-            Vector3 poiPos = PointsOfInterest[PointsOfInterest.Count - 1].transform.position;
-            Vector3 playerPos = InputManager.Instance.CenterCamera.gameObject.transform.position;
-            AkSoundEngine.SetRTPCValue("DistanceToPOI", Vector3.Distance(poiPos, playerPos));
-        }
+        //if (PointsOfInterest.Count > 0)
+        //{
+        //    Vector3 poiPos = PointsOfInterest[PointsOfInterest.Count - 1].transform.position;
+        //    Vector3 playerPos = InputManager.Instance.CenterCamera.gameObject.transform.position;
+        //    AkSoundEngine.SetRTPCValue("DistanceToPOI", Vector3.Distance(poiPos, playerPos));
+        //}
 
-        AkSoundEngine.SetRTPCValue("AccumulatedForce", AccumulatedForce, gameObject);
+        //AkSoundEngine.SetRTPCValue("AccumulatedForce", AccumulatedForce, gameObject);
 
-        updateTrackRandomize();
+        //updateTrackRandomize();
     }
 
     void OnDestroy()
     {
-        Debug.Log("Ak Destroy: " + akAmbient.eventID);
-        AkSoundEngine.StopPlayingID(akAmbient.playingId);
+        // TODO: Wwise
+        //Debug.Log("Ak Destroy: " + akAmbient.eventID);
+        //AkSoundEngine.StopPlayingID(akAmbient.playingId);
     }
 
-    void OnAkStart(AkEventCallbackMsg msg)
-    {
-        Debug.Log("Ak Start: " + msg.info);
-    }
+    // TODO: Wwise
+    //void OnAkStart(AkEventCallbackMsg msg)
+    //{
+    //    Debug.Log("Ak Start: " + msg.info);
+    //}
 
-    void OnAkMarker(AkEventCallbackMsg msg)
-    {
-        AkMarkerCallbackInfo info = (AkMarkerCallbackInfo) msg.info;       
-        Debug.Log("Ak Marker: " + info.strLabel);
+    //void OnAkMarker(AkEventCallbackMsg msg)
+    //{
+    //    AkMarkerCallbackInfo info = (AkMarkerCallbackInfo) msg.info;       
+    //    Debug.Log("Ak Marker: " + info.strLabel);
 
-        if (AkMarkerTriggered != null)
-        {
-            AkMarkerTriggered(info.strLabel);
-        }
-    }
+    //    if (AkMarkerTriggered != null)
+    //    {
+    //        AkMarkerTriggered(info.strLabel);
+    //    }
+    //}
 
-    void OnAkMIDI(AkEventCallbackMsg msg)
-    {
-        AkMIDIEventCallbackInfo info = (AkMIDIEventCallbackInfo) msg.info;
+    //void OnAkMIDI(AkEventCallbackMsg msg)
+    //{
+    //    AkMIDIEventCallbackInfo info = (AkMIDIEventCallbackInfo) msg.info;
 
-        float pitch = info.byParam1;
-        float force = info.byParam2;
+    //    float pitch = info.byParam1;
+    //    float force = info.byParam2;
 
-        if (info.byType == AkMIDIEventTypes.NOTE_ON)
-        {
-            if (pitch < 50)
-            {
-                float target = MIDIForceToIntensity.Evaluate(force / 128.0f);
-                MajorIntensity = Mathf.Lerp(MajorIntensity, target, 0.8f);
-                MinorIntensity = 0;
-                // Debug.Log("Major: " + target);
-            }
-            else
-            {
-                float target = MIDIForceToMinorIntensity.Evaluate(pitch / 128.0f);
-                MinorIntensity = Mathf.Lerp(MinorIntensity, target, 0.1f);
-                // Debug.Log("Minor: " + target);
-            }
-            ParticleCity.Current.Animator.GlobalIntensity = MajorIntensity + MinorIntensity;
-        }
-        if (pitch < 50 /*&& info.byType == 144*/)
-        {
-        }
-    }
+    //    if (info.byType == AkMIDIEventTypes.NOTE_ON)
+    //    {
+    //        if (pitch < 50)
+    //        {
+    //            float target = MIDIForceToIntensity.Evaluate(force / 128.0f);
+    //            MajorIntensity = Mathf.Lerp(MajorIntensity, target, 0.8f);
+    //            MinorIntensity = 0;
+    //            // Debug.Log("Major: " + target);
+    //        }
+    //        else
+    //        {
+    //            float target = MIDIForceToMinorIntensity.Evaluate(pitch / 128.0f);
+    //            MinorIntensity = Mathf.Lerp(MinorIntensity, target, 0.1f);
+    //            // Debug.Log("Minor: " + target);
+    //        }
+    //        ParticleCity.Current.Animator.GlobalIntensity = MajorIntensity + MinorIntensity;
+    //    }
+    //    if (pitch < 50 /*&& info.byType == 144*/)
+    //    {
+    //    }
+    //}
 
-    void OnAkMusicSyncCue(AkEventCallbackMsg msg)
-    {
-        AkMusicSyncCallbackInfo syncInfo = (AkMusicSyncCallbackInfo)msg.info;
-        string cue = syncInfo.userCueName;
-        Debug.Log("Ak Cue: " + cue);
-        if (AkMusicSyncCueTriggered != null)
-        {
-            AkMusicSyncCueTriggered(cue);
-        }
-    }
+    //void OnAkMusicSyncCue(AkEventCallbackMsg msg)
+    //{
+    //    AkMusicSyncCallbackInfo syncInfo = (AkMusicSyncCallbackInfo)msg.info;
+    //    string cue = syncInfo.userCueName;
+    //    Debug.Log("Ak Cue: " + cue);
+    //    if (AkMusicSyncCueTriggered != null)
+    //    {
+    //        AkMusicSyncCueTriggered(cue);
+    //    }
+    //}
 
-    private void updateTrackRandomize()
-    {
-        if (Time.time - lastTrackRandomizeTime > TrackRandomizeInterval)
-        {
-            for (int i = 1; i <= 12; i++)
-            {
-                string state = (UnityEngine.Random.value > 0.5f) ? "Enabled" : "Disabled";
-                AkSoundEngine.SetSwitch("TR" + i, state, gameObject);
-            }
+    //private void updateTrackRandomize()
+    //{
+    //    if (Time.time - lastTrackRandomizeTime > TrackRandomizeInterval)
+    //    {
+    //        for (int i = 1; i <= 12; i++)
+    //        {
+    //            string state = (UnityEngine.Random.value > 0.5f) ? "Enabled" : "Disabled";
+    //            AkSoundEngine.SetSwitch("TR" + i, state, gameObject);
+    //        }
 
-            lastTrackRandomizeTime = Time.time;
-        }
-    }
+    //        lastTrackRandomizeTime = Time.time;
+    //    }
+    //}
 }

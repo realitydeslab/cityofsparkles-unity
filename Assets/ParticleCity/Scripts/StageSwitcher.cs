@@ -160,7 +160,8 @@ namespace ParticleCities
             cleanup();
             instantiateParticleCity(ParticleCityPrefabs[index]);
             CurrentStage = (Stage)(index + 1);
-            AkSoundEngine.SetState("Stage", CurrentStage.ToString());
+            // TODO: Wwise
+            //AkSoundEngine.SetState("Stage", CurrentStage.ToString());
         }
 
         public void SwitchToStage(Stage stage)

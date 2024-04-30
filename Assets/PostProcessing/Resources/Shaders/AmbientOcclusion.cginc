@@ -104,7 +104,9 @@ float CheckBounds(float2 uv, float d)
 float SampleDepth(float2 uv)
 {
 #if defined(SOURCE_GBUFFER) || defined(SOURCE_DEPTH)
-    float d = LinearizeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, uv));
+// TODO: SHADER
+    //float d = LinearizeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, uv));
+float d = 0;
 #else
     float4 cdn = tex2D(_CameraDepthNormalsTexture, uv);
     float d = DecodeFloatRG(cdn.zw);
@@ -309,7 +311,9 @@ half4 FragAO(VaryingsMultitex i) : SV_Target
 
     // Apply fog when enabled (forward-only)
 #if !FOG_OFF
-    float d = Linear01Depth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, uv));
+// TODO: SHADER
+    //float d = Linear01Depth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, uv));
+float d = 0;
     d = ComputeDistance(d);
     ao *= ComputeFog(d);
 #endif

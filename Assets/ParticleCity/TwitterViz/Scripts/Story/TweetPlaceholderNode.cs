@@ -98,7 +98,8 @@ public class TweetPlaceholderNode : SpawnSourceNode
 
         if (!string.IsNullOrEmpty(AkEventOnSpawn))
         {
-            AkSoundEngine.PostEvent(AkEventOnSpawn, tweet.gameObject);
+            // TODO: Wwise
+            //AkSoundEngine.PostEvent(AkEventOnSpawn, tweet.gameObject);
         }
 
         // Decorate tweet component
@@ -127,12 +128,14 @@ public class TweetPlaceholderNode : SpawnSourceNode
 
         if (MixInRatio > 0)
         {
-            AkSoundEngine.SetRTPCValue("MixInRatio", MixInRatio);
+            // TODO: Wwise
+            //AkSoundEngine.SetRTPCValue("MixInRatio", MixInRatio);
         }
 
         if (SwitchToStage != Stage.Invalid)
         {
-            AkSoundEngine.SetRTPCValue("MixInRatio", 0);
+            // TODO: Wwise
+            //AkSoundEngine.SetRTPCValue("MixInRatio", 0);
         }
 
         base.GotoNext();

@@ -4,11 +4,13 @@ using WanderUtils;
 
 namespace ParticleCities.Audio
 {
-    [RequireComponent(typeof(AkAmbient))]
+    // TODO: Wwise
+    //[RequireComponent(typeof(AkAmbient))]
     [RequireComponent(typeof(BoxCollider))]
     public class GestureSoundGenerator : MonoBehaviour
     {
-        private AkAmbient akAmbient;
+        // TODO: Wwise
+        //private AkAmbient akAmbient;
         private BoxCollider boundsCollider;
 
         [Header("Debug")] 
@@ -19,7 +21,8 @@ namespace ParticleCities.Audio
 
         void Start()
         {
-            akAmbient = GetComponent<AkAmbient>();
+            // TODO: Wwise
+            //akAmbient = GetComponent<AkAmbient>();
             boundsCollider = GetComponent<BoxCollider>();
         }
 
@@ -29,25 +32,26 @@ namespace ParticleCities.Audio
             transform.rotation = InputManager.Instance.PlayerTransform.rotation;
             transform.localScale = InputManager.Instance.PlayerTransform.localScale;
 
-            Transform leftHand = InputManager.Instance.GetHand(HandType.Left);
-            LeftHandRelativePos = getRelativePosition(leftHand.position);
-            AkSoundEngine.SetRTPCValue("LeftHandPosX", LeftHandRelativePos.x, akAmbient.gameObject);
-            AkSoundEngine.SetRTPCValue("LeftHandPosY", LeftHandRelativePos.y, akAmbient.gameObject);
-            AkSoundEngine.SetRTPCValue("LeftHandPosZ", LeftHandRelativePos.z, akAmbient.gameObject);
-            LeftHandRotation = getEuler(leftHand.rotation);
-            AkSoundEngine.SetRTPCValue("LeftHandRotX", LeftHandRotation.x, akAmbient.gameObject);
-            AkSoundEngine.SetRTPCValue("LeftHandRotY", LeftHandRotation.y, akAmbient.gameObject);
-            AkSoundEngine.SetRTPCValue("LeftHandRotZ", LeftHandRotation.z, akAmbient.gameObject);
+            // TODO: Wwise
+            //Transform leftHand = InputManager.Instance.GetHand(HandType.Left);
+            //LeftHandRelativePos = getRelativePosition(leftHand.position);
+            //AkSoundEngine.SetRTPCValue("LeftHandPosX", LeftHandRelativePos.x, akAmbient.gameObject);
+            //AkSoundEngine.SetRTPCValue("LeftHandPosY", LeftHandRelativePos.y, akAmbient.gameObject);
+            //AkSoundEngine.SetRTPCValue("LeftHandPosZ", LeftHandRelativePos.z, akAmbient.gameObject);
+            //LeftHandRotation = getEuler(leftHand.rotation);
+            //AkSoundEngine.SetRTPCValue("LeftHandRotX", LeftHandRotation.x, akAmbient.gameObject);
+            //AkSoundEngine.SetRTPCValue("LeftHandRotY", LeftHandRotation.y, akAmbient.gameObject);
+            //AkSoundEngine.SetRTPCValue("LeftHandRotZ", LeftHandRotation.z, akAmbient.gameObject);
 
-            Transform rightHand = InputManager.Instance.GetHand(HandType.Right);
-            RightHandRelativePos = getRelativePosition(rightHand.position);
-            AkSoundEngine.SetRTPCValue("RightHandPosX", RightHandRelativePos.x, akAmbient.gameObject);
-            AkSoundEngine.SetRTPCValue("RightHandPosY", RightHandRelativePos.y, akAmbient.gameObject);
-            AkSoundEngine.SetRTPCValue("RightHandPosZ", RightHandRelativePos.z, akAmbient.gameObject);
-            RightHandRotation = getEuler(rightHand.rotation);
-            AkSoundEngine.SetRTPCValue("RightHandRotX", RightHandRotation.x, akAmbient.gameObject);
-            AkSoundEngine.SetRTPCValue("RightHandRotY", RightHandRotation.y, akAmbient.gameObject);
-            AkSoundEngine.SetRTPCValue("RightHandRotZ", RightHandRotation.z, akAmbient.gameObject);
+            //Transform rightHand = InputManager.Instance.GetHand(HandType.Right);
+            //RightHandRelativePos = getRelativePosition(rightHand.position);
+            //AkSoundEngine.SetRTPCValue("RightHandPosX", RightHandRelativePos.x, akAmbient.gameObject);
+            //AkSoundEngine.SetRTPCValue("RightHandPosY", RightHandRelativePos.y, akAmbient.gameObject);
+            //AkSoundEngine.SetRTPCValue("RightHandPosZ", RightHandRelativePos.z, akAmbient.gameObject);
+            //RightHandRotation = getEuler(rightHand.rotation);
+            //AkSoundEngine.SetRTPCValue("RightHandRotX", RightHandRotation.x, akAmbient.gameObject);
+            //AkSoundEngine.SetRTPCValue("RightHandRotY", RightHandRotation.y, akAmbient.gameObject);
+            //AkSoundEngine.SetRTPCValue("RightHandRotZ", RightHandRotation.z, akAmbient.gameObject);
         }
 
         private Vector3 getRelativePosition(Vector3 worldPosition)

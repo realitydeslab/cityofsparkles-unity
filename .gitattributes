@@ -11,3 +11,10 @@ Assets/ParticleCityGenNYDensity/**/*.asset filter=lfs diff=lfs merge=lfs -text
 *.wem filter=lfs diff=lfs merge=lfs -text
 *.db filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
+Assets/Wwise/API/Runtime/Plugins/visionOS/xrsimulator/Release/libAkSoundEngine.a filter=lfs diff=lfs merge=lfs -text
+Assets/Wwise/API/Runtime/Plugins/visionOS/xrsimulator/Profile/libAkSoundEngine.a filter=lfs diff=lfs merge=lfs -text
+Assets/Wwise/API/Runtime/Plugins/visionOS/xros/Profile/libAkSoundEngine.a filter=lfs diff=lfs merge=lfs -text
+Assets/Wwise/API/Runtime/Plugins/visionOS/xros/Release/libAkSoundEngine.a filter=lfs diff=lfs merge=lfs -text
+Assets/Wwise/API/Runtime/Plugins/visionOS/xros/Debug/libAkSoundEngine.a filter=lfs diff=lfs merge=lfs -text
+Assets/Wwise/API/Runtime/Plugins/visionOS/xrsimulator/Debug/libAkSoundEngine.a filter=lfs diff=lfs merge=lfs -text
+WwiseUnityIntegration_visionOS_Src.zip filter=lfs diff=lfs merge=lfs -text

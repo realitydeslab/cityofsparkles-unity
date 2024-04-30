@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{1179682D-4EF1-424E-B4EC-C4C327572E52}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{1179682D-4EF1-424E-B4EC-C4C327572E52}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Play_blue_piano___Copy" ID="{D8A6705B-36B6-470D-94BB-D46A29E44DBC}">
+					<ChildrenList>
+						<Action Name="" ID="{C1B214D0-43F7-4706-819F-3EBBFE7E6C02}" ShortID="44662754">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="blue piano - Copy" ID="{D9A05196-AE4A-475D-B2A0-A910F36FBEE3}" WorkUnitID="{84FAD66E-A97B-4CAF-AD84-E4CAC031104E}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

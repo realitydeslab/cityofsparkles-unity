@@ -123,13 +123,16 @@ Shader "Hidden/Post FX/Screen Space Reflection"
         /** Read the camera-space position of the point at screen-space pixel ssP */
         float3 GetPosition(float2 ssP)
         {
-            float3 P;
+// TODO: SHADER
+            //float3 P;
 
-            P.z = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, ssP.xy);
+            //P.z = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, ssP.xy);
 
             // Offset to pixel center
-            P = ReconstructCSPosition(float2(ssP) /*+ float2(0.5, 0.5)*/, P.z);
-            return P;
+            //P = ReconstructCSPosition(float2(ssP) /*+ float2(0.5, 0.5)*/, P.z);
+            //return P;
+
+            return float3(0, 0, 0);
         }
 
         float applyEdgeFade(float2 tsP, float fadeStrength)
@@ -771,8 +774,11 @@ Shader "Hidden/Post FX/Screen Space Reflection"
 
         float4 fragDepthToCSZ(v2f i) : SV_Target
         {
-            float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv2.xy);
-            return float4(-LinearEyeDepth(depth), 0.0, 0.0, 0.0);
+// TODO: SHADER
+            //float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv2.xy);
+            //return float4(-LinearEyeDepth(depth), 0.0, 0.0, 0.0);
+
+return float4(0, 0, 0, 0);
         }
 
         static const int NUM_POISSON_TAPS = 12;

@@ -185,27 +185,28 @@ Shader "Hidden/Post FX/Uber Shader"
             // Depth of field
             #if DEPTH_OF_FIELD_COC_VIEW
             {
+// TODO: SHADER
                 // Calculate the radiuses of CoC.
-                half4 src = tex2D(_DepthOfFieldTex, uv);
-                float depth = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uvFlippedSPR));
-                float coc = (depth - _DepthOfFieldParams.x) * _DepthOfFieldParams.y / depth;
-                coc *= 80;
+                //half4 src = tex2D(_DepthOfFieldTex, uv);
+                //float depth = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uvFlippedSPR));
+                //float coc = (depth - _DepthOfFieldParams.x) * _DepthOfFieldParams.y / depth;
+                //coc *= 80;
 
                 // Visualize CoC (white -> red -> gray)
-                half3 rgb = lerp(half3(1, 0, 0), half3(1.0, 1.0, 1.0), saturate(-coc));
-                rgb = lerp(rgb, half3(0.4, 0.4, 0.4), saturate(coc));
+                //half3 rgb = lerp(half3(1, 0, 0), half3(1.0, 1.0, 1.0), saturate(-coc));
+                //rgb = lerp(rgb, half3(0.4, 0.4, 0.4), saturate(coc));
 
                 // Black and white image overlay
-                rgb *= AcesLuminance(color) + 0.5;
+                //rgb *= AcesLuminance(color) + 0.5;
 
                 // Gamma correction
-                #if !UNITY_COLORSPACE_GAMMA
-                {
-                    rgb = GammaToLinearSpace(rgb);
-                }
-                #endif
+                //#if !UNITY_COLORSPACE_GAMMA
+                //{
+                //    rgb = GammaToLinearSpace(rgb);
+                //}
+                //#endif
 
-                color = rgb;
+                //color = rgb;
             }
             #elif DEPTH_OF_FIELD
             {
