@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4530989469258849023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 214632787824867341}
+  - component: {fileID: 1680252331089454816}
+  - component: {fileID: 1672012577733521705}
+  - component: {fileID: 5584555478353888912}
+  m_Layer: 0
+  m_Name: NYGPUInstancingSparse3_ParticleCityPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &214632787824867341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4530989469258849023}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1680252331089454816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4530989469258849023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7484d45372fc2494baf5d3a4ff040e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mesh: {fileID: 4300000, guid: 103fdcf55e68aad44bb8bd24133e0e54, type: 2}
+  PositionTexture: {fileID: 2800000, guid: 69c729854e48d9f4aa3e34d045b6f51f, type: 2}
+  Material: {fileID: 2100000, guid: 238cd535bc38d4d48ae7cbcb361aeeaf, type: 2}
+  GenParams: {fileID: 11400000, guid: ea4222f34b61d5446b2b59a43c0b5228, type: 2}
+--- !u!114 &1672012577733521705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4530989469258849023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd30324a6f18ef4da11abd46f43f327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalIntensity: 1
+  IntensityFadeOnStart: -1
+  IntensityLerpRatioOnStart: -1
+  IntensityLerpRatioOnFadeOut: 0.01
+  Size: 2
+  NoiseST: {x: 1, y: 1, z: 0, w: 0}
+--- !u!114 &5584555478353888912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4530989469258849023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef416fd561919d469592584dcbc853e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActiveGameObjects: []
+  SolidClearColor: {r: 0, g: 0, b: 0, a: 1}
+  PlayerScale: 20
+  HandParticleMaterial: {fileID: 0}
+  SentimentForRandomTweet: 1
+  Animator: {fileID: 1672012577733521705}

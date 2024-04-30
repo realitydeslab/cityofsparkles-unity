@@ -70,7 +70,9 @@ namespace ParticleCities
                     return;
                 }
 
-                SwitchToStage(InitialStage);
+                // TODO: Change it back
+                //SwitchToStage(InitialStage);
+                SwitchToStage(6);
             }
         }
 

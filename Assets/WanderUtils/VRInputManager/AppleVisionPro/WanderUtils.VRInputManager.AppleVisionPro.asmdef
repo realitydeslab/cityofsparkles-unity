@@ -1,0 +1,16 @@
+{
+    "name": "WanderUtils.VRInputManager.AppleVisionPro",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5ca23ecec8778cc4eb6df92da14c301b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

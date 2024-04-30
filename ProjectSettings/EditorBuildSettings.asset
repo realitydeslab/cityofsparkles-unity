@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_visionOS/Scenes/visionos_components.unity
     guid: f880d3cd72cc24f33bea7d3b434cd3d0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/bootloader.unity
     guid: b03ac27ce5b223a44ae789854ccc8f08
   - enabled: 0
     path: Assets/Scenes/new_york_opening.unity
     guid: a9aa75cab1d9d0b4cb6994eb09dbb7ed
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/new_york_scene.unity
     guid: a864be0ed66745846ac76d6b40801ac8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/oculus_rift_components.unity
     guid: 6a627e4d8afbc9a4ca094813be16c0c8
   - enabled: 0
