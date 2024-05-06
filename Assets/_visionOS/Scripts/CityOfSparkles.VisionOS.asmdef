@@ -1,9 +1,7 @@
 {
-    "name": "WanderUtils.VRInputManager.AppleVisionPro",
+    "name": "CityOfSparkles.VisionOS",
     "rootNamespace": "",
     "references": [
-        "GUID:5ca23ecec8778cc4eb6df92da14c301b",
-        "GUID:138515bedd9014b7ba775aa48c6c3b7d",
         "GUID:ce522b6ed64c8be4c989a1d26d0e3275"
     ],
     "includePlatforms": [],

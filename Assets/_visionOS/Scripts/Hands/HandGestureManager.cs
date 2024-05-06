@@ -93,5 +93,11 @@ namespace CityOfSparkles.VisionOS
 
             return false;
         }
+
+        // For debug purpose
+        public void SetHandGesture(Handedness handedness, HandGesture handGesture)
+        {
+            m_HandGestures[handedness] = handGesture;
+        }
     }
 }

@@ -1,5 +1,7 @@
 using UnityEngine;
 using WanderUtils;
+using CityOfSparkles.VisionOS;
+using UnityEngine.XR.Hands;
 
 namespace ParticleCities
 {
@@ -9,14 +11,27 @@ namespace ParticleCities
 
         [SerializeField] private Transform m_RightHandJoint;
 
+        [SerializeField] private Transform m_XROrigin;
+
+        private HandGestureManager m_HandGestureManager;
+
         public override Camera CenterCamera
         {
-            get => Camera.main;
+            get
+            {
+                //Debug.Log("[InputManagerAppleVisionPro] get CenterCamera");
+                return Camera.main;
+            }
         }
 
         public override Transform PlayerTransform
         {
-            get => Camera.main.transform;
+            get
+            {
+                //Debug.Log("[InputManagerAppleVisionPro] get PlayerTransform");
+                //return Camera.main.transform;
+                return m_XROrigin;
+            }
         }
 
         public override bool IsGrabContinuous
@@ -90,6 +105,17 @@ namespace ParticleCities
 
         public override float GetTriggerValue(HandType handType)
         {
+            if (m_HandGestureManager == null)
+            {
+                m_HandGestureManager = FindObjectOfType<HandGestureManager>();
+                if (m_HandGestureManager == null)
+                    return 0f;
+            }
+
+            Handedness handedness = handType == HandType.Left ? Handedness.Left : handType == HandType.Right ? Handedness.Right : Handedness.Invalid;
+            if (m_HandGestureManager.HandGestures[handedness] == HandGesture.Pinching)
+                return 1f;
+
             return 0f;
         }
 
