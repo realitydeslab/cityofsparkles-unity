@@ -2,7 +2,8 @@
     "name": "CityOfSparkles.VisionOS",
     "rootNamespace": "",
     "references": [
-        "GUID:ce522b6ed64c8be4c989a1d26d0e3275"
+        "GUID:ce522b6ed64c8be4c989a1d26d0e3275",
+        "GUID:95db0abb8f165894c9ca74d65a83fa05"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
