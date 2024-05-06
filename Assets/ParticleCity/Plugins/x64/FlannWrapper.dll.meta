@@ -21,7 +21,7 @@ PluginImporter:
         Exclude Linux64: 0
         Exclude LinuxUniversal: 0
         Exclude OSXUniversal: 1
-        Exclude VisionOS: 0
+        Exclude VisionOS: 1
         Exclude Win: 1
         Exclude Win64: 0
         Exclude iOS: 1
@@ -89,7 +89,7 @@ PluginImporter:
   - first:
       VisionOS: VisionOS
     second:
-      enabled: 1
+      enabled: 0
       settings:
         AddToEmbeddedBinaries: false
         CPU: ARM64

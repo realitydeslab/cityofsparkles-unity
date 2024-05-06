@@ -166,24 +166,36 @@ public class FlannPointCloud : IDisposable
 
     private IntPtr flann;
     private IList<TwitterDatabase.DBTweetPoint> points;
-    private float[] rawData;
+    private double[] rawData;
     private int[] indices = new int[0];
 
-    [DllImport("FlannWrapper")]
-    private static extern IntPtr CreateFlannPointCloud(float[] rawData, int length);
+#if UNITY_EDITOR
+    private const string flannlib = "flann-unity-bundle";
+#elif UNITY_VISIONOS
+    private const string flannlib = "__Internal";
+#endif
 
-    [DllImport("FlannWrapper")]
+    [DllImport(flannlib)]
+    private static extern void FlannTest();
+
+    //[DllImport("FlannWrapper")]
+    [DllImport(flannlib)]
+    private static extern IntPtr CreateFlannPointCloud(double[] rawData, int length);
+
+    //[DllImport("FlannWrapper")]
+    [DllImport(flannlib)]
     private static extern void DeleteFlannPointCloud(IntPtr flann);
 
-    [DllImport("FlannWrapper")]
-    private static extern int QueryFlannPointCloud(IntPtr flann, float x, float y, float radius, int limit, [In, Out] int[] indices);
+    //[DllImport("FlannWrapper")]
+    [DllImport(flannlib)]
+    private static extern int QueryFlannPointCloud(IntPtr flann, double x, double y, double radius, int limit, [In, Out] int[] indices);
 
     public void LoadData(IList<TwitterDatabase.DBTweetPoint> points, MapModel mapModel)
     {
         this.points = points;
 
         // Convert to Flann data
-        rawData = new float[points.Count * 2];
+        rawData = new double[points.Count * 2];
         for (int i = 0; i < points.Count; i++)
         {
             Vector3 p = mapModel.EarthToUnityWorld(points[i].latitude, points[i].longitude, 0);
@@ -191,6 +203,7 @@ public class FlannPointCloud : IDisposable
             rawData[i * 2 + 1] = p.z;
         }
 
+        //FlannTest();
         flann = CreateFlannPointCloud(rawData, rawData.Length);
     }
 
@@ -210,7 +223,7 @@ public class FlannPointCloud : IDisposable
             queryResult.Add(new QueryResult
             {
                 DbId = points[index].id,
-                Position = new Vector2(rawData[index * 2], rawData[index * 2 + 1])
+                Position = new Vector2((float)rawData[index * 2], (float)rawData[index * 2 + 1])
             });
         }
     }

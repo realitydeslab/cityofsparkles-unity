@@ -35,6 +35,7 @@ public class TutorialStateManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log($"[TutorialStateManager] State: {State}");
         switch (State)
         {
             case TutorialState.InitialRedDot:
