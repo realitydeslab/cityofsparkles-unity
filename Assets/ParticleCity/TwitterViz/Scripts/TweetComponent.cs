@@ -156,6 +156,8 @@ public class TweetComponent : MonoBehaviour
 	}
 	
 	void Update () {
+        // TODO: DELETE ME
+        //Debug.Log($"[TweetComponent] State: {State}, approachingTarget: {approachingTarget}");
 	    switch (State)
 	    {
             case TweetState.Idle:
@@ -280,6 +282,7 @@ public class TweetComponent : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        //Debug.Log($"[TweetComponent] OnTriggerEnter: {other.name}");
         if (State == TweetState.Idle && InputManager.Instance.IsActiveHand(other.gameObject))
         {
             Trigger = true;
@@ -700,6 +703,7 @@ public class TweetComponent : MonoBehaviour
                 TutorialStateManager.Instance.RedDotReached();
             }
 
+            //Debug.Log($"[TweetComponent] handType: {handType}");
             if (
                 handType != HandType.Unknown && (
                 InputManager.Instance.GetGrabDown(HandType.Left) ||

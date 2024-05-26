@@ -110,6 +110,9 @@ public class TwitterManager : MonoBehaviour
 
     private void spawnIfNeeded()
     {
+        // TODO: DELETE ME
+        //Debug.Log($"[TwitterManager] spawnIfNeeded tweetsToDelete.Count: {tweetsToDelete.Count}, tweetsToSpawn.Count: {tweetsToSpawn.Count}");
+
         // Remove one
         if (tweetsToDelete.Count > 0)
         {

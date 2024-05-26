@@ -57,7 +57,8 @@ public class GuidingLight : MonoBehaviour
 	        Instantiate(RisingParticlePrefab, this.transform);
 	    }
 
-        setIntensity(0);
+        // TOOD: CHANGE BACK TO 0
+        setIntensity(1.5f);
         if (MusicSync)
         {
             InteractiveMusicController.Instance.AkMusicSyncCueTriggered += OnAkMusicSyncCueTriggered;
@@ -84,6 +85,8 @@ public class GuidingLight : MonoBehaviour
 	        tweetComponent = GetComponent<TweetComponent>();
 	    }
 
+        // TODO: DELETE ME
+        //Debug.Log($"[GuidingLight] tweetComponent.State: {tweetComponent.State}");
 	    switch (tweetComponent.State)
 	    {
             case TweetComponent.TweetState.Idle:
@@ -197,6 +200,8 @@ public class GuidingLight : MonoBehaviour
 
     private void setIntensity(float intensity)
     {
+        // TODO: DELETE ME
+        //Debug.Log($"[GuidingLight] setIntensity: {intensity}");
         Intensity = intensity;
         lightRenderer.material.SetFloat("_Intensity", intensity);
     }

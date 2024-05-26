@@ -156,6 +156,7 @@ namespace ParticleCities
 
         public void SwitchToStage(int index)
         {
+            Debug.Log($"[StageSwitcher] SwitchToStage {index}");
             lastSwitchTime = Time.time;
             cleanup();
             instantiateParticleCity(ParticleCityPrefabs[index]);
@@ -166,6 +167,7 @@ namespace ParticleCities
 
         public void SwitchToStage(Stage stage)
         {
+            Debug.Log($"[StageSwitcher] SwitchToStage {stage}");
             if (stage == Stage.Invalid)
             {
                 return;

@@ -51,26 +51,43 @@ namespace ParticleCities
 
         public override bool GetButtonDown(Button button)
         {
+            //Debug.Log($"[InputManagerAppleVisionPro] GetButtonDown: {button}");
             return false;
         }
 
         public override bool GetGrabDown(HandType handType)
         {
+            //Debug.Log($"[InputManagerAppleVisionPro] GetGrabDown: {handType}");
+            if (m_HandGestureManager == null)
+            {
+                m_HandGestureManager = FindObjectOfType<HandGestureManager>();
+                if (m_HandGestureManager == null)
+                    return false;
+            }
+
+            Handedness handedness = handType == HandType.Left ? Handedness.Left : handType == HandType.Right ? Handedness.Right : Handedness.Invalid;
+            if (m_HandGestureManager.HandGestures[handedness] == HandGesture.Pinching)
+                return true;
+
             return false;
         }
 
         public override bool GetGrabUp(HandType handType)
         {
+            //Debug.Log($"[InputManagerAppleVisionPro] GetGrabUp: {handType}");
             return false;
         }
 
         public override float GetGrabValue(HandType handType)
         {
+            //Debug.Log($"[InputManagerAppleVisionPro] GetGrabValue: {handType}");
             return 0f;
         }
 
         public override Transform GetHand(HandType handType)
         {
+            // TODO: DELETE ME
+            //Debug.Log($"[InputManagerAppleVisionPro] GetHand: {handType}");
             switch (handType)
             {
                 case HandType.Left:
@@ -84,11 +101,20 @@ namespace ParticleCities
 
         public override HandType GetHandType(Transform transform)
         {
-            return HandType.Unknown;
+            if (transform.TryGetComponent<AppleVisionProHandCollisionController>(out var hand)) 
+            {
+                return hand.Handedness == Handedness.Left ? HandType.Left : HandType.Right;
+            }
+            else
+            {
+                return HandType.Unknown;
+            }
         }
 
         public override HandType GetLastActiveHand()
         {
+            // TODO: DELETE ME
+            //Debug.Log($"[InputManagerAppleVisionPro] GetLastActiveHand");
             return HandType.Unknown;
         }
 
@@ -121,12 +147,14 @@ namespace ParticleCities
 
         public override bool IsActiveHand(GameObject candidate)
         {
-            return false;
+            Debug.Log($"[InputManagerAppleVisionPro] IsActiveHand {candidate}");
+            return true;
         }
 
         public override bool IsDeviceIdle()
         {
-            return true;
+            //Debug.Log($"[InputManagerAppleVisionPro] IsDeviceIdle");
+            return false;
         }
 
         public override void SetControllerVisible(bool visible)
