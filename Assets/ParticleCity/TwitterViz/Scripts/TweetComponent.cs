@@ -282,7 +282,7 @@ public class TweetComponent : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //Debug.Log($"[TweetComponent] OnTriggerEnter: {other.name}");
+        Debug.Log($"[TweetComponent] OnTriggerEnter: {other.name}");
         if (State == TweetState.Idle && InputManager.Instance.IsActiveHand(other.gameObject))
         {
             Trigger = true;

@@ -145,7 +145,10 @@ public class TwitterManager : MonoBehaviour
                 tweetsSpawned[entry.Key].Finish();
             }
 
-            Tweet tweet = new Tweet(dbTweet);
+            // Yuchen updated
+            //Tweet tweet = new Tweet(dbTweet);
+            Tweet tweet = ScriptableObject.CreateInstance<Tweet>();
+            tweet.Initialize(dbTweet);
 
             Vector3? position = entry.Value.Source == null ? null : entry.Value.Source.GetPosition(entry.Value.Data);
             bool geoPos = false;

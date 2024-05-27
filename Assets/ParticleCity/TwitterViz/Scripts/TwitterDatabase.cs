@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using SQLite4Unity3d;
 using TwitterViz.DataModels;
 using Unity.Collections;
@@ -8,7 +9,8 @@ using Unity.Jobs;
 using UnityEngine;
 using Sentiment = SentimentSpawnNode.Sentiment;
 
-public class TwitterDatabase : MonoBehaviour {
+public class TwitterDatabase : MonoBehaviour
+{
 
     public class DBTweetPoint
     {
@@ -23,7 +25,7 @@ public class TwitterDatabase : MonoBehaviour {
     {
         [PrimaryKey, AutoIncrement]
         public int id { get; set; }
-        
+
         public string clean_text { get; set; }
         public string full_text { get; set; }
 
@@ -66,7 +68,7 @@ public class TwitterDatabase : MonoBehaviour {
         }
     }
 
-    public string Database = "twitter_sf.db";
+    public string Database = "twitter_nyc_tags3_random.db";
 
     private SQLiteConnection dbConnection;
 
@@ -87,13 +89,10 @@ public class TwitterDatabase : MonoBehaviour {
                 break;
 
             case Sentiment.Sad:
-                // query = "SELECT * FROM tweets WHERE sentiment_negative > 0.5 ORDER BY RANDOM() LIMIT ?";
                 return QueryForTags("fuck", limit);
 
             case Sentiment.Wish:
-                // query = "SELECT * FROM tweets WHERE sentiment_positive > 0.3 AND (clean_text LIKE '%wish%' OR clean_text lIKE '%hope%') ORDER BY RANDOM() LIMIT ?";
                 return QueryForTags("positive", limit);
-
         }
 
         List<DBTweet> results = dbConnection.Query<DBTweet>(query, limit);
@@ -121,7 +120,6 @@ public class TwitterDatabase : MonoBehaviour {
         return result;
     }
 
-    
     public IList<DBTweetPoint> QueryForPointCloud(Sentiment sentiment)
     {
         checkConnection();
@@ -210,29 +208,53 @@ public class TwitterDatabase : MonoBehaviour {
 
         RecordLastAccessTime(ids);
     }
-    
+
     void Awake()
     {
         checkConnection();
     }
 
-	void Start () 
-	{
-		
-	}
-	
-	void Update () 
-	{
-	}
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
+    }
 
     private void checkConnection()
     {
-	    if (dbConnection == null)
-	    {
+        if (dbConnection == null)
+        {
             Debug.Log("Connecting to DB");
-            string dbPath = Application.dataPath + "/StreamingAssets/" + Database;
-            dbConnection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite, true);
-	    }
+            string dbPath = GetDatabasePath();
+            dbConnection = new SQLiteConnection(dbPath, SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create, true);
+        }
+    }
+
+    private string GetDatabasePath()
+    {
+        string fileName = Database;
+        string filePath = Path.Combine(Application.persistentDataPath, fileName);
+
+        if (!File.Exists(filePath))
+        {
+            string streamingAssetsPath = Path.Combine(Application.streamingAssetsPath, fileName);
+
+#if UNITY_ANDROID
+            using (UnityWebRequest www = UnityWebRequest.Get(streamingAssetsPath))
+            {
+                www.SendWebRequest();
+                while (!www.isDone) {}
+                File.WriteAllBytes(filePath, www.downloadHandler.data);
+            }
+#else
+            File.Copy(streamingAssetsPath, filePath);
+#endif
+        }
+
+        return filePath;
     }
 
     void OnDestroy()

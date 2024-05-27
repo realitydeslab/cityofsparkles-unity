@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3736,7 +3735,7 @@ MonoBehaviour:
   ForceSceneSwitchTime: 180
   InitialStage: 6
   ParticleCityPrefabs:
-  - {fileID: 114335009429023242, guid: 392e5d8642041f0458f17660a6c5904a, type: 3}
+  - {fileID: 5584555478353888912, guid: b0ee5a39dc74544fd96489c454c60a9b, type: 3}
   - {fileID: 114761582497104718, guid: 93b68c6addaf5c642b337809bb3eb0bb, type: 3}
   - {fileID: 114376787756978894, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 3}
   - {fileID: 114335009429023242, guid: 8371fcb5e1a6fa74a845418d6d147af4, type: 3}

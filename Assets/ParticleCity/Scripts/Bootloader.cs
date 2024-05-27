@@ -24,11 +24,11 @@ public class Bootloader : MonoBehaviour
 		//}
 
 		SceneManager.LoadScene("visionos_components");
-		//SceneManager.LoadScene("oculus_rift_components");
+        //SceneManager.LoadScene("oculus_rift_components");
 
-	    citySceneLoadOp = SceneManager.LoadSceneAsync(SceneToLoad, LoadSceneMode.Additive);
-	    citySceneLoadOp.allowSceneActivation = true;
-	}
+        citySceneLoadOp = SceneManager.LoadSceneAsync(SceneToLoad, LoadSceneMode.Additive);
+        citySceneLoadOp.allowSceneActivation = true;
+    }
 	
 	void Update () {
 	    if (citySceneLoadOp.isDone)

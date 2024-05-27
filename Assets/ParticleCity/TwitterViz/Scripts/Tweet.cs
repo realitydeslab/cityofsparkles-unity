@@ -84,6 +84,59 @@ namespace TwitterViz.DataModels
             Words = wordsList.ToArray();
         }
 
+        // Yuchen added
+        public void Initialize(TwitterDatabase.DBTweet dbTweet)
+        {
+            Id = dbTweet.id;
+
+            Text = dbTweet.clean_text;
+            CleanText = dbTweet.clean_text;
+
+            double polarity = dbTweet.sentiment_polarity;
+            if (dbTweet.sentiment_positive > 0 && dbTweet.sentiment_positive > dbTweet.sentiment_negative)
+            {
+                polarity = dbTweet.sentiment_positive;
+            }
+            else if (dbTweet.sentiment_negative > 0 && dbTweet.sentiment_negative > dbTweet.sentiment_positive)
+            {
+                polarity = -dbTweet.sentiment_negative;
+            }
+
+            // Yuchen updated
+            //Sentiment = new Sentiment()
+            //{
+            //    Subjectivity = 0, // 1 - dbTweet.sentiment_neutral,
+            //    Polarity = polarity
+            //};
+            Sentiment = ScriptableObject.CreateInstance<Sentiment>();
+            Sentiment.Initialize(0, polarity);
+
+            if (!Mathf.Approximately((float)dbTweet.latitude, 0) && !Mathf.Approximately((float)dbTweet.longitude, 0))
+            {
+                // Yuchen updated
+                //Coordinates = new Coordinates()
+                //{
+                //    CoordinatesType = "Point",
+                //    Data = new double[] { dbTweet.longitude, dbTweet.latitude }
+                //};
+                Coordinates = ScriptableObject.CreateInstance<Coordinates>();
+                Coordinates.Initialize("Point", new double[] { dbTweet.longitude, dbTweet.latitude });
+            }
+
+            Place = null;
+
+            // Words
+            string stripped = Regex.Replace(CleanText, @"[^\u0000-\u007F]+", string.Empty);
+            stripped = Regex.Replace(stripped, @",(\S)", @", $1");
+
+            List<string> wordsList = new List<string>(stripped.Split(' '));
+            wordsList.Add("- @" + dbTweet.username + ".");
+
+            DateTime createdAt = DateTime.Parse(dbTweet.created_at);
+            wordsList.Add(createdAt.ToString("htt, MMM d, yyyy"));
+            Words = wordsList.ToArray();
+        }
+
         public override string ToString()
         {
             string sentimentStr = (Sentiment != null) ? Sentiment.Polarity.ToString() : "?";
@@ -98,6 +151,13 @@ namespace TwitterViz.DataModels
 
         [JsonProperty("subjectivity")]
         public double Subjectivity;
+
+        // Yuchen added
+        public void Initialize(double polarity, double subjectivity)
+        {
+            Polarity = polarity;
+            Subjectivity = subjectivity;
+        }
     }
 
     public class Place : ScriptableObject
@@ -128,5 +188,12 @@ namespace TwitterViz.DataModels
 
         [JsonProperty("coordinates")]
         public double[] Data;
+
+        // Yuchen added
+        public void Initialize(string coordinatesType, double[] data)
+        {
+            CoordinatesType = coordinatesType;
+            Data = data;
+        }
     }
 }
