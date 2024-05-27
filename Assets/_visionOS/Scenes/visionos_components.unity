@@ -323,7 +323,7 @@ MonoBehaviour:
   m_RightIndexProximal: {fileID: 2604916978613251898}
   m_Acceleration: 3
   m_MaxSpeed: 3
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &143451874
 Transform:
   m_ObjectHideFlags: 0
