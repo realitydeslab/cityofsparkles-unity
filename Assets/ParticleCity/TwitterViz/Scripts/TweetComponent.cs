@@ -282,7 +282,6 @@ public class TweetComponent : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"[TweetComponent] OnTriggerEnter: {other.name}");
         if (State == TweetState.Idle && InputManager.Instance.IsActiveHand(other.gameObject))
         {
             Trigger = true;
@@ -384,6 +383,11 @@ public class TweetComponent : MonoBehaviour
 
         // Wait for one frame for TMP's layout
         yield return null;
+
+        if (FacingCamera == null)
+            FacingCamera = Camera.main;
+        // TODO: DELETE ME
+        Debug.Log($"[TweetComponent] FacingCamera: {FacingCamera}");
 
         // Circular layout
         Vector3 cameraPos = (FacingCamera != null) ? FacingCamera.transform.position : Camera.main.transform.position;
