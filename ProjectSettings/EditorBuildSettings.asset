@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_visionOS/Scenes/visionos_components.unity
-    guid: f880d3cd72cc24f33bea7d3b434cd3d0
-  - enabled: 1
     path: Assets/Scenes/bootloader.unity
     guid: b03ac27ce5b223a44ae789854ccc8f08
   - enabled: 0
@@ -26,6 +23,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/san_fran_scene.unity
     guid: 5e8b28a4e4bb66d4382d529b81d9218e
+  - enabled: 1
+    path: Assets/_visionOS/Scenes/visionos_components.unity
+    guid: f880d3cd72cc24f33bea7d3b434cd3d0
   m_configObjects:
     UnityEditor.XR.VisionOS.VisionOSSettings: {fileID: 11400000, guid: b23f1cfc6f42840e0a35ee582cda05e1,
       type: 2}
