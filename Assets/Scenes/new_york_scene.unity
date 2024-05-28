@@ -3740,7 +3740,7 @@ MonoBehaviour:
   - {fileID: 114376787756978894, guid: 2bbcf3bec859dbf47911dcd1bc16c30f, type: 3}
   - {fileID: 114335009429023242, guid: 8371fcb5e1a6fa74a845418d6d147af4, type: 3}
   - {fileID: 114335009429023242, guid: 8371fcb5e1a6fa74a845418d6d147af4, type: 3}
-  - {fileID: 5584555478353888912, guid: b0ee5a39dc74544fd96489c454c60a9b, type: 3}
+  - {fileID: 5584555478353888912, guid: 8a6d668dcae0246d7ba6306d362b0739, type: 3}
   KeyboardSwitch: 1
   StoryGroupOnManualSwitch:
   - {fileID: 0}

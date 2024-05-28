@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1672012577733521705}
   - component: {fileID: 5584555478353888912}
   m_Layer: 0
-  m_Name: NYGPUInstancing_ParticleCityPrefab
+  m_Name: NYGPUInstancing_ParticleCityPrefab_Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,11 +62,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd30324a6f18ef4da11abd46f43f327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalIntensity: 1
+  GlobalIntensity: 0.6
   IntensityFadeOnStart: -1
   IntensityLerpRatioOnStart: -1
   IntensityLerpRatioOnFadeOut: 0.01
-  Size: 2
+  Size: 1.5
   NoiseST: {x: 1, y: 1, z: 0, w: 0}
 --- !u!114 &5584555478353888912
 MonoBehaviour:

@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using WanderUtils;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace ParticleCities
 {
@@ -49,6 +51,8 @@ namespace ParticleCities
         public ParticleCity CurrentParticleCity;
         public Stage CurrentStage;
 
+        private Dictionary<ParticleCity, GameObject> m_ParticleCityPool = new();
+
         void Start()
         {
             // Find the current enabled city
@@ -72,6 +76,11 @@ namespace ParticleCities
 
                 SwitchToStage(InitialStage);
             }
+
+            // Prepare particle city pool
+            var particleCity = Instantiate(ParticleCityPrefabs[0]);
+            particleCity.gameObject.SetActive(false);
+            m_ParticleCityPool.Add(ParticleCityPrefabs[0], particleCity.gameObject);
         }
 
         void Update()
@@ -159,7 +168,13 @@ namespace ParticleCities
             Debug.Log($"[StageSwitcher] SwitchToStage {index}");
             lastSwitchTime = Time.time;
             cleanup();
-            instantiateParticleCity(ParticleCityPrefabs[index]);
+
+            // Yuchen updated
+            if (index ==5 )
+                instantiateParticleCity(ParticleCityPrefabs[index]);
+            else
+                StartCoroutine(instantiateParticleCityWithDelay(ParticleCityPrefabs[index], 7f));
+
             CurrentStage = (Stage)(index + 1);
             // TODO: Wwise
             //AkSoundEngine.SetState("Stage", CurrentStage.ToString());
@@ -176,9 +191,19 @@ namespace ParticleCities
             SwitchToStage((int)stage - 1);
         }
 
+        // Yuchen added
+        private IEnumerator instantiateParticleCityWithDelay(ParticleCity prefab, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            instantiateParticleCity(prefab);
+        }
+
         private void instantiateParticleCity(ParticleCity prefab)
         {
-            CurrentParticleCity = Instantiate(prefab);
+            if (m_ParticleCityPool.ContainsKey(prefab))
+                m_ParticleCityPool[prefab].SetActive(true);
+            else
+                CurrentParticleCity = Instantiate(prefab);
         }
 
         private void cleanup()
@@ -187,7 +212,8 @@ namespace ParticleCities
             for (int i = 0; i < rootObjects.Length; i++)
             {
                 ParticleCity city = rootObjects[i].GetComponent<ParticleCity>();
-                if (city != null)
+                // Yuchen upadted
+                if (city != null && city.gameObject.activeSelf)
                 {
                     city.DestroyWithFadeOut();
                 }

@@ -88,6 +88,10 @@ public class ParticleCityAnimator : MonoBehaviour
 
     public void LerpToIntensity(float targetIntensity, float ratio)
     {
+        // Yuchen added
+        if (targetIntensity == 0.1f)
+            return;
+
         lerpToIntensityCalledOnce = true;
         this.targetIntensity = targetIntensity;
         intensityLerpRatio = ratio;
@@ -106,6 +110,17 @@ public class ParticleCityAnimator : MonoBehaviour
     {
         if (Application.isPlaying)
         {
+            // Yuchen added
+            if (materialInstances.Length == 0)
+            {
+                if (TryGetComponent<ParticleCityGPUInstancingRenderer>(out var particleCityRenderer))
+                {
+                    var material = new Material(particleCityRenderer.Material);
+                    particleCityRenderer.Material = material;
+                    materialInstances = new Material[] { material };
+                }
+            }
+            
             for (int i = 0; i < materialInstances.Length; i++)
             {
                 materialInstances[i].SetFloat(propertyName, value);

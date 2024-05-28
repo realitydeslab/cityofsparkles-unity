@@ -386,8 +386,6 @@ public class TweetComponent : MonoBehaviour
 
         if (FacingCamera == null)
             FacingCamera = Camera.main;
-        // TODO: DELETE ME
-        Debug.Log($"[TweetComponent] FacingCamera: {FacingCamera}");
 
         // Circular layout
         Vector3 cameraPos = (FacingCamera != null) ? FacingCamera.transform.position : Camera.main.transform.position;

@@ -6,7 +6,7 @@ Shader "Particle City/Particle City GPU Instancing URP"
     {
         _SpriteTex ("Base (RGB)", 2D) = "white" {}
         _SpriteColor("Sprite Color", Color) = (1, 1, 1, 1)
-        _GlobalIntensity("Intencity", Range(0, 10)) = 1
+        _GlobalIntensity("Intensity", Range(0, 10)) = 1
         _Size ("Size", Range(0, 10)) = 0.5
         _PositionTex("Position Tex", 2D) = "white" {}
         _PositionTex2("Position Tex 2", 2D) = "white" {}
