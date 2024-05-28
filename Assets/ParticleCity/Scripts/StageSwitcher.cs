@@ -105,7 +105,8 @@ namespace ParticleCities
             {
                 if (Time.time - lastSwitchTime > ForceInitialSceneSwitchTime)
                 {
-                    ManualSwitchToStage(1);
+                    // TODO: DELETE ME
+                    //ManualSwitchToStage(1);
                 }
             }
             else if (CurrentStage == Stage.First || CurrentStage == Stage.Twist || CurrentStage == Stage.Last)
