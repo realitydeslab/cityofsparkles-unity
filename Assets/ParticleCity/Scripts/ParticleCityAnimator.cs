@@ -30,6 +30,9 @@ public class ParticleCityAnimator : MonoBehaviour
 
     private bool lerpToIntensityCalledOnce = false;
 
+    // Yuchen added
+    public bool m_IsFadingOut = false;
+
     void Awake()
     {
         if (Application.isPlaying)
@@ -88,9 +91,13 @@ public class ParticleCityAnimator : MonoBehaviour
 
     public void LerpToIntensity(float targetIntensity, float ratio)
     {
-        // Yuchen added
-        if (targetIntensity == 0.1f)
+        if (m_IsFadingOut)
             return;
+
+        //Debug.Log($"[ParticleCityAnimator] gameObject.name: {gameObject.name}, targetIntensity: {targetIntensity}, ratio: {ratio}");
+        // Yuchen added
+        //if (targetIntensity == 0.1f)
+        //    return;
 
         lerpToIntensityCalledOnce = true;
         this.targetIntensity = targetIntensity;
@@ -100,6 +107,7 @@ public class ParticleCityAnimator : MonoBehaviour
     public void FadeOut(bool destroyOnFinished)
     {
         LerpToIntensity(0, IntensityLerpRatioOnFadeOut);
+        m_IsFadingOut = true;
         if (destroyOnFinished)
         {
             destroyRequired = true;

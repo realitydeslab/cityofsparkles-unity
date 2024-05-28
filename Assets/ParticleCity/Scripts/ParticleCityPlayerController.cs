@@ -111,6 +111,11 @@ namespace ParticleCities
                 velocityRatio = new Vector3(rightSticker.x * 0.3f, 0, rightSticker.y);
             }
 
+            // Yuchen updated
+            // If we pinch on the right hand, then we use the left hand for flying direction. Vice versa.
+            if (activeHandType != HandType.Unknown)
+                activeHandType = activeHandType == HandType.Left ? HandType.Right : HandType.Left;
+
             activeHand = InputManager.Instance.GetHand(activeHandType);
             if (activeHand != null)
             {
@@ -139,6 +144,8 @@ namespace ParticleCities
                 {
                     Vector3 expectedDirection = TutorialStateManager.Instance.Source.transform.position - activeHand.position;
                     float angle = Vector3.Angle(expectedDirection, activeHand.forward);
+                    // TODO: DELETE ME
+                    Debug.Log($"[ParticleCityPlayerController] activeHandType: {activeHandType}, activeHand.forward: {activeHand.forward}, angle: {angle}");
                     if (Mathf.Abs(angle) > TutorialStateManager.Instance.MaxAngleToSource)
                     {
                         // Stop flying

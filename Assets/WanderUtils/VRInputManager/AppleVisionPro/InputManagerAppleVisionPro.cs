@@ -7,9 +7,9 @@ namespace ParticleCities
 {
     public class InputManagerAppleVisionPro : InputManager
     {
-        [SerializeField] private Transform m_LeftHandJoint;
+        [SerializeField] private Transform m_LeftHand;
 
-        [SerializeField] private Transform m_RightHandJoint;
+        [SerializeField] private Transform m_RightHand;
 
         [SerializeField] private Transform m_XROrigin;
 
@@ -91,9 +91,9 @@ namespace ParticleCities
             switch (handType)
             {
                 case HandType.Left:
-                    return m_LeftHandJoint;
+                    return m_LeftHand;
                 case HandType.Right:
-                    return m_RightHandJoint;
+                    return m_RightHand;
                 default:
                     return null;
             }
@@ -147,7 +147,7 @@ namespace ParticleCities
 
         public override bool IsActiveHand(GameObject candidate)
         {
-            Debug.Log($"[InputManagerAppleVisionPro] IsActiveHand {candidate}");
+            //Debug.Log($"[InputManagerAppleVisionPro] IsActiveHand {candidate}");
             return true;
         }
 

@@ -5640,7 +5640,7 @@ GameObject:
   - component: {fileID: 1878613024}
   - component: {fileID: 1878613025}
   m_Layer: 0
-  m_Name: P1 (1)
+  m_Name: P1 (1) Lighthouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

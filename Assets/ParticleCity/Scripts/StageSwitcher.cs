@@ -200,8 +200,12 @@ namespace ParticleCities
 
         private void instantiateParticleCity(ParticleCity prefab)
         {
+            // Yuchen updated
             if (m_ParticleCityPool.ContainsKey(prefab))
+            {
                 m_ParticleCityPool[prefab].SetActive(true);
+                CurrentParticleCity = m_ParticleCityPool[prefab].GetComponent<ParticleCity>();
+            }   
             else
                 CurrentParticleCity = Instantiate(prefab);
         }
